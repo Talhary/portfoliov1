@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Aside from "@/components/aside";
+import { Navbar } from "@/components/navbar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,8 +22,11 @@ export default async function RootLayout({
          <aside className=" bg-[#1e1e1e] max-w-[24rem] m-10 rounded-xl mr-0  p-5 h-auto max-md:hidden">
            <Aside  />
          </aside>
-        <div className='flex-auto max-md:ml-10'>
+        <div className='flex-auto max-md:ml-10 '>
+        <div className= "  bg-big-card relative ml-0 text-white m-10  rounded-2xl p-5 ">
+         <Navbar className='z-10'/>
           {children}
+          </div>
         </div>
       </body>
     </html>
