@@ -23,7 +23,7 @@ export default async function RootLayout({
            <Aside  />
          </aside>
         <div className='flex-auto max-md:ml-10 '>
-        <div className= "  bg-big-card relative ml-0 text-white m-10  rounded-2xl p-5 ">
+        <div className= "  bg-big-card relative ml-0 text-white m-10  max-md:m-7 max-xs:m-4 max-xs:p-3 rounded-2xl p-5 ">
          <Navbar className='z-10'/>
           {children}
           </div>
