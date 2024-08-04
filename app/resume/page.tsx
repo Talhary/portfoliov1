@@ -1,5 +1,5 @@
 import { IoBookOutline } from "react-icons/io5";
-import {Navbar} from '@/components/navbar'
+
 import {EducationList} from '@/components/education'
 import { Slider } from "@/components/ui/slider";
 import { Heading } from "@/components/heading";
@@ -11,9 +11,9 @@ const Page = () => {
        
         <Heading title="Resume"/>
 
-      <div className="mx-7 mt-12">
-      <div className="flex gap-x-6 items-center justify-start my-8">
-          <IoBookOutline size={30} className="text-primary"/>
+      <div className="mx-7 mt-12 max-md:mx-6 max-xs:mx-3">
+      <div className="flex gap-x-6 items-center justify-start my-8 max-md:my-6 max-xs:my-4 max-md:gap-x-4 max-xs:gap-x-3">
+          <IoBookOutline size={30} className="text-primary max-xs:size-6  max-md:size-7"/>
           <h1 className='text-4xl font-semibold max-md:text-2xl  after:bg-primary '> Education</h1>
         </div>
 

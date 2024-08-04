@@ -8,8 +8,8 @@ type EducationItemProps = {
 };
 
 const EducationItem: React.FC<EducationItemProps> = ({ title, duration, description,line }) => (
-  <div className="flex gap-x-10 overflow-hidden pl-2">
-       <div  className="point h-2 mt-2 w-2 rounded-full bg-primary  relative border border-white">
+  <div className="flex gap-x-10 overflow-hidden pl-2 max-md:my-6 max-xs:my-4 max-md:gap-x-4 max-xs:gap-x-5 ">
+       <div  className="point h-2 mt-2 w-2 rounded-full bg-primary  relative ">
         {line && <div className="w-[1px] h-[20rem] ml-1 bg-primary"/>}
 </div>  
 
