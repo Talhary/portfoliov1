@@ -1,6 +1,6 @@
 import { PortfolioNavbar } from "@/components/portfolio-navbar"
 
-export default ({children, params: { filter }}:{params:{filter:string},children:React.ReactNode})=>{
+const Layout = ({children, params: { filter }}:{params:{filter:string},children:React.ReactNode})=>{
    
    return <div>
           <PortfolioNavbar filter={filter} />
@@ -12,3 +12,4 @@ export default ({children, params: { filter }}:{params:{filter:string},children:
         
     </div>
 }
+export default Layout
