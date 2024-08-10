@@ -7,7 +7,7 @@ export const LoginUser = async(email:string,password:string)=>{
     console.log({email,password})
     if(!email || ! password) return {success:false,message:'Please provide email and passord',token:null}
     if(email =='talha@gmail.com' && password=='password'){
-        let token =  jwt.sign({email:email,password:password},'This is sdjfklsdjfklj3jskldjkjk');
+        let token =  jwt.sign({email:email,password:password},process.env.JWT_TOKEN as string);
         cookies().set('token', token as string)
        
        redirect('/admin/dashboard')  
