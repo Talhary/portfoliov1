@@ -3,19 +3,19 @@ import Image from "next/image";
 import Logo from "@/design/logo.jpg";
 const Section = ({className}:{className?:string})=>{
     return <div className={className}>
-        <div className={` bg-[#32312f] p-1 md:w-[70%] md:mx-auto md:my-4 rounded-xl `}>
+        <div className={` dark:bg-[#32312f] dark:text-black text-white p-1 md:w-[70%] md:mx-auto md:my-4 rounded-xl  `}>
         <Image
-          className="mx-auto  my-[20%]"
+          className="mx-auto  md:my-[20%] "
           src={Logo}
           alt="Logo"
-          width={100}
-          height={100}
+          width={200}
+          height={200}
         />
       </div>
       <div>
-        <h1 className="text-3xl md:my-4 ">Talha Riaz</h1>
-        <p className="bg-[#32312f] my-2 md:w-[70%]  p-1 rounded-md md:mx-auto">
-          <span className='text-primary'>W</span>eb Developer
+        <h1 className="text-3xl max-md:my-5 md:my-4 max-md:text-4xl text-white   font-bold tracking-tighter">Talha Riaz</h1>
+        <p className="dark:bg-[#32312f] bg-white bg-opacity-10 text-xl my-2 md:w-fit  p-1 rounded-md md:mx-auto md:text-white  max-md:text-black-black  dark:text-white">
+          <span className='text-primary '>W</span>eb Developer
         </p>
       </div>
     </div>

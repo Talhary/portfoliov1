@@ -7,12 +7,12 @@ const Page = () => {
 
   return (
     <>
-        <div>
+        <div className='max-md:px-4 dark:text-white'>
          <Heading title="About"/>
-          <AsideImageSection className='md:hidden m-2 flex flex-start flex-col items-start'/>
-         <div className='mt-4 mx-2'>
+          <AsideImageSection className='md:hidden m-2 flex  flex-col items-start justify-center'/>
+         <div className='mt-4 mx-2 '>
          
-            <div className='tracking-wide leading-relaxed '>
+            <div className='tracking-wide leading-relaxed text-white'>
               <p className='text-xl opacity-70'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore repudiandae accusantium adipisci, officiis sint perferendis quis deleniti atque harum fugiat similique hic reiciendis delectus ad quidem quas facilis, nobis molestias.</p>
               <p className='text-xl opacity-70 mt-3'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore repudiandae accusantium adipisci, officiis sint perferendis quis deleniti atque harum fugiat similique hic reiciendis delectus ad quidem quas facilis, nobis molestias. Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde vitae, perspiciatis fugit velit id dicta nam. Quia ullam minus fugit molestias autem accusantium tenetur voluptate ratione nulla distinctio, corporis enim!</p>
             </div>
@@ -22,12 +22,12 @@ const Page = () => {
           </div>
           <div className='flex flex-wrap mt-4 '>
             {[1,2,3].map((el,i)=>{
-              return <div key={i} className='bg-[#222224] max-md:gap-y-2 max-sm:flex-col flex flex-row gap-x-4 rounded-2xl m-3 max-sm:m-2 max-w-md shadow-sm shadow-gray-800 p-4 max-sm:p-2 px-7'>
+              return <div key={i} className='card  max-md:gap-y-2 max-sm:flex-col flex flex-row gap-x-4 rounded-2xl m-3 max-sm:m-2 max-w-md  shadow-black dark:shadow-gray-800 p-4 max-sm:px-3 max-sm:py-4 px-7'>
                      <div className='flex items-start my-2 text-center max-sm:items-center '>
                        <SiMaterialdesign className='text-primary max-sm:size-9' size={30} />
                       </div>
                       <div className='space-y-'>
-                        <h2 className='font-semibold text-xl r'>web design</h2>
+                        <h2 className='font-semibold `text-xl r'>web design</h2>
                         <p>Thr Most modern and high-quality design made a professional level</p>
                       </div> 
               </div>

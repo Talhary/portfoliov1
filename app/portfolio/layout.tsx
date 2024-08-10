@@ -5,8 +5,8 @@ import { PortfolioNavbar } from "@/components/portfolio-navbar"
 
 const RootLayout = ({children }:{children:React.ReactNode})=>{
    
-    return  <div>
-          <Navbar />
+    return  <div className="">
+          
           <Heading title="Portfolio"/>
           {children}
          

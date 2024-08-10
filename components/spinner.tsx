@@ -3,6 +3,7 @@
 import { ClipLoader } from "react-spinners"
 import { motion } from "framer-motion"
 export const Spinner = ()=>{
+ 
  return  <motion.div
  initial={
     {
