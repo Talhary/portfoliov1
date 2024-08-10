@@ -14,10 +14,10 @@ if(!token){
 }
 try {
   
-    var decoded = jwt.verify(token?.value , 'This is sdjfklsdjfklj3jskldjkjk');
+    const decoded = jwt.verify(token?.value , 'This is sdjfklsdjfklj3jskldjkjk');
     
   } catch(err) {
-    
+    console.log(err)
     redirect('/admin/login')
 
   }
