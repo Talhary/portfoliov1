@@ -6,14 +6,6 @@ import Projects from './projects';
 import { GetAllProjects } from '@/actions/getAllProjects';
 import { Heading } from "@/components/heading";
 
-const Page = async()=>{
-import { cookies } from "next/headers";
-import jwt from 'jsonwebtoken';
-import { redirect } from "next/navigation";
-import { ProfileForm } from './upload-data';
-import Projects from './projects';
-import { GetAllProjects } from '@/actions/getAllProjects';
-import { Heading } from "@/components/heading";
 
 const Page = async()=>{
 const res = await GetAllProjects()
@@ -24,7 +16,7 @@ if(!token){
 try {
   
     const decoded = jwt.verify(token?.value , 'This is sdjfklsdjfklj3jskldjkjk');
-    const decoded = jwt.verify(token?.value , 'This is sdjfklsdjfklj3jskldjkjk');
+
     
   } catch(err) {
     console.log(err)
