@@ -13,17 +13,7 @@ const token = cookies().get('token')
 if(!token){
     redirect('/admin/login')
 }
-try {
-  
-    const decoded = jwt.verify(token?.value , 'This is sdjfklsdjfklj3jskldjkjk');
 
-    
-  } catch(err) {
-    console.log(err)
-    console.log(err)
-    redirect('/admin/login')
-
-  }
 
   try {
     jwt.verify(token.value, 'ksdfjksjj3i4jw3iorjsijki');
