@@ -1,6 +1,4 @@
-import Image from "next/image";
-import Link from "next/link";
-import Logo from "@/design/logo.jpg";
+
 import React from "react";
 import { MdOutlineMarkEmailRead, MdOutlinePhoneInTalk } from "react-icons/md";
 import { SlCalender } from "react-icons/sl";
@@ -11,7 +9,7 @@ const Navbar = () => {
        <AsideImageSection className='max-md:hidden'/>
       <hr className="my-10 max-md:hidden"></hr>
       <div className="flex flex-col items-start justify-center">
-      {[{ h: "EMAIL", p: "talharaiz@gmail.com", Logo: <MdOutlineMarkEmailRead  size={25} color="orange" /> },
+      {[{ h: "EMAIL", p: "mtalhamaths@gmail.com", Logo: <MdOutlineMarkEmailRead  size={25} color="orange" /> },
       { h: "PHONE", p: "+92 318 5853847", Logo: <MdOutlinePhoneInTalk  size={25} color="orange" /> },
       { h: "BIRTH", p: "28 Nov 2003", Logo: <SlCalender  size={25} color="orange" /> }].map(
         ({ h, p, Logo }, i) => {

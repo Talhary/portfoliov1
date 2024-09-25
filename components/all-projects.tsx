@@ -22,7 +22,7 @@ export const AllProjects = ({ projects }: { projects: z.infer<typeof formSchema>
               View Project
             </a>
             <a
-              href={project.githubUrl}
+              href={'/portfolio/project/'+project.id}
               target="_blank"
               rel="noopener noreferrer"
               className="ml-4 inline-block border border-white  py-2 px-4 dark:text-white text-white hover:border-black hover:text-blue-500 transition-colors"

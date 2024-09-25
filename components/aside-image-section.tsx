@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-import Logo from "@/design/logo.jpg";
+import Logo from "@/images/me.png";
 const Section = ({className}:{className?:string})=>{
     return <div className={className}>
         <div className={` dark:bg-[#32312f] dark:text-black text-white p-1 md:w-[70%] md:mx-auto md:my-4 rounded-xl  `}>
