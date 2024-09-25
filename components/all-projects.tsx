@@ -5,7 +5,6 @@ import { ImageCarousel } from '@/app/admin/dashboard/image-Carosal'
 export const AllProjects = ({ projects }: { projects: z.infer<typeof formSchema>[] }) => {
 
   return <div className='flex overflow-hidden items-start lg:justify-start  max-lg:justify-center  flex-wrap gap-3  mt-3 max-md:gap-2 '>
-
     {projects.map((project: z.infer<typeof formSchema>, i: any) => {
       return <div key={project.link} className="max-h-lg my-3 w-[20rem]   max-md:my-1  bg-white bg-opacity-10 dark:bg-card-bg dark:bg-opacity-100 card shadow-lg rounded-lg overflow-hidden max-w-sm ">
         <div className="relative h-48 overflow-hidden">
