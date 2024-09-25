@@ -23,22 +23,22 @@ const EducationItem: React.FC<EducationItemProps> = ({ title, duration, descript
 
 const educationData = [
   {
-    title: 'University School Of The Arts',
-    duration: '2007 — 2008',
-    description: 'Nemo enim ipsam voluptatem, blanditiis praesentium voluptatum deleniti atque corrupti, quos dolores et quas molestias exceptur.',
+    title: 'Quaid-e-Azam University',
+    duration: '2020 — 2024',
+    description: 'I completed my Graduation in Mathematics. Which give me excellent problem solving skills ',
     line:true, 
 },
   {
-    title: 'New York Academy Of Art',
-    duration: '2006 — 2007',
-    description: 'Ratione voluptatem sequi nesciunt, facere quisquams facere menda ossimus, omnis voluptas assumenda est omnis.',
+    title: 'Fsc Pre-Engg',
+    duration: '2018 — 2020',
+    description: '',
     line:true 
      
 },
   {
-    title: 'High School Of Art And Design',
-    duration: '2002 — 2004',
-    description: 'Duis aute irure dolor in reprehenderit in voluptate, quila voluptas mag odit aut fugit, sed consequuntur magni dolores eos.',
+    title: 'Matric with Science',
+    duration: '2016-2018',
+    description: '',
     line:false 
      
 },

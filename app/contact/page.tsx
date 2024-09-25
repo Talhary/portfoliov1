@@ -1,12 +1,13 @@
 
 import { Heading } from '@/components/heading';
-import {Navbar} from '@/components/navbar'
+import Component from '@/app/contact/_components/contact'
 const Page = () => {
 
   return (
     <>
        <div>
        <Heading title="Contact"/>
+       <Component/>
      </div>
     </>
   );

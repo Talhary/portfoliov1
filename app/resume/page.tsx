@@ -27,7 +27,7 @@ const Page = () => {
           
       </div>
       <div className='border-card-bg-1 card hover:scale-[1.007] flex  dark:bg-card-bg-2 bg-white bg-opacity-10  flex-col space-y-10 gap-x-4 rounded-2xl m-3  shadow-sm shadow-gray-800 p-4 py-10 px-7  dark:text-white'>
-        {[{value:70,title:'MERN Stack'},{value:80,title:'Next Js'},{value:70,title:'PHP'}].map((el,i)=>(
+        {[{value:90,title:'MERN Stack'},{value:90,title:'Next Js'},{value:70,title:'PHP'}].map((el,i)=>(
           <div key={i} className="space-y-3">
             <h2 className="text-xl max-md:text-lg max-sm:text-md"><span className=" font-semibold dark:text-white">{el.title}</span> <span>{el.value}{"%"}</span> </h2>
             <Slider
