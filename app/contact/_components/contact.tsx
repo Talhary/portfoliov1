@@ -7,8 +7,8 @@ import Link from "next/link"
 
 export default function Component() {
     return (
-      <div className="w-full max-w-4xl mx-auto px-4 md:px-0 py-12 md:py-20  dark:text-gray-100">
-        <div className="grid md:grid-cols-2 gap-8">
+      <div className="w-full max-md:w-fit max-w-4xl mx-auto px-4   md:px-0 py-12 md:py-20  dark:text-gray-100">
+        <div className="grid md:grid-cols-2 gap-8 max-md:gap-5">
           <div className="space-y-6">
             <div>
               <h2 className="text-3xl font-bold">Get in Touch</h2>
@@ -16,7 +16,7 @@ export default function Component() {
                 Have a question or want to work together? Fill out the form below or use the contact info to the right.
               </p>
             </div>
-            <form className="space-y-4">
+            <form className="space-y-4 ">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <Label htmlFor="name" className="dark:text-gray-100">
