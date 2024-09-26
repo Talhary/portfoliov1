@@ -21,3 +21,14 @@ export const formSchema = z.object({
     message: "Invalid URL format.",
   }),
 });
+export const contactformSchema = z.object({
+  name: z.string().min(1, {
+      message: "Name is required.",
+  }),
+  email: z.string().email({
+      message: "Please enter a valid email address.",
+  }),
+  message: z.string().min(5, {
+      message: "Message must be at least 5 characters.",
+  }),
+});

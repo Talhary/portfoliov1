@@ -4,7 +4,7 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
-
+import {ContactForm} from '@/app/contact/_components/form'
 export default function Component() {
     return (
       <div className="w-full max-md:w-fit max-w-4xl mx-auto px-4   md:px-0 py-12 md:py-20  dark:text-gray-100">
@@ -16,45 +16,7 @@ export default function Component() {
                 Have a question or want to work together? Fill out the form below or use the contact info to the right.
               </p>
             </div>
-            <form className="space-y-4 ">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <Label htmlFor="name" className="dark:text-gray-100">
-                    Name
-                  </Label>
-                  <Input
-                    id="name"
-                    placeholder="John Doe"
-                    className=" dark:text-gray-100 dark:border-gray-700"
-                  />
-                </div>
-                <div>
-                  <Label htmlFor="email" className="dark:text-gray-100">
-                    Email
-                  </Label>
-                  <Input
-                    id="email"
-                    type="email"
-                    placeholder="john@example.com"
-                    className=" dark:text-gray-100 dark:border-gray-700"
-                  />
-                </div>
-              </div>
-              <div>
-                <Label htmlFor="message" className="dark:text-gray-100">
-                  Message
-                </Label>
-                <Textarea
-                  id="message"
-                  rows={5}
-                  placeholder="How can I help you?"
-                  className=" dark:text-gray-100 dark:border-gray-700"
-                />
-              </div>
-              <Button type="submit" className="dark:bg-primary w-full dark:text-black bg-primary dark:hover:scale-[1.01] transition-all duration-200">
-                Send Message
-              </Button>
-            </form>
+            <ContactForm/>
           </div>
           <div className="space-y-6">
             <div>
