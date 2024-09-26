@@ -42,6 +42,7 @@ export const ContactForm = () => {
             setLoading(true)
             const res = await sendContactMail(values)
             setLoading(false)
+            form.reset()
             if (res?.err) {
                 return setErrorDialogOpen(true); 
             }
