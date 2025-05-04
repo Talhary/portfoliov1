@@ -4,6 +4,10 @@ import {z} from 'zod'
 import {db} from '@/lib/db'
 export const AddProject = async(res:z.infer<typeof formSchema>)=>{
   try{
+    const parse = formSchema.safeParse(res)
+    if(!parse.success){
+      return {status:400,data:"failed to parse"}
+    }
     const data = await db.projects.create({
         data:res
     })

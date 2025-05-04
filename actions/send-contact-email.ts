@@ -11,15 +11,15 @@ const transporter = nodemailer.createTransport({
   port: 587,
   secure: true,
   auth: {
-    user: 'usnumerber@gmail.com',
-    pass: 'gkfqtriudyvxrcir',
+    user: process.env.GMAIL,
+    pass: process.env.GMAIL_PASS,
   },
 });
 
 // Function to send email to admin
 const sendMailtoAdmin = async (values: z.infer<typeof contactformSchema>) => {
   const mailOptions = {
-    from: 'usnumerber@gmail.com',
+    from: process.env.GMAIL,
     to: 'talhariaz5425869@gmail.com',
     subject: `From ${values.name}`,
     text: `sender: ${values.email}\nMessage: ${values.message}`,
@@ -43,7 +43,7 @@ export const sendContactMail = async (values: z.infer<typeof contactformSchema>)
 
     // Sending confirmation email to user
     const mailOptions = {
-      from: 'usnumerber@gmail.com',
+      from: process.env.GMAIL,
       to: values.email,
       subject: 'From Talha',
       text: 'Thanks for contacting me. I will respond as soon as possible.',

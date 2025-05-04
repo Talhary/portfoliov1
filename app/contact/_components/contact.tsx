@@ -36,8 +36,8 @@ export default function Component() {
               </div>
               <div className="flex items-center gap-2">
                 <GlobeIcon className="h-5 w-5 text-primary dark:text-gray-400" />
-                <Link href="https://talhatech.vercel.app" className="hover:underline dark:text-gray-100" prefetch={false}>
-                  talhatech.vercel.app
+                <Link href="/" className="hover:underline dark:text-gray-100" prefetch={false}>
+                  Talhatech.vercel.app
                 </Link>
               </div>
               <div className="flex items-center gap-2">
