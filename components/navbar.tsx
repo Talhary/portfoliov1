@@ -1,14 +1,14 @@
 'use client'
 
 type PageStates = {
-  about?: boolean | null;
-  resume?: boolean | null;
-  "portfolio/all"?: boolean | null;
-  blog?: boolean | null;
-  contact?: boolean | null;
+  about: boolean | null;
+  resume: boolean | null;
+  "portfolio": boolean | null;
+  blog: boolean | null;
+  contact: boolean | null;
 };
-const nameList: Array<keyof PageStates> = ['about', 'resume', 'portfolio/all', 'contact'];
 const list = ['About', 'Resume', 'Portfolio', 'Contact']
+const nameList = list.map(el=>el.toLocaleLowerCase());
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation';
