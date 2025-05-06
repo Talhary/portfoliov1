@@ -95,9 +95,9 @@ const Page = () => {
         <AsideImageSection className='md:hidden  my-4  flex flex-col items-center justify-center' />
 
         <section className='mt-6 mx-2 max-md:mx-0 '>
-          <h2 className="text-2xl font-semibold mb-4 text-neutral-100 dark:text-white">Bio</h2>
+          <h2 className="text-2xl font-semibold mb-4 text-neutral-100 dark:text-white hidden">Bio</h2>
           <p className='text-lg md:text-xl leading-relaxed tracking-wide opacity-90 text-neutral-100 dark:opacity-80'>
-            Hi, I&apos;m Talha, a passionate <Highlight text='Full Stack' /> Web Developer based in <Highlight text="Islamabad" />. I specialize in building dynamic web applications and bots using a diverse range of technologies. Having completed my Graduation, I thrive on creating efficient, scalable, and user-friendly solutions. Currently contributing my skills at Woltrio and always eager for new challenges and learning opportunities.
+            Hi, I&apos;m <Highlight text="Talha"/>, a passionate <Highlight text='Full Stack' /> Web Developer based in <Highlight text="Islamabad" />. I specialize in building dynamic web applications and bots using a diverse range of technologies. Having completed my Graduation, I thrive on creating efficient, scalable, and user-friendly solutions. Currently contributing my skills at Woltrio and always eager for new challenges and learning opportunities.
           </p>
         </section>
 
@@ -128,7 +128,7 @@ const Page = () => {
         <section className='mt-12  mx-2 max-md:mx-0'>
           <h2 className='text-2xl font-semibold mb-6 text-neutral-100 dark:text-white'>My Focus Areas</h2>
   
-          <div className='grid grid-cols-3 gap-4 max-md:grid-cols-2 max-md:gap-y-9 max-sm:grid-cols-1'>
+          <div className='grid grid-cols-3 gap-4 max-lg:grid-cols-2 max-md:gap-y-9 max-sm:grid-cols-1'>
             {focusAreas.map((el, i) => (
               <div
                 key={i}
