@@ -8,6 +8,7 @@ import { extractRouterConfig } from "uploadthing/server";
 import { ThemeProvider } from "@/components/theme-provider"
 
 import { ourFileRouter } from "@/app/api/uploadthing/core";
+import { GetToTopButton } from "@/components/get-to-top";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -37,7 +38,8 @@ export default async function RootLayout({
 
           </aside>
           <div className='flex-auto max-md:ml-0 '>
-            <div className="   dark:bg-big-card  dark:text-black  shadow shadow-black backdrop-blur-2xl relative ml-0 text-white m-10  max-md:m-7 max-xs:m-4 max-xs:p-3 rounded-2xl p-5 max-md:p-3 ">
+            <div className="   dark:bg-big-card  dark:text-black  shadow shadow-black backdrop-blur-2xl relative ml-0 text-white m-10  max-md:m-4 max-xs:m-1 max-xs:p-3 rounded-2xl p-5 max-md:p-3 ">
+              <GetToTopButton/>
               <Navbar className='z-10' />
               {children}
             </div>
