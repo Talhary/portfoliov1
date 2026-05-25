@@ -3,6 +3,7 @@ import { z } from 'zod';
 import { formSchema } from "@/lib/form-type";
 import Link from 'next/link';
 import { Layers, ExternalLink } from 'lucide-react';
+import { ProgressiveImage } from './progressive-image';
 
 export const AllProjects = ({ projects }: { projects: z.infer<typeof formSchema>[] }) => {
   const slugify = (text: string) => text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '');
@@ -21,12 +22,13 @@ export const AllProjects = ({ projects }: { projects: z.infer<typeof formSchema>
             {/* Static Project Cover Image (Saves loading overhead and looks extremely premium) */}
             <div className="relative w-full h-48 overflow-hidden rounded-t-2xl bg-zinc-950/20">
               {project.imageUrl && project.imageUrl.length > 0 ? (
-                <Image 
+                <ProgressiveImage 
                   src={project.imageUrl[0]} 
                   alt={project.title} 
                   fill 
                   sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  className="object-cover transition-transform duration-500 group-hover:scale-105" 
+                  objectFit="cover"
+                  className="transition-transform duration-500 group-hover:scale-105" 
                 />
               ) : (
                 <div className="w-full h-full flex items-center justify-center text-stone-400 dark:text-zinc-500 text-xs font-light">
@@ -59,13 +61,13 @@ export const AllProjects = ({ projects }: { projects: z.infer<typeof formSchema>
 
               {/* Action Buttons */}
               <div className="flex items-center gap-3 pt-3 border-t border-stone-200/50 dark:border-white/5 mt-auto">
-                <Link href={`/portfolio/project/${slugify(project.title)}`} className="flex-1">
-                  <button className="w-full flex items-center justify-center gap-1.5 border border-stone-350 dark:border-zinc-700 text-stone-700 dark:text-stone-300 hover:bg-[#e49505]/10 hover:text-[#e49505] hover:border-[#e49505]/20 transition-all font-semibold rounded-xl text-xs py-2.5 px-3">
+                <Link href={`/portfolio/project/${slugify(project.title)}`} className="flex-1 after:absolute after:inset-0 after:z-10 cursor-pointer">
+                  <button className="w-full flex items-center justify-center gap-1.5 border border-stone-350 dark:border-zinc-700 text-stone-700 dark:text-stone-300 hover:bg-[#e49505]/10 hover:text-[#e49505] hover:border-[#e49505]/20 transition-all font-semibold rounded-xl text-xs py-2.5 px-3 relative z-20">
                     <Layers className="h-3.5 w-3.5" />
                     Details
                   </button>
                 </Link>
-                <a href={project.link} target="_blank" rel="noopener noreferrer" className="flex-1">
+                <a href={project.link} target="_blank" rel="noopener noreferrer" className="flex-1 relative z-20">
                   <button className="w-full flex items-center justify-center gap-1.5 bg-[#e49505] hover:bg-[#c98304] text-white transition-all font-semibold rounded-xl text-xs py-2.5 px-3 shadow-md shadow-[#e49505]/10">
                     <ExternalLink className="h-3.5 w-3.5" />
                     Visit Live

@@ -20,6 +20,7 @@ export const formSchema = z.object({
   githubUrl: z.string().url({
     message: "Invalid URL format.",
   }),
+  order: z.coerce.number().int().default(0),
 });
 export const contactformSchema = z.object({
   name: z.string().min(1, {

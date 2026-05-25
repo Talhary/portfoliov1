@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { updateProjectById } from '@/actions/update';
@@ -21,6 +21,15 @@ import {
   Image as ImageIcon
 } from 'lucide-react';
 import Link from 'next/link';
+import { getCategories } from '@/actions/categories';
+import {
+  MultiSelector,
+  MultiSelectorTrigger,
+  MultiSelectorInput,
+  MultiSelectorContent,
+  MultiSelectorList,
+  MultiSelectorItem,
+} from "@/components/ui/multi-select";
 
 export default function EditProjectForm({ project }: { project: any }) {
   const router = useRouter();
@@ -30,9 +39,35 @@ export default function EditProjectForm({ project }: { project: any }) {
   const [link, setLink] = useState(project.link || '');
   const [githubUrl, setGithubUrl] = useState(project.githubUrl || '');
   const [imageUrl, setImageUrl] = useState<string[]>(project.imageUrl || []);
+  const [order, setOrder] = useState<number>(project.order ?? 0);
   
   const [loading, setLoading] = useState(false);
   const [msg, setMsg] = useState('');
+
+  const [options, setOptions] = useState<Array<{ label: string, value: string }>>([
+    { label: "Website", value: "websites" },
+    { label: "Web App", value: "webapps" },
+    { label: "Front End", value: "frontend" },
+    { label: "Backend", value: "backend" },
+  ]);
+  const [value, setValue] = useState<string[]>(
+    (project.type || '').split('|').map((t: string) => t.trim()).filter(Boolean)
+  );
+
+  const loadCategories = async () => {
+    const res = await getCategories();
+    if (res.success && res.data.length > 0) {
+      setOptions(res.data.map((cat: any) => ({ label: cat.name, value: cat.value })));
+    }
+  };
+
+  useEffect(() => {
+    loadCategories();
+  }, []);
+
+  useEffect(() => {
+    setType(value.join('|'));
+  }, [value]);
 
   const moveLeft = (index: number) => {
     if (index === 0) return;
@@ -69,7 +104,8 @@ export default function EditProjectForm({ project }: { project: any }) {
         type,
         link,
         githubUrl,
-        imageUrl
+        imageUrl,
+        order: Number(order)
       };
 
       const res = await updateProjectById(project.id, updateData);
@@ -152,23 +188,28 @@ export default function EditProjectForm({ project }: { project: any }) {
 
         {/* Categories Field */}
         <div className="space-y-1.5">
-          <label className="block text-xs font-semibold uppercase tracking-wider text-stone-600 dark:text-zinc-400" htmlFor="type">
-            Categories (separated by |)
+          <label className="block text-xs font-semibold uppercase tracking-wider text-stone-600 dark:text-zinc-400">
+            Categories / Tag Types
           </label>
-          <div className="relative rounded-xl border border-stone-250 dark:border-zinc-800 bg-white/[0.05] dark:bg-black/25 transition-all focus-within:border-[#e49505] focus-within:ring-1 focus-within:ring-[#e49505]">
-            <input 
-              id="type"
-              type="text"
-              value={type}
-              onChange={(e) => setType(e.target.value)}
-              placeholder="websites | webapps | frontend" 
-              className="w-full bg-transparent border-0 shadow-none py-2.5 px-4 text-sm text-stone-900 dark:text-white placeholder-stone-450 dark:placeholder-zinc-650 focus:outline-none rounded-xl"
-              required
-            />
+          <div className="relative">
+            <MultiSelector values={value} onValuesChange={setValue} loop={false}>
+              <MultiSelectorTrigger className="rounded-xl border border-stone-250 dark:border-zinc-800 bg-white/[0.05] dark:bg-black/25 text-stone-900 dark:text-white focus-within:border-[#e49505] focus-within:ring-1 focus-within:ring-[#e49505] py-2 px-3">
+                <MultiSelectorInput placeholder="Choose tag categories..." className="placeholder-stone-450 dark:placeholder-zinc-650" />
+              </MultiSelectorTrigger>
+              <MultiSelectorContent>
+                <MultiSelectorList className="bg-white dark:bg-zinc-950 border border-stone-200 dark:border-zinc-800 text-stone-900 dark:text-white rounded-xl shadow-2xl p-1.5 space-y-1 z-50">
+                  {options.map((option, i) => (
+                    <MultiSelectorItem key={i} value={option.value} className="rounded-lg hover:bg-[#e49505]/10 hover:text-[#e49505] cursor-pointer">
+                      {option.label}
+                    </MultiSelectorItem>
+                  ))}
+                </MultiSelectorList>
+              </MultiSelectorContent>
+            </MultiSelector>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {/* Live Link Field */}
           <div className="space-y-1.5">
             <label className="block text-xs font-semibold uppercase tracking-wider text-stone-600 dark:text-zinc-400" htmlFor="link">
@@ -205,6 +246,27 @@ export default function EditProjectForm({ project }: { project: any }) {
                 value={githubUrl}
                 onChange={(e) => setGithubUrl(e.target.value)}
                 placeholder="https://github.com/..." 
+                className="w-full bg-transparent border-0 shadow-none py-2.5 pl-10 pr-4 text-sm text-stone-900 dark:text-white placeholder-stone-450 dark:placeholder-zinc-650 focus:outline-none rounded-xl"
+                required
+              />
+            </div>
+          </div>
+
+          {/* Display Order (Numbering) Field */}
+          <div className="space-y-1.5">
+            <label className="block text-xs font-semibold uppercase tracking-wider text-stone-600 dark:text-zinc-400" htmlFor="order">
+              Display Order
+            </label>
+            <div className="relative rounded-xl border border-stone-250 dark:border-zinc-800 bg-white/[0.05] dark:bg-black/25 transition-all focus-within:border-[#e49505] focus-within:ring-1 focus-within:ring-[#e49505]">
+              <span className="absolute inset-y-0 left-0 flex items-center pl-3.5 text-stone-400 dark:text-zinc-500 text-xs font-bold">
+                #
+              </span>
+              <input 
+                id="order"
+                type="number"
+                value={order}
+                onChange={(e) => setOrder(Number(e.target.value))}
+                placeholder="0, 1, 2..." 
                 className="w-full bg-transparent border-0 shadow-none py-2.5 pl-10 pr-4 text-sm text-stone-900 dark:text-white placeholder-stone-450 dark:placeholder-zinc-650 focus:outline-none rounded-xl"
                 required
               />

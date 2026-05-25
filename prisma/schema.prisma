@@ -23,6 +23,7 @@ model Projects {
   updatedAt   DateTime @updatedAt
   imageUrl    String[]
   githubUrl   String
+  order       Int      @default(0)
 }
 
 model Category {

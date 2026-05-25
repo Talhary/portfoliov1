@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { ChevronLeft, ChevronRight, Maximize2 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
+import { ProgressiveImage } from '@/components/progressive-image';
 
 interface ImageShowcaseProps {
   images: string[];
@@ -40,6 +41,9 @@ export function ImageShowcase({ images }: ImageShowcaseProps) {
     setCurrentIndex(idx);
   };
 
+  const nextIndex = (currentIndex + 1) % images.length;
+  const prevIndex = (currentIndex - 1 + images.length) % images.length;
+
   return (
     <div className="w-full flex flex-col gap-4">
       {/* Main Image Viewport */}
@@ -47,7 +51,7 @@ export function ImageShowcase({ images }: ImageShowcaseProps) {
         className="w-full aspect-[16/10] relative rounded-2xl overflow-hidden border border-stone-200/50 dark:border-white/5 bg-zinc-950/60 shadow-2xl group transition-all duration-300 cursor-pointer"
         onClick={() => setIsZoomed(true)}
       >
-        <Image
+        <ProgressiveImage
           src={images[currentIndex]}
           alt={`Project Showcase Image ${currentIndex + 1}`}
           fill
@@ -105,7 +109,7 @@ export function ImageShowcase({ images }: ImageShowcaseProps) {
         <DialogContent className="max-w-[95vw] md:max-w-[85vw] h-[85vh] p-0 border-none bg-black/95 shadow-none overflow-hidden sm:rounded-2xl flex items-center justify-center z-50">
           <div className="relative w-full h-full flex items-center justify-center">
             
-            <Image
+            <ProgressiveImage
               src={images[currentIndex]}
               alt={`Fullscreen Showcase Image ${currentIndex + 1}`}
               fill
@@ -171,6 +175,28 @@ export function ImageShowcase({ images }: ImageShowcaseProps) {
               />
             </button>
           ))}
+        </div>
+      )}
+
+      {/* Hidden preloader for adjacent images (high-res optimized versions) */}
+      {images.length > 1 && (
+        <div className="hidden" aria-hidden="true">
+          <Image
+            key={`preload-next-${nextIndex}`}
+            src={images[nextIndex]}
+            alt="preload-next"
+            fill
+            sizes="(max-width: 1024px) 100vw, 60vw"
+            priority
+          />
+          <Image
+            key={`preload-prev-${prevIndex}`}
+            src={images[prevIndex]}
+            alt="preload-prev"
+            fill
+            sizes="(max-width: 1024px) 100vw, 60vw"
+            priority
+          />
         </div>
       )}
     </div>
