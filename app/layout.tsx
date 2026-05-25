@@ -13,7 +13,10 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Talha Riaz ",
-  description: "Muhammad Talha Riaz, Full Stack Web developer Portfolio.",
+  description: "Muhammad Talha Riaz, Software engineer Portfolio.",
+  verification: {
+    google: "wHIxtQ2Ehw-Z4mysz4nMFthsRdGwaCmbnp72t9r7mkI",
+  },
 };
 
 export default async function RootLayout({
@@ -40,7 +43,7 @@ export default async function RootLayout({
           <div className='flex-auto  max-md:ml-0 relative'>
             <Navbar className='z-50' />
             <div className="  dark:bg-big-card  dark:text-black  shadow shadow-black backdrop-blur-2xl relative ml-0 text-white   max-md:m-4 max-xs:m-1 max-xs:p-3 rounded-2xl p-5 max-md:p-3 ">
-              <GetToTopButton/>
+              <GetToTopButton />
               {children}
             </div>
           </div>
