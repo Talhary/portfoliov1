@@ -1,38 +1,82 @@
-import Image from 'next/image'
-import { z } from 'zod'
-import { formSchema } from "@/lib/form-type"
-import { ImageCarousel } from '@/app/admin/dashboard/image-Carosal'
+import Image from 'next/image';
+import { z } from 'zod';
+import { formSchema } from "@/lib/form-type";
+import Link from 'next/link';
+import { Layers, ExternalLink } from 'lucide-react';
+
 export const AllProjects = ({ projects }: { projects: z.infer<typeof formSchema>[] }) => {
+  const slugify = (text: string) => text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '');
 
-  return <div className='flex overflow-hidden items-start lg:justify-start  max-lg:justify-center  flex-wrap gap-3  mt-3 max-md:gap-2 '>
-    {projects.map((project: z.infer<typeof formSchema>, i: any) => {
-      return <div key={project.link} className="max-h-lg my-3 w-[20rem]   max-md:my-1  bg-white bg-opacity-10 dark:bg-card-bg dark:bg-opacity-100 card shadow-lg rounded-lg overflow-hidden max-w-sm ">
-        <div className="relative h-48 overflow-hidden">
-          <ImageCarousel images={project.imageUrl} />
-        </div>
-        <div className="p-4 max-md:p-3 max-sm:p-2 ">
-          <h2 className="text-xl font-semibold dark:text-white text-white">{project.title}</h2>
-          <div className="mt-2 max-md:mt-1 ">
-            <a
-              href={project.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block bg-primary dark:text-black text-white py-2 px-4 rounded hover:bg-blue-600 transition-colors"
-            >
-              View Project
-            </a>
-            <a
-              href={'/portfolio/project/'+project.id}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="ml-4 inline-block border border-white  py-2 px-4 dark:text-white text-white hover:border-black hover:text-blue-500 transition-colors"
-            >
-              Details
-            </a>
+  return (
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-6 max-w-7xl mx-auto">
+      {projects.map((project: z.infer<typeof formSchema>) => {
+        return (
+          <div 
+            key={project.id} 
+            className="group rounded-2xl border border-stone-200/50 dark:border-white/5 bg-white bg-opacity-70 dark:bg-zinc-900/30 backdrop-blur-md shadow-xl hover:shadow-2xl overflow-hidden flex flex-col justify-between transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[#e49505]/5 relative"
+          >
+            {/* Glowing Top Accent Line on Hover */}
+            <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#e49505] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10" />
+
+            {/* Static Project Cover Image (Saves loading overhead and looks extremely premium) */}
+            <div className="relative w-full h-48 overflow-hidden rounded-t-2xl bg-zinc-950/20">
+              {project.imageUrl && project.imageUrl.length > 0 ? (
+                <Image 
+                  src={project.imageUrl[0]} 
+                  alt={project.title} 
+                  fill 
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  className="object-cover transition-transform duration-500 group-hover:scale-105" 
+                />
+              ) : (
+                <div className="w-full h-full flex items-center justify-center text-stone-400 dark:text-zinc-500 text-xs font-light">
+                  No Preview Available
+                </div>
+              )}
+              {/* Subtle Ambient Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-60 pointer-events-none" />
+            </div>
+
+            {/* Content Body */}
+            <div className="p-5 flex-grow flex flex-col justify-between gap-4">
+              <div className="space-y-2">
+                <h4 className="text-lg font-bold text-stone-900 dark:text-white group-hover:text-[#e49505] transition-colors tracking-tight leading-snug">
+                  {project.title}
+                </h4>
+                
+                {/* Dynamic Category Badges */}
+                <div className="flex flex-wrap gap-1.5 pt-0.5">
+                  {project.type.split('|').map((el: string) => el.trim()).filter(Boolean).map((tag: string) => (
+                    <span 
+                      key={tag} 
+                      className="text-[9px] font-bold bg-[#e49505]/10 border border-[#e49505]/20 text-[#e49505] uppercase tracking-wider px-2 py-0.5 rounded-full"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              {/* Action Buttons */}
+              <div className="flex items-center gap-3 pt-3 border-t border-stone-200/50 dark:border-white/5 mt-auto">
+                <Link href={`/portfolio/project/${slugify(project.title)}`} className="flex-1">
+                  <button className="w-full flex items-center justify-center gap-1.5 border border-stone-350 dark:border-zinc-700 text-stone-700 dark:text-stone-300 hover:bg-[#e49505]/10 hover:text-[#e49505] hover:border-[#e49505]/20 transition-all font-semibold rounded-xl text-xs py-2.5 px-3">
+                    <Layers className="h-3.5 w-3.5" />
+                    Details
+                  </button>
+                </Link>
+                <a href={project.link} target="_blank" rel="noopener noreferrer" className="flex-1">
+                  <button className="w-full flex items-center justify-center gap-1.5 bg-[#e49505] hover:bg-[#c98304] text-white transition-all font-semibold rounded-xl text-xs py-2.5 px-3 shadow-md shadow-[#e49505]/10">
+                    <ExternalLink className="h-3.5 w-3.5" />
+                    Visit Live
+                  </button>
+                </a>
+              </div>
+            </div>
+
           </div>
-        </div>
-      </div>
-    })}
-
-  </div>
-}
+        );
+      })}
+    </div>
+  );
+};

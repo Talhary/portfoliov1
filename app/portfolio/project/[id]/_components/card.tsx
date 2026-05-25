@@ -1,178 +1,132 @@
+import React from "react"
+import Link from "next/link"
+import * as z from 'zod'
+import { formSchema } from '@/lib/form-type'
+import { ImageShowcase } from './image-showcase'
+import { Github, ArrowLeft, ExternalLink } from "lucide-react"
 
-// Import necessary components and icons
-import { Card } from "@/components/ui/card";
-// Assuming Shadcn Card
-import { Separator } from "@/components/ui/separator";
-// Assuming Shadcn Separator
-import Link from "next/link";
-// Next.js Link component
-import { formSchema } from '@/lib/form-type';
-// Your Zod schema definition
-import * as z from 'zod';
-// Zod for type inference
-import { ImageCarousel } from '@/app/admin/dashboard/image-Carosal';
-// Your image carousel component
-
-// Import icons from lucide-react (commonly used with Shadcn UI)
-import { Folder, Link as LinkIcon, CalendarDays, Github } from "lucide-react";
-
-
-// Use the inferred type from your Zod schema for the component's props
 export default function Component(obj: z.infer<typeof formSchema>) {
-
-
-  // Helper function to display clean URLs (removes https/http and www)
-  const cleanUrl = (url: string): string => {
-    if (!url) return '';
+  
+  const formatDate = (date: any) => {
+    if (!date) return 'N/A';
     try {
-      const urlObj = new URL(url);
-      let hostname = urlObj.hostname;
-      if (hostname.startsWith('www.')) {
-        hostname = hostname.substring(4);
-      }
-      const path = urlObj.pathname === '/' ? '' : urlObj.pathname.replace(/\/$/, '');
-      return `${hostname}${path}`;
-    } catch (error) {
-      return url;
-      // Fallback to original if invalid URL
+      const d = new Date(date);
+      if (isNaN(d.getTime())) return 'N/A';
+      return d.toLocaleDateString('en-US', {
+        month: 'long',
+        day: 'numeric',
+        year: 'numeric'
+      });
+    } catch {
+      return 'N/A';
     }
   };
-
-
-  // Helper function specifically for cleaning GitHub URLs
-  const cleanGithubUrl = (url: string): string => {
-    if (!url) return '';
-    try {
-      const urlObj = new URL(url);
-      if (urlObj.hostname === 'github.com') {
-        return 'github.com/' + urlObj.pathname.substring(1).replace(/\/$/, '');
-      }
-      return cleanUrl(url);
-      // Fallback to generic cleaner if not a standard github.com URL
-    } catch (error) {
-      return url;
-      // Fallback to original if invalid URL
-    }
-  };
-
-
-  const createdDate = "April 15, 2023";
-  const updatedDate = "September 25, 2024";
-
 
   return (
-
-    <Card className="w-full p-6 flex flex-row max-md:flex-col gap-6 dark:border-gray-600 rounded-lg shadow-lg bg-transparent max-md:max-w-md text-white dark:bg-transparent dark:text-foreground">
-      <div className="space-y-5 h-full">
-
-
-
-        <div className="flex items-center gap-4 ">
-
-
-          <div className="bg-primary rounded-md p-3 flex items-center justify-center shrink-0">
-            <Folder className="w-6 h-6 text-primary-foreground" />
-          </div>
-
-          <div className="grid gap-1 flex-grow">
-
-            <h3 className="text-xl font-semibold text-white dark:text-foreground">{obj.title}</h3>
-
-            <p className="text-sm text-white dark:text-muted-foreground">{obj.type.split('|')[0]}</p>
-          </div>
-        </div>
-
-
-        <Separator />
-
-
-        <div className="grid gap-4">
-
-          {obj.imageUrl && Array.isArray(obj.imageUrl) && obj.imageUrl.length > 0 && (
-            <ImageCarousel images={obj.imageUrl} />
-          )}
-
-
-
-        </div>
-
-
-
-      </div>
-      <Separator orientation="vertical" className="h-" />
-
-      <div className="flex flex-col h-full items-stretch justify-center space-y-4  gap-2 text-sm text-white dark:text-muted-foreground">
-        {/* Description */}
-        {obj.description && (
-          <div className="text-lg max-md:text-sm">
-            {obj.description}
-          </div>
-        )}
-
-        <Separator />
-
-        {/* Link */}
-        {obj.link && (
-          <div className="flex items-center gap-2">
-            <LinkIcon className="w-7 h-7 shrink-0" />
-            <Link
-              href={obj.link}
-              className="hover:underline truncate"
-              prefetch={false}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {cleanUrl(obj.link)}
-            </Link>
-          </div>
-        )}
-
-        {/* Created Date */}
-        <div className="flex items-center gap-2">
-          <CalendarDays className="w-7 h-7 shrink-0" />
-          <span>Created: {createdDate}</span>
-        </div>
-
-        {/* Updated Date */}
-        <div className="flex items-center gap-2">
-          <CalendarDays className="w-7 h-7 shrink-0" />
-          <span>Updated: {updatedDate}</span>
-        </div>
-
-        {/* GitHub Link */}
-        {obj.githubUrl && (
-          <div className="flex items-center gap-2">
-            <Github className="w-7 h-7 shrink-0" />
-            <Link
-              href={obj.githubUrl}
-              className="hover:underline truncate"
-              prefetch={false}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {cleanGithubUrl(obj.githubUrl)}
-            </Link>
-          </div>
-        )}
+    <div className="w-full text-white dark:text-foreground flex flex-col gap-6 py-2">
+      {/* Back Button */}
+      <div className="flex items-center justify-between">
+        <Link 
+          href="/portfolio/all" 
+          className="inline-flex items-center gap-2 text-sm font-semibold text-white/50 hover:text-white dark:text-foreground/60 dark:hover:text-foreground transition-colors duration-200 group"
+        >
+          <ArrowLeft className="w-4 h-4 transition-transform duration-200 group-hover:-translate-x-1" />
+          <span>Back to Portfolio</span>
+        </Link>
       </div>
 
+      {/* Main Responsive Grid Layout - autofit on 100 width */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch w-full">
+        {/* Left Column - Beautiful Dynamic Image Showcase */}
+        <div className="lg:col-span-7 flex flex-col gap-4 w-full h-full">
+          <ImageShowcase images={obj.imageUrl} />
+        </div>
 
+        {/* Right Column - Premium Details Sidebar */}
+        <div className="lg:col-span-5 flex flex-col w-full h-full">
+          <div className="bg-white/10 dark:bg-zinc-900/40 backdrop-blur-xl border border-white/10 dark:border-zinc-800 p-6 sm:p-8 rounded-2xl flex flex-col justify-between h-full shadow-2xl relative overflow-hidden group">
+            
+            {/* Ambient gold glow decorative element */}
+            <div className="absolute -top-12 -right-12 w-32 h-32 bg-[#e49505]/10 rounded-full blur-3xl pointer-events-none transition-opacity duration-500 group-hover:bg-[#e49505]/15" />
 
+            <div className="space-y-6">
+              {/* Type / Tag Badges */}
+              <div className="flex flex-wrap gap-2">
+                {obj.type.split('|').map((t: string) => t.trim()).filter(Boolean).map((tag: string) => (
+                  <span 
+                    key={tag} 
+                    className="text-xs font-semibold px-3.5 py-1 rounded-full bg-[#e49505]/10 border border-[#e49505]/20 text-[#e49505] uppercase tracking-wider transition-colors hover:bg-[#e49505]/20"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
 
+              {/* Project Title */}
+              <div>
+                <h1 className="text-3xl sm:text-4xl font-extrabold text-white dark:text-foreground tracking-tight leading-tight mb-2">
+                  {obj.title}
+                </h1>
+              </div>
 
-    </Card>
-  );
+              {/* Thin Premium Separator */}
+              <div className="h-[1px] w-full bg-gradient-to-r from-white/10 via-white/5 to-transparent dark:from-zinc-800 dark:via-zinc-800/50" />
+
+              {/* Description */}
+              {obj.description && (
+                <div className="text-zinc-200 dark:text-zinc-300 text-sm sm:text-base leading-relaxed font-normal whitespace-pre-wrap">
+                  {obj.description}
+                </div>
+              )}
+            </div>
+
+            {/* Middle Spacer / Separator */}
+            <div className="my-6 h-[1px] w-full bg-gradient-to-r from-white/10 via-white/5 to-transparent dark:from-zinc-800 dark:via-zinc-800/50" />
+
+            <div className="space-y-6">
+              {/* Dynamic Metadata Mini-Cards */}
+              <div className="grid grid-cols-2 gap-4">
+                <div className="flex flex-col gap-1 p-3.5 rounded-xl bg-white/[0.02] dark:bg-zinc-950/20 border border-white/5 dark:border-zinc-800/50">
+                  <span className="text-[10px] text-zinc-450 dark:text-zinc-500 uppercase font-semibold tracking-wider">Created</span>
+                  <span className="text-xs text-white/90 dark:text-zinc-300 font-medium">{formatDate(obj.createdAt)}</span>
+                </div>
+                <div className="flex flex-col gap-1 p-3.5 rounded-xl bg-white/[0.02] dark:bg-zinc-950/20 border border-white/5 dark:border-zinc-800/50">
+                  <span className="text-[10px] text-zinc-450 dark:text-zinc-500 uppercase font-semibold tracking-wider">Last Updated</span>
+                  <span className="text-xs text-white/90 dark:text-zinc-300 font-medium">{formatDate(obj.updatedAt)}</span>
+                </div>
+              </div>
+
+              {/* Premium Responsive CTA Action Buttons */}
+              <div className="flex flex-col sm:flex-row gap-3 w-full">
+                {obj.link && (
+                  <a
+                    href={obj.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-1 flex items-center justify-center gap-2 px-6 py-3.5 bg-gradient-to-r from-[#e49505] to-[#f39c12] hover:from-[#f39c12] hover:to-[#e49505] text-black font-bold rounded-xl shadow-lg hover:shadow-[#e49505]/20 transform hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 text-center"
+                  >
+                    <ExternalLink className="w-4 h-4 stroke-[2.5]" />
+                    <span>Live Preview</span>
+                  </a>
+                )}
+
+                {obj.githubUrl && (
+                  <a
+                    href={obj.githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-1 flex items-center justify-center gap-2 px-6 py-3.5 bg-white/5 hover:bg-white/10 dark:bg-zinc-800/50 dark:hover:bg-zinc-800 text-white dark:text-zinc-300 font-semibold rounded-xl border border-white/15 dark:border-zinc-700 hover:border-white/30 dark:hover:border-zinc-600 transform hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 text-center"
+                  >
+                    <Github className="w-4 h-4" />
+                    <span>Source Code</span>
+                  </a>
+                )}
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  )
 }
-
-
-// Removed the inline SVG icon functions below as they are replaced by imports from lucide-react.
-
-// Delete these functions from your file:
-
-// function CalendarDaysIcon(props:any) { ... }
-
-// function FolderIcon(props:any) { ... }
-
-// function GithubIcon(props:any) { ... }
-
-// function LinkIcon(props:any) { ... }

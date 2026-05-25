@@ -16,3 +16,21 @@ body {
 .card{
     @apply dark:bg-[#222224] hover:shadow-xl transition-all  duration-300 bg-white bg-opacity-10 shadow-md  
 }
+
+.custom-scrollbar::-webkit-scrollbar {
+    width: 5px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(228, 149, 5, 0.2);
+    border-radius: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: rgba(228, 149, 5, 0.5);
+}
+.custom-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(228, 149, 5, 0.2) transparent;
+}

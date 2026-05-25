@@ -20,14 +20,16 @@ export function ImageCarousel({images}:{images:string[]}) {
   return (
     <Carousel
       plugins={[plugin.current]}
-      className="w-full max-w-xs"
+      className="w-full"
       onMouseEnter={plugin.current.stop}
       onMouseLeave={plugin.current.reset}
     >
       <CarouselContent>
       {images.map((el: string) => (
     <CarouselItem key={el}>
-      <Image src={el} alt={el} height={400} width={400} className="w-[100%]" />
+      <div className="relative w-full h-48 sm:h-52 overflow-hidden rounded-t-2xl">
+        <Image src={el} alt="Project screenshot" fill className="object-cover" />
+      </div>
     </CarouselItem>
   ))}
       </CarouselContent>

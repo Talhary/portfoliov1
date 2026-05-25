@@ -7,16 +7,16 @@ import { GetAllProjects } from '@/actions/getAllProjects';
 import { Heading } from "@/components/heading";
 
 
-const Page = async()=>{
-const res = await GetAllProjects()
-const token = cookies().get('token')
-if(!token){
+const Page = async () => {
+  const res = await GetAllProjects()
+  const token = cookies().get('token')
+  if (!token) {
     redirect('/admin/login')
-}
+  }
 
 
   try {
-    jwt.verify(token.value, 'ksdfjksjj3i4jw3iorjsijki');
+    jwt.verify(token.value, process.env.JWT_TOKEN || '');
   } catch (err) {
     console.error('JWT Verification Failed:', err);
     redirect('/admin/login');

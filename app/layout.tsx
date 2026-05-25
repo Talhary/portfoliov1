@@ -31,16 +31,16 @@ export default async function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <aside className="py-10 z-10 dark:bg-[#1e1e1e] dark:text-white text-black shadow shadow-black backdrop-blur-2xl   max-w-[27rem] max-md:max-w-full  rounded-xl mr-0  p-5 h-auto   max-md:p-0 max-md:m-0">
+          <aside className="py-10 z-10 dark:bg-[#1e1e1e] dark:text-white text-black shadow shadow-black backdrop-blur-2xl w-full md:w-[20rem] md:min-w-[20rem] md:max-w-[20rem] max-md:max-w-full rounded-xl mr-0 p-5 h-auto max-md:p-0 max-md:m-0 md:sticky md:top-0 md:h-screen md:overflow-y-auto custom-scrollbar">
             <div className=" ">
               <Aside />
             </div>
 
           </aside>
-          <div className='flex-auto  max-md:ml-0 '>
+          <div className='flex-auto  max-md:ml-0 relative'>
+            <Navbar className='z-50' />
             <div className="  dark:bg-big-card  dark:text-black  shadow shadow-black backdrop-blur-2xl relative ml-0 text-white   max-md:m-4 max-xs:m-1 max-xs:p-3 rounded-2xl p-5 max-md:p-3 ">
               <GetToTopButton/>
-              <Navbar className='z-10 ' />
               {children}
             </div>
           </div>
