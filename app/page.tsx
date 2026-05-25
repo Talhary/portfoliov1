@@ -58,14 +58,14 @@ const woltrioDuration = getCurrentDuration(woltrioStartDate);
 
 const experiences = [
   {
-    title: 'Full Stack Web Developer',
+    title: 'Full Stack Software Engineer',
     company: 'Woltrio',
     icon: Briefcase, 
     dates: `Jan 2025 - Present (${woltrioDuration})`,
     description: 'Developing and maintaining web applications using MERN stack, Next.js, and PHP. Collaborating with teams to deliver high-quality software solutions.'
   },
   {
-    title: 'Web Developer Intern',
+    title: 'Software Engineer Intern',
     company: 'Swismax Solutions',
     icon: Briefcase, 
     dates: 'Sep 2024 - Nov 2024 (3 mos)',
@@ -95,7 +95,7 @@ export default async function Home() {
 
           <div className='mt-6 mx-2 max-md:mx-0'>
             <p className='text-lg md:text-xl leading-relaxed tracking-wide opacity-90 text-zinc-150 dark:text-zinc-300 dark:opacity-85 font-light'>
-              Hi, I&apos;m <Highlight text="Talha"/>, a passionate <Highlight text='Full Stack' /> Web Developer based in <Highlight text="Islamabad" />. I specialize in building dynamic web applications and bots using a diverse range of technologies. Having completed my Graduation, I thrive on creating efficient, scalable, and user-friendly solutions. Currently contributing my skills at Woltrio and always eager for new challenges and learning opportunities.
+              Hi, I&apos;m <Highlight text="Talha"/>, a passionate <Highlight text='Full Stack' /> Software Engineer based in <Highlight text="Islamabad" />. I specialize in building dynamic web applications and bots using a diverse range of technologies. Having completed my Graduation, I thrive on creating efficient, scalable, and user-friendly solutions. Currently contributing my skills at Woltrio and always eager for new challenges and learning opportunities.
             </p>
           </div>
 

@@ -13,7 +13,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Talha Riaz ",
-  description: "Muhammad Talha Riaz, Software engineer Portfolio.",
+  description: "Muhammad Talha Riaz, Full Stack Software Engineer Portfolio.",
   verification: {
     google: "wHIxtQ2Ehw-Z4mysz4nMFthsRdGwaCmbnp72t9r7mkI",
   },
