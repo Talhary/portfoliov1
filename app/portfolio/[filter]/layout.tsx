@@ -1,7 +1,6 @@
 import { PortfolioNavbar } from "@/components/portfolio-navbar";
 import { GetAllProjects } from "@/actions/getAllProjects";
 import { getCategories } from "@/actions/categories";
-import { Heading } from "@/components/heading";
 
 const Layout = async ({ 
   children, 
@@ -61,7 +60,6 @@ const Layout = async ({
 
   return (
     <div className="space-y-6">
-      <Heading title="Portfolio" />
       <PortfolioNavbar filter={filter} items={navbarItems} />
       
       {!isValidRoute ? (
