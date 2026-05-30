@@ -9,7 +9,8 @@ import { Heading } from "@/components/heading";
 
 const Page = async () => {
   const res = await GetAllProjects()
-  const token = cookies().get('token')
+  const cookieStore = await cookies();
+  const token = cookieStore.get('token')
   if (!token) {
     redirect('/admin/login')
   }

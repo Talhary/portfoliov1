@@ -5,8 +5,14 @@ import { getItemFromId } from '@/actions/getItemFromId';
 import { Heading } from "@/components/heading";
 import EditProjectForm from "./_components/edit-form";
 
-const Page = async ({ params: { id } }: { params: { id: string } }) => {
-  const token = cookies().get('token');
+const Page = async ({
+  params
+}: {
+  params: Promise<{ id: string }>
+}) => {
+  const { id } = await params;
+  const cookieStore = await cookies();
+  const token = cookieStore.get('token');
   if (!token) {
     redirect('/admin/login');
   }

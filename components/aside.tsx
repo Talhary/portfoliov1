@@ -29,7 +29,7 @@ const Navbar = () => {
               </div>
               <div className="flex flex-col items-start m-3 ">
                 <h3 className="font-light dark:text-dark text-white">{h}</h3>
-                <p className="font-semibold dark:text-white text-white text-nowrap rounded-md text-sm dark:bg-[#292828] bg-white bg-opacity-10 p-1">{p}</p>
+                <p className="font-semibold dark:text-white text-white break-all rounded-md text-sm dark:bg-[#292828] bg-white bg-opacity-10 p-1">{p}</p>
               </div>
             </div>
           );

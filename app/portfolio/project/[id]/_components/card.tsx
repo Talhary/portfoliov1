@@ -4,6 +4,7 @@ import * as z from 'zod'
 import { formSchema } from '@/lib/form-type'
 import { ImageShowcase } from './image-showcase'
 import { Github, ArrowLeft, ExternalLink } from "lucide-react"
+import { parseMarkdown } from '@/components/markdown-editor'
 
 export default function Component(obj: z.infer<typeof formSchema>) {
   
@@ -73,10 +74,12 @@ export default function Component(obj: z.infer<typeof formSchema>) {
               <div className="h-[1px] w-full bg-gradient-to-r from-white/10 via-white/5 to-transparent dark:from-zinc-800 dark:via-zinc-800/50" />
 
               {/* Description */}
+              {/* Description / Content (Rendered as Visual Markdown via Tailwind Typography) */}
               {obj.description && (
-                <div className="text-zinc-200 dark:text-zinc-300 text-sm sm:text-base leading-relaxed font-normal whitespace-pre-wrap">
-                  {obj.description}
-                </div>
+                <div 
+                  className="prose prose-invert prose-headings:text-white prose-a:text-[#e49505] prose-strong:text-white prose-code:text-[#e49505] max-w-none text-zinc-200 dark:text-zinc-300 text-sm sm:text-base leading-relaxed font-normal"
+                  dangerouslySetInnerHTML={{ __html: parseMarkdown(obj.description) }}
+                />
               )}
             </div>
 

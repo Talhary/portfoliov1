@@ -3,15 +3,15 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { 
-  Phone, 
-  Mail, 
-  Globe, 
-  MapPin, 
-  Copy, 
-  Check, 
-  ExternalLink, 
-  Github, 
+import {
+  Phone,
+  Mail,
+  Globe,
+  MapPin,
+  Copy,
+  Check,
+  ExternalLink,
+  Github,
   MessageSquare
 } from "lucide-react";
 import { ContactForm } from '@/app/contact/_components/form';
@@ -30,11 +30,11 @@ export default function Component() {
   return (
     <div className="w-full max-w-6xl mx-auto px-4 py-8 md:py-16 dark:text-gray-100">
       <div className="grid md:grid-cols-5 gap-8 items-start">
-        
+
         {/* Contact Form Section (Left 3 Columns on desktop) */}
         <div className="md:col-span-3 bg-white/5 dark:bg-[#1a1a1c]/60 border border-white/10 dark:border-zinc-800/80 backdrop-blur-xl rounded-2xl p-6 sm:p-8 shadow-2xl relative overflow-hidden transition-all duration-300 hover:border-primary/20 group">
           <div className="absolute top-0 right-0 -mr-16 -mt-16 w-32 h-32 bg-primary/10 rounded-full blur-3xl pointer-events-none" />
-          
+
           <div className="space-y-6 relative z-10">
             <div className="flex items-center gap-3">
               <div className="h-10 w-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary border border-primary/20">
@@ -47,19 +47,19 @@ export default function Component() {
                 </p>
               </div>
             </div>
-            
+
             <hr className="border-white/5 dark:border-zinc-800/60 my-4" />
-            
+
             <ContactForm />
           </div>
         </div>
 
         {/* Contact Info Section (Right 2 Columns on desktop) */}
         <div className="md:col-span-2 space-y-6">
-          
+
           <div className="bg-white/5 dark:bg-[#1a1a1c]/60 border border-white/10 dark:border-zinc-800/80 backdrop-blur-xl rounded-2xl p-6 sm:p-8 shadow-2xl relative overflow-hidden transition-all duration-300 hover:border-primary/20 group">
             <div className="absolute top-0 right-0 -mr-16 -mt-16 w-32 h-32 bg-primary/10 rounded-full blur-3xl pointer-events-none" />
-            
+
             <div className="space-y-6 relative z-10">
               <div className="flex items-center gap-3">
                 <div className="h-10 w-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary border border-primary/20">
@@ -72,11 +72,11 @@ export default function Component() {
                   </p>
                 </div>
               </div>
-              
+
               <hr className="border-white/5 dark:border-zinc-800/60 my-4" />
 
               <div className="space-y-4">
-                
+
                 {/* Email Item */}
                 <div className="group/item flex items-center justify-between p-3 rounded-xl bg-white/[0.02] dark:bg-black/20 border border-white/[0.03] dark:border-zinc-800/30 hover:border-primary/30 transition-all duration-200">
                   <div className="flex items-center gap-3 min-w-0">
@@ -85,13 +85,13 @@ export default function Component() {
                     </div>
                     <div className="min-w-0">
                       <p className="text-xs text-zinc-400 dark:text-zinc-500 font-medium uppercase tracking-wider font-semibold">Email</p>
-                      <a href="mailto:talhariaz5425869@gmail.com" className="text-sm font-semibold text-zinc-200 dark:text-zinc-300 hover:text-primary transition-colors truncate block">
-                        talhariaz5425869@gmail.com
+                      <a href="mailto:mtalhamaths@gmail.com" className="text-sm font-semibold text-zinc-200 dark:text-zinc-300 hover:text-primary transition-colors truncate block">
+                        mtalhamaths@gmail.com
                       </a>
                     </div>
                   </div>
-                  <button 
-                    onClick={() => handleCopy("talhariaz5425869@gmail.com", "email")}
+                  <button
+                    onClick={() => handleCopy("mtalhamaths@gmail.com", "email")}
                     className="h-8 w-8 rounded-lg bg-white/[0.03] dark:bg-zinc-900/50 flex items-center justify-center text-zinc-400 hover:text-white hover:bg-white/10 dark:hover:bg-zinc-800 transition-all ml-2 flex-shrink-0"
                     title="Copy Email"
                   >
@@ -116,7 +116,7 @@ export default function Component() {
                       </a>
                     </div>
                   </div>
-                  <button 
+                  <button
                     onClick={() => handleCopy("+92-318-5853847", "phone")}
                     className="h-8 w-8 rounded-lg bg-white/[0.03] dark:bg-zinc-900/50 flex items-center justify-center text-zinc-400 hover:text-white hover:bg-white/10 dark:hover:bg-zinc-800 transition-all ml-2 flex-shrink-0"
                     title="Copy Phone"
@@ -157,7 +157,7 @@ export default function Component() {
                       </Link>
                     </div>
                   </div>
-                  <Link 
+                  <Link
                     href="/"
                     className="h-8 w-8 rounded-lg bg-white/[0.03] dark:bg-zinc-900/50 flex items-center justify-center text-zinc-400 hover:text-white hover:bg-white/10 dark:hover:bg-zinc-800 transition-all ml-2 flex-shrink-0"
                     title="Visit Website"
@@ -167,16 +167,16 @@ export default function Component() {
                 </div>
 
               </div>
-              
+
               <hr className="border-white/5 dark:border-zinc-800/60 my-4" />
-              
+
               {/* Social Connections */}
               <div className="space-y-3">
                 <p className="text-xs text-zinc-400 dark:text-zinc-500 font-semibold uppercase tracking-wider">Social Channels</p>
                 <div className="flex gap-3">
-                  <a 
-                    href="https://github.com/talhary" 
-                    target="_blank" 
+                  <a
+                    href="https://github.com/talhary"
+                    target="_blank"
                     rel="noopener noreferrer"
                     className="flex-1 flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl bg-white/5 dark:bg-black/20 hover:bg-primary/10 border border-white/10 dark:border-zinc-800 hover:border-primary/30 hover:text-primary text-zinc-200 dark:text-zinc-300 text-sm font-semibold transition-all duration-200"
                   >
@@ -185,10 +185,10 @@ export default function Component() {
                   </a>
                 </div>
               </div>
-              
+
             </div>
           </div>
-          
+
         </div>
 
       </div>

@@ -2,6 +2,7 @@ import { IoBookOutline } from "react-icons/io5";
 import { FaReact, FaNodeJs, FaPhp, FaDocker } from "react-icons/fa";
 import { SiNextdotjs, SiExpress, SiDeno, SiTypescript, SiJavascript, SiMongodb, SiMysql, SiPostgresql, SiUbuntu } from "react-icons/si";
 import { Brain } from "lucide-react";
+import { Metadata } from 'next';
 
 import { EducationList } from '@/components/education';
 import { Heading } from "@/components/heading";
@@ -21,6 +22,25 @@ const skills = [
   { name: 'Docker', value: 65, icon: FaDocker },
   { name: 'Ubuntu', value: 70, icon: SiUbuntu },
 ];
+
+export const metadata: Metadata = {
+  title: "Professional Resume & CV | Talha Riaz",
+  description: "View the education, skills, technical expertise, and career journey of Muhammad Talha Riaz, a Full Stack Software Engineer specializing in modern JavaScript frameworks and database systems.",
+  keywords: [
+    "Talha Riaz Resume",
+    "Talha Riaz CV",
+    "Software Engineer Education",
+    "Technical Skills",
+    "MERN stack developer resume",
+    "Next.js engineer credentials"
+  ],
+  openGraph: {
+    title: "Professional Resume & CV | Talha Riaz",
+    description: "View the education, skills, technical expertise, and career journey of Muhammad Talha Riaz.",
+    type: "profile",
+    url: "https://talhatech.vercel.app/resume",
+  }
+};
 
 const Page = () => {
   return (

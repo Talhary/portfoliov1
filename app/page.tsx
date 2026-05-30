@@ -1,4 +1,5 @@
 import React from 'react';
+import { Metadata } from 'next';
 import { Heading } from '@/components/heading';
 import AsideImageSection from '@/components/aside-image-section';
 import { cn } from '@/lib/utils'; 
@@ -79,6 +80,28 @@ const Highlight = ({ text }: { text: string }) => {
       <code>{text}</code>
     </span>
   );
+};
+
+export const metadata: Metadata = {
+  title: "Talha Riaz | Full Stack Software Engineer Portfolio",
+  description: "Muhammad Talha Riaz, Full Stack Software Engineer based in Islamabad. Specializing in MERN stack, Next.js, React, Node.js, PHP, and bot development.",
+  keywords: [
+    "Talha Riaz",
+    "Full Stack Software Engineer",
+    "Web Developer Portfolio",
+    "Islamabad Developer",
+    "Next.js Developer",
+    "React Developer",
+    "Node.js Developer",
+    "MERN Stack Developer",
+    "Woltrio Engineer"
+  ],
+  openGraph: {
+    title: "Talha Riaz | Full Stack Software Engineer Portfolio",
+    description: "Muhammad Talha Riaz, Full Stack Software Engineer based in Islamabad. Specializing in MERN stack, Next.js, React, Node.js, PHP, and bot development.",
+    type: "website",
+    url: "https://talhatech.vercel.app",
+  }
 };
 
 export default async function Home() {
@@ -177,7 +200,7 @@ export default async function Home() {
       {/* ---------------- SECTION 2: RESUME & SKILLS ---------------- */}
       <section id="resume" className="relative group">
         <div className="px-2 md:px-4 text-neutral-800 dark:text-neutral-250">
-          <Heading title="Resume" />
+          <Heading title="Resume" as="h2" />
           
           <div className="mx-2 mt-8 max-md:mx-0">
             <div className="flex gap-x-3 items-center justify-start mb-6">
@@ -249,7 +272,7 @@ export default async function Home() {
       {/* ---------------- SECTION 3: PROJECTS ---------------- */}
       <section id="projects" className="relative group">
         <div className="px-2 md:px-4 text-neutral-800 dark:text-neutral-200">
-          <Heading title="Projects" />
+          <Heading title="Projects" as="h2" />
           
           <div className="mx-2 mt-6 max-md:mx-0">
             <AllProjects projects={projects.slice(0, 3)} />
@@ -272,7 +295,7 @@ export default async function Home() {
       {/* ---------------- SECTION 4: CONTACT ---------------- */}
       <section id="contact" className="relative group">
         <div className="px-2 md:px-4 text-neutral-800 dark:text-neutral-200">
-          <Heading title="Contact" />
+          <Heading title="Contact" as="h2" />
           
           <div className="mx-2 mt-6 max-md:mx-0">
             <div className="w-full max-w-6xl mx-auto px-0 py-6 dark:text-gray-100">
@@ -332,8 +355,8 @@ export default async function Home() {
                         </div>
                         <div className="flex flex-col min-w-0">
                           <span className="text-[10px] text-zinc-450 dark:text-zinc-555 uppercase font-semibold tracking-wider">Email</span>
-                          <a href="mailto:talhariaz5425869@gmail.com" className="text-sm font-semibold text-zinc-200 dark:text-zinc-300 hover:text-[#e49505] transition-colors truncate">
-                            talhariaz5425869@gmail.com
+                          <a href="mailto:mtalhamaths@gmail.com" className="text-sm font-semibold text-zinc-200 dark:text-zinc-300 hover:text-[#e49505] transition-colors truncate">
+                            mtalhamaths@gmail.com
                           </a>
                         </div>
                       </div>

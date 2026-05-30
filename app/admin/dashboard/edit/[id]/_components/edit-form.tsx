@@ -21,6 +21,7 @@ import {
   Image as ImageIcon
 } from 'lucide-react';
 import Link from 'next/link';
+import MarkdownEditor from '@/components/markdown-editor';
 import { getCategories } from '@/actions/categories';
 import {
   MultiSelector,
@@ -168,22 +169,17 @@ export default function EditProjectForm({ project }: { project: any }) {
           </div>
         </div>
 
-        {/* Description Field */}
+        {/* Description Field with Visual Markdown Editor */}
         <div className="space-y-1.5">
           <label className="block text-xs font-semibold uppercase tracking-wider text-stone-600 dark:text-zinc-400" htmlFor="description">
-            Description
+            Description / Project Content
           </label>
-          <div className="relative rounded-xl border border-stone-250 dark:border-zinc-800 bg-white/[0.05] dark:bg-black/25 transition-all focus-within:border-[#e49505] focus-within:ring-1 focus-within:ring-[#e49505]">
-            <textarea 
-              id="description"
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-              rows={4}
-              placeholder="Describe the stack, layout features, and context..." 
-              className="w-full bg-transparent border-0 shadow-none py-2.5 px-4 text-sm text-stone-900 dark:text-white placeholder-stone-450 dark:placeholder-zinc-650 focus:outline-none rounded-xl resize-y"
-              required
-            />
-          </div>
+          <MarkdownEditor 
+            id="description"
+            value={description}
+            onChange={(val) => setDescription(val)}
+            placeholder="Describe the stack, layout features, and context in detail..."
+          />
         </div>
 
         {/* Categories Field */}

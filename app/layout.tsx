@@ -3,11 +3,8 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Aside from "@/components/aside";
 import { Navbar } from "@/components/navbar";
-import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
-import { extractRouterConfig } from "uploadthing/server";
 import { ThemeProvider } from "@/components/theme-provider"
 
-import { ourFileRouter } from "@/app/api/uploadthing/core";
 import { GetToTopButton } from "@/components/get-to-top";
 const inter = Inter({ subsets: ["latin"] });
 

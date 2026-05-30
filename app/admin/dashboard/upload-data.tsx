@@ -29,6 +29,7 @@ import { getCategories, addCategory } from '@/actions/categories';
 import { useState, useEffect, FormEvent } from 'react';
 import UploadButton from './Upload-btn';
 import { Terminal, Globe, Github, Image as ImageIcon, Loader2, CheckCircle2, AlertCircle, Sparkles, FolderPlus, Plus } from 'lucide-react';
+import MarkdownEditor from '@/components/markdown-editor';
 
 export const ProfileForm = () => {
   const [options, setOptions] = useState<Array<{ label: string, value: string }>>([
@@ -187,21 +188,20 @@ export const ProfileForm = () => {
               )}
             />
 
-            {/* Description Input */}
+            {/* Description Input with Markdown Editor */}
             <FormField
               control={form.control}
               name="description"
               render={({ field }) => (
                 <FormItem className="space-y-1.5">
-                  <FormLabel className="text-xs font-semibold uppercase tracking-wider text-stone-600 dark:text-zinc-400">Description</FormLabel>
+                  <FormLabel className="text-xs font-semibold uppercase tracking-wider text-stone-600 dark:text-zinc-400">Description / Project Content</FormLabel>
                   <FormControl>
-                    <div className="relative rounded-xl border border-stone-250 dark:border-zinc-800 bg-white/[0.05] dark:bg-black/25 transition-all focus-within:border-[#e49505] focus-within:ring-1 focus-within:ring-[#e49505]">
-                      <Input 
-                        placeholder="Describe the project objective, stack, features, etc..." 
-                        className="w-full bg-transparent border-0 shadow-none py-2.5 px-4 text-sm text-stone-900 dark:text-white placeholder-stone-450 dark:placeholder-zinc-650 focus-visible:ring-0 focus-visible:border-0 rounded-xl"
-                        {...field} 
-                      />
-                    </div>
+                    <MarkdownEditor 
+                      id="project-description-upload"
+                      value={field.value} 
+                      onChange={field.onChange} 
+                      placeholder="Describe the project objective, features, technology stack details, and process..."
+                    />
                   </FormControl>
                   <FormMessage className="text-red-500 text-xs" />
                 </FormItem>

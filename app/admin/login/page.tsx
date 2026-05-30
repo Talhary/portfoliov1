@@ -4,7 +4,8 @@ import { redirect } from "next/navigation";
 import LoginForm from "./_components/login-form";
 
 const Page = async () => {
-  const token = cookies().get('token');
+  const cookieStore = await cookies();
+  const token = cookieStore.get('token');
   let isValid = false;
 
   if (token) {

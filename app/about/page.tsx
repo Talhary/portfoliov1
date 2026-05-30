@@ -1,6 +1,7 @@
 
 
 import React from 'react';
+import { Metadata } from 'next';
 import { Heading } from '@/components/heading';
 
 
@@ -82,6 +83,24 @@ const Highlight = ({ text }: { text: string }) => {
     </code>
   </span>
 }
+export const metadata: Metadata = {
+  title: "About Talha Riaz | Full Stack Software Engineer",
+  description: "Learn about Muhammad Talha Riaz's software engineering background, skillset, focus areas in full stack MERN, Next.js, PHP, and bot development, and work experience.",
+  keywords: [
+    "About Talha Riaz",
+    "Talha Riaz Skills",
+    "Software Engineer Islamabad",
+    "MERN Stack Developer",
+    "Full Stack Resume"
+  ],
+  openGraph: {
+    title: "About Talha Riaz | Full Stack Software Engineer",
+    description: "Learn about Muhammad Talha Riaz's software engineering background, skillset, focus areas, and experience.",
+    type: "profile",
+    url: "https://talhatech.vercel.app/about",
+  }
+};
+
 const Page = () => {
  
   return (
@@ -138,7 +157,7 @@ const Page = () => {
                   {React.createElement(el.icon, { className: 'text-blue-600 dark:text-blue-400 text-3xl sm:text-4xl' })}
                 </div>
                 <div className='flex-grow space-y-2'>
-                  <h2 className='font-semibold text-xl text-white dark:text-primary'>{el.title}</h2>
+                  <h3 className='font-semibold text-xl text-white dark:text-primary'>{el.title}</h3>
                   <p className='text-gray-200 dark:text-neutral-300'>{el.text}</p>
                 </div>
               </div>
@@ -160,7 +179,7 @@ const Page = () => {
                   {React.createElement(el.icon, { className: 'text-green-600 dark:text-green-400 text-3xl sm:text-4xl' })}
                 </div>
                 <div className='flex-grow space-y-2'>
-                  <h2 className='font-semibold text-xl text-white dark:text-primary'>{el.title}</h2>
+                  <h3 className='font-semibold text-xl text-white dark:text-primary'>{el.title}</h3>
                   <h3 className=' text-primary dark:text-green-300 text-sm pb-2'>At {el.company}</h3>
                   <p className='text-gray-200 dark:text-neutral-300'>{el.description}</p>
                   <div className='text-primary dark:text-green-300 text-sm pt-3'>
