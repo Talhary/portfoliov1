@@ -4,10 +4,10 @@ import * as z from 'zod'
 import { formSchema } from '@/lib/form-type'
 import { ImageShowcase } from './image-showcase'
 import { Github, ArrowLeft, ExternalLink } from "lucide-react"
-import { parseMarkdown } from '@/components/markdown-editor'
+import { parseMarkdown } from '@/lib/markdown'
 
 export default function Component(obj: z.infer<typeof formSchema>) {
-  
+
   const formatDate = (date: any) => {
     if (!date) return 'N/A';
     try {
@@ -27,8 +27,8 @@ export default function Component(obj: z.infer<typeof formSchema>) {
     <div className="w-full text-white dark:text-foreground flex flex-col gap-6 py-2">
       {/* Back Button */}
       <div className="flex items-center justify-between">
-        <Link 
-          href="/portfolio/all" 
+        <Link
+          href="/portfolio/all"
           className="inline-flex items-center gap-2 text-sm font-semibold text-white/50 hover:text-white dark:text-foreground/60 dark:hover:text-foreground transition-colors duration-200 group"
         >
           <ArrowLeft className="w-4 h-4 transition-transform duration-200 group-hover:-translate-x-1" />
@@ -46,7 +46,7 @@ export default function Component(obj: z.infer<typeof formSchema>) {
         {/* Right Column - Premium Details Sidebar */}
         <div className="lg:col-span-5 flex flex-col w-full h-full">
           <div className="bg-white/10 dark:bg-zinc-900/40 backdrop-blur-xl border border-white/10 dark:border-zinc-800 p-6 sm:p-8 rounded-2xl flex flex-col justify-between h-full shadow-2xl relative overflow-hidden group">
-            
+
             {/* Ambient gold glow decorative element */}
             <div className="absolute -top-12 -right-12 w-32 h-32 bg-[#e49505]/10 rounded-full blur-3xl pointer-events-none transition-opacity duration-500 group-hover:bg-[#e49505]/15" />
 
@@ -54,8 +54,8 @@ export default function Component(obj: z.infer<typeof formSchema>) {
               {/* Type / Tag Badges */}
               <div className="flex flex-wrap gap-2">
                 {obj.type.split('|').map((t: string) => t.trim()).filter(Boolean).map((tag: string) => (
-                  <span 
-                    key={tag} 
+                  <span
+                    key={tag}
                     className="text-xs font-semibold px-3.5 py-1 rounded-full bg-[#e49505]/10 border border-[#e49505]/20 text-[#e49505] uppercase tracking-wider transition-colors hover:bg-[#e49505]/20"
                   >
                     {tag}
@@ -76,9 +76,9 @@ export default function Component(obj: z.infer<typeof formSchema>) {
               {/* Description */}
               {/* Description / Content (Rendered as Visual Markdown via Tailwind Typography) */}
               {obj.description && (
-                <div 
+                <div
                   className="prose prose-invert prose-headings:text-white prose-a:text-[#e49505] prose-strong:text-white prose-code:text-[#e49505] max-w-none text-zinc-200 dark:text-zinc-300 text-sm sm:text-base leading-relaxed font-normal"
-                  dangerouslySetInnerHTML={{ __html: parseMarkdown(obj.description) }}
+                  dangerouslySetInnerHTML={{ __html: parseMarkdown(obj.description || "") }}
                 />
               )}
             </div>
