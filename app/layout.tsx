@@ -4,6 +4,7 @@ import "./globals.css";
 import Aside from "@/components/aside";
 import { Navbar } from "@/components/navbar";
 import { ThemeProvider } from "@/components/theme-provider"
+import Script from "next/script";
 
 import { GetToTopButton } from "@/components/get-to-top";
 const inter = Inter({ subsets: ["latin"] });
@@ -23,7 +24,14 @@ export default async function RootLayout({
 }>) {
   return (
     <html lang="en" className="" suppressHydrationWarning>
-
+      <head>
+        <Script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5705856509590868"
+          crossOrigin="anonymous"
+          strategy="afterInteractive"
+        />
+      </head>
       <body className={`${inter.className}  flex flex-row  max-md:flex-col-reverse `} >
         <ThemeProvider
           attribute="class"
