@@ -1,7 +1,7 @@
 import React from "react";
 import { MdOutlineMarkEmailRead, MdOutlinePhoneInTalk } from "react-icons/md";
 import { SlCalender, SlLocationPin, SlFlag } from "react-icons/sl";
-import { AiFillGithub, AiFillLinkedin } from "react-icons/ai";
+import { AiFillGithub, AiFillLinkedin, AiFillHeart } from "react-icons/ai";
 import { BiGlobe } from "react-icons/bi";
 import AsideImageSection from '@/components/aside-image-section'
 
@@ -12,25 +12,34 @@ const Navbar = () => {
       <hr className="my-10 max-md:hidden"></hr>
       <div className="flex flex-col items-start justify-center">
       {[
-        { h: "EMAIL", p: "mtalhamaths@gmail.com", Logo: <MdOutlineMarkEmailRead  size={25} color="orange" /> },
-        { h: "PHONE", p: "+92 318 5853847", Logo: <MdOutlinePhoneInTalk  size={25} color="orange" /> },
+        { h: "EMAIL", p: "mtalhamaths@gmail.com", Logo: <MdOutlineMarkEmailRead  size={25} color="orange" />, url: "mailto:mtalhamaths@gmail.com" },
+        { h: "PHONE", p: "+92 318 5853847", Logo: <MdOutlinePhoneInTalk  size={25} color="orange" />, url: "tel:+923185853847" },
         { h: "BIRTH", p: "28 Nov 2003", Logo: <SlCalender  size={25} color="orange" /> },
         { h: "LOCATION", p: "Islamabad, Pakistan", Logo: <SlLocationPin size={25} color="orange" /> },
         { h: "NATIONALITY", p: "Pakistani", Logo: <SlFlag size={25} color="orange" /> },
         { h: "LANGUAGES", p: "English, Urdu", Logo: <BiGlobe size={25} color="orange" /> },
-        { h: "GITHUB", p: "github.com/talhary", Logo: <AiFillGithub size={25} color="orange" /> },
-        // { h: "LINKEDIN", p: "muhammad-talha-7480492b0", Logo: <AiFillLinkedin size={25} color="orange" /> },
+        { h: "GITHUB", p: "github.com/talhary", Logo: <AiFillGithub size={25} color="orange" />, url: "https://github.com/talhary" },
+        { h: "SPONSOR", p: "Support My Work", Logo: <AiFillHeart size={25} color="red" />, url: "https://www.effectivecpmnetwork.com/bcarj5ycay?key=98af8d8e62c28ccf76306eb2868a42ec" },
       ].map(
-        ({ h, p, Logo }, i) => {
+        ({ h, p, Logo, url }, i) => {
+          const content = (
+            <div className="flex flex-col items-start m-3 ">
+              <h3 className="font-light dark:text-dark text-white">{h}</h3>
+              <p className="font-semibold dark:text-white text-white break-all rounded-md text-sm dark:bg-[#292828] bg-white bg-opacity-10 p-1">{p}</p>
+            </div>
+          );
           return (
-            <div key={i} className="flex items-center  ">
+            <div key={i} className="flex items-center w-full">
               <div className="rounded-md dark:bg-[#292828] p-3 bg-white bg-opacity-10">
                 {Logo}
               </div>
-              <div className="flex flex-col items-start m-3 ">
-                <h3 className="font-light dark:text-dark text-white">{h}</h3>
-                <p className="font-semibold dark:text-white text-white break-all rounded-md text-sm dark:bg-[#292828] bg-white bg-opacity-10 p-1">{p}</p>
-              </div>
+              {url ? (
+                <a href={url} target="_blank" rel="noopener noreferrer" className="hover:opacity-80 transition-opacity flex-1 text-left">
+                  {content}
+                </a>
+              ) : (
+                content
+              )}
             </div>
           );
         }
