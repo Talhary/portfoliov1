@@ -19,7 +19,6 @@ const Navbar = () => {
         { h: "NATIONALITY", p: "Pakistani", Logo: <SlFlag size={25} color="orange" /> },
         { h: "LANGUAGES", p: "English, Urdu", Logo: <BiGlobe size={25} color="orange" /> },
         { h: "GITHUB", p: "github.com/talhary", Logo: <AiFillGithub size={25} color="orange" />, url: "https://github.com/talhary" },
-        { h: "SPONSOR", p: "Support My Work", Logo: <AiFillHeart size={25} color="red" />, url: "https://www.effectivecpmnetwork.com/bcarj5ycay?key=98af8d8e62c28ccf76306eb2868a42ec" },
       ].map(
         ({ h, p, Logo, url }, i) => {
           const content = (

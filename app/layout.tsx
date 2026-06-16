@@ -4,8 +4,6 @@ import "./globals.css";
 import Aside from "@/components/aside";
 import { Navbar } from "@/components/navbar";
 import { ThemeProvider } from "@/components/theme-provider"
-import { AdScripts, NativeAd, BannerAd } from "@/components/ads";
-
 import { GetToTopButton } from "@/components/get-to-top";
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,6 +23,7 @@ export default async function RootLayout({
   return (
     <html lang="en" className="" suppressHydrationWarning>
       <head>
+        <meta name="monetag" content="d616d4263288da82128beeeb51cf9327" />
         <script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5705856509590868"
@@ -32,7 +31,6 @@ export default async function RootLayout({
         />
       </head>
       <body className={`${inter.className}  flex flex-row  max-md:flex-col-reverse `} >
-        <AdScripts />
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
@@ -49,9 +47,7 @@ export default async function RootLayout({
             <Navbar className='z-50' />
             <div className="  dark:bg-big-card  dark:text-black  shadow shadow-black backdrop-blur-2xl relative ml-0 text-white   max-md:m-4 max-xs:m-1 max-xs:p-3 rounded-2xl p-5 max-md:p-3 ">
               <GetToTopButton />
-              <NativeAd />
               {children}
-              <BannerAd />
             </div>
           </div>
         </ThemeProvider>
