@@ -25,6 +25,12 @@ export default async function RootLayout({
       <head>
         <meta name="monetag" content="d616d4263288da82128beeeb51cf9327" />
         <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(s){s.dataset.zone='11155201',s.src='https://n6wxm.com/vignette.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))`
+          }}
+        />
+        <script src="https://quge5.com/88/tag.min.js" data-zone="250317" async data-cfasync="false" />
+        <script
           async
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5705856509590868"
           crossOrigin="anonymous"
