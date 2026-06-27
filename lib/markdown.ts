@@ -1,17 +1,57 @@
+import hljs from 'highlight.js';
+
+function escapeHtml(text: string): string {
+  return text
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
 export function parseMarkdown(md: string): string {
   if (!md) return "";
   let html = md;
 
   // Preserve code blocks before parsing other markdown elements
   const codeBlocks: string[] = [];
-  html = html.replace(/```([\s\S]*?)```/g, (_, code) => {
+  html = html.replace(/```([\s\S]*?)```/g, (_, blockContent) => {
     const placeholder = `__CODE_BLOCK_${codeBlocks.length}__`;
-    // Clean code content to prevent basic tag injection, but allow rendering inside <code>
-    const cleanCode = code
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;");
-    codeBlocks.push(`<pre class="bg-black/50 p-4 rounded-lg overflow-x-auto text-xs font-mono text-zinc-300"><code>${cleanCode.trim()}</code></pre>`);
+    
+    const lines = blockContent.split('\n');
+    let lang = '';
+    let code = blockContent;
+    
+    if (lines.length > 0) {
+      const firstLine = lines[0].trim();
+      if (/^[a-zA-Z0-9_+\-#]+$/.test(firstLine) && lines.length > 1) {
+        lang = firstLine;
+        code = lines.slice(1).join('\n');
+      }
+    }
+
+    const trimmedCode = code.trim();
+    const targetLang = lang ? lang.toLowerCase() : '';
+    
+    let highlightedCode = '';
+    if (targetLang && hljs.getLanguage(targetLang)) {
+      try {
+        highlightedCode = hljs.highlight(trimmedCode, { language: targetLang }).value;
+      } catch (e) {
+        highlightedCode = escapeHtml(trimmedCode);
+      }
+    } else {
+      try {
+        // Try plaintext first, fallback to basic escaping if needed
+        highlightedCode = hljs.highlight(trimmedCode, { language: 'plaintext' }).value;
+      } catch (e) {
+        highlightedCode = escapeHtml(trimmedCode);
+      }
+    }
+
+    codeBlocks.push(
+      `<pre class="bg-black/50 p-4 rounded-lg overflow-x-auto text-xs font-mono text-zinc-300 hljs"><code class="language-${targetLang}">${highlightedCode}</code></pre>`
+    );
     return placeholder;
   });
 

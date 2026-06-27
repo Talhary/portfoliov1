@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import "highlight.js/styles/github-dark.css";
 import Aside from "@/components/aside";
 import { Navbar } from "@/components/navbar";
 import { ThemeProvider } from "@/components/theme-provider"
