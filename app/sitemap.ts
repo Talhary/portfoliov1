@@ -53,14 +53,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       },
     });
 
-    const slugify = (text: string) =>
-      text
-        .toLowerCase()
-        .replace(/[^a-z0-9]+/g, "-")
-        .replace(/(^-|-$)+/g, "");
-
     projectPaths = projects.map((project) => ({
-      url: `${baseUrl}/portfolio/project/${slugify(project.title)}`,
+      url: `${baseUrl}/portfolio/project/${project.id}`,
       lastModified: new Date(project.updatedAt),
       changeFrequency: "weekly" as const,
       priority: 0.8,
@@ -83,5 +77,25 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     console.error("Sitemap generation error for categories:", error);
   }
 
-  return [...staticPaths, ...projectPaths, ...categoryPaths];
+  // Fetch dynamic blog posts
+  let blogPaths: MetadataRoute.Sitemap = [];
+  try {
+    const blogs = await db.blogPost.findMany({
+      where: { published: true },
+      orderBy: {
+        updatedAt: "desc",
+      },
+    });
+
+    blogPaths = blogs.map((blog) => ({
+      url: `${baseUrl}/blog/${blog.slug}`,
+      lastModified: new Date(blog.updatedAt),
+      changeFrequency: "weekly" as const,
+      priority: 0.8,
+    }));
+  } catch (error) {
+    console.error("Sitemap generation error for blogs:", error);
+  }
+
+  return [...staticPaths, ...projectPaths, ...categoryPaths, ...blogPaths];
 }

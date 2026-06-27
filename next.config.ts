@@ -1,6 +1,10 @@
+import type { NextConfig } from 'next';
+import path from 'path';
+
 /** @type {import('next').NextConfig} */
-const nextConfig = {
+const nextConfig: NextConfig = {
     images: {
+        qualities: [10, 75],
         remotePatterns: [
           {
             protocol: 'https',
@@ -8,8 +12,21 @@ const nextConfig = {
             port: '',
             pathname: '/f/**',
           },
+          {
+            protocol: 'https',
+            hostname: 'images.unsplash.com',
+            port: '',
+            pathname: '/**',
+          },
         ],
       },
+    webpack: (config) => {
+      config.resolve.alias = {
+        ...config.resolve.alias,
+        '@': path.resolve(process.cwd(), './'),
+      };
+      return config;
+    },
 }
 
-export default nextConfig
+export default nextConfig;

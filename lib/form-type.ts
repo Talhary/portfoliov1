@@ -33,3 +33,21 @@ export const contactformSchema = z.object({
       message: "Message must be at least 5 characters.",
   }),
 });
+
+export const blogFormSchema = z.object({
+  id: z.optional(z.string()),
+  title: z.string().min(1, {
+    message: "Title is required.",
+  }),
+  description: z.string().min(1, {
+    message: "Description is required.",
+  }),
+  content: z.string().min(1, {
+    message: "Content is required.",
+  }),
+  imageUrl: z.string().optional().nullable(),
+  tags: z.array(z.string()).min(1, {
+    message: "At least one tag is required.",
+  }),
+});
+

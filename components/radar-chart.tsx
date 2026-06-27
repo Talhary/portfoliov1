@@ -136,10 +136,10 @@ export const RadarChart = () => {
             const pos = labelPositions[i];
             const isHovered = hoveredIdx === i;
             // Align text anchor dynamically based on position
-            let anchor = 'middle';
+            let anchor :"middle" | "end" | "start" | "inherit" | 'undefined'= 'middle';
             if (pos.x < center - 10) anchor = 'end';
             if (pos.x > center + 10) anchor = 'start';
-
+                 
             return (
               <text
                 key={i}

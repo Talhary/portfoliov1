@@ -31,3 +31,16 @@ model Category {
   name  String @unique
   value String @unique
 }
+
+model BlogPost {
+  id          String   @id @default(cuid())
+  title       String
+  slug        String   @unique
+  description String
+  content     String
+  imageUrl    String?
+  published   Boolean  @default(true)
+  tags        String[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}

@@ -420,7 +420,7 @@ export default async function Home() {
               <span className="text-[#e49505] font-bold">Prisma</span>
             </div>
             <p className="text-[11px] text-zinc-500 font-light">
-              © {new Date().getFullYear()} Talha Riaz. All rights reserved.
+              © {new Date().getFullYear()} Talha Riaz. All rights reserved. • <Link href="/privacy" className="hover:text-[#e49505] transition-colors">Privacy Policy</Link>
             </p>
           </div>
           

@@ -5,6 +5,7 @@ import Aside from "@/components/aside";
 import { Navbar } from "@/components/navbar";
 import { ThemeProvider } from "@/components/theme-provider"
 import { GetToTopButton } from "@/components/get-to-top";
+import AdSense from "@/components/ads";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -22,20 +23,6 @@ export default async function RootLayout({
 }>) {
   return (
     <html lang="en" className="" suppressHydrationWarning>
-      <head>
-        <meta name="monetag" content="d616d4263288da82128beeeb51cf9327" />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `(function(s){s.dataset.zone='11155201',s.src='https://n6wxm.com/vignette.min.js'})([document.documentElement, document.body].filter(Boolean).pop().appendChild(document.createElement('script')))`
-          }}
-        />
-        <script src="https://quge5.com/88/tag.min.js" data-zone="250317" async data-cfasync="false" />
-        <script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5705856509590868"
-          crossOrigin="anonymous"
-        />
-      </head>
       <body className={`${inter.className}  flex flex-row  max-md:flex-col-reverse `} >
         <ThemeProvider
           attribute="class"
@@ -50,6 +37,7 @@ export default async function RootLayout({
 
           </aside>
           <div className='flex-auto  max-md:ml-0 relative'>
+            <AdSense />
             <Navbar className='z-50' />
             <div className="  dark:bg-big-card  dark:text-black  shadow shadow-black backdrop-blur-2xl relative ml-0 text-white   max-md:m-4 max-xs:m-1 max-xs:p-3 rounded-2xl p-5 max-md:p-3 ">
               <GetToTopButton />
@@ -58,7 +46,6 @@ export default async function RootLayout({
           </div>
         </ThemeProvider>
       </body>
-
     </html>
   );
 }
