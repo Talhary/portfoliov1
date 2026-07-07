@@ -19,12 +19,12 @@ export async function generateMetadata({
 
   if (!result.success || !result.data) {
     return {
-      title: "Blog Post Not Found | Talha Riaz",
+      title: "Blog Post Not Found | Talha Codes",
       description: "The requested blog article could not be found.",
     };
   }
 
-  const title = `${result.data.title} | Talha Riaz Blog`;
+  const title = `${result.data.title} | Talha Codes Blog`;
   const description = result.data.description.substring(0, 160);
 
   return {
@@ -40,7 +40,7 @@ export async function generateMetadata({
       title,
       description,
       type: "article",
-      url: `https://talhatech.vercel.app/blog/${slug}`,
+      url: `https://talhacodes.site/blog/${slug}`,
       images: result.data.imageUrl ? [{ url: result.data.imageUrl }] : [],
     },
   };
@@ -72,10 +72,10 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const post = result.data;
   const formattedDate = post.createdAt
     ? new Date(post.createdAt).toLocaleDateString('en-US', {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-      })
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    })
     : 'Recent';
 
   // Basic read time calculation helper
@@ -83,12 +83,12 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const readTimeMinutes = Math.max(1, Math.ceil(wordCount / 200));
 
   return (
-    <div className="w-full max-w-4xl mx-auto px-2 sm:px-4 py-6 text-white dark:text-foreground animate-fadeIn">
+    <div className="w-full  mx-auto px-2 sm:px-4 py-6 text-zinc-900 dark:text-zinc-100 animate-fadeIn">
       {/* Back Button */}
       <div className="mb-8">
         <Link
           href="/blog"
-          className="inline-flex items-center gap-2 text-sm font-semibold text-white/50 hover:text-white dark:text-foreground/60 dark:hover:text-foreground transition-colors duration-200 group"
+          className="inline-flex items-center gap-2 text-sm font-semibold text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-200 transition-colors duration-200 group"
         >
           <ArrowLeft className="w-4 h-4 transition-transform duration-200 group-hover:-translate-x-1" />
           <span>Back to Blog</span>
@@ -96,13 +96,13 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       </div>
 
       {/* Main Card Container */}
-      <article className="bg-white/5 dark:bg-zinc-900/40 backdrop-blur-xl border border-white/10 dark:border-zinc-800 p-6 sm:p-10 rounded-2xl shadow-2xl relative overflow-hidden group">
+      <article className="bg-zinc-50 dark:bg-zinc-900/40 dark:backdrop-blur-xl border border-zinc-200 dark:border-zinc-800 p-6 sm:p-10 rounded-2xl shadow-sm dark:shadow-2xl relative overflow-hidden group">
         {/* Ambient gold glow decorative element */}
         <div className="absolute -top-12 -right-12 w-32 h-32 bg-[#e49505]/10 rounded-full blur-3xl pointer-events-none transition-opacity duration-500 group-hover:bg-[#e49505]/15" />
 
         {/* Blog Header Image */}
         {post.imageUrl && (
-          <div className="w-full aspect-[2/1] relative overflow-hidden rounded-xl border border-white/5 mb-8 bg-zinc-900 shadow-md">
+          <div className="w-full aspect-[2/1] relative overflow-hidden rounded-xl border border-zinc-200 dark:border-white/5 mb-8 bg-zinc-100 dark:bg-zinc-900 shadow-md">
             <img
               alt={post.title}
               src={post.imageUrl}
@@ -125,7 +125,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         </div>
 
         {/* Post Title */}
-        <h1 className="text-3xl sm:text-5xl font-extrabold text-white dark:text-foreground tracking-tight leading-tight mb-6">
+        <h1 className="text-3xl sm:text-5xl font-extrabold text-zinc-900 dark:text-zinc-100 tracking-tight leading-tight mb-6">
           {post.title}
         </h1>
 
@@ -147,7 +147,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
         {/* Article Body (Rendered as Visual Markdown via Tailwind Typography) */}
         <div
-          className="prose prose-invert prose-headings:text-white prose-a:text-[#e49505] prose-strong:text-white prose-code:text-[#e49505] max-w-none text-zinc-200 dark:text-zinc-300 text-base leading-relaxed font-normal"
+          className="prose dark:prose-invert prose-headings:text-zinc-900 dark:prose-headings:text-white prose-a:text-[#e49505] prose-strong:text-zinc-900 dark:prose-strong:text-white prose-code:text-[#e49505] max-w-none text-zinc-800 dark:text-zinc-300 text-base leading-relaxed font-normal"
           dangerouslySetInnerHTML={{ __html: parseMarkdown(post.content || '') }}
         />
       </article>

@@ -1,7 +1,7 @@
 // middleware.js
 import { NextResponse } from 'next/server';
 
-export function middleware(request) {
+export function proxy(request) {
   const pathName = request.nextUrl.pathname;
   const requestHeaders = new Headers(request.headers);
   requestHeaders.set('x-pathname', pathName);

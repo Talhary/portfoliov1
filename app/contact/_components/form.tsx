@@ -64,13 +64,13 @@ export const ContactForm = () => {
                             name="name"
                             render={({ field }) => (
                                 <FormItem className="space-y-1.5">
-                                    <FormLabel className="text-sm font-semibold text-zinc-300 dark:text-zinc-200">Name</FormLabel>
+                                    <FormLabel className="text-sm font-semibold text-zinc-700 dark:text-zinc-200">Name</FormLabel>
                                     <FormControl>
                                         <Input
                                             id="name"
                                             placeholder="John Doe"
                                             {...field}
-                                            className="bg-white/5 dark:bg-black/35 border-white/10 dark:border-zinc-800/80 text-white placeholder-zinc-500 focus-visible:ring-primary focus-visible:border-primary focus:border-primary rounded-xl h-11 transition-all duration-200"
+                                            className="bg-zinc-100/50 dark:bg-black/35 border-zinc-250 dark:border-zinc-800/80 text-zinc-900 dark:text-white placeholder-zinc-400 dark:placeholder-zinc-500 focus-visible:ring-primary focus-visible:border-primary focus:border-primary rounded-xl h-11 transition-all duration-200"
                                         />
                                     </FormControl>
                                     <FormMessage className="text-xs text-red-400" />
@@ -83,14 +83,14 @@ export const ContactForm = () => {
                             name="email"
                             render={({ field }) => (
                                 <FormItem className="space-y-1.5">
-                                    <FormLabel className="text-sm font-semibold text-zinc-300 dark:text-zinc-200">Email</FormLabel>
+                                    <FormLabel className="text-sm font-semibold text-zinc-700 dark:text-zinc-200">Email</FormLabel>
                                     <FormControl>
                                         <Input
                                             id="email"
                                             type="email"
                                             placeholder="john@example.com"
                                             {...field}
-                                            className="bg-white/5 dark:bg-black/35 border-white/10 dark:border-zinc-800/80 text-white placeholder-zinc-500 focus-visible:ring-primary focus-visible:border-primary focus:border-primary rounded-xl h-11 transition-all duration-200"
+                                            className="bg-zinc-100/50 dark:bg-black/35 border-zinc-250 dark:border-zinc-800/80 text-zinc-900 dark:text-white placeholder-zinc-400 dark:placeholder-zinc-500 focus-visible:ring-primary focus-visible:border-primary focus:border-primary rounded-xl h-11 transition-all duration-200"
                                         />
                                     </FormControl>
                                     <FormMessage className="text-xs text-red-400" />
@@ -104,14 +104,14 @@ export const ContactForm = () => {
                         name="message"
                         render={({ field }) => (
                             <FormItem className="space-y-1.5">
-                                <FormLabel className="text-sm font-semibold text-zinc-300 dark:text-zinc-200">Message</FormLabel>
+                                <FormLabel className="text-sm font-semibold text-zinc-700 dark:text-zinc-200">Message</FormLabel>
                                 <FormControl>
                                     <Textarea
                                         id="message"
                                         rows={5}
                                         placeholder="How can I help you?"
                                         {...field}
-                                        className="bg-white/5 dark:bg-black/35 border-white/10 dark:border-zinc-800/80 text-white placeholder-zinc-500 focus-visible:ring-primary focus-visible:border-primary focus:border-primary rounded-xl min-h-[120px] transition-all duration-200"
+                                        className="bg-zinc-100/50 dark:bg-black/35 border-zinc-250 dark:border-zinc-800/80 text-zinc-900 dark:text-white placeholder-zinc-400 dark:placeholder-zinc-500 focus-visible:ring-primary focus-visible:border-primary focus:border-primary rounded-xl min-h-[120px] transition-all duration-200"
                                     />
                                 </FormControl>
                                 <FormMessage className="text-xs text-red-400" />

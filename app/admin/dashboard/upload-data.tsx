@@ -49,6 +49,8 @@ export const ProfileForm = () => {
   const [catLoading, setCatLoading] = useState(false);
   const [catMsg, setCatMsg] = useState('');
 
+  const [stackInput, setStackInput] = useState('');
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -61,8 +63,24 @@ export const ProfileForm = () => {
       imageUrl: [],
       githubUrl: "",
       order: 0,
+      stack: [],
     },
   });
+
+  const stackList = form.watch('stack') || [];
+
+  const addStackItem = (e: any) => {
+    e.preventDefault();
+    if (!stackInput.trim()) return;
+    if (!stackList.includes(stackInput.trim())) {
+      form.setValue('stack', [...stackList, stackInput.trim()]);
+    }
+    setStackInput('');
+  };
+
+  const removeStackItem = (tech: string) => {
+    form.setValue('stack', stackList.filter((t: string) => t !== tech));
+  };
 
   const loadCategories = async () => {
     const res = await getCategories();
@@ -235,6 +253,56 @@ export const ProfileForm = () => {
                 </FormItem>
               )}
             />
+
+            {/* Tech Stack Input */}
+            <FormItem className="space-y-1.5">
+              <FormLabel className="text-xs font-semibold uppercase tracking-wider text-stone-600 dark:text-zinc-400">Tech Stack (Frameworks / Libraries)</FormLabel>
+              <div className="flex gap-2">
+                <div className="relative flex-1 rounded-xl border border-stone-250 dark:border-zinc-800 bg-white/[0.05] dark:bg-black/25 transition-all focus-within:border-[#e49505] focus-within:ring-1 focus-within:ring-[#e49505]">
+                  <Input 
+                    placeholder="Enter technology (e.g. Next.js, React)..." 
+                    value={stackInput}
+                    onChange={(e) => setStackInput(e.target.value)}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter') {
+                        e.preventDefault();
+                        addStackItem(e);
+                      }
+                    }}
+                    className="w-full bg-transparent border-0 shadow-none py-2.5 px-4 text-sm text-stone-900 dark:text-white placeholder-stone-450 dark:placeholder-zinc-650 focus-visible:ring-0 focus-visible:border-0 rounded-xl"
+                  />
+                </div>
+                <Button 
+                  type="button" 
+                  onClick={addStackItem}
+                  className="bg-[#e49505] hover:bg-[#c98304] text-white rounded-xl px-4 flex items-center justify-center gap-1"
+                >
+                  <Plus className="h-4 w-4" />
+                  <span>Add</span>
+                </Button>
+              </div>
+              
+              {/* Stack Chips List */}
+              {stackList.length > 0 && (
+                <div className="flex flex-wrap gap-2 pt-1.5">
+                  {stackList.map((tech: string) => (
+                    <div 
+                      key={tech}
+                      className="flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold bg-zinc-100 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-350 border border-zinc-200 dark:border-zinc-700"
+                    >
+                      <span>{tech}</span>
+                      <button 
+                        type="button" 
+                        onClick={() => removeStackItem(tech)}
+                        className="text-zinc-500 hover:text-red-500 transition-colors ml-1"
+                      >
+                        &times;
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </FormItem>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {/* Live Link Input */}

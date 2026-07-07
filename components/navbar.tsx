@@ -50,7 +50,7 @@ export const Navbar = ({ className }: { className?: string }) => {
   return (
     <>
       <div 
-        className={`dark:bg-card-bg-1 backdrop-blur-xl text-white card bg-white bg-opacity-40 shadow-black absolute max-md:top-4 max-md:right-4 max-xs:top-1 max-xs:right-1 md:fixed md:top-6 md:right-10 lg:right-12 z-50 rounded-tr-2xl rounded-bl-2xl md:rounded-2xl px-10 max-lg:px-2 h-20 max-lg:h-14 flex flex-col transition-all duration-300 ease-in-out ${
+        className={`bg-white dark:bg-card-bg-1 dark:backdrop-blur-xl text-zinc-900 dark:text-white border border-zinc-200 dark:border-zinc-850 shadow-md dark:shadow-black absolute max-md:top-4 max-md:right-4 max-xs:top-1 max-xs:right-1 md:fixed md:top-6 md:right-10 lg:right-12 z-50 rounded-tr-2xl rounded-bl-2xl md:rounded-2xl px-10 max-lg:px-2 h-20 max-lg:h-14 flex flex-col transition-all duration-300 ease-in-out ${
           nav ? 'max-md:w-40' : 'max-md:w-20'
         } ${
           visible 

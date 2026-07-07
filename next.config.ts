@@ -3,6 +3,7 @@ import path from 'path';
 
 /** @type {import('next').NextConfig} */
 const nextConfig: NextConfig = {
+    output: 'standalone',
     images: {
         qualities: [10, 75],
         remotePatterns: [

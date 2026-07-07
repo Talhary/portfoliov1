@@ -68,7 +68,7 @@ export const GitHubStats = () => {
   };
 
   return (
-    <div className="bg-white/5 dark:bg-[#1a1a1c]/60 border border-white/10 dark:border-zinc-800/80 backdrop-blur-xl rounded-2xl p-6 sm:p-8 shadow-2xl relative overflow-hidden transition-all duration-300 hover:border-primary/20 group">
+    <div className="bg-zinc-50 dark:bg-[#1a1a1c]/60 border border-zinc-200 dark:border-zinc-800/80 dark:backdrop-blur-xl rounded-2xl p-6 sm:p-8 shadow-sm dark:shadow-2xl relative overflow-hidden transition-all duration-300 hover:border-primary/20 group">
       {/* Glowing accent lights */}
       <div className="absolute top-0 right-0 -mr-16 -mt-16 w-36 h-36 bg-[#e49505]/5 rounded-full blur-3xl pointer-events-none group-hover:bg-[#e49505]/10 transition-colors duration-300" />
       
@@ -81,7 +81,7 @@ export const GitHubStats = () => {
               <Github className="h-5 w-5" />
             </div>
             <div>
-              <h3 className="text-xl font-bold text-white tracking-tight">GitHub Activity Index</h3>
+              <h3 className="text-xl font-bold text-zinc-900 dark:text-white tracking-tight">GitHub Activity Index</h3>
               <a 
                 href="https://github.com/talhary" 
                 target="_blank" 
@@ -111,49 +111,49 @@ export const GitHubStats = () => {
         {/* Live Metrics Grid */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
           {/* Repositories */}
-          <div className="p-4 rounded-xl bg-white/[0.02] border border-white/5 dark:bg-black/20 backdrop-blur-sm relative overflow-hidden group/card hover:border-[#e49505]/20 transition-all duration-200">
+          <div className="p-4 rounded-xl bg-zinc-100/50 border border-zinc-200/60 dark:bg-black/20 dark:border-white/5 dark:backdrop-blur-sm relative overflow-hidden group/card hover:border-[#e49505]/20 transition-all duration-200">
             <div className="flex justify-between items-start">
               <span className="text-[10px] text-zinc-400 dark:text-zinc-500 uppercase font-semibold tracking-wider">Repositories</span>
               <Code className="h-4 w-4 text-[#e49505]" />
             </div>
             <div className="mt-2.5 flex items-baseline gap-1">
-              <span className="text-2xl font-bold text-white leading-none">{activeRepos}</span>
+              <span className="text-2xl font-bold text-zinc-900 dark:text-white leading-none">{activeRepos}</span>
               <span className="text-[10px] text-zinc-500 font-medium">active</span>
             </div>
           </div>
 
           {/* Followers */}
-          <div className="p-4 rounded-xl bg-white/[0.02] border border-white/5 dark:bg-black/20 backdrop-blur-sm relative overflow-hidden group/card hover:border-[#e49505]/20 transition-all duration-200">
+          <div className="p-4 rounded-xl bg-zinc-100/50 border border-zinc-200/60 dark:bg-black/20 dark:border-white/5 dark:backdrop-blur-sm relative overflow-hidden group/card hover:border-[#e49505]/20 transition-all duration-200">
             <div className="flex justify-between items-start">
               <span className="text-[10px] text-zinc-400 dark:text-zinc-500 uppercase font-semibold tracking-wider">Followers</span>
               <Users className="h-4 w-4 text-[#e49505]" />
             </div>
             <div className="mt-2.5 flex items-baseline gap-1">
-              <span className="text-2xl font-bold text-white leading-none">{activeFollowers}</span>
+              <span className="text-2xl font-bold text-zinc-900 dark:text-white leading-none">{activeFollowers}</span>
               <span className="text-[10px] text-zinc-500 font-medium">network</span>
             </div>
           </div>
 
           {/* Account Age */}
-          <div className="p-4 rounded-xl bg-white/[0.02] border border-white/5 dark:bg-black/20 backdrop-blur-sm relative overflow-hidden group/card hover:border-[#e49505]/20 transition-all duration-200">
+          <div className="p-4 rounded-xl bg-zinc-100/50 border border-zinc-200/60 dark:bg-black/20 dark:border-white/5 dark:backdrop-blur-sm relative overflow-hidden group/card hover:border-[#e49505]/20 transition-all duration-200">
             <div className="flex justify-between items-start">
               <span className="text-[10px] text-zinc-400 dark:text-zinc-500 uppercase font-semibold tracking-wider">Joined Year</span>
               <Activity className="h-4 w-4 text-[#e49505]" />
             </div>
             <div className="mt-2.5 flex items-baseline gap-1">
-              <span className="text-2xl font-bold text-white leading-none">{joinedYear}</span>
+              <span className="text-2xl font-bold text-zinc-900 dark:text-white leading-none">{joinedYear}</span>
               <span className="text-[10px] text-zinc-500 font-medium">member</span>
             </div>
           </div>
 
           {/* Daily Streak Status */}
-          <div className="p-4 rounded-xl bg-white/[0.02] border border-white/5 dark:bg-black/20 backdrop-blur-sm relative overflow-hidden group/card hover:border-[#e49505]/20 transition-all duration-200">
+          <div className="p-4 rounded-xl bg-zinc-100/50 border border-zinc-200/60 dark:bg-black/20 dark:border-white/5 dark:backdrop-blur-sm relative overflow-hidden group/card hover:border-[#e49505]/20 transition-all duration-200">
             <div className="flex justify-between items-start">
               <span className="text-[10px] text-zinc-400 dark:text-zinc-500 uppercase font-semibold tracking-wider">Daily Streak</span>
               <span className="h-2 w-2 rounded-full bg-emerald-500 animate-ping" />
             </div>
             <div className="mt-2.5 flex items-baseline gap-1">
-              <span className="text-lg font-bold text-emerald-400 leading-none">Active Dev</span>
+              <span className="text-lg font-bold text-emerald-500 dark:text-emerald-400 leading-none">Active Dev</span>
               <span className="text-[10px] text-zinc-500 font-medium">status</span>
             </div>
           </div>

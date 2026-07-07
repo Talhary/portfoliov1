@@ -3,7 +3,8 @@ import { MdOutlineMarkEmailRead, MdOutlinePhoneInTalk } from "react-icons/md";
 import { SlCalender, SlLocationPin, SlFlag } from "react-icons/sl";
 import { AiFillGithub, AiFillLinkedin, AiFillHeart } from "react-icons/ai";
 import { BiGlobe } from "react-icons/bi";
-import AsideImageSection from '@/components/aside-image-section'
+import AsideImageSection from '@/components/aside-image-section';
+import Link from "next/link";
 
 const Navbar = () => {
   return (
@@ -23,13 +24,13 @@ const Navbar = () => {
         ({ h, p, Logo, url }, i) => {
           const content = (
             <div className="flex flex-col items-start m-3 ">
-              <h3 className="font-light dark:text-dark text-white">{h}</h3>
-              <p className="font-semibold dark:text-white text-white break-all rounded-md text-sm dark:bg-[#292828] bg-white bg-opacity-10 p-1">{p}</p>
+              <h3 className="text-xs font-bold text-zinc-500 dark:text-zinc-400 tracking-wider">{h}</h3>
+              <p className="font-semibold text-zinc-800 dark:text-white break-all rounded-md text-sm dark:bg-[#292828] bg-zinc-100 border border-zinc-200 dark:border-none p-1 px-2">{p}</p>
             </div>
           );
           return (
             <div key={i} className="flex items-center w-full">
-              <div className="rounded-md dark:bg-[#292828] p-3 bg-white bg-opacity-10">
+              <div className="rounded-md dark:bg-[#292828] p-3 bg-zinc-100 border border-zinc-200 dark:border-none">
                 {Logo}
               </div>
               {url ? (
@@ -43,6 +44,11 @@ const Navbar = () => {
           );
         }
       )}
+      </div>
+      <div className="mt-8 pt-4 border-t border-zinc-200/10 w-full text-center">
+        <Link href="/privacy" className="text-xs text-zinc-500 hover:text-primary transition-colors hover:underline">
+          Privacy Policy
+        </Link>
       </div>
     </div>
   );

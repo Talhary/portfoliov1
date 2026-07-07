@@ -18,7 +18,7 @@ const EducationItem: React.FC<EducationItemProps> = ({ title, duration, descript
     <div className="absolute left-0 top-1.5 h-3 w-3 rounded-full bg-[#e49505] shadow shadow-[#e49505]/50 ring-4 ring-[#e49505]/15 transition-all duration-300 group-hover:scale-125" />
 
     {/* Degree Description Glass Card */}
-    <div className="bg-white/5 dark:bg-[#1a1a1c]/60 border border-white/10 dark:border-zinc-800/80 backdrop-blur-xl rounded-2xl p-5 hover:border-[#e49505]/30 transition-all duration-300 shadow-xl relative overflow-hidden group-hover:translate-x-1">
+    <div className="bg-zinc-50 dark:bg-[#1a1a1c]/60 border border-zinc-200 dark:border-zinc-800/80 dark:backdrop-blur-xl rounded-2xl p-5 hover:border-[#e49505]/30 transition-all duration-300 shadow-sm dark:shadow-xl relative overflow-hidden group-hover:translate-x-1">
       <div className="absolute top-0 right-0 -mr-12 -mt-12 w-24 h-24 bg-[#e49505]/5 rounded-full blur-2xl pointer-events-none group-hover:bg-[#e49505]/10 transition-colors duration-300" />
       
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1.5 relative z-10">

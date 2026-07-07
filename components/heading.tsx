@@ -8,7 +8,7 @@ export const Heading = ({
   as?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
 }) => {
   return (
-    <div className='mt-4 mx-2 max-mid:mt-16 max-md:mt-4 transition-all text-white'>
+    <div className='mt-4 mx-2 max-mid:mt-16 max-md:mt-4 transition-all text-zinc-900 dark:text-white'>
       <Component className='text-4xl max:lg:text-3xl max-md:text-2xl max-sm:text-xl font-semibold  after:bg-primary '>
         {title}
       </Component>

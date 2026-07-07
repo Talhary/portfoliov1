@@ -56,7 +56,7 @@ export const RadarChart = () => {
   });
 
   return (
-    <div className="bg-white/5 dark:bg-[#1a1a1c]/60 border border-white/10 dark:border-zinc-800/80 backdrop-blur-xl rounded-2xl p-6 sm:p-8 shadow-2xl relative overflow-hidden transition-all duration-300 hover:border-[#e49505]/20 group flex flex-col md:flex-row items-center gap-8">
+    <div className="bg-zinc-50 dark:bg-[#1a1a1c]/60 border border-zinc-200 dark:border-zinc-800/80 dark:backdrop-blur-xl rounded-2xl p-6 sm:p-8 shadow-sm dark:shadow-2xl relative overflow-hidden transition-all duration-300 hover:border-[#e49505]/20 group flex flex-col md:flex-row items-center gap-8">
       {/* Glow highlight */}
       <div className="absolute top-0 right-0 -mr-12 -mt-12 w-28 h-28 bg-[#e49505]/5 rounded-full blur-3xl pointer-events-none group-hover:bg-[#e49505]/10 transition-colors duration-300" />
 

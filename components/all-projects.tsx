@@ -14,7 +14,7 @@ export const AllProjects = ({ projects }: { projects: z.infer<typeof formSchema>
         return (
           <div 
             key={project.id} 
-            className="group rounded-2xl border border-stone-200/50 dark:border-white/5 bg-white bg-opacity-70 dark:bg-zinc-900/30 backdrop-blur-md shadow-xl hover:shadow-2xl overflow-hidden flex flex-col justify-between transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[#e49505]/5 relative"
+            className="group rounded-2xl border border-stone-200 dark:border-white/5 bg-white dark:bg-zinc-900/30 dark:backdrop-blur-md shadow-sm hover:shadow-xl overflow-hidden flex flex-col justify-between transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[#e49505]/5 relative"
           >
             {/* Glowing Top Accent Line on Hover */}
             <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[#e49505] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10" />
@@ -57,6 +57,20 @@ export const AllProjects = ({ projects }: { projects: z.infer<typeof formSchema>
                     </span>
                   ))}
                 </div>
+
+                {/* Tech Stack Badges */}
+                {project.stack && project.stack.length > 0 && (
+                  <div className="flex flex-wrap gap-1.5 pt-1.5">
+                    {project.stack.map((tech: string) => (
+                      <span 
+                        key={tech} 
+                        className="text-[9px] font-semibold bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-300 border border-zinc-200 dark:border-zinc-700 px-2 py-0.5 rounded"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                )}
               </div>
 
               {/* Action Buttons */}

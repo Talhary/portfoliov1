@@ -81,7 +81,7 @@ export async function POST(request: Request) {
           id: post.id,
           title: post.title,
           slug: post.slug,
-          url: `https://talhatech.vercel.app/blog/${post.slug}`,
+          url: `https://talhacodes.site/blog/${post.slug}`,
         },
       },
       { status: 201 }

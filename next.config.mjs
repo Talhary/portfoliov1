@@ -2,13 +2,21 @@ import path from 'path';
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+    output: 'standalone',
     images: {
+        qualities: [10, 75],
         remotePatterns: [
           {
             protocol: 'https',
             hostname: 'utfs.io',
             port: '',
             pathname: '/f/**',
+          },
+          {
+            protocol: 'https',
+            hostname: 'images.unsplash.com',
+            port: '',
+            pathname: '/**',
           },
         ],
       },
