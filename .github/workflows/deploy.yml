@@ -13,7 +13,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Set up Docker Buildx
-        uses: actions/setup-buildx-action@v3
+        uses: docker/setup-buildx-action@v3
 
       # Build the Docker image on GitHub Actions runner (saves VPS RAM/CPU)
       - name: Build and Export Docker Image
