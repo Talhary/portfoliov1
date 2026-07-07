@@ -24,21 +24,21 @@ const skills = [
 ];
 
 export const metadata: Metadata = {
-  title: "Professional Resume & CV | Talha Riaz",
-  description: "View the education, skills, technical expertise, and career journey of Muhammad Talha Riaz, a Full Stack Software Engineer specializing in modern JavaScript frameworks and database systems.",
+  title: "Professional Resume & CV | Talha Codes",
+  description: "View the education, skills, technical expertise, and career journey of Talha Codes, a Full Stack Software Engineer specializing in modern JavaScript frameworks and database systems.",
   keywords: [
-    "Talha Riaz Resume",
-    "Talha Riaz CV",
+    "Talha Codes Resume",
+    "Talha Codes CV",
     "Software Engineer Education",
     "Technical Skills",
     "MERN stack developer resume",
     "Next.js engineer credentials"
   ],
   openGraph: {
-    title: "Professional Resume & CV | Talha Riaz",
-    description: "View the education, skills, technical expertise, and career journey of Muhammad Talha Riaz.",
+    title: "Professional Resume & CV | Talha Codes",
+    description: "View the education, skills, technical expertise, and career journey of Talha Codes.",
     type: "profile",
-    url: "https://talhatech.vercel.app/resume",
+    url: "https://talhacodes.site/resume",
   }
 };
 
@@ -68,31 +68,31 @@ const Page = () => {
             <div className="h-10 w-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary border border-primary/20">
               <Brain size={22} className="text-[#e49505]" />
             </div>
-            <h2 className="text-2xl font-bold tracking-tight text-white dark:text-zinc-100">My Skills</h2>
+            <h2 className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">My Skills</h2>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {skills.map((el, i) => (
-              <div 
-                key={i} 
-                className="bg-white/5 dark:bg-[#1a1a1c]/60 border border-white/10 dark:border-zinc-800/80 backdrop-blur-xl rounded-2xl p-5 hover:border-[#e49505]/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300 relative overflow-hidden group"
+              <div
+                key={i}
+                className="bg-zinc-50 dark:bg-[#1a1a1c]/60 border border-zinc-200 dark:border-zinc-800/80 dark:backdrop-blur-xl rounded-2xl p-5 hover:border-[#e49505]/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300 relative overflow-hidden group"
               >
                 {/* Glowing Effect on Card Hover */}
                 <div className="absolute top-0 right-0 -mr-8 -mt-8 w-16 h-16 bg-[#e49505]/5 rounded-full blur-xl pointer-events-none group-hover:bg-[#e49505]/10 transition-colors duration-300" />
-                
+
                 <div className="flex items-center justify-between mb-3.5 relative z-10">
                   <div className="flex items-center gap-2.5 min-w-0">
-                    <div className="h-9 w-9 rounded-lg bg-white/5 flex items-center justify-center border border-white/10 text-[#e49505] shrink-0">
+                    <div className="h-9 w-9 rounded-lg bg-zinc-100 dark:bg-white/5 flex items-center justify-center border border-zinc-200 dark:border-white/10 text-[#e49505] shrink-0">
                       {el.icon && <el.icon className="h-5 w-5" />}
                     </div>
-                    <span className="font-semibold text-zinc-100 dark:text-zinc-200 text-sm md:text-base tracking-wide truncate">{el.name}</span>
+                    <span className="font-semibold text-zinc-800 dark:text-zinc-200 text-sm md:text-base tracking-wide truncate">{el.name}</span>
                   </div>
                   <span className="text-xs md:text-sm font-bold text-[#e49505] shrink-0">{el.value}%</span>
                 </div>
 
                 {/* Customized Premium Progress Bar */}
                 <div className="w-full h-2 bg-black/10 dark:bg-black/35 border border-white/5 rounded-full overflow-hidden relative z-10">
-                  <div 
+                  <div
                     className="h-full bg-[#e49505] rounded-full shadow-[#e49505]/20 shadow-sm transition-all duration-1000 ease-out"
                     style={{ width: `${el.value}%` }}
                   />

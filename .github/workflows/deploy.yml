@@ -1,0 +1,83 @@
+name: Deploy Next.js Portfolio to VPS
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: actions/setup-buildx-action@v3
+
+      # Build the Docker image on GitHub Actions runner (saves VPS RAM/CPU)
+      - name: Build and Export Docker Image
+        run: |
+          docker build -t portfolio:latest .
+          docker save portfolio:latest | gzip > portfolio.tar.gz
+
+      # Copy the built Docker image tarball to the VPS
+      - name: Copy Tarball to VPS
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          source: "portfolio.tar.gz"
+          target: "/home/ubuntu/"
+
+      # SSH to the VPS, load the image, recreate the container
+      - name: SSH to VPS and Run Container
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            # Ensure Docker is installed on the VPS (fallback check)
+            if ! command -v docker &> /dev/null; then
+              echo "Installing Docker..."
+              sudo apt-get update
+              sudo apt-get install -y apt-transport-https ca-certificates curl software-properties-common
+              curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+              sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" -y
+              sudo apt-get update
+              sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
+              sudo usermod -aG docker ubuntu
+            fi
+
+            # Create a directory for the portfolio app configuration / environment if not exists
+            sudo mkdir -p /var/www/portfolio
+            sudo chown -R ubuntu:ubuntu /var/www/portfolio
+            
+            # Load the Docker image
+            docker load -i /home/ubuntu/portfolio.tar.gz
+            rm -f /home/ubuntu/portfolio.tar.gz
+
+            # Stop and remove existing container if running
+            docker stop portfolio || true
+            docker rm portfolio || true
+
+            # Run the new container (port 3000 locally, reverse proxied by nginx)
+            if [ -f /var/www/portfolio/.env ]; then
+              docker run -d \
+                --name portfolio \
+                --restart always \
+                -p 127.0.0.1:3000:3000 \
+                --env-file /var/www/portfolio/.env \
+                portfolio:latest
+            else
+              docker run -d \
+                --name portfolio \
+                --restart always \
+                -p 127.0.0.1:3000:3000 \
+                portfolio:latest
+            fi
+
+            # Clean up old unused images to save disk space
+            docker image prune -f

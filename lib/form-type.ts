@@ -21,6 +21,7 @@ export const formSchema = z.object({
     message: "Invalid URL format.",
   }),
   order: z.coerce.number().int().default(0),
+  stack: z.array(z.string()).default([]),
 });
 export const contactformSchema = z.object({
   name: z.string().min(1, {

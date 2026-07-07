@@ -10,8 +10,8 @@ import AdSense from "@/components/ads";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Talha Riaz ",
-  description: "Muhammad Talha Riaz, Full Stack Software Engineer Portfolio.",
+  title: "Talha Codes",
+  description: "Talha Codes - Full Stack Software Engineer Portfolio.",
   verification: {
     google: "wHIxtQ2Ehw-Z4mysz4nMFthsRdGwaCmbnp72t9r7mkI",
   },
@@ -31,16 +31,16 @@ export default async function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <aside className="py-10 z-10 dark:bg-[#1e1e1e] dark:text-white text-black shadow shadow-black backdrop-blur-2xl w-full md:w-[20rem] md:min-w-[20rem] md:max-w-[20rem] max-md:max-w-full rounded-xl mr-0 p-5 h-auto max-md:p-0 max-md:m-0 md:sticky md:top-0 md:h-screen md:overflow-y-auto custom-scrollbar">
+          <aside className="py-10 z-10 bg-zinc-50 dark:bg-[#1e1e1e] text-zinc-900 dark:text-white border border-zinc-200 dark:border-none shadow-sm dark:shadow-black w-full md:w-[20rem] md:min-w-[20rem] md:max-w-[20rem] max-md:max-w-full rounded-xl mr-0 p-5 h-auto max-md:p-0 max-md:m-0 md:sticky md:top-0 md:h-screen md:overflow-y-auto custom-scrollbar">
             <div className=" ">
               <Aside />
             </div>
 
           </aside>
-          <div className='flex-auto  max-md:ml-0 relative'>
+          <div className='flex-auto max-md:ml-0 relative min-w-0 max-w-full overflow-hidden'>
             <AdSense />
             <Navbar className='z-50' />
-            <div className="  dark:bg-big-card  dark:text-black  shadow shadow-black backdrop-blur-2xl relative ml-0 text-white   max-md:m-4 max-xs:m-1 max-xs:p-3 rounded-2xl p-5 max-md:p-3 ">
+            <div className="bg-zinc-50 dark:bg-big-card border border-zinc-200 dark:border-none shadow-sm dark:shadow-black relative ml-0 text-zinc-900 dark:text-zinc-100 max-md:m-4 max-xs:m-1 max-xs:p-3 rounded-2xl p-5 max-md:p-3 w-full max-w-full overflow-hidden">
               <GetToTopButton />
               {children}
             </div>

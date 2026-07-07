@@ -13,8 +13,8 @@ const Section = ({ className }: { className?: string }) => {
       />
     </div>
     <div>
-      <h1 className="text-3xl max-md:my-5 md:my-4 max-md:text-4xl text-white   font-bold tracking-tighter">Talha Riaz</h1>
-      <p className="dark:bg-[#32312f] bg-white bg-opacity-10 text-xl my-2 md:w-fit  p-1 rounded-md md:mx-auto md:text-white  max-md:text-black-black  dark:text-white">
+      <h1 className="text-3xl max-md:my-5 md:my-4 max-md:text-4xl text-zinc-900 dark:text-white font-bold tracking-tighter">Talha Codes</h1>
+      <p className="dark:bg-[#32312f] bg-zinc-100 text-xl my-2 md:w-fit p-1.5 px-3 rounded-md md:mx-auto text-zinc-850 dark:text-white border border-zinc-200 dark:border-none">
         <span className='text-primary '>S</span>oftware Engineer
       </p>
     </div>

@@ -2,7 +2,7 @@ import React from 'react';
 
 const Loading = () => {
   return (
-    <div className="w-full text-white dark:text-foreground flex flex-col gap-6 py-2 animate-pulse">
+    <div className="w-full text-zinc-900 dark:text-zinc-100 flex flex-col gap-6 py-2 animate-pulse">
       {/* Back Button Skeleton */}
       <div className="h-5 w-32 bg-stone-300/10 dark:bg-zinc-800/40 rounded-lg" />
 

@@ -2,7 +2,7 @@ import React from 'react';
 import { Metadata } from 'next';
 import { Heading } from '@/components/heading';
 import AsideImageSection from '@/components/aside-image-section';
-import { cn } from '@/lib/utils'; 
+import { cn } from '@/lib/utils';
 import { FaReact, FaNodeJs, FaDocker, FaPhp, FaRobot } from 'react-icons/fa';
 import { SiNextdotjs, SiExpress, SiMongodb, SiTypescript, SiJavascript, SiUbuntu, SiPostgresql, SiMysql, SiDeno } from 'react-icons/si';
 import { Briefcase, BookOpen, Phone, Mail, Globe, MapPin, Code, ArrowRight } from 'lucide-react';
@@ -34,7 +34,6 @@ const skills = [
 const focusAreas = [
   { title: 'MERN Stack Development', icon: FaReact, text: 'Building robust full-stack applications using MongoDB, Express.js, React, and Node.js.' },
   { title: 'Next.js Applications', icon: SiNextdotjs, text: 'Leveraging Next.js for server-side rendering, static site generation, and full-stack capabilities.' },
-  { title: 'PHP Development', icon: FaPhp, text: 'Developing and maintaining web solutions using PHP, often integrated with modern frontend frameworks.' },
   { title: 'Bot Development', icon: FaRobot, text: 'Creating automated solutions and bots using various technologies.' },
 ];
 
@@ -54,21 +53,21 @@ const getCurrentDuration = (startDate: Date): string => {
   return [yearStr, monthStr].filter(Boolean).join(' ');
 };
 
-const woltrioStartDate = new Date(2025, 0, 1); 
+const woltrioStartDate = new Date(2025, 0, 1);
 const woltrioDuration = getCurrentDuration(woltrioStartDate);
 
 const experiences = [
   {
     title: 'Full Stack Software Engineer',
     company: 'Woltrio',
-    icon: Briefcase, 
+    icon: Briefcase,
     dates: `Jan 2025 - Present (${woltrioDuration})`,
     description: 'Developing and maintaining web applications using MERN stack, Next.js, and PHP. Collaborating with teams to deliver high-quality software solutions.'
   },
   {
     title: 'Software Engineer Intern',
     company: 'Swismax Solutions',
-    icon: Briefcase, 
+    icon: Briefcase,
     dates: 'Sep 2024 - Nov 2024 (3 mos)',
     description: 'Gained practical experience in web development, contributing to projects and learning industry best practices during a 3-month internship.'
   },
@@ -83,10 +82,10 @@ const Highlight = ({ text }: { text: string }) => {
 };
 
 export const metadata: Metadata = {
-  title: "Talha Riaz | Full Stack Software Engineer Portfolio",
-  description: "Muhammad Talha Riaz, Full Stack Software Engineer based in Islamabad. Specializing in MERN stack, Next.js, React, Node.js, PHP, and bot development.",
+  title: "Talha Codes | Full Stack Software Engineer Portfolio",
+  description: "Talha Codes - Full Stack Software Engineer based in Islamabad. Specializing in MERN stack, Next.js, React, Node.js, PHP, and bot development.",
   keywords: [
-    "Talha Riaz",
+    "Talha Codes",
     "Full Stack Software Engineer",
     "Web Developer Portfolio",
     "Islamabad Developer",
@@ -97,10 +96,10 @@ export const metadata: Metadata = {
     "Woltrio Engineer"
   ],
   openGraph: {
-    title: "Talha Riaz | Full Stack Software Engineer Portfolio",
-    description: "Muhammad Talha Riaz, Full Stack Software Engineer based in Islamabad. Specializing in MERN stack, Next.js, React, Node.js, PHP, and bot development.",
+    title: "Talha Codes | Full Stack Software Engineer Portfolio",
+    description: "Talha Codes - Full Stack Software Engineer based in Islamabad. Specializing in MERN stack, Next.js, React, Node.js, PHP, and bot development.",
     type: "website",
-    url: "https://talhatech.vercel.app",
+    url: "https://talhacodes.site",
   }
 };
 
@@ -108,31 +107,31 @@ export default async function Home() {
   const projects = await GetAllProjects('all');
 
   return (
-    <div className="w-full flex flex-col gap-16 py-6 pb-20 scroll-smooth">
+    <div className="w-full flex flex-col gap-16 py-6 pb-4 scroll-smooth">
       {/* ---------------- SECTION 1: ABOUT ME ---------------- */}
       <section id="about" className="relative group">
         <div className="px-2 md:px-4 text-neutral-800 dark:text-neutral-200">
           <Heading title="About Me" />
-          
+
           <AsideImageSection className='md:hidden my-4 flex flex-col items-center justify-center' />
 
           <div className='mt-6 mx-2 max-md:mx-0'>
-            <p className='text-lg md:text-xl leading-relaxed tracking-wide opacity-90 text-zinc-150 dark:text-zinc-300 dark:opacity-85 font-light'>
-              Hi, I&apos;m <Highlight text="Talha"/>, a passionate <Highlight text='Full Stack' /> Software Engineer based in <Highlight text="Islamabad" />. I specialize in building dynamic web applications and bots using a diverse range of technologies. Having completed my Graduation, I thrive on creating efficient, scalable, and user-friendly solutions. Currently contributing my skills at Woltrio and always eager for new challenges and learning opportunities.
+            <p className='text-lg md:text-xl leading-relaxed tracking-wide opacity-90 text-zinc-800 dark:text-zinc-300 dark:opacity-85 font-light'>
+              Hi, I&apos;m <Highlight text="Talha" />, a passionate <Highlight text='Full Stack' /> Software Engineer based in <Highlight text="Islamabad" />. I specialize in building dynamic web applications and bots using a diverse range of technologies. Having completed my Graduation, I thrive on creating efficient, scalable, and user-friendly solutions. Currently contributing my skills at Woltrio and always eager for new challenges and learning opportunities.
             </p>
           </div>
 
           {/* Skillset list */}
           <div className='mt-12 mx-2 max-md:mx-0'>
-            <h3 className='text-2xl font-semibold mb-6 text-white dark:text-foreground tracking-tight'>My Skillset</h3>
+            <h3 className='text-2xl font-semibold mb-6 text-zinc-900 dark:text-zinc-100 tracking-tight'>My Skillset</h3>
             <div className='flex flex-wrap gap-2.5'>
               {skills.map((skill) => (
                 <div
                   key={skill.name}
                   className={cn(
                     'flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider transition-all duration-200 hover:scale-105 border border-white/5 shadow-md',
-                    skill.color,       
-                    skill.darkColor   
+                    skill.color,
+                    skill.darkColor
                   )}
                 >
                   <skill.icon className="h-4 w-4 shrink-0" />
@@ -146,18 +145,18 @@ export default async function Home() {
 
           {/* Focus Areas */}
           <div className='mt-16 mx-2 max-md:mx-0'>
-            <h3 className='text-2xl font-semibold mb-6 text-white dark:text-foreground tracking-tight'>My Focus Areas</h3>
+            <h3 className='text-2xl font-semibold mb-6 text-zinc-900 dark:text-zinc-100 tracking-tight'>My Focus Areas</h3>
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4'>
               {focusAreas.map((el, i) => (
                 <div
                   key={i}
-                  className='card flex flex-col items-start gap-4 rounded-2xl w-full p-5 shadow-lg border border-white/5 bg-white/[0.02] dark:bg-zinc-900/20 backdrop-blur-md transition-all hover:-translate-y-1'
+                  className='card flex flex-col items-start gap-4 rounded-2xl w-full p-5 transition-all hover:-translate-y-1'
                 >
                   <div className='flex items-center justify-center p-3 rounded-xl bg-[#e49505]/10 border border-[#e49505]/20 text-[#e49505]'>
                     {React.createElement(el.icon, { className: 'text-2xl shrink-0' })}
                   </div>
                   <div className='space-y-1.5'>
-                    <h4 className='font-semibold text-lg text-white dark:text-primary tracking-tight'>{el.title}</h4>
+                    <h4 className='font-semibold text-lg text-zinc-900 dark:text-primary tracking-tight'>{el.title}</h4>
                     <p className='text-sm text-zinc-400 leading-relaxed font-light'>{el.text}</p>
                   </div>
                 </div>
@@ -167,19 +166,19 @@ export default async function Home() {
 
           {/* Professional Experience */}
           <div className='mt-16 mx-2 max-md:mx-0'>
-            <h3 className='text-2xl font-semibold mb-6 text-white dark:text-foreground tracking-tight'>Work Experience</h3>
+            <h3 className='text-2xl font-semibold mb-6 text-zinc-900 dark:text-zinc-100 tracking-tight'>Work Experience</h3>
             <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
               {experiences.map((el, i) => (
                 <div
                   key={i}
-                  className='card flex flex-col gap-4 rounded-2xl w-full p-6 shadow-lg border border-white/5 bg-white/[0.02] dark:bg-zinc-900/20 backdrop-blur-md transition-all hover:-translate-y-1'
+                  className='card flex flex-col gap-4 rounded-2xl w-full p-6 transition-all hover:-translate-y-1'
                 >
                   <div className="flex items-center gap-3">
                     <div className='flex items-center justify-center p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400'>
                       {React.createElement(el.icon, { className: 'text-2xl shrink-0' })}
                     </div>
                     <div>
-                      <h4 className='font-bold text-lg text-white dark:text-foreground tracking-tight'>{el.title}</h4>
+                      <h4 className='font-bold text-lg text-zinc-900 dark:text-zinc-100 tracking-tight'>{el.title}</h4>
                       <p className='text-xs text-[#e49505] uppercase tracking-wider font-semibold'>At {el.company}</p>
                     </div>
                   </div>
@@ -201,13 +200,13 @@ export default async function Home() {
       <section id="resume" className="relative group">
         <div className="px-2 md:px-4 text-neutral-800 dark:text-neutral-250">
           <Heading title="Resume" as="h2" />
-          
+
           <div className="mx-2 mt-8 max-md:mx-0">
             <div className="flex gap-x-3 items-center justify-start mb-6">
               <BookOpen className="text-[#e49505] w-6 h-6 shrink-0" />
-              <h3 className='text-2xl font-semibold text-white dark:text-foreground tracking-tight'>Education</h3>
+              <h3 className='text-2xl font-semibold text-zinc-900 dark:text-zinc-100 tracking-tight'>Education</h3>
             </div>
-            
+
             <div className="p-1.5 rounded-2xl bg-white/[0.01] border border-white/[0.03] dark:bg-zinc-950/10">
               <EducationList />
             </div>
@@ -216,31 +215,31 @@ export default async function Home() {
           <div className="mx-2 mt-16 max-md:mx-0">
             <div className="flex gap-x-3 items-center justify-start mb-6">
               <Code className="text-[#e49505] w-6 h-6 shrink-0" />
-              <h3 className='text-2xl font-semibold text-white dark:text-foreground tracking-tight'>My Skill Percentages</h3>
+              <h3 className='text-2xl font-semibold text-zinc-900 dark:text-zinc-100 tracking-tight'>My Skill Percentages</h3>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mt-6">
               {skills.map((el, i) => (
-                <div 
-                  key={i} 
-                  className="bg-white/5 dark:bg-[#1a1a1c]/60 border border-white/10 dark:border-zinc-800/80 backdrop-blur-xl rounded-2xl p-5 hover:border-[#e49505]/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300 relative overflow-hidden group"
+                <div
+                  key={i}
+                  className="bg-zinc-50 dark:bg-[#1a1a1c]/60 border border-zinc-200 dark:border-zinc-800/80 dark:backdrop-blur-xl rounded-2xl p-5 hover:border-[#e49505]/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300 relative overflow-hidden group"
                 >
                   {/* Glowing Effect on Card Hover */}
                   <div className="absolute top-0 right-0 -mr-8 -mt-8 w-16 h-16 bg-[#e49505]/5 rounded-full blur-xl pointer-events-none group-hover:bg-[#e49505]/10 transition-colors duration-300" />
-                  
+
                   <div className="flex items-center justify-between mb-3.5 relative z-10">
                     <div className="flex items-center gap-2.5 min-w-0">
-                      <div className="h-9 w-9 rounded-lg bg-white/5 flex items-center justify-center border border-white/10 text-[#e49505] shrink-0">
+                      <div className="h-9 w-9 rounded-lg bg-zinc-100 dark:bg-white/5 flex items-center justify-center border border-zinc-200 dark:border-white/10 text-[#e49505] shrink-0">
                         {el.icon && <el.icon className="h-5 w-5" />}
                       </div>
-                      <span className="font-semibold text-zinc-100 dark:text-zinc-200 text-sm md:text-base tracking-wide truncate">{el.name}</span>
+                      <span className="font-semibold text-zinc-800 dark:text-zinc-200 text-sm md:text-base tracking-wide truncate">{el.name}</span>
                     </div>
                     <span className="text-xs md:text-sm font-bold text-[#e49505] shrink-0">{el.value}%</span>
                   </div>
 
                   {/* Customized Premium Progress Bar */}
                   <div className="w-full h-2 bg-black/10 dark:bg-black/35 border border-white/5 rounded-full overflow-hidden relative z-10">
-                    <div 
+                    <div
                       className="h-full bg-[#e49505] rounded-full shadow-[#e49505]/20 shadow-sm transition-all duration-1000 ease-out"
                       style={{ width: `${el.value}%` }}
                     />
@@ -273,7 +272,7 @@ export default async function Home() {
       <section id="projects" className="relative group">
         <div className="px-2 md:px-4 text-neutral-800 dark:text-neutral-200">
           <Heading title="Projects" as="h2" />
-          
+
           <div className="mx-2 mt-6 max-md:mx-0">
             <AllProjects projects={projects.slice(0, 3)} />
           </div>
@@ -296,45 +295,45 @@ export default async function Home() {
       <section id="contact" className="relative group">
         <div className="px-2 md:px-4 text-neutral-800 dark:text-neutral-200">
           <Heading title="Contact" as="h2" />
-          
+
           <div className="mx-2 mt-6 max-md:mx-0">
             <div className="w-full max-w-6xl mx-auto px-0 py-6 dark:text-gray-100">
               <div className="grid md:grid-cols-5 gap-8 items-start">
-                
+
                 {/* Contact Form Card */}
-                <div className="md:col-span-3 bg-white/5 dark:bg-[#1a1a1c]/60 border border-white/10 dark:border-zinc-800/80 backdrop-blur-xl rounded-2xl p-6 sm:p-8 shadow-2xl relative overflow-hidden transition-all duration-300 hover:border-primary/20 group">
+                <div className="md:col-span-3 bg-zinc-50 dark:bg-[#1a1a1c]/60 border border-zinc-200 dark:border-zinc-800/80 dark:backdrop-blur-xl rounded-2xl p-6 sm:p-8 shadow-sm dark:shadow-2xl relative overflow-hidden transition-all duration-300 hover:border-primary/20 group">
                   <div className="absolute top-0 right-0 -mr-16 -mt-16 w-32 h-32 bg-primary/10 rounded-full blur-3xl pointer-events-none" />
-                  
+
                   <div className="space-y-6 relative z-10">
                     <div>
-                      <h3 className="text-2xl font-bold text-white tracking-tight">Get in Touch</h3>
+                      <h3 className="text-2xl font-bold text-zinc-900 dark:text-white tracking-tight">Get in Touch</h3>
                       <p className="text-sm text-zinc-400 mt-1 font-light leading-relaxed">
                         Have a question or want to work together? Drop a message!
                       </p>
                     </div>
-                    
+
                     <hr className="border-white/5 dark:border-zinc-800/60 my-4" />
-                    
+
                     <ContactForm />
                   </div>
                 </div>
 
                 {/* Contact Details Card */}
-                <div className="md:col-span-2 bg-white/5 dark:bg-[#1a1a1c]/60 border border-white/10 dark:border-zinc-800/80 backdrop-blur-xl rounded-2xl p-6 sm:p-8 shadow-2xl relative overflow-hidden transition-all duration-300 hover:border-primary/20 group">
+                <div className="md:col-span-2 bg-zinc-50 dark:bg-[#1a1a1c]/60 border border-zinc-200 dark:border-zinc-800/80 dark:backdrop-blur-xl rounded-2xl p-6 sm:p-8 shadow-sm dark:shadow-2xl relative overflow-hidden transition-all duration-300 hover:border-primary/20 group">
                   <div className="absolute top-0 right-0 -mr-16 -mt-16 w-32 h-32 bg-primary/10 rounded-full blur-3xl pointer-events-none" />
-                  
+
                   <div className="space-y-6 relative z-10">
                     <div>
-                      <h3 className="text-2xl font-bold text-white tracking-tight">Contact Info</h3>
+                      <h3 className="text-2xl font-bold text-zinc-900 dark:text-white tracking-tight">Contact Info</h3>
                       <p className="text-sm text-zinc-400 mt-1 font-light leading-relaxed">
                         Reach out directly through these platforms.
                       </p>
                     </div>
-                    
+
                     <hr className="border-white/5 dark:border-zinc-800/60 my-4" />
 
                     <div className="space-y-4">
-                      
+
                       {/* Phone Item */}
                       <div className="group/item flex items-center gap-3.5 p-3 rounded-xl bg-white/[0.02] dark:bg-black/20 border border-white/[0.03] dark:border-zinc-800/30 hover:border-primary/30 transition-all duration-200">
                         <div className="h-9 w-9 rounded-lg bg-[#e49505]/10 flex items-center justify-center text-[#e49505] border border-[#e49505]/20 group-hover/item:bg-[#e49505]/15 transition-all">
@@ -369,7 +368,7 @@ export default async function Home() {
                         <div className="flex flex-col min-w-0">
                           <span className="text-[10px] text-zinc-450 dark:text-zinc-555 uppercase font-semibold tracking-wider">Website</span>
                           <Link href="/" className="text-sm font-semibold text-zinc-200 dark:text-[#e49505] hover:text-[#e49505] hover:underline transition-colors truncate">
-                            Talhatech.vercel.app
+                            talhacodes.site
                           </Link>
                         </div>
                       </div>
@@ -398,18 +397,18 @@ export default async function Home() {
       </section>
 
       {/* ---------------- SECTION 5: FOOTER ---------------- */}
-      <footer className="w-full mt-8 pt-8 border-t border-white/5 dark:border-zinc-800/60 text-center relative overflow-hidden group">
+      <footer className="w-full mt-12 pt-8 border-t border-zinc-200 dark:border-zinc-800/60 text-center relative overflow-hidden group">
         <div className="absolute inset-0 bg-gradient-to-t from-black/5 to-transparent dark:from-black/20 pointer-events-none" />
-        
-        <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-6 px-4 py-6 rounded-2xl bg-white/[0.01] dark:bg-black/10 backdrop-blur-sm border border-white/[0.02]">
-          
+
+        <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-6 px-6 py-6 rounded-2xl bg-zinc-50 dark:bg-black/10 border border-zinc-200 dark:border-zinc-800/50 shadow-sm dark:shadow-none">
+
           <div className="flex flex-col items-center md:items-start text-center md:text-left gap-1.5">
-            <h4 className="text-sm font-bold text-white dark:text-zinc-100 tracking-wider uppercase">Talha Riaz</h4>
-            <p className="text-xs text-zinc-400 font-light max-w-sm">
+            <h4 className="text-sm font-bold text-zinc-900 dark:text-zinc-100 tracking-wider uppercase">Talha Codes</h4>
+            <p className="text-xs text-zinc-650 dark:text-zinc-400 font-light max-w-sm">
               Crafting premium full-stack web applications and scalable solutions with precision.
             </p>
           </div>
-          
+
           <div className="flex flex-col items-center md:items-end gap-2.5">
             <div className="flex items-center gap-1.5 text-[10px] text-zinc-500 font-semibold uppercase tracking-widest">
               <span>Built with</span>
@@ -419,11 +418,11 @@ export default async function Home() {
               <span>•</span>
               <span className="text-[#e49505] font-bold">Prisma</span>
             </div>
-            <p className="text-[11px] text-zinc-500 font-light">
-              © {new Date().getFullYear()} Talha Riaz. All rights reserved. • <Link href="/privacy" className="hover:text-[#e49505] transition-colors">Privacy Policy</Link>
+            <p className="text-[11px] text-zinc-600 dark:text-zinc-500 font-light">
+              © {new Date().getFullYear()} Talha Codes. All rights reserved. • <Link href="/privacy" className="hover:text-[#e49505] transition-colors">Privacy Policy</Link>
             </p>
           </div>
-          
+
         </div>
       </footer>
     </div>

@@ -24,12 +24,12 @@ export default function Component(obj: z.infer<typeof formSchema>) {
   };
 
   return (
-    <div className="w-full text-white dark:text-foreground flex flex-col gap-6 py-2">
+    <div className="w-full text-zinc-900 dark:text-zinc-100 flex flex-col gap-6 py-2">
       {/* Back Button */}
       <div className="flex items-center justify-between">
         <Link
           href="/portfolio/all"
-          className="inline-flex items-center gap-2 text-sm font-semibold text-white/50 hover:text-white dark:text-foreground/60 dark:hover:text-foreground transition-colors duration-200 group"
+          className="inline-flex items-center gap-2 text-sm font-semibold text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-200 transition-colors duration-200 group"
         >
           <ArrowLeft className="w-4 h-4 transition-transform duration-200 group-hover:-translate-x-1" />
           <span>Back to Portfolio</span>
@@ -45,7 +45,7 @@ export default function Component(obj: z.infer<typeof formSchema>) {
 
         {/* Right Column - Premium Details Sidebar */}
         <div className="lg:col-span-5 flex flex-col w-full h-full">
-          <div className="bg-white/10 dark:bg-zinc-900/40 backdrop-blur-xl border border-white/10 dark:border-zinc-800 p-6 sm:p-8 rounded-2xl flex flex-col justify-between h-full shadow-2xl relative overflow-hidden group">
+          <div className="bg-zinc-50 dark:bg-zinc-900/40 dark:backdrop-blur-xl border border-zinc-200 dark:border-zinc-800 p-6 sm:p-8 rounded-2xl flex flex-col justify-between h-full shadow-sm dark:shadow-2xl relative overflow-hidden group">
 
             {/* Ambient gold glow decorative element */}
             <div className="absolute -top-12 -right-12 w-32 h-32 bg-[#e49505]/10 rounded-full blur-3xl pointer-events-none transition-opacity duration-500 group-hover:bg-[#e49505]/15" />
@@ -65,37 +65,54 @@ export default function Component(obj: z.infer<typeof formSchema>) {
 
               {/* Project Title */}
               <div>
-                <h1 className="text-3xl sm:text-4xl font-extrabold text-white dark:text-foreground tracking-tight leading-tight mb-2">
+                <h1 className="text-3xl sm:text-4xl font-extrabold text-zinc-900 dark:text-zinc-100 tracking-tight leading-tight mb-2">
                   {obj.title}
                 </h1>
               </div>
 
               {/* Thin Premium Separator */}
-              <div className="h-[1px] w-full bg-gradient-to-r from-white/10 via-white/5 to-transparent dark:from-zinc-800 dark:via-zinc-800/50" />
+              <div className="h-[1px] w-full bg-gradient-to-r from-zinc-200 via-zinc-200/50 to-transparent dark:from-zinc-800 dark:via-zinc-800/50" />
 
               {/* Description */}
               {/* Description / Content (Rendered as Visual Markdown via Tailwind Typography) */}
               {obj.description && (
                 <div
-                  className="prose prose-invert prose-headings:text-white prose-a:text-[#e49505] prose-strong:text-white prose-code:text-[#e49505] max-w-none text-zinc-200 dark:text-zinc-300 text-sm sm:text-base leading-relaxed font-normal"
+                  className="prose dark:prose-invert prose-headings:text-zinc-900 dark:prose-headings:text-white prose-a:text-[#e49505] prose-strong:text-zinc-900 dark:prose-strong:text-white prose-code:text-[#e49505] max-w-none text-zinc-800 dark:text-zinc-300 text-sm sm:text-base leading-relaxed font-normal"
                   dangerouslySetInnerHTML={{ __html: parseMarkdown(obj.description || "") }}
                 />
+              )}
+
+              {/* Tech Stack Section */}
+              {obj.stack && obj.stack.length > 0 && (
+                <div className="space-y-2 pt-2">
+                  <span className="text-[10px] text-zinc-500 uppercase font-bold tracking-wider">Tech Stack</span>
+                  <div className="flex flex-wrap gap-1.5">
+                    {obj.stack.map((tech: string) => (
+                      <span
+                        key={tech}
+                        className="text-xs font-semibold px-2.5 py-1 rounded-lg bg-zinc-100 dark:bg-zinc-800/60 border border-zinc-200 dark:border-zinc-700 text-zinc-700 dark:text-zinc-300"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </div>
               )}
             </div>
 
             {/* Middle Spacer / Separator */}
-            <div className="my-6 h-[1px] w-full bg-gradient-to-r from-white/10 via-white/5 to-transparent dark:from-zinc-800 dark:via-zinc-800/50" />
+            <div className="my-6 h-[1px] w-full bg-gradient-to-r from-zinc-200 via-zinc-200/50 to-transparent dark:from-zinc-800 dark:via-zinc-800/50" />
 
             <div className="space-y-6">
               {/* Dynamic Metadata Mini-Cards */}
               <div className="grid grid-cols-2 gap-4">
-                <div className="flex flex-col gap-1 p-3.5 rounded-xl bg-white/[0.02] dark:bg-zinc-950/20 border border-white/5 dark:border-zinc-800/50">
-                  <span className="text-[10px] text-zinc-450 dark:text-zinc-500 uppercase font-semibold tracking-wider">Created</span>
-                  <span className="text-xs text-white/90 dark:text-zinc-300 font-medium">{formatDate(obj.createdAt)}</span>
+                <div className="flex flex-col gap-1 p-3.5 rounded-xl bg-zinc-100/50 dark:bg-zinc-950/20 border border-zinc-200/60 dark:border-zinc-800/50">
+                  <span className="text-[10px] text-zinc-500 dark:text-zinc-500 uppercase font-semibold tracking-wider">Created</span>
+                  <span className="text-xs text-zinc-800 dark:text-zinc-300 font-medium">{formatDate(obj.createdAt)}</span>
                 </div>
-                <div className="flex flex-col gap-1 p-3.5 rounded-xl bg-white/[0.02] dark:bg-zinc-950/20 border border-white/5 dark:border-zinc-800/50">
-                  <span className="text-[10px] text-zinc-450 dark:text-zinc-500 uppercase font-semibold tracking-wider">Last Updated</span>
-                  <span className="text-xs text-white/90 dark:text-zinc-300 font-medium">{formatDate(obj.updatedAt)}</span>
+                <div className="flex flex-col gap-1 p-3.5 rounded-xl bg-zinc-100/50 dark:bg-zinc-950/20 border border-zinc-200/60 dark:border-zinc-800/50">
+                  <span className="text-[10px] text-zinc-500 dark:text-zinc-500 uppercase font-semibold tracking-wider">Last Updated</span>
+                  <span className="text-xs text-zinc-800 dark:text-zinc-300 font-medium">{formatDate(obj.updatedAt)}</span>
                 </div>
               </div>
 
@@ -118,7 +135,7 @@ export default function Component(obj: z.infer<typeof formSchema>) {
                     href={obj.githubUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex-1 flex items-center justify-center gap-2 px-6 py-3.5 bg-white/5 hover:bg-white/10 dark:bg-zinc-800/50 dark:hover:bg-zinc-800 text-white dark:text-zinc-300 font-semibold rounded-xl border border-white/15 dark:border-zinc-700 hover:border-white/30 dark:hover:border-zinc-600 transform hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 text-center"
+                    className="flex-1 flex items-center justify-center gap-2 px-6 py-3.5 bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-800/50 dark:hover:bg-zinc-800 text-zinc-800 dark:text-zinc-300 font-semibold rounded-xl border border-zinc-200 dark:border-zinc-700 hover:border-zinc-300 dark:hover:bg-zinc-600 transform hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 text-center"
                   >
                     <Github className="w-4 h-4" />
                     <span>Source Code</span>

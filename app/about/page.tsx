@@ -6,12 +6,12 @@ import { Heading } from '@/components/heading';
 
 
 import AsideImageSection from '@/components/aside-image-section';
-import { cn } from '@/lib/utils'; 
+import { cn } from '@/lib/utils';
 
 
 import { FaReact, FaNodeJs, FaDocker, FaDatabase, FaBriefcase, FaPhp, FaRobot } from 'react-icons/fa';
 import { SiNextdotjs, SiExpress, SiMongodb, SiTypescript, SiJavascript, SiUbuntu, SiPostgresql, SiMysql, SiDeno, SiMaterialdesign } from 'react-icons/si';
-import { Briefcase } from 'lucide-react'; 
+import { Briefcase } from 'lucide-react';
 
 
 
@@ -34,7 +34,6 @@ const skills = [
 const focusAreas = [
   { title: 'MERN Stack Development', icon: FaReact, text: 'Building robust full-stack applications using MongoDB, Express.js, React, and Node.js.' },
   { title: 'Next.js Applications', icon: SiNextdotjs, text: 'Leveraging Next.js for server-side rendering, static site generation, and full-stack capabilities.' },
-  { title: 'PHP Development', icon: FaPhp, text: 'Developing and maintaining web solutions using PHP, often integrated with modern frontend frameworks.' },
   { title: 'Bot Development', icon: FaRobot, text: 'Creating automated solutions and bots using various technologies.' }, // Example if you want to add bots
 ];
 
@@ -54,21 +53,21 @@ const getCurrentDuration = (startDate: Date): string => {
   return [yearStr, monthStr].filter(Boolean).join(' ');
 };
 
-const woltrioStartDate = new Date(2025, 0, 1); 
+const woltrioStartDate = new Date(2025, 0, 1);
 const woltrioDuration = getCurrentDuration(woltrioStartDate);
 
 const experiences = [
   {
     title: 'Full Stack Software Engineer',
     company: 'Woltrio',
-    icon: Briefcase, 
+    icon: Briefcase,
     dates: `Jan 2025 - Present (${woltrioDuration})`,
     description: 'Developing and maintaining web applications using MERN stack, Next.js, and PHP. Collaborating with teams to deliver high-quality software solutions.'
   },
   {
     title: 'Software Engineer Intern',
     company: 'Swismax Solutions',
-    icon: Briefcase, 
+    icon: Briefcase,
     dates: 'Sep 2024 - Nov 2024 (3 mos)',
     description: 'Gained practical experience in web development, contributing to projects and learning industry best practices during a 3-month internship.'
   },
@@ -84,54 +83,54 @@ const Highlight = ({ text }: { text: string }) => {
   </span>
 }
 export const metadata: Metadata = {
-  title: "About Talha Riaz | Full Stack Software Engineer",
-  description: "Learn about Muhammad Talha Riaz's software engineering background, skillset, focus areas in full stack MERN, Next.js, PHP, and bot development, and work experience.",
+  title: "About Talha Codes | Full Stack Software Engineer",
+  description: "Learn about Talha Codes' software engineering background, skillset, focus areas in full stack MERN, Next.js, PHP, and bot development, and work experience.",
   keywords: [
-    "About Talha Riaz",
-    "Talha Riaz Skills",
+    "About Talha Codes",
+    "Talha Codes Skills",
     "Software Engineer Islamabad",
     "MERN Stack Developer",
     "Full Stack Resume"
   ],
   openGraph: {
-    title: "About Talha Riaz | Full Stack Software Engineer",
-    description: "Learn about Muhammad Talha Riaz's software engineering background, skillset, focus areas, and experience.",
+    title: "About Talha Codes | Full Stack Software Engineer",
+    description: "Learn about Talha Codes' software engineering background, skillset, focus areas, and experience.",
     type: "profile",
-    url: "https://talhatech.vercel.app/about",
+    url: "https://talhacodes.site/about",
   }
 };
 
 const Page = () => {
- 
+
   return (
     <>
-   
-      
+
+
       <div className='px-2 md:px-4 lg:px-6 pt-5 pb-10 text-neutral-800 dark:text-neutral-200'>
         <Heading title="About Me" />
 
-      
+
         <AsideImageSection className='md:hidden  my-4  flex flex-col items-center justify-center' />
 
         <section className='mt-6 mx-2 max-md:mx-0 '>
-          <h2 className="text-2xl font-semibold mb-4 text-neutral-100 dark:text-white hidden">Bio</h2>
-          <p className='text-lg md:text-xl leading-relaxed tracking-wide opacity-90 text-neutral-100 dark:opacity-80'>
-            Hi, I&apos;m <Highlight text="Talha"/>, a passionate <Highlight text='Full Stack' /> Software Engineer based in <Highlight text="Islamabad" />. I specialize in building dynamic web applications and bots using a diverse range of technologies. Having completed my Graduation, I thrive on creating efficient, scalable, and user-friendly solutions. Currently contributing my skills at Woltrio and always eager for new challenges and learning opportunities.
+          <h2 className="text-2xl font-semibold mb-4 text-zinc-900 dark:text-white hidden">Bio</h2>
+          <p className='text-lg md:text-xl leading-relaxed tracking-wide opacity-90 text-zinc-800 dark:text-zinc-300 dark:opacity-80'>
+            Hi, I&apos;m <Highlight text="Talha" />, a passionate <Highlight text='Full Stack' /> Software Engineer based in <Highlight text="Islamabad" />. I specialize in building dynamic web applications and bots using a diverse range of technologies. Having completed my Graduation, I thrive on creating efficient, scalable, and user-friendly solutions. Currently contributing my skills at Woltrio and always eager for new challenges and learning opportunities.
           </p>
         </section>
 
-      
+
         <section className='mt-12 mx-2 max-md:mx-0'>
-          <h2 className='text-2xl font-semibold mb-6 text-neutral-100 dark:text-white'>My Skillset</h2>
+          <h2 className='text-2xl font-semibold mb-6 text-zinc-900 dark:text-white'>My Skillset</h2>
           <div className='flex flex-wrap gap-3'>
             {skills.map((skill) => (
               <div
                 key={skill.name}
-             
+
                 className={cn(
                   'flex items-center gap-2 px-3 py-1 rounded-full text-sm font-medium transition-transform duration-200 hover:scale-105',
-                  skill.color,       
-                  skill.darkColor   
+                  skill.color,
+                  skill.darkColor
                 )}
               >
                 <skill.icon className="h-4 w-4" />
@@ -145,43 +144,43 @@ const Page = () => {
           </div>
         </section>
         <section className='mt-12  mx-2 max-md:mx-0'>
-          <h2 className='text-2xl font-semibold mb-6 text-neutral-100 dark:text-white'>My Focus Areas</h2>
-  
+          <h2 className='text-2xl font-semibold mb-6 text-zinc-900 dark:text-white'>My Focus Areas</h2>
+
           <div className='grid grid-cols-3 gap-4 max-lg:grid-cols-2 max-md:gap-y-9 max-sm:grid-cols-1'>
             {focusAreas.map((el, i) => (
               <div
                 key={i}
-                className='card flex flex-col sm:flex-row items-start gap-4 rounded-2xl w-full max-md:p-3  shadow-md dark:shadow-gray-800 p-6 bg-white dark:bg-neutral-800'
+                className='card flex flex-col sm:flex-row items-start gap-4 rounded-2xl w-full max-md:p-3  shadow-md dark:shadow-gray-800 p-6 bg-zinc-50 dark:bg-neutral-800'
               >
                 <div className='flex-shrink-0 max-md:hidden'>
                   {React.createElement(el.icon, { className: 'text-blue-600 dark:text-blue-400 text-3xl sm:text-4xl' })}
                 </div>
                 <div className='flex-grow space-y-2'>
-                  <h3 className='font-semibold text-xl text-white dark:text-primary'>{el.title}</h3>
-                  <p className='text-gray-200 dark:text-neutral-300'>{el.text}</p>
+                  <h3 className='font-semibold text-xl text-zinc-900 dark:text-primary'>{el.title}</h3>
+                  <p className='text-zinc-600 dark:text-neutral-300'>{el.text}</p>
                 </div>
               </div>
             ))}
           </div>
         </section>
 
-    
+
         <section className='mx-2 max-md:mx-0 mt-6'>
-          <h2 className='text-2xl font-semibold mb-6 text-neutral-100 dark:text-white'>Experience</h2>
-     
+          <h2 className='text-2xl font-semibold mb-6 text-zinc-900 dark:text-white'>Experience</h2>
+
           <div className='flex flex-wrap justify-start gap-6 mt-4'>
             {experiences.map((el, i) => (
               <div
                 key={i}
-                className='card flex flex-col sm:flex-row items-start gap-4 rounded-2xl w-full max-md:p-3 sm:w-80 md:w-96 shadow-md dark:shadow-gray-800 p-6 bg-white dark:bg-neutral-800'
+                className='card flex flex-col sm:flex-row items-start gap-4 rounded-2xl w-full max-md:p-3 sm:w-80 md:w-96 shadow-md dark:shadow-gray-800 p-6 bg-zinc-50 dark:bg-neutral-800'
               >
                 <div className='flex-shrink-0 max-md:hidden'>
                   {React.createElement(el.icon, { className: 'text-green-600 dark:text-green-400 text-3xl sm:text-4xl' })}
                 </div>
                 <div className='flex-grow space-y-2'>
-                  <h3 className='font-semibold text-xl text-white dark:text-primary'>{el.title}</h3>
+                  <h3 className='font-semibold text-xl text-zinc-900 dark:text-primary'>{el.title}</h3>
                   <h3 className=' text-primary dark:text-green-300 text-sm pb-2'>At {el.company}</h3>
-                  <p className='text-gray-200 dark:text-neutral-300'>{el.description}</p>
+                  <p className='text-zinc-600 dark:text-neutral-300'>{el.description}</p>
                   <div className='text-primary dark:text-green-300 text-sm pt-3'>
                     {el.dates}
                   </div>

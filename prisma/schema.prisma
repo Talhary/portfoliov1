@@ -6,6 +6,7 @@
 
 generator client {
   provider = "prisma-client-js"
+  output   = "../lib/prisma-client"
 }
 
 datasource db {
@@ -24,6 +25,7 @@ model Projects {
   imageUrl    String[]
   githubUrl   String
   order       Int      @default(0)
+  stack       String[] @default([])
 }
 
 model Category {

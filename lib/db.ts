@@ -1,6 +1,6 @@
 //import prisma client and connect to it.and check it its already connected or not .
 
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient } from "./prisma-client";
 
 declare global {
   var prisma: PrismaClient | undefined;

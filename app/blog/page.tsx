@@ -5,11 +5,11 @@ import { GetBlogs } from '@/actions/getBlogs';
 import { BlogClient } from '@/components/blog-client';
 
 export const metadata: Metadata = {
-  title: "Tech Blog & Web Development Insights | Talha Riaz",
-  description: "Read technical articles on Next.js, React, Node.js, TypeScript, PostgreSQL, and modern software engineering practices. Written by Talha Riaz.",
+  title: "Tech Blog & Web Development Insights | Talha Codes",
+  description: "Read technical articles on Next.js, React, Node.js, TypeScript, PostgreSQL, and modern software engineering practices. Written by Talha Codes.",
   keywords: [
     "Tech Blog",
-    "Talha Riaz Blog",
+    "Talha Codes Blog",
     "Web Development Articles",
     "Next.js Tutorials",
     "React Performance",
@@ -18,10 +18,10 @@ export const metadata: Metadata = {
     "Software Engineering Insights"
   ],
   openGraph: {
-    title: "Tech Blog & Web Development Insights | Talha Riaz",
+    title: "Tech Blog & Web Development Insights | Talha Codes",
     description: "Read technical articles on Next.js, React, Node.js, TypeScript, PostgreSQL, and modern software engineering practices.",
     type: "website",
-    url: "https://talhatech.vercel.app/blog",
+    url: "https://talhacodes.site/blog",
   }
 };
 
@@ -47,7 +47,7 @@ export default async function BlogPage({ searchParams }: PageProps) {
   });
 
   return (
-    <div className="w-full max-w-6xl mx-auto px-4 py-4 dark:text-gray-100 animate-fadeIn">
+    <div className="w-full  mx-auto px-4 py-4 dark:text-gray-100 animate-fadeIn">
       <Heading title="Blog" />
       <BlogClient
         initialBlogs={result.data || []}

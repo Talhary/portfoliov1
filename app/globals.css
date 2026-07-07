@@ -3,18 +3,15 @@
 @tailwind utilities;
 
 body {
-    
-    background-image: url('../images/background.jpg');
-    @apply bg-cover bg-center dark:bg-none;
-
+    @apply bg-zinc-100 dark:bg-zinc-950;
 }
 
 .point {
     @apply border-none shadow-lg;
     box-shadow: 0px 0px 4px 3px #e49505; /* Custom shadow */
 }
-.card{
-    @apply dark:bg-[#222224] hover:shadow-xl transition-all  duration-300 bg-white bg-opacity-10 shadow-md  
+.card {
+    @apply bg-zinc-50 dark:bg-[#222224] border border-zinc-200 dark:border-white/5 hover:shadow-xl transition-all duration-300 shadow-sm dark:shadow-md;
 }
 
 .custom-scrollbar::-webkit-scrollbar {
