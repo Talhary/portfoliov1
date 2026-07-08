@@ -90,5 +90,5 @@ jobs:
                 portfolio:latest
             fi
 
-            # Clean up old unused images to save disk space
-            sudo docker image prune -f
+            # Clean up old unused images, containers, and build cache to save disk space
+            sudo docker system prune -a -f
