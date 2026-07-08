@@ -18,7 +18,18 @@ jobs:
       # Build the Docker image on GitHub Actions runner (saves VPS RAM/CPU)
       - name: Build and Export Docker Image
         run: |
-          docker build -t portfolio:latest .
+          docker build -t portfolio:latest \
+            --build-arg DATABASE_URL="${{ secrets.DATABASE_URL }}" \
+            --build-arg UPLOADTHING_SECRET="${{ secrets.UPLOADTHING_SECRET }}" \
+            --build-arg JWT_KEY="${{ secrets.JWT_KEY }}" \
+            --build-arg AUTH_SECRET="${{ secrets.AUTH_SECRET }}" \
+            --build-arg UPLOADTHING_APP_ID="${{ secrets.UPLOADTHING_APP_ID }}" \
+            --build-arg GMAIL_PASS="${{ secrets.GMAIL_PASS }}" \
+            --build-arg GMAIL="${{ secrets.GMAIL }}" \
+            --build-arg JWT_TOKEN="${{ secrets.JWT_TOKEN }}" \
+            --build-arg BLOG_API_KEY="${{ secrets.BLOG_API_KEY }}" \
+            --build-arg UPLOADTHING_TOKEN="${{ secrets.UPLOADTHING_TOKEN }}" \
+            .
           docker save portfolio:latest | gzip > portfolio.tar.gz
 
       # Copy the built Docker image tarball to the VPS
