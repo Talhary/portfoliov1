@@ -50,7 +50,7 @@ export const Navbar = ({ className }: { className?: string }) => {
   return (
     <>
       <div 
-        className={`bg-white dark:bg-card-bg-1 dark:backdrop-blur-xl text-zinc-900 dark:text-white border border-zinc-200 dark:border-zinc-850 shadow-md dark:shadow-black absolute max-md:top-4 max-md:right-4 max-xs:top-1 max-xs:right-1 md:fixed md:top-6 md:right-10 lg:right-12 z-50 rounded-tr-2xl rounded-bl-2xl md:rounded-2xl px-10 max-lg:px-2 h-20 max-lg:h-14 flex flex-col transition-all duration-300 ease-in-out ${
+        className={`bg-white dark:bg-card-bg-1 dark:backdrop-blur-xl text-zinc-900 dark:text-white border border-zinc-200 dark:border-zinc-850 shadow-md dark:shadow-black absolute max-md:top-4 max-md:right-4 max-xs:top-1 max-xs:right-1 md:fixed md:top-6 md:right-10 lg:right-12 z-50 rounded-tr-2xl rounded-bl-2xl md:rounded-2xl px-4 md:px-6 lg:px-8 xl:px-10 h-20 max-lg:h-14 flex flex-col transition-all duration-300 ease-in-out ${
           nav ? 'max-md:w-40' : 'max-md:w-20'
         } ${
           visible 
@@ -62,7 +62,7 @@ export const Navbar = ({ className }: { className?: string }) => {
           <button className={`md:hidden p- my-3 text-center rounded-md transition-all dark:bg-card-bg ${nav ? 'text-primary' : ''}`} onClick={() => setNav(!nav)}>
             <BiMenu size={40} className='max-xs:size-8' />
           </button>
-          <ul onClick={() => setNav(false)} className={`flex flex-row items-center justify-center text-xl gap-x-10 w-full h-full max-lg:gap-x-10 max-lg:text-xl max-md:flex-col dark:max-md:bg-black max-md:bg-white max-md:text-black max-md:bg-opacity-85 dark:opacity-100 max-md:dark:text-white max-md:opacity-100 max-md:items-start max-md:h-fit max-md:mt-1 ${nav ? 'max-md:scale-1' : 'max-md:scale-0'} transition-all max-md:p-5 max-md:space-y-1 max-md:rounded-xl max-lg:gap-x-4 max-md:text-lg`}>
+          <ul onClick={() => setNav(false)} className={`flex flex-row items-center justify-center text-sm md:text-sm lg:text-base xl:text-lg 2xl:text-xl gap-x-3 md:gap-x-4 lg:gap-x-6 xl:gap-x-8 2xl:gap-x-10 w-full h-full max-md:flex-col dark:max-md:bg-black max-md:bg-white max-md:text-black max-md:bg-opacity-85 dark:opacity-100 max-md:dark:text-white max-md:opacity-100 max-md:items-start max-md:h-fit max-md:mt-1 ${nav ? 'max-md:scale-1' : 'max-md:scale-0'} transition-all max-md:p-5 max-md:space-y-1 max-md:rounded-xl max-md:text-lg`}>
             {list.map((el, i) => {
               const itemKey = el.toLowerCase();
               const isActive = (itemKey === 'home' && page === 'home') || (itemKey !== 'home' && page === itemKey);

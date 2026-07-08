@@ -34,9 +34,9 @@ const skills = [
 ];
 
 const focusAreas = [
-  { title: 'MERN Stack Development', icon: FaReact, text: 'Building robust full-stack applications using MongoDB, Express.js, React, and Node.js.' },
-  { title: 'Next.js Applications', icon: SiNextdotjs, text: 'Leveraging Next.js for server-side rendering, static site generation, and full-stack capabilities.' },
-  { title: 'Bot Development', icon: FaRobot, text: 'Creating automated solutions and bots using various technologies.' },
+  { title: 'MERN Stack Development', icon: FaReact, text: 'Architecting end-to-end applications from database models to reactive user interfaces.' },
+  { title: 'Next.js Applications', icon: SiNextdotjs, text: 'Developing highly optimized web portals with advanced rendering modes and API routes.' },
+  { title: 'Bot Development', icon: FaRobot, text: 'Writing custom scripts, web scrapers, and communication bots to automate manual tasks.' },
 ];
 
 const getCurrentDuration = (startDate: Date): string => {
@@ -64,14 +64,14 @@ const experiences = [
     company: 'Woltrio',
     icon: Briefcase,
     dates: `Jan 2025 - Present (${woltrioDuration})`,
-    description: 'Developing and maintaining web applications using MERN stack, Next.js, and PHP. Collaborating with teams to deliver high-quality software solutions.'
+    description: 'Designing and implementing production-ready features across multiple websites. Utilizing modern stacks to optimize database queries, construct clean APIs, and work alongside cross-functional teams to meet client goals.'
   },
   {
     title: 'Software Engineer Intern',
     company: 'Swismax Solutions',
     icon: Briefcase,
     dates: 'Sep 2024 - Nov 2024 (3 mos)',
-    description: 'Gained practical experience in web development, contributing to projects and learning industry best practices during a 3-month internship.'
+    description: 'Contributed directly to team workflows and front-end features. Gained valuable insights into collaborative coding, version control, and writing clean, maintainable components.'
   },
 ];
 
@@ -119,7 +119,7 @@ export default async function Home() {
 
           <div className='mt-6 mx-2 max-md:mx-0'>
             <p className='text-lg md:text-xl leading-relaxed tracking-wide opacity-90 text-zinc-800 dark:text-zinc-300 dark:opacity-85 font-light'>
-              Hi, I&apos;m <Highlight text="Talha" />, a passionate <Highlight text='Full Stack' /> Software Engineer based in <Highlight text="Islamabad" />. I specialize in building dynamic web applications and bots using a diverse range of technologies. Having completed my Graduation, I thrive on creating efficient, scalable, and user-friendly solutions. Currently contributing my skills at Woltrio and always eager for new challenges and learning opportunities.
+              Welcome! I am <Highlight text="Talha" />, an Islamabad-based software engineer specializing in complete <Highlight text='Full Stack' /> web architectures. I engineer responsive web applications and automate complex processes with custom bots. With a solid academic foundation, my focus is on designing robust, high-performance, and secure digital tools. I currently write code at <Highlight text="Woltrio" />, where I build scalable features while continuously exploring modern frameworks and system design patterns.
             </p>
           </div>
 
@@ -310,7 +310,7 @@ export default async function Home() {
                     <div>
                       <h3 className="text-2xl font-bold text-zinc-900 dark:text-white tracking-tight">Get in Touch</h3>
                       <p className="text-sm text-zinc-400 mt-1 font-light leading-relaxed">
-                        Have a question or want to work together? Drop a message!
+                        Have a project concept, job opening, or collaboration request? Send a message and let&apos;s discuss details.
                       </p>
                     </div>
 
@@ -328,7 +328,7 @@ export default async function Home() {
                     <div>
                       <h3 className="text-2xl font-bold text-zinc-900 dark:text-white tracking-tight">Contact Info</h3>
                       <p className="text-sm text-zinc-400 mt-1 font-light leading-relaxed">
-                        Reach out directly through these platforms.
+                        Get in touch through my direct channels or find me online.
                       </p>
                     </div>
 
@@ -407,7 +407,7 @@ export default async function Home() {
           <div className="flex flex-col items-center md:items-start text-center md:text-left gap-1.5">
             <h4 className="text-sm font-bold text-zinc-900 dark:text-zinc-100 tracking-wider uppercase">Talha Codes</h4>
             <p className="text-xs text-zinc-650 dark:text-zinc-400 font-light max-w-sm">
-              Crafting premium full-stack web applications and scalable solutions with precision.
+              Building high-performance web systems and software automation with modern coding standards.
             </p>
           </div>
 
