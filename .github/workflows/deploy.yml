@@ -29,7 +29,7 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           source: "portfolio.tar.gz"
-          target: "/home/ubuntu/"
+          target: "/home/${{ secrets.SSH_USER }}/"
 
       # SSH to the VPS, load the image, recreate the container
       - name: SSH to VPS and Run Container
@@ -48,31 +48,31 @@ jobs:
               sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" -y
               sudo apt-get update
               sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
-              sudo usermod -aG docker ubuntu
+              sudo usermod -aG docker $USER
             fi
 
             # Create a directory for the portfolio app configuration / environment if not exists
             sudo mkdir -p /var/www/portfolio
-            sudo chown -R ubuntu:ubuntu /var/www/portfolio
+            sudo chown -R $USER:$USER /var/www/portfolio
             
             # Load the Docker image
-            docker load -i /home/ubuntu/portfolio.tar.gz
-            rm -f /home/ubuntu/portfolio.tar.gz
+            sudo docker load -i /home/${{ secrets.SSH_USER }}/portfolio.tar.gz
+            rm -f /home/${{ secrets.SSH_USER }}/portfolio.tar.gz
 
             # Stop and remove existing container if running
-            docker stop portfolio || true
-            docker rm portfolio || true
+            sudo docker stop portfolio || true
+            sudo docker rm portfolio || true
 
             # Run the new container (port 3000 locally, reverse proxied by nginx)
             if [ -f /var/www/portfolio/.env ]; then
-              docker run -d \
+              sudo docker run -d \
                 --name portfolio \
                 --restart always \
                 -p 127.0.0.1:3000:3000 \
                 --env-file /var/www/portfolio/.env \
                 portfolio:latest
             else
-              docker run -d \
+              sudo docker run -d \
                 --name portfolio \
                 --restart always \
                 -p 127.0.0.1:3000:3000 \
@@ -80,4 +80,4 @@ jobs:
             fi
 
             # Clean up old unused images to save disk space
-            docker image prune -f
+            sudo docker image prune -f

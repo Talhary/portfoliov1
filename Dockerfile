@@ -8,7 +8,7 @@ COPY prisma ./prisma/
 RUN npm ci
 
 # Stage 2: Rebuild the source code only when needed
-FROM node:20-alpine AS builder
+FROM node:24-alpine AS builder
 RUN apk add --no-cache openssl
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
@@ -23,7 +23,7 @@ RUN npx prisma generate
 RUN npm run build
 
 # Stage 3: Runner
-FROM node:20-alpine AS runner
+FROM node:24-alpine AS runner
 RUN apk add --no-cache openssl
 WORKDIR /app
 

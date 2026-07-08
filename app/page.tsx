@@ -14,6 +14,8 @@ import Link from 'next/link';
 import { RadarChart } from '@/components/radar-chart';
 import { GitHubStats } from '@/components/github-stats';
 
+export const dynamic = "force-dynamic";
+
 // Data definitions imported from original page contents to keep details synchronized
 const skills = [
   { name: 'Next.js', value: 80, icon: SiNextdotjs, color: 'bg-black text-white', darkColor: 'dark:bg-white dark:text-black' },
