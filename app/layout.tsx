@@ -13,7 +13,10 @@ export const metadata: Metadata = {
   title: "Talha Codes",
   description: "Talha Codes - Full Stack Software Engineer Portfolio.",
   verification: {
-    google: "wHIxtQ2Ehw-Z4mysz4nMFthsRdGwaCmbnp72t9r7mkI",
+    google: [
+      "wHIxtQ2Ehw-Z4mysz4nMFthsRdGwaCmbnp72t9r7mkI",
+      "6T7Bjp5t8IbCIRz0m8tBXAwsUrieJPo__M6ZGbdPTLA"
+    ],
   },
 };
 
