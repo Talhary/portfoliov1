@@ -1,6 +1,7 @@
 import { PortfolioNavbar } from "@/components/portfolio-navbar";
 import { GetAllProjects } from "@/actions/getAllProjects";
 import { getCategories } from "@/actions/categories";
+import { Suspense } from "react";
 
 const Layout = async ({ 
   children, 
@@ -10,6 +11,21 @@ const Layout = async ({
   children: React.ReactNode; 
 }) => {
   const { filter } = (await params) as { filter: string };
+
+  return (
+    <div className="space-y-6">
+      <Suspense fallback={<div className="h-14 w-full bg-zinc-200 dark:bg-zinc-800/20 animate-pulse rounded-2xl mb-6" />}>
+        <NavbarLoader filter={filter} />
+      </Suspense>
+      
+      <div>
+        {children}
+      </div>
+    </div>
+  );
+};
+
+const NavbarLoader = async ({ filter }: { filter: string }) => {
   // Fetch all projects to see which categories actually have items
   const projects = await GetAllProjects('all');
   
@@ -56,23 +72,8 @@ const Layout = async ({
     }))
   ];
 
-  const isValidRoute = ['all', ...activeCategories].indexOf(filter.toLowerCase()) !== -1;
-
-  return (
-    <div className="space-y-6">
-      <PortfolioNavbar filter={filter} items={navbarItems} />
-      
-      {!isValidRoute ? (
-        <dialog open className="bg-rose-500/10 border border-rose-500/20 text-rose-550 dark:text-rose-450 text-xl font-semibold text-center py-10 rounded-2xl w-full">
-          Category Empty or Page Not Found
-        </dialog>
-      ) : (
-        <div>
-          {children}
-        </div>
-      )}
-    </div>
-  );
+  return <PortfolioNavbar filter={filter} items={navbarItems} />;
 };
 
-export default Layout;
+export default Layout;
+

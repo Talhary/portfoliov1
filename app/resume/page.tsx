@@ -1,27 +1,11 @@
 import { IoBookOutline } from "react-icons/io5";
-import { FaReact, FaNodeJs, FaPhp, FaDocker } from "react-icons/fa";
-import { SiNextdotjs, SiExpress, SiDeno, SiTypescript, SiJavascript, SiMongodb, SiMysql, SiPostgresql, SiUbuntu } from "react-icons/si";
 import { Brain } from "lucide-react";
 import { Metadata } from 'next';
+import { FaReact, FaNodeJs, FaPhp, FaDocker } from "react-icons/fa";
+import { SiNextdotjs, SiExpress, SiDeno, SiTypescript, SiJavascript, SiMongodb, SiMysql, SiPostgresql, SiUbuntu } from "react-icons/si";
 
 import { EducationList } from '@/components/education';
 import { Heading } from "@/components/heading";
-
-const skills = [
-  { name: 'Next.js', value: 80, icon: SiNextdotjs },
-  { name: 'React', value: 90, icon: FaReact },
-  { name: 'Node.js', value: 99, icon: FaNodeJs },
-  { name: 'Express', value: 80, icon: SiExpress },
-  { name: 'Deno', value: 70, icon: SiDeno },
-  { name: 'TypeScript', value: 85, icon: SiTypescript },
-  { name: 'JavaScript', value: 90, icon: SiJavascript },
-  { name: 'PHP', value: 80, icon: FaPhp },
-  { name: 'MongoDB', value: 80, icon: SiMongodb },
-  { name: 'MySQL', value: 75, icon: SiMysql },
-  { name: 'PostgreSQL', value: 80, icon: SiPostgresql },
-  { name: 'Docker', value: 65, icon: FaDocker },
-  { name: 'Ubuntu', value: 70, icon: SiUbuntu },
-];
 
 export const metadata: Metadata = {
   title: "Professional Resume & CV | Talha Codes",
@@ -42,6 +26,47 @@ export const metadata: Metadata = {
   }
 };
 
+const skillCategories = [
+  {
+    title: 'Languages',
+    skills: [
+      { name: 'TypeScript', icon: SiTypescript, color: 'bg-blue-100 text-blue-800 border-blue-300', darkColor: 'dark:bg-blue-955 dark:text-blue-300 dark:border-blue-850', glowColor: 'rgba(59,130,246,0.45)' },
+      { name: 'JavaScript', icon: SiJavascript, color: 'bg-yellow-100 text-yellow-800 border-yellow-350', darkColor: 'dark:bg-yellow-955 dark:text-yellow-300 dark:border-yellow-850', glowColor: 'rgba(234,179,8,0.4)' },
+      { name: 'PHP', icon: FaPhp, color: 'bg-indigo-100 text-indigo-800 border-indigo-300', darkColor: 'dark:bg-indigo-955 dark:text-indigo-300 dark:border-indigo-850', glowColor: 'rgba(120,119,198,0.4)' },
+    ]
+  },
+  {
+    title: 'Frontend',
+    skills: [
+      { name: 'Next.js', icon: SiNextdotjs, color: 'bg-black text-white border-zinc-800', darkColor: 'dark:bg-white dark:text-black dark:border-white', glowColor: 'rgba(255,255,255,0.45)' },
+      { name: 'React', icon: FaReact, color: 'bg-sky-100 text-sky-800 border-sky-300', darkColor: 'dark:bg-sky-950 dark:text-sky-300 dark:border-sky-800', glowColor: 'rgba(14,165,233,0.4)' },
+    ]
+  },
+  {
+    title: 'Backend',
+    skills: [
+      { name: 'Node.js', icon: FaNodeJs, color: 'bg-green-100 text-green-800 border-green-300', darkColor: 'dark:bg-green-950 dark:text-green-300 dark:border-green-800', glowColor: 'rgba(34,197,94,0.4)' },
+      { name: 'Express', icon: SiExpress, color: 'bg-neutral-100 text-neutral-850 border-neutral-300', darkColor: 'dark:bg-neutral-850 dark:text-neutral-200 dark:border-neutral-700', glowColor: 'rgba(115,115,115,0.4)' },
+      { name: 'Deno', icon: SiDeno, color: 'bg-neutral-100 text-neutral-850 border-neutral-300', darkColor: 'dark:bg-neutral-850 dark:text-neutral-200 dark:border-neutral-700', glowColor: 'rgba(115,115,115,0.4)' },
+    ]
+  },
+  {
+    title: 'Databases',
+    skills: [
+      { name: 'MongoDB', icon: SiMongodb, color: 'bg-emerald-100 text-emerald-850 border-emerald-300', darkColor: 'dark:bg-emerald-955 dark:text-emerald-300 dark:border-emerald-800', glowColor: 'rgba(16,185,129,0.4)' },
+      { name: 'PostgreSQL', icon: SiPostgresql, color: 'bg-cyan-100 text-cyan-800 border-cyan-300', darkColor: 'dark:bg-cyan-955 dark:text-cyan-300 dark:border-cyan-800', glowColor: 'rgba(6,182,212,0.4)' },
+      { name: 'MySQL', icon: SiMysql, color: 'bg-orange-100 text-orange-800 border-orange-300', darkColor: 'dark:bg-orange-955 dark:text-orange-300 dark:border-orange-800', glowColor: 'rgba(228,149,5,0.4)' },
+    ]
+  },
+  {
+    title: 'DevOps & OS',
+    skills: [
+      { name: 'Docker', icon: FaDocker, color: 'bg-blue-200 text-blue-900 border-blue-300', darkColor: 'dark:bg-blue-900 dark:text-blue-200 dark:border-blue-800', glowColor: 'rgba(29,161,242,0.4)' },
+      { name: 'Ubuntu', icon: SiUbuntu, color: 'bg-red-100 text-red-800 border-red-300', darkColor: 'dark:bg-red-955 dark:text-red-300 dark:border-red-800', glowColor: 'rgba(239,68,68,0.4)' },
+    ]
+  }
+];
+
 const Page = () => {
   return (
     <>
@@ -54,7 +79,7 @@ const Page = () => {
             <div className="h-10 w-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary border border-primary/20">
               <IoBookOutline size={22} />
             </div>
-            <h2 className="text-2xl font-bold tracking-tight text-white dark:text-zinc-100">Education</h2>
+            <h2 className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">Education</h2>
           </div>
 
           <div className="pl-1">
@@ -71,31 +96,37 @@ const Page = () => {
             <h2 className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">My Skills</h2>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {skills.map((el, i) => (
-              <div
-                key={i}
-                className="bg-zinc-50 dark:bg-[#1a1a1c]/60 border border-zinc-200 dark:border-zinc-800/80 dark:backdrop-blur-xl rounded-2xl p-5 hover:border-[#e49505]/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300 relative overflow-hidden group"
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-4">
+            {skillCategories.map((cat, idx) => (
+              <div 
+                key={idx}
+                className="relative p-[1px] rounded-2xl overflow-hidden bg-zinc-200 dark:bg-zinc-800/80 hover:bg-gradient-to-br hover:from-[#e49505] hover:to-amber-300 transition-all duration-300 hover:shadow-[0_8px_20px_rgba(228,149,5,0.08)] group"
               >
-                {/* Glowing Effect on Card Hover */}
-                <div className="absolute top-0 right-0 -mr-8 -mt-8 w-16 h-16 bg-[#e49505]/5 rounded-full blur-xl pointer-events-none group-hover:bg-[#e49505]/10 transition-colors duration-300" />
-
-                <div className="flex items-center justify-between mb-3.5 relative z-10">
-                  <div className="flex items-center gap-2.5 min-w-0">
-                    <div className="h-9 w-9 rounded-lg bg-zinc-100 dark:bg-white/5 flex items-center justify-center border border-zinc-200 dark:border-white/10 text-[#e49505] shrink-0">
-                      {el.icon && <el.icon className="h-5 w-5" />}
-                    </div>
-                    <span className="font-semibold text-zinc-800 dark:text-zinc-200 text-sm md:text-base tracking-wide truncate">{el.name}</span>
+                <div className="h-full w-full rounded-2xl bg-white dark:bg-[#1a1a1c]/95 p-5 relative overflow-hidden flex flex-col justify-start gap-4">
+                  {/* Category Title */}
+                  <h3 className="text-sm font-bold text-[#e49505] uppercase tracking-widest pl-0.5">
+                    {cat.title}
+                  </h3>
+                  
+                  {/* Category Skills */}
+                  <div className="flex flex-wrap gap-2 pt-1">
+                    {cat.skills.map((skill) => {
+                      const Icon = skill.icon;
+                      return (
+                        <div
+                          key={skill.name}
+                          className={`flex items-center gap-2 px-3 py-1.5 rounded-xl text-xs font-semibold uppercase tracking-wider transition-all duration-300 hover:scale-105 border border-zinc-200 dark:border-white/5 shadow-md hover:shadow-[0_0_12px_var(--glow-color)] relative overflow-hidden group/skill ${skill.color} ${skill.darkColor}`}
+                          style={{
+                            '--glow-color': skill.glowColor
+                          } as React.CSSProperties}
+                        >
+                          <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover/skill:translate-x-full transition-transform duration-1000 ease-out" />
+                          <Icon className="h-4 w-4 shrink-0 transition-transform duration-300 group-hover/skill:rotate-12 relative z-10" />
+                          <span className="relative z-10">{skill.name}</span>
+                        </div>
+                      );
+                    })}
                   </div>
-                  <span className="text-xs md:text-sm font-bold text-[#e49505] shrink-0">{el.value}%</span>
-                </div>
-
-                {/* Customized Premium Progress Bar */}
-                <div className="w-full h-2 bg-black/10 dark:bg-black/35 border border-white/5 rounded-full overflow-hidden relative z-10">
-                  <div
-                    className="h-full bg-[#e49505] rounded-full shadow-[#e49505]/20 shadow-sm transition-all duration-1000 ease-out"
-                    style={{ width: `${el.value}%` }}
-                  />
                 </div>
               </div>
             ))}

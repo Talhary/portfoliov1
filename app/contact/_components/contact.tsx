@@ -239,9 +239,15 @@ export default function Component() {
             variants={cardVariants}
             className="bg-zinc-50 dark:bg-[#1a1a1c]/60 border border-zinc-200 dark:border-zinc-800/80 dark:backdrop-blur-xl rounded-2xl p-3.5 shadow-sm dark:shadow-2xl relative overflow-hidden transition-all duration-300 hover:border-primary/20 group/map"
           >
-            <div className="relative h-28 rounded-xl overflow-hidden bg-black/40">
-              <div className="absolute inset-0 bg-[radial-gradient(#e49505_1px,transparent_1px)] [background-size:12px_12px] opacity-10" />
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center gap-1.5">
+            <div className="relative h-48 rounded-xl overflow-hidden bg-zinc-150 dark:bg-black/40">
+              <iframe 
+                src="https://maps.google.com/maps?q=Islamabad,Pakistan&t=&z=12&ie=UTF8&iwloc=&output=embed" 
+                className="w-full h-full border-0 grayscale hover:grayscale-0 dark:invert-[90%] dark:hue-rotate-[180deg] opacity-75 dark:opacity-85 transition-all duration-300 pointer-events-auto"
+                allowFullScreen={true}
+                loading="lazy" 
+                referrerPolicy="no-referrer-when-downgrade"
+              />
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none flex flex-col items-center gap-1.5">
                 <span className="relative flex h-2.5 w-2.5">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-primary"></span>

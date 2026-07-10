@@ -165,10 +165,10 @@ export const RadarChart = () => {
           <span className="text-[10px] text-[#e49505] bg-[#e49505]/10 border border-[#e49505]/20 px-2.5 py-1 rounded-full font-bold uppercase tracking-widest">
             Infographic
           </span>
-          <h4 className="text-xl font-bold text-white tracking-tight mt-2.5">
+          <h4 className="text-xl font-bold text-zinc-900 dark:text-white tracking-tight mt-2.5">
             Full-Stack Radar Matrix
           </h4>
-          <p className="text-xs text-zinc-450 dark:text-zinc-400 leading-relaxed font-light mt-1.5">
+          <p className="text-xs text-zinc-550 dark:text-zinc-400 leading-relaxed font-light mt-1.5">
             A comprehensive visual index mapping core proficiency levels across different development sectors. Hover over the nodes to drill down details.
           </p>
         </div>
@@ -199,10 +199,10 @@ export const RadarChart = () => {
                     {i + 1}
                   </div>
                   <div>
-                    <span className="text-xs font-bold text-white block uppercase tracking-wider leading-none">
+                    <span className="text-xs font-bold text-zinc-800 dark:text-white block uppercase tracking-wider leading-none">
                       {cat.name}
                     </span>
-                    <span className="text-[10px] text-zinc-500 font-light block mt-0.5">
+                    <span className="text-[10px] text-zinc-550 dark:text-zinc-500 font-light block mt-0.5">
                       {cat.desc}
                     </span>
                   </div>

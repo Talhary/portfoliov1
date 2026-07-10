@@ -247,67 +247,69 @@ export function BlogClient({
                 : 'Recent';
 
               return (
-                <article
+                <div
                   key={post.id}
-                  className="card flex flex-col justify-between rounded-2xl w-full transition-all duration-300 hover:-translate-y-1.5 hover:border-[#e49505]/20 hover:shadow-2xl hover:shadow-[#e49505]/5 group overflow-hidden"
+                  className="relative p-[1px] rounded-2xl overflow-hidden bg-zinc-200 dark:bg-zinc-800/85 hover:bg-gradient-to-br hover:from-[#e49505] hover:to-amber-300 transition-all duration-300 hover:shadow-[0_10px_30px_rgba(228,149,5,0.12)] hover:-translate-y-1.5 group flex flex-col"
                 >
-                  {/* Blog Image */}
-                  {post.imageUrl && (
-                    <div className="w-full aspect-[2/1] relative overflow-hidden bg-zinc-100 dark:bg-zinc-900 border-b border-zinc-200 dark:border-white/5">
-                      <img
-                        alt={post.title}
-                        src={post.imageUrl}
-                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                      />
-                    </div>
-                  )}
+                  <div className="h-full w-full rounded-2xl bg-white dark:bg-[#1a1a1c]/95 overflow-hidden flex flex-col justify-between relative">
+                    {/* Blog Image */}
+                    {post.imageUrl && (
+                      <div className="w-full aspect-[2/1] relative overflow-hidden bg-zinc-100 dark:bg-zinc-900 border-b border-zinc-200 dark:border-white/5">
+                        <img
+                          alt={post.title}
+                          src={post.imageUrl}
+                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        />
+                      </div>
+                    )}
 
-                  <div className="p-6 flex-grow flex flex-col justify-between">
-                    <div className="space-y-4">
-                      {/* Meta details */}
-                      <div className="flex items-center gap-4 text-xs text-zinc-400 font-medium">
-                        <div className="flex items-center gap-1">
-                          <Calendar className="h-3.5 w-3.5 text-[#e49505]" />
-                          <span>{formattedDate}</span>
+                    <div className="p-6 flex-grow flex flex-col justify-between relative z-10">
+                      <div className="space-y-4">
+                        {/* Meta details */}
+                        <div className="flex items-center gap-4 text-xs text-zinc-400 dark:text-zinc-500 font-medium">
+                          <div className="flex items-center gap-1">
+                            <Calendar className="h-3.5 w-3.5 text-[#e49505]" />
+                            <span>{formattedDate}</span>
+                          </div>
                         </div>
+
+                        {/* Title */}
+                        <Link href={`/blog/${post.slug}`} className="block group/title">
+                          <h3 className="text-xl sm:text-2xl font-bold text-zinc-900 dark:text-white group-hover/title:text-[#e49505] transition-colors duration-200 tracking-tight leading-snug">
+                            {post.title}
+                          </h3>
+                        </Link>
+
+                        {/* Excerpt */}
+                        <p className="text-sm text-zinc-650 dark:text-zinc-450 leading-relaxed font-light line-clamp-3">
+                          {post.description}
+                        </p>
                       </div>
 
-                      {/* Title */}
-                      <Link href={`/blog/${post.slug}`} className="block group/title">
-                        <h3 className="text-xl sm:text-2xl font-bold text-zinc-900 dark:text-white group-hover/title:text-[#e49505] transition-colors duration-200 tracking-tight leading-snug">
-                          {post.title}
-                        </h3>
-                      </Link>
+                      {/* Tags and Read more */}
+                      <div className="mt-6 pt-4 border-t border-zinc-200 dark:border-white/5 flex items-center justify-between">
+                        <div className="flex flex-wrap gap-1.5">
+                          {post.tags.slice(0, 3).map((tag) => (
+                            <span
+                              key={tag}
+                              className="text-[9px] text-zinc-650 dark:text-zinc-400 bg-zinc-100 dark:bg-black/10 border border-zinc-200/50 dark:border-white/5 px-2 py-0.5 rounded font-semibold uppercase tracking-wider"
+                            >
+                              #{tag.toLowerCase()}
+                            </span>
+                          ))}
+                        </div>
 
-                      {/* Excerpt */}
-                      <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed font-light line-clamp-3">
-                        {post.description}
-                      </p>
-                    </div>
-
-                    {/* Tags and Read more */}
-                    <div className="mt-6 pt-4 border-t border-zinc-200 dark:border-white/5 flex items-center justify-between">
-                      <div className="flex flex-wrap gap-1.5">
-                        {post.tags.slice(0, 3).map((tag) => (
-                          <span
-                            key={tag}
-                            className="text-[9px] text-zinc-650 dark:text-zinc-400 bg-zinc-100 dark:bg-black/10 border border-zinc-200 dark:border-white/5 px-2 py-0.5 rounded font-semibold uppercase tracking-wider"
-                          >
-                            #{tag.toLowerCase()}
-                          </span>
-                        ))}
+                        <Link
+                          href={`/blog/${post.slug}`}
+                          className="flex items-center gap-1 text-xs font-bold text-[#e49505] hover:underline shrink-0 group/read"
+                        >
+                          <span>Read Article</span>
+                          <ArrowRight className="h-3.5 w-3.5 transition-transform duration-200 group-hover/read:translate-x-1" />
+                        </Link>
                       </div>
-
-                      <Link
-                        href={`/blog/${post.slug}`}
-                        className="flex items-center gap-1 text-xs font-bold text-[#e49505] hover:underline shrink-0"
-                      >
-                        <span>Read Article</span>
-                        <ArrowRight className="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-1" />
-                      </Link>
                     </div>
                   </div>
-                </article>
+                </div>
               );
             })}
           </div>

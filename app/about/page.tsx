@@ -122,42 +122,58 @@ const Page = () => {
 
         <section className='mt-12 mx-2 max-md:mx-0'>
           <h2 className='text-2xl font-semibold mb-6 text-zinc-900 dark:text-white'>My Skillset</h2>
-          <div className='flex flex-wrap gap-3'>
-            {skills.map((skill) => (
-              <div
-                key={skill.name}
-
-                className={cn(
-                  'flex items-center gap-2 px-3 py-1 rounded-full text-sm font-medium transition-transform duration-200 hover:scale-105',
-                  skill.color,
-                  skill.darkColor
-                )}
-              >
-                <skill.icon className="h-4 w-4" />
-                <span>
-                  <code>
-                    {skill.name}
-                  </code>
-                </span>
-              </div>
-            ))}
+          <div className='flex flex-wrap gap-2.5'>
+            {skills.map((skill) => {
+              const glowColor = 
+                skill.name === 'Next.js' ? 'rgba(255,255,255,0.45)' :
+                skill.name === 'React' ? 'rgba(14,165,233,0.4)' :
+                skill.name === 'Node.js' ? 'rgba(34,197,94,0.4)' :
+                skill.name === 'TypeScript' ? 'rgba(59,130,246,0.4)' :
+                skill.name === 'JavaScript' ? 'rgba(234,179,8,0.4)' :
+                skill.name === 'MongoDB' ? 'rgba(16,185,129,0.4)' :
+                'rgba(228,149,5,0.4)';
+              return (
+                <div
+                  key={skill.name}
+                  className={cn(
+                    'flex items-center gap-2 px-4 py-1.5 rounded-xl text-xs font-semibold uppercase tracking-wider transition-all duration-300 hover:scale-105 border border-zinc-200/50 dark:border-white/5 shadow-md hover:shadow-[0_0_15px_var(--glow-color)] relative overflow-hidden group/skill',
+                    skill.color,
+                    skill.darkColor
+                  )}
+                  style={{
+                    '--glow-color': glowColor
+                  } as React.CSSProperties}
+                >
+                  <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover/skill:translate-x-full transition-transform duration-1000 ease-out" />
+                  <skill.icon className="h-4 w-4 shrink-0 transition-transform duration-300 group-hover/skill:rotate-12 relative z-10" />
+                  <span className="relative z-10">
+                    <code>
+                      {skill.name}
+                    </code>
+                  </span>
+                </div>
+              );
+            })}
           </div>
         </section>
-        <section className='mt-12  mx-2 max-md:mx-0'>
+        <section className='mt-12 mx-2 max-md:mx-0'>
           <h2 className='text-2xl font-semibold mb-6 text-zinc-900 dark:text-white'>My Focus Areas</h2>
 
           <div className='grid grid-cols-3 gap-4 max-lg:grid-cols-2 max-md:gap-y-9 max-sm:grid-cols-1'>
             {focusAreas.map((el, i) => (
               <div
                 key={i}
-                className='card flex flex-col sm:flex-row items-start gap-4 rounded-2xl w-full max-md:p-3  shadow-md dark:shadow-gray-800 p-6 bg-zinc-50 dark:bg-neutral-800'
+                className="relative p-[1px] rounded-2xl overflow-hidden bg-zinc-200 dark:bg-zinc-800/80 hover:bg-gradient-to-br hover:from-[#e49505] hover:to-amber-300 transition-all duration-300 hover:shadow-[0_10px_30px_rgba(228,149,5,0.15)] group"
               >
-                <div className='flex-shrink-0 max-md:hidden'>
-                  {React.createElement(el.icon, { className: 'text-blue-600 dark:text-blue-400 text-3xl sm:text-4xl' })}
-                </div>
-                <div className='flex-grow space-y-2'>
-                  <h3 className='font-semibold text-xl text-zinc-900 dark:text-primary'>{el.title}</h3>
-                  <p className='text-zinc-600 dark:text-neutral-300'>{el.text}</p>
+                <div className="h-full w-full rounded-2xl bg-zinc-50 dark:bg-[#1a1a1c]/95 p-6 flex flex-col sm:flex-row items-start gap-4 relative overflow-hidden">
+                  <div className="absolute top-0 right-0 -mr-8 -mt-8 w-16 h-16 bg-[#e49505]/5 rounded-full blur-xl pointer-events-none group-hover:bg-[#e49505]/10 transition-colors duration-300" />
+                  <div className='flex-shrink-0 max-md:hidden'>
+                    {React.createElement(el.icon, { className: 'text-[#e49505] text-3xl sm:text-4xl' })}
+                  </div>
+                  <div className='flex-grow space-y-2 relative z-10'>
+                    <h3 className='font-semibold text-xl text-zinc-900 dark:text-primary'>{el.title}</h3>
+                    <p className='text-zinc-550 dark:text-neutral-350'>{el.text}</p>
+                  </div>
                 </div>
               </div>
             ))}
@@ -165,23 +181,28 @@ const Page = () => {
         </section>
 
 
-        <section className='mx-2 max-md:mx-0 mt-6'>
+        <section className='mx-2 max-md:mx-0 mt-12'>
           <h2 className='text-2xl font-semibold mb-6 text-zinc-900 dark:text-white'>Experience</h2>
 
-          <div className='flex flex-wrap justify-start gap-6 mt-4'>
+          <div className='grid grid-cols-1 md:grid-cols-2 gap-6 mt-4'>
             {experiences.map((el, i) => (
               <div
                 key={i}
-                className='card flex flex-col sm:flex-row items-start gap-4 rounded-2xl w-full max-md:p-3 sm:w-80 md:w-96 shadow-md dark:shadow-gray-800 p-6 bg-zinc-50 dark:bg-neutral-800'
+                className="relative p-[1px] rounded-2xl overflow-hidden bg-zinc-200 dark:bg-zinc-800/80 hover:bg-gradient-to-br hover:from-[#e49505] hover:to-amber-300 transition-all duration-300 hover:shadow-[0_10px_30px_rgba(228,149,5,0.15)] group"
               >
-                <div className='flex-shrink-0 max-md:hidden'>
-                  {React.createElement(el.icon, { className: 'text-green-600 dark:text-green-400 text-3xl sm:text-4xl' })}
-                </div>
-                <div className='flex-grow space-y-2'>
-                  <h3 className='font-semibold text-xl text-zinc-900 dark:text-primary'>{el.title}</h3>
-                  <h3 className=' text-primary dark:text-green-300 text-sm pb-2'>At {el.company}</h3>
-                  <p className='text-zinc-600 dark:text-neutral-300'>{el.description}</p>
-                  <div className='text-primary dark:text-green-300 text-sm pt-3'>
+                <div className="h-full w-full rounded-2xl bg-zinc-50 dark:bg-[#1a1a1c]/95 p-6 flex flex-col gap-4 relative overflow-hidden">
+                  <div className="absolute top-0 right-0 -mr-12 -mt-12 w-24 h-24 bg-emerald-500/5 rounded-full blur-2xl pointer-events-none group-hover:bg-emerald-500/10 transition-colors duration-300" />
+                  <div className="flex items-center gap-3">
+                    <div className='flex items-center justify-center p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-450'>
+                      {React.createElement(el.icon, { className: 'text-2xl shrink-0' })}
+                    </div>
+                    <div>
+                      <h3 className='font-bold text-lg text-zinc-900 dark:text-zinc-100 tracking-tight'>{el.title}</h3>
+                      <h3 className='text-xs text-[#e49505] uppercase tracking-wider font-semibold'>At {el.company}</h3>
+                    </div>
+                  </div>
+                  <p className='text-sm text-zinc-500 dark:text-neutral-450 leading-relaxed font-light'>{el.description}</p>
+                  <div className='text-xs font-semibold px-3 py-1 w-fit rounded-full bg-black/5 dark:bg-white/[0.03] border border-zinc-200 dark:border-white/5 text-zinc-550 dark:text-zinc-450'>
                     {el.dates}
                   </div>
                 </div>

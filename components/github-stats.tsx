@@ -99,7 +99,7 @@ export const GitHubStats = () => {
             href="https://github.com/talhary" 
             target="_blank" 
             rel="noopener noreferrer" 
-            className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-white/5 dark:bg-black/20 hover:bg-primary/10 border border-white/10 dark:border-zinc-800 hover:border-primary/30 hover:text-primary text-zinc-200 dark:text-zinc-300 text-xs font-semibold transition-all duration-200 w-fit self-end sm:self-center"
+            className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-zinc-100 dark:bg-black/20 hover:bg-primary/10 border border-zinc-200 dark:border-zinc-800 hover:border-primary/30 hover:text-primary text-zinc-700 dark:text-zinc-350 text-xs font-semibold transition-all duration-200 w-fit self-end sm:self-center"
           >
             <span>@talhary</span>
             <Sparkles className="h-3 w-3" />

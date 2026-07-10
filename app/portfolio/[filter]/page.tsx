@@ -38,6 +38,14 @@ const Page = async ({ params }: { params: Promise<{ [key: string]: string | unde
   </div>
   const data = res.filter((el: any) => el.type.split('|').indexOf(filter) != -1)
 
+  if (data.length === 0) {
+    return (
+      <div className="bg-rose-500/10 border border-rose-500/20 text-rose-500 dark:text-rose-400 text-xl font-semibold text-center py-10 rounded-2xl w-full">
+        Category Empty or Page Not Found
+      </div>
+    );
+  }
+
   return (
     <div>
       <AllProjects projects={data} />

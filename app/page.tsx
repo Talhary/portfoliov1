@@ -5,13 +5,12 @@ import AsideImageSection from '@/components/aside-image-section';
 import { cn } from '@/lib/utils';
 import { FaReact, FaNodeJs, FaDocker, FaPhp, FaRobot } from 'react-icons/fa';
 import { SiNextdotjs, SiExpress, SiMongodb, SiTypescript, SiJavascript, SiUbuntu, SiPostgresql, SiMysql, SiDeno } from 'react-icons/si';
-import { Briefcase, BookOpen, Phone, Mail, Globe, MapPin, Code, ArrowRight } from 'lucide-react';
+import { Briefcase, BookOpen, Phone, Mail, Globe, MapPin, ArrowRight } from 'lucide-react';
 import { EducationList } from '@/components/education';
 import { GetAllProjects } from "@/actions/getAllProjects";
 import { AllProjects } from '@/components/all-projects';
 import { ContactForm } from '@/app/contact/_components/form';
 import Link from 'next/link';
-import { RadarChart } from '@/components/radar-chart';
 import { GitHubStats } from '@/components/github-stats';
 
 export const dynamic = "force-dynamic";
@@ -21,8 +20,8 @@ const skills = [
   { name: 'Next.js', value: 80, icon: SiNextdotjs, color: 'bg-black text-white', darkColor: 'dark:bg-white dark:text-black' },
   { name: 'React', value: 90, icon: FaReact, color: 'bg-sky-100 text-sky-800', darkColor: 'dark:bg-sky-900 dark:text-sky-300' },
   { name: 'Node.js', value: 99, icon: FaNodeJs, color: 'bg-green-100 text-green-800', darkColor: 'dark:bg-green-900 dark:text-green-300' },
-  { name: 'Express', value: 80, icon: SiExpress, color: 'bg-neutral-100 text-neutral-800', darkColor: 'dark:bg-neutral-700 dark:text-neutral-250' },
-  { name: 'Deno', value: 70, icon: SiDeno, color: 'bg-neutral-100 text-neutral-800', darkColor: 'dark:bg-neutral-700 dark:text-neutral-250' },
+  { name: 'Express', value: 80, icon: SiExpress, color: 'bg-neutral-100 text-neutral-800', darkColor: 'dark:bg-neutral-700 dark:text-neutral-200' },
+  { name: 'Deno', value: 70, icon: SiDeno, color: 'bg-neutral-100 text-neutral-800', darkColor: 'dark:bg-neutral-700 dark:text-neutral-200' },
   { name: 'TypeScript', value: 85, icon: SiTypescript, color: 'bg-blue-100 text-blue-800', darkColor: 'dark:bg-blue-900 dark:text-blue-300' },
   { name: 'JavaScript', value: 90, icon: SiJavascript, color: 'bg-yellow-100 text-yellow-800', darkColor: 'dark:bg-yellow-900 dark:text-yellow-300' },
   { name: 'PHP', value: 80, icon: FaPhp, color: 'bg-indigo-100 text-indigo-800', darkColor: 'dark:bg-indigo-900 dark:text-indigo-300' },
@@ -127,21 +126,35 @@ export default async function Home() {
           <div className='mt-12 mx-2 max-md:mx-0'>
             <h3 className='text-2xl font-semibold mb-6 text-zinc-900 dark:text-zinc-100 tracking-tight'>My Skillset</h3>
             <div className='flex flex-wrap gap-2.5'>
-              {skills.map((skill) => (
-                <div
-                  key={skill.name}
-                  className={cn(
-                    'flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider transition-all duration-200 hover:scale-105 border border-white/5 shadow-md',
-                    skill.color,
-                    skill.darkColor
-                  )}
-                >
-                  <skill.icon className="h-4 w-4 shrink-0" />
-                  <span>
-                    <code>{skill.name}</code>
-                  </span>
-                </div>
-              ))}
+              {skills.map((skill) => {
+                const glowColor = 
+                  skill.name === 'Next.js' ? 'rgba(255,255,255,0.45)' :
+                  skill.name === 'React' ? 'rgba(14,165,233,0.4)' :
+                  skill.name === 'Node.js' ? 'rgba(34,197,94,0.4)' :
+                  skill.name === 'TypeScript' ? 'rgba(59,130,246,0.4)' :
+                  skill.name === 'JavaScript' ? 'rgba(234,179,8,0.4)' :
+                  skill.name === 'MongoDB' ? 'rgba(16,185,129,0.4)' :
+                  'rgba(228,149,5,0.4)';
+                return (
+                  <div
+                    key={skill.name}
+                    className={cn(
+                      'flex items-center gap-2 px-4 py-1.5 rounded-xl text-xs font-semibold uppercase tracking-wider transition-all duration-300 hover:scale-105 border border-zinc-200/50 dark:border-white/5 shadow-md hover:shadow-[0_0_15px_var(--glow-color)] relative overflow-hidden group/skill',
+                      skill.color,
+                      skill.darkColor
+                    )}
+                    style={{
+                      '--glow-color': glowColor
+                    } as React.CSSProperties}
+                  >
+                    <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover/skill:translate-x-full transition-transform duration-1000 ease-out" />
+                    <skill.icon className="h-4 w-4 shrink-0 transition-transform duration-300 group-hover/skill:rotate-12 relative z-10" />
+                    <span className="relative z-10">
+                      <code>{skill.name}</code>
+                    </span>
+                  </div>
+                );
+              })}
             </div>
           </div>
 
@@ -152,14 +165,17 @@ export default async function Home() {
               {focusAreas.map((el, i) => (
                 <div
                   key={i}
-                  className='card flex flex-col items-start gap-4 rounded-2xl w-full p-5 transition-all hover:-translate-y-1'
+                  className="relative p-[1px] rounded-2xl overflow-hidden bg-zinc-200 dark:bg-zinc-800/80 hover:bg-gradient-to-br hover:from-[#e49505] hover:to-amber-300 transition-all duration-300 hover:shadow-[0_10px_30px_rgba(228,149,5,0.15)] hover:-translate-y-1 group"
                 >
-                  <div className='flex items-center justify-center p-3 rounded-xl bg-[#e49505]/10 border border-[#e49505]/20 text-[#e49505]'>
-                    {React.createElement(el.icon, { className: 'text-2xl shrink-0' })}
-                  </div>
-                  <div className='space-y-1.5'>
-                    <h4 className='font-semibold text-lg text-zinc-900 dark:text-primary tracking-tight'>{el.title}</h4>
-                    <p className='text-sm text-zinc-400 leading-relaxed font-light'>{el.text}</p>
+                  <div className="h-full w-full rounded-2xl bg-zinc-50 dark:bg-[#1a1a1c]/95 p-5 flex flex-col items-start gap-4 relative overflow-hidden">
+                    <div className="absolute top-0 right-0 -mr-8 -mt-8 w-16 h-16 bg-[#e49505]/5 rounded-full blur-xl pointer-events-none group-hover:bg-[#e49505]/10 transition-colors duration-300" />
+                    <div className='flex items-center justify-center p-3 rounded-xl bg-[#e49505]/10 border border-[#e49505]/20 text-[#e49505]'>
+                      {React.createElement(el.icon, { className: 'text-2xl shrink-0' })}
+                    </div>
+                    <div className='space-y-1.5'>
+                      <h4 className='font-semibold text-lg text-zinc-900 dark:text-primary tracking-tight'>{el.title}</h4>
+                      <p className='text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed font-light'>{el.text}</p>
+                    </div>
                   </div>
                 </div>
               ))}
@@ -173,23 +189,46 @@ export default async function Home() {
               {experiences.map((el, i) => (
                 <div
                   key={i}
-                  className='card flex flex-col gap-4 rounded-2xl w-full p-6 transition-all hover:-translate-y-1'
+                  className="relative p-[1px] rounded-2xl overflow-hidden bg-zinc-200 dark:bg-zinc-800/80 hover:bg-gradient-to-br hover:from-[#e49505] hover:to-amber-300 transition-all duration-300 hover:shadow-[0_10px_30px_rgba(228,149,5,0.15)] hover:-translate-y-1 group"
                 >
-                  <div className="flex items-center gap-3">
-                    <div className='flex items-center justify-center p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400'>
-                      {React.createElement(el.icon, { className: 'text-2xl shrink-0' })}
+                  <div className="h-full w-full rounded-2xl bg-zinc-50 dark:bg-[#1a1a1c]/95 p-6 flex flex-col gap-4 relative overflow-hidden">
+                    <div className="absolute top-0 right-0 -mr-12 -mt-12 w-24 h-24 bg-emerald-500/5 rounded-full blur-2xl pointer-events-none group-hover:bg-emerald-500/10 transition-colors duration-300" />
+                    <div className="flex items-center gap-3">
+                      <div className='flex items-center justify-center p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400'>
+                        {React.createElement(el.icon, { className: 'text-2xl shrink-0' })}
+                      </div>
+                      <div>
+                        <h4 className='font-bold text-lg text-zinc-900 dark:text-zinc-100 tracking-tight'>{el.title}</h4>
+                        <p className='text-xs text-[#e49505] uppercase tracking-wider font-semibold'>At {el.company}</p>
+                      </div>
                     </div>
-                    <div>
-                      <h4 className='font-bold text-lg text-zinc-900 dark:text-zinc-100 tracking-tight'>{el.title}</h4>
-                      <p className='text-xs text-[#e49505] uppercase tracking-wider font-semibold'>At {el.company}</p>
+                    <p className='text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed font-light'>{el.description}</p>
+                    <div className='text-xs font-semibold px-3 py-1 w-fit rounded-full bg-black/5 dark:bg-white/[0.03] border border-zinc-200 dark:border-white/5 text-zinc-550 dark:text-zinc-450'>
+                      {el.dates}
                     </div>
-                  </div>
-                  <p className='text-sm text-zinc-450 dark:text-zinc-400 leading-relaxed font-light'>{el.description}</p>
-                  <div className='text-xs font-semibold px-3 py-1 w-fit rounded-full bg-white/[0.03] border border-white/5 text-zinc-400'>
-                    {el.dates}
                   </div>
                 </div>
               ))}
+            </div>
+          </div>
+
+          {/* Projects Subsection */}
+          <div className='mt-16 mx-2 max-md:mx-0'>
+            <h3 className='text-2xl font-semibold mb-6 text-zinc-900 dark:text-zinc-100 tracking-tight'>Featured Projects</h3>
+            <div>
+              <AllProjects projects={projects.slice(0, 3)} />
+            </div>
+
+            <div className="mt-10 flex justify-center max-md:mx-0">
+              <Link href="/portfolio/all" className="group/btn relative overflow-hidden rounded-xl">
+                <button className="relative group/uibtn flex items-center gap-2 bg-[#e49505] hover:bg-[#c98304] text-white transition-all font-semibold rounded-xl text-sm py-3 px-8 shadow-lg hover:shadow-[0_0_20px_rgba(228,149,5,0.45)] hover:scale-[1.02] active:scale-[0.98] duration-300 overflow-hidden">
+                  <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover/uibtn:translate-x-full transition-transform duration-1000 ease-out" />
+                  <span className="relative z-10 flex items-center gap-2">
+                    <span>View All Projects</span>
+                    <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover/uibtn:translate-x-1" />
+                  </span>
+                </button>
+              </Link>
             </div>
           </div>
         </div>
@@ -200,7 +239,7 @@ export default async function Home() {
 
       {/* ---------------- SECTION 2: RESUME & SKILLS ---------------- */}
       <section id="resume" className="relative group">
-        <div className="px-2 md:px-4 text-neutral-800 dark:text-neutral-250">
+        <div className="px-2 md:px-4 text-neutral-800 dark:text-zinc-300">
           <Heading title="Resume" as="h2" />
 
           <div className="mx-2 mt-8 max-md:mx-0">
@@ -214,46 +253,7 @@ export default async function Home() {
             </div>
           </div>
 
-          <div className="mx-2 mt-16 max-md:mx-0">
-            <div className="flex gap-x-3 items-center justify-start mb-6">
-              <Code className="text-[#e49505] w-6 h-6 shrink-0" />
-              <h3 className='text-2xl font-semibold text-zinc-900 dark:text-zinc-100 tracking-tight'>My Skill Percentages</h3>
-            </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mt-6">
-              {skills.map((el, i) => (
-                <div
-                  key={i}
-                  className="bg-zinc-50 dark:bg-[#1a1a1c]/60 border border-zinc-200 dark:border-zinc-800/80 dark:backdrop-blur-xl rounded-2xl p-5 hover:border-[#e49505]/30 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300 relative overflow-hidden group"
-                >
-                  {/* Glowing Effect on Card Hover */}
-                  <div className="absolute top-0 right-0 -mr-8 -mt-8 w-16 h-16 bg-[#e49505]/5 rounded-full blur-xl pointer-events-none group-hover:bg-[#e49505]/10 transition-colors duration-300" />
-
-                  <div className="flex items-center justify-between mb-3.5 relative z-10">
-                    <div className="flex items-center gap-2.5 min-w-0">
-                      <div className="h-9 w-9 rounded-lg bg-zinc-100 dark:bg-white/5 flex items-center justify-center border border-zinc-200 dark:border-white/10 text-[#e49505] shrink-0">
-                        {el.icon && <el.icon className="h-5 w-5" />}
-                      </div>
-                      <span className="font-semibold text-zinc-800 dark:text-zinc-200 text-sm md:text-base tracking-wide truncate">{el.name}</span>
-                    </div>
-                    <span className="text-xs md:text-sm font-bold text-[#e49505] shrink-0">{el.value}%</span>
-                  </div>
-
-                  {/* Customized Premium Progress Bar */}
-                  <div className="w-full h-2 bg-black/10 dark:bg-black/35 border border-white/5 rounded-full overflow-hidden relative z-10">
-                    <div
-                      className="h-full bg-[#e49505] rounded-full shadow-[#e49505]/20 shadow-sm transition-all duration-1000 ease-out"
-                      style={{ width: `${el.value}%` }}
-                    />
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            <div className="mt-8">
-              <RadarChart />
-            </div>
-          </div>
         </div>
       </section>
 
@@ -267,31 +267,7 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* Visually stunning layout section separator */}
-      <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-white/10 to-transparent dark:via-zinc-800" />
 
-      {/* ---------------- SECTION 3: PROJECTS ---------------- */}
-      <section id="projects" className="relative group">
-        <div className="px-2 md:px-4 text-neutral-800 dark:text-neutral-200">
-          <Heading title="Projects" as="h2" />
-
-          <div className="mx-2 mt-6 max-md:mx-0">
-            <AllProjects projects={projects.slice(0, 3)} />
-          </div>
-
-          <div className="mx-2 mt-10 flex justify-center max-md:mx-0">
-            <Link href="/portfolio/all" className="group/btn">
-              <button className="flex items-center gap-2 bg-[#e49505] hover:bg-[#c98304] text-white transition-all font-semibold rounded-xl text-sm py-3 px-8 shadow-lg shadow-[#e49505]/10 hover:shadow-[#e49505]/20 hover:scale-[1.02] active:scale-[0.98] duration-200">
-                <span>View All Projects</span>
-                <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover/btn:translate-x-1" />
-              </button>
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Visually stunning layout section separator */}
-      <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-white/10 to-transparent dark:via-zinc-800" />
 
       {/* ---------------- SECTION 4: CONTACT ---------------- */}
       <section id="contact" className="relative group">
@@ -299,7 +275,7 @@ export default async function Home() {
           <Heading title="Contact" as="h2" />
 
           <div className="mx-2 mt-6 max-md:mx-0">
-            <div className="w-full max-w-6xl mx-auto px-0 py-6 dark:text-gray-100">
+            <div className="w-full px-0 py-6 dark:text-gray-100">
               <div className="grid md:grid-cols-5 gap-8 items-start">
 
                 {/* Contact Form Card */}
