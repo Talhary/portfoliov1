@@ -69,7 +69,7 @@ export function ImageShowcase({ images }: ImageShowcaseProps) {
             <button
               type="button"
               onClick={handlePrev}
-              className="absolute left-4 top-1/2 -translate-y-1/2 z-10 p-2.5 rounded-full bg-black/40 hover:bg-[#e49505] border border-white/10 text-white/80 hover:text-white backdrop-blur-md opacity-0 group-hover:opacity-100 focus:opacity-100 transition-all duration-200 transform hover:scale-105 active:scale-95"
+              className="absolute left-4 top-1/2 -translate-y-1/2 z-10 p-2.5 rounded-full bg-black/40 hover:bg-violet-600 border border-white/10 text-white/80 hover:text-white backdrop-blur-md opacity-0 group-hover:opacity-100 focus:opacity-100 transition-all duration-200 transform hover:scale-105 active:scale-95"
               aria-label="Previous image"
             >
               <ChevronLeft className="w-5 h-5" />
@@ -77,7 +77,7 @@ export function ImageShowcase({ images }: ImageShowcaseProps) {
             <button
               type="button"
               onClick={handleNext}
-              className="absolute right-4 top-1/2 -translate-y-1/2 z-10 p-2.5 rounded-full bg-black/40 hover:bg-[#e49505] border border-white/10 text-white/80 hover:text-white backdrop-blur-md opacity-0 group-hover:opacity-100 focus:opacity-100 transition-all duration-200 transform hover:scale-105 active:scale-95"
+              className="absolute right-4 top-1/2 -translate-y-1/2 z-10 p-2.5 rounded-full bg-black/40 hover:bg-violet-600 border border-white/10 text-white/80 hover:text-white backdrop-blur-md opacity-0 group-hover:opacity-100 focus:opacity-100 transition-all duration-200 transform hover:scale-105 active:scale-95"
               aria-label="Next image"
             >
               <ChevronRight className="w-5 h-5" />
@@ -124,7 +124,7 @@ export function ImageShowcase({ images }: ImageShowcaseProps) {
                 <button
                   type="button"
                   onClick={handlePrev}
-                  className="absolute left-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-white/10 hover:bg-[#e49505] border border-white/10 text-white backdrop-blur-md transition-all transform hover:scale-105 active:scale-95 z-50"
+                  className="absolute left-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-white/10 hover:bg-violet-600 border border-white/10 text-white backdrop-blur-md transition-all transform hover:scale-105 active:scale-95 z-50"
                   aria-label="Previous image"
                 >
                   <ChevronLeft className="w-6 h-6" />
@@ -132,7 +132,7 @@ export function ImageShowcase({ images }: ImageShowcaseProps) {
                 <button
                   type="button"
                   onClick={handleNext}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-white/10 hover:bg-[#e49505] border border-white/10 text-white backdrop-blur-md transition-all transform hover:scale-105 active:scale-95 z-50"
+                  className="absolute right-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-white/10 hover:bg-violet-600 border border-white/10 text-white backdrop-blur-md transition-all transform hover:scale-105 active:scale-95 z-50"
                   aria-label="Next image"
                 >
                   <ChevronRight className="w-6 h-6" />
@@ -162,8 +162,8 @@ export function ImageShowcase({ images }: ImageShowcaseProps) {
               className={cn(
                 "relative w-20 aspect-[16/10] rounded-lg overflow-hidden border transition-all duration-200 bg-zinc-900",
                 idx === currentIndex
-                  ? "border-[#e49505] ring-2 ring-[#e49505]/30 scale-105 opacity-100"
-                  : "border-white/10 opacity-60 hover:opacity-100 hover:border-[#e49505]/40"
+                  ? "border-violet-500 ring-2 ring-violet-500/30 scale-105 opacity-100"
+                  : "border-white/10 opacity-60 hover:opacity-100 hover:border-violet-505/40"
               )}
             >
               <Image
