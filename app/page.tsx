@@ -122,6 +122,30 @@ export default async function Home() {
             </p>
           </div>
 
+          {/* 3D Cinematic Portfolio Experience CTA banner */}
+          <div className="mt-8 mx-2 max-md:mx-0 p-5 rounded-2xl border border-primary/25 bg-gradient-to-r from-primary/10 via-primary/5 to-transparent relative overflow-hidden group/cinemabanner">
+            <div className="absolute top-0 right-0 w-32 h-32 bg-primary/10 rounded-full blur-2xl pointer-events-none group-hover/cinemabanner:bg-primary/20 transition-all duration-300" />
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+              <div className="space-y-1">
+                <h4 className="font-semibold text-base sm:text-lg text-zinc-900 dark:text-white flex items-center gap-2">
+                  <span className="flex h-2.5 w-2.5 relative">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-primary"></span>
+                  </span>
+                  <span>Interactive 3D Cinematic Experience</span>
+                </h4>
+                <p className="text-xs sm:text-sm text-zinc-500 dark:text-zinc-400 font-light max-w-xl">
+                  Launch a responsive 3D particle matrix presentation with generative synthesizers displaying my complete software engineering portfolio details.
+                </p>
+              </div>
+              <Link href="/intro" className="shrink-0 max-sm:w-full">
+                <button className="w-full relative flex items-center justify-center gap-2 bg-primary hover:bg-primary-hover text-white text-xs font-semibold uppercase tracking-wider py-3 px-6 rounded-xl shadow-md hover:shadow-[0_0_15px_rgba(var(--primary-rgb),0.35)] transition-all duration-300">
+                  Launch 3D View &rarr;
+                </button>
+              </Link>
+            </div>
+          </div>
+
           {/* Skillset list */}
           <div className='mt-12 mx-2 max-md:mx-0'>
             <h3 className='text-2xl font-semibold mb-6 text-zinc-900 dark:text-zinc-100 tracking-tight'>My Skillset</h3>
