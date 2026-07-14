@@ -82,14 +82,12 @@ jobs:
                 --restart always \
                 -p 127.0.0.1:3000:3000 \
                 --env-file /var/www/portfolio/.env \
-                -e MEDIA_DOWNLOAD_API_URL="${{ secrets.MEDIA_DOWNLOAD_API_URL }}" \
                 portfolio:latest
             else
               sudo docker run -d \
                 --name portfolio \
                 --restart always \
                 -p 127.0.0.1:3000:3000 \
-                -e MEDIA_DOWNLOAD_API_URL="${{ secrets.MEDIA_DOWNLOAD_API_URL }}" \
                 portfolio:latest
             fi
 
