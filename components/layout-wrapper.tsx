@@ -11,6 +11,11 @@ import { ArrowLeft } from "lucide-react";
 export default function LayoutWrapper({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const isToolPage = pathname.startsWith("/tools");
+  const isIntroPage = pathname === "/intro";
+
+  if (isIntroPage) {
+    return <>{children}</>;
+  }
 
   if (isToolPage) {
     return (
