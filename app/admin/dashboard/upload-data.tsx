@@ -167,13 +167,13 @@ export const ProfileForm = () => {
       {/* Main Upload Form */}
       <div className="lg:col-span-2">
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 py-8 px-8 rounded-2xl border border-stone-200/50 dark:border-white/5 bg-white bg-opacity-20 dark:bg-zinc-900/30 backdrop-blur-md shadow-2xl relative overflow-hidden transition-all hover:shadow-[#e49505]/5 duration-300">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 py-8 px-8 rounded-2xl border border-stone-200/50 dark:border-white/5 bg-white bg-opacity-20 dark:bg-zinc-900/30 backdrop-blur-md shadow-2xl relative overflow-hidden transition-all hover:shadow-primary/5 duration-300">
             
             {/* Glowing Top Accent Line */}
-            <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-transparent via-[#e49505] to-transparent animate-pulse" />
+            <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-transparent via-primary to-transparent animate-pulse" />
 
             <div className="flex items-center gap-3 pb-2 border-b border-stone-200/50 dark:border-white/5">
-              <div className="flex items-center justify-center p-2.5 rounded-xl bg-[#e49505]/10 text-[#e49505]">
+              <div className="flex items-center justify-center p-2.5 rounded-xl bg-primary/10 text-primary">
                 <Sparkles className="h-5 w-5 animate-pulse" />
               </div>
               <div>
@@ -190,7 +190,7 @@ export const ProfileForm = () => {
                 <FormItem className="space-y-1.5">
                   <FormLabel className="text-xs font-semibold uppercase tracking-wider text-stone-600 dark:text-zinc-400">Project Title</FormLabel>
                   <FormControl>
-                    <div className="relative rounded-xl border border-stone-250 dark:border-zinc-800 bg-white/[0.05] dark:bg-black/25 transition-all focus-within:border-[#e49505] focus-within:ring-1 focus-within:ring-[#e49505]">
+                    <div className="relative rounded-xl border border-stone-250 dark:border-zinc-800 bg-white/[0.05] dark:bg-black/25 transition-all focus-within:border-primary focus-within:ring-1 focus-within:ring-primary">
                       <span className="absolute inset-y-0 left-0 flex items-center pl-3.5 text-stone-400 dark:text-zinc-500">
                         <Terminal className="h-4 w-4" />
                       </span>
@@ -235,13 +235,13 @@ export const ProfileForm = () => {
                   <FormLabel className="text-xs font-semibold uppercase tracking-wider text-stone-600 dark:text-zinc-400">Categories / Tag Types</FormLabel>
                   <FormControl>
                     <MultiSelector values={value} onValuesChange={setValue} loop={false}>
-                      <MultiSelectorTrigger className="rounded-xl border border-stone-250 dark:border-zinc-800 bg-white/[0.05] dark:bg-black/25 text-stone-900 dark:text-white focus-within:border-[#e49505] focus-within:ring-1 focus-within:ring-[#e49505] py-2 px-3">
+                      <MultiSelectorTrigger className="rounded-xl border border-stone-250 dark:border-zinc-800 bg-white/[0.05] dark:bg-black/25 text-stone-900 dark:text-white focus-within:border-primary focus-within:ring-1 focus-within:ring-primary py-2 px-3">
                         <MultiSelectorInput placeholder="Choose tag categories..." className="placeholder-stone-450 dark:placeholder-zinc-650" />
                       </MultiSelectorTrigger>
                       <MultiSelectorContent>
                         <MultiSelectorList className="bg-white dark:bg-zinc-950 border border-stone-200 dark:border-zinc-800 text-stone-900 dark:text-white rounded-xl shadow-2xl p-1.5 space-y-1 z-50">
                           {options.map((option, i) => (
-                            <MultiSelectorItem key={i} value={option.value} className="rounded-lg hover:bg-[#e49505]/10 hover:text-[#e49505] cursor-pointer">
+                            <MultiSelectorItem key={i} value={option.value} className="rounded-lg hover:bg-primary/10 hover:text-primary cursor-pointer">
                               {option.label}
                             </MultiSelectorItem>
                           ))}
@@ -258,7 +258,7 @@ export const ProfileForm = () => {
             <FormItem className="space-y-1.5">
               <FormLabel className="text-xs font-semibold uppercase tracking-wider text-stone-600 dark:text-zinc-400">Tech Stack (Frameworks / Libraries)</FormLabel>
               <div className="flex gap-2">
-                <div className="relative flex-1 rounded-xl border border-stone-250 dark:border-zinc-800 bg-white/[0.05] dark:bg-black/25 transition-all focus-within:border-[#e49505] focus-within:ring-1 focus-within:ring-[#e49505]">
+                <div className="relative flex-1 rounded-xl border border-stone-250 dark:border-zinc-800 bg-white/[0.05] dark:bg-black/25 transition-all focus-within:border-primary focus-within:ring-1 focus-within:ring-primary">
                   <Input 
                     placeholder="Enter technology (e.g. Next.js, React)..." 
                     value={stackInput}
@@ -275,7 +275,7 @@ export const ProfileForm = () => {
                 <Button 
                   type="button" 
                   onClick={addStackItem}
-                  className="bg-[#e49505] hover:bg-[#c98304] text-white rounded-xl px-4 flex items-center justify-center gap-1"
+                  className="bg-primary hover:bg-primary-hover text-white rounded-xl px-4 flex items-center justify-center gap-1"
                 >
                   <Plus className="h-4 w-4" />
                   <span>Add</span>
@@ -313,7 +313,7 @@ export const ProfileForm = () => {
                   <FormItem className="space-y-1.5">
                     <FormLabel className="text-xs font-semibold uppercase tracking-wider text-stone-600 dark:text-zinc-400">Production Live Url</FormLabel>
                     <FormControl>
-                      <div className="relative rounded-xl border border-stone-250 dark:border-zinc-800 bg-white/[0.05] dark:bg-black/25 transition-all focus-within:border-[#e49505] focus-within:ring-1 focus-within:ring-[#e49505]">
+                      <div className="relative rounded-xl border border-stone-250 dark:border-zinc-800 bg-white/[0.05] dark:bg-black/25 transition-all focus-within:border-primary focus-within:ring-1 focus-within:ring-primary">
                         <span className="absolute inset-y-0 left-0 flex items-center pl-3.5 text-stone-400 dark:text-zinc-500">
                           <Globe className="h-4 w-4" />
                         </span>
@@ -337,7 +337,7 @@ export const ProfileForm = () => {
                   <FormItem className="space-y-1.5">
                     <FormLabel className="text-xs font-semibold uppercase tracking-wider text-stone-600 dark:text-zinc-400">Repository Github Url</FormLabel>
                     <FormControl>
-                      <div className="relative rounded-xl border border-stone-250 dark:border-zinc-800 bg-white/[0.05] dark:bg-black/25 transition-all focus-within:border-[#e49505] focus-within:ring-1 focus-within:ring-[#e49505]">
+                      <div className="relative rounded-xl border border-stone-250 dark:border-zinc-800 bg-white/[0.05] dark:bg-black/25 transition-all focus-within:border-primary focus-within:ring-1 focus-within:ring-primary">
                         <span className="absolute inset-y-0 left-0 flex items-center pl-3.5 text-stone-400 dark:text-zinc-500">
                           <Github className="h-4 w-4" />
                         </span>
@@ -361,7 +361,7 @@ export const ProfileForm = () => {
                   <FormItem className="space-y-1.5">
                     <FormLabel className="text-xs font-semibold uppercase tracking-wider text-stone-600 dark:text-zinc-400">Display Order</FormLabel>
                     <FormControl>
-                      <div className="relative rounded-xl border border-stone-250 dark:border-zinc-800 bg-white/[0.05] dark:bg-black/25 transition-all focus-within:border-[#e49505] focus-within:ring-1 focus-within:ring-[#e49505]">
+                      <div className="relative rounded-xl border border-stone-250 dark:border-zinc-800 bg-white/[0.05] dark:bg-black/25 transition-all focus-within:border-primary focus-within:ring-1 focus-within:ring-primary">
                         <span className="absolute inset-y-0 left-0 flex items-center pl-3.5 text-stone-400 dark:text-zinc-500 text-xs font-bold">
                           #
                         </span>
@@ -386,7 +386,7 @@ export const ProfileForm = () => {
               render={() => (
                 <FormItem className="space-y-2">
                   <FormLabel className="text-xs font-semibold uppercase tracking-wider text-stone-600 dark:text-zinc-400 flex items-center gap-1.5">
-                    <ImageIcon className="h-4 w-4 text-[#e49505]" />
+                    <ImageIcon className="h-4 w-4 text-primary" />
                     <span>Upload Project Screenshots</span>
                   </FormLabel>
                   <FormControl>
@@ -422,7 +422,7 @@ export const ProfileForm = () => {
             <Button 
               type="submit" 
               disabled={loading} 
-              className="w-full flex items-center justify-center bg-[#e49505] hover:bg-[#c98304] disabled:bg-[#e49505]/50 text-white font-semibold py-3.5 px-4 rounded-xl shadow-lg shadow-[#e49505]/10 hover:shadow-[#e49505]/20 transition-all active:scale-[0.98] duration-200 text-base"
+              className="w-full flex items-center justify-center bg-primary hover:bg-primary-hover disabled:bg-primary/50 text-white font-semibold py-3.5 px-4 rounded-xl shadow-lg shadow-primary/10 hover:shadow-primary/20 transition-all active:scale-[0.98] duration-200 text-base"
             >
               {loading ? (
                 <>
@@ -442,11 +442,11 @@ export const ProfileForm = () => {
 
       {/* Sidebar Manage Categories Card */}
       <div className="lg:col-span-1">
-        <div className="py-8 px-6 rounded-2xl border border-stone-200/50 dark:border-white/5 bg-white bg-opacity-20 dark:bg-zinc-900/30 backdrop-blur-md shadow-2xl relative overflow-hidden transition-all hover:shadow-[#e49505]/5 duration-300 flex flex-col gap-6">
-          <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-transparent via-[#e49505] to-transparent animate-pulse" />
+        <div className="py-8 px-6 rounded-2xl border border-stone-200/50 dark:border-white/5 bg-white bg-opacity-20 dark:bg-zinc-900/30 backdrop-blur-md shadow-2xl relative overflow-hidden transition-all hover:shadow-primary/5 duration-300 flex flex-col gap-6">
+          <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-transparent via-primary to-transparent animate-pulse" />
           
           <div className="flex items-center gap-3 pb-2 border-b border-stone-200/50 dark:border-white/5">
-            <div className="flex items-center justify-center p-2.5 rounded-xl bg-[#e49505]/10 text-[#e49505]">
+            <div className="flex items-center justify-center p-2.5 rounded-xl bg-primary/10 text-primary">
               <FolderPlus className="h-5 w-5" />
             </div>
             <div>
@@ -460,7 +460,7 @@ export const ProfileForm = () => {
             <h4 className="text-xs font-semibold uppercase tracking-wider text-stone-600 dark:text-zinc-400">Current Categories</h4>
             <div className="flex flex-wrap gap-2 max-h-[160px] overflow-y-auto custom-scrollbar p-1">
               {options.map((option, idx) => (
-                <span key={idx} className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-[#e49505]/10 border border-[#e49505]/20 text-[#e49505] uppercase tracking-wider">
+                <span key={idx} className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-primary/10 border border-primary/20 text-primary uppercase tracking-wider">
                   {option.label}
                 </span>
               ))}
@@ -473,7 +473,7 @@ export const ProfileForm = () => {
               <label className="block text-xs font-semibold uppercase tracking-wider text-stone-600 dark:text-zinc-400" htmlFor="newCatName">
                 New Category Name
               </label>
-              <div className="relative rounded-xl border border-stone-250 dark:border-zinc-800 bg-white/[0.05] dark:bg-black/25 transition-all focus-within:border-[#e49505] focus-within:ring-1 focus-within:ring-[#e49505]">
+              <div className="relative rounded-xl border border-stone-250 dark:border-zinc-800 bg-white/[0.05] dark:bg-black/25 transition-all focus-within:border-primary focus-within:ring-1 focus-within:ring-primary">
                 <Input 
                   id="newCatName"
                   value={newCatName}
@@ -498,7 +498,7 @@ export const ProfileForm = () => {
             <Button 
               type="submit" 
               disabled={catLoading} 
-              className="w-full flex items-center justify-center bg-[#e49505] hover:bg-[#c98304] disabled:bg-[#e49505]/50 text-white font-semibold py-2.5 px-4 rounded-xl shadow-lg shadow-[#e49505]/10 hover:shadow-[#e49505]/20 transition-all active:scale-[0.98] duration-200 text-sm"
+              className="w-full flex items-center justify-center bg-primary hover:bg-primary-hover disabled:bg-primary/50 text-white font-semibold py-2.5 px-4 rounded-xl shadow-lg shadow-primary/10 hover:shadow-primary/20 transition-all active:scale-[0.98] duration-200 text-sm"
             >
               {catLoading ? (
                 <>

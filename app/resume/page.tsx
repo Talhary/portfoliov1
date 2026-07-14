@@ -55,7 +55,7 @@ const skillCategories = [
     skills: [
       { name: 'MongoDB', icon: SiMongodb, color: 'bg-emerald-100 text-emerald-850 border-emerald-300', darkColor: 'dark:bg-emerald-955 dark:text-emerald-300 dark:border-emerald-800', glowColor: 'rgba(16,185,129,0.4)' },
       { name: 'PostgreSQL', icon: SiPostgresql, color: 'bg-cyan-100 text-cyan-800 border-cyan-300', darkColor: 'dark:bg-cyan-955 dark:text-cyan-300 dark:border-cyan-800', glowColor: 'rgba(6,182,212,0.4)' },
-      { name: 'MySQL', icon: SiMysql, color: 'bg-orange-100 text-orange-800 border-orange-300', darkColor: 'dark:bg-orange-955 dark:text-orange-300 dark:border-orange-800', glowColor: 'rgba(228,149,5,0.4)' },
+      { name: 'MySQL', icon: SiMysql, color: 'bg-orange-100 text-orange-800 border-orange-300', darkColor: 'dark:bg-orange-955 dark:text-orange-300 dark:border-orange-800', glowColor: 'rgba(var(--primary-rgb),0.4)' },
     ]
   },
   {
@@ -91,7 +91,7 @@ const Page = () => {
         <div className="mt-12">
           <div className="flex gap-x-3.5 items-center justify-start mb-8 pl-1">
             <div className="h-10 w-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary border border-primary/20">
-              <Brain size={22} className="text-[#e49505]" />
+              <Brain size={22} className="text-primary" />
             </div>
             <h2 className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">My Skills</h2>
           </div>
@@ -100,11 +100,11 @@ const Page = () => {
             {skillCategories.map((cat, idx) => (
               <div 
                 key={idx}
-                className="relative p-[1px] rounded-2xl overflow-hidden bg-zinc-200 dark:bg-zinc-800/80 hover:bg-gradient-to-br hover:from-[#e49505] hover:to-amber-300 transition-all duration-300 hover:shadow-[0_8px_20px_rgba(228,149,5,0.08)] group"
+                className="relative p-[1px] rounded-2xl overflow-hidden bg-zinc-200 dark:bg-zinc-800/80 hover:bg-gradient-to-br hover:from-primary hover:to-primary-hover transition-all duration-300 hover:shadow-[0_8px_20px_rgba(var(--primary-rgb),0.08)] group"
               >
-                <div className="h-full w-full rounded-2xl bg-white dark:bg-[#1a1a1c]/95 p-5 relative overflow-hidden flex flex-col justify-start gap-4">
+                <div className="h-full w-full rounded-2xl bg-white dark:bg-card-bg-3/95 p-5 relative overflow-hidden flex flex-col justify-start gap-4">
                   {/* Category Title */}
-                  <h3 className="text-sm font-bold text-[#e49505] uppercase tracking-widest pl-0.5">
+                  <h3 className="text-sm font-bold text-primary uppercase tracking-widest pl-0.5">
                     {cat.title}
                   </h3>
                   

@@ -44,7 +44,7 @@ export default function MarkdownEditor({ id, value, onChange, placeholder }: Mar
             onClick={() => setActiveTab('write')}
             className={`px-3.5 py-1 text-xs font-semibold rounded-md transition-all ${
               activeTab === 'write'
-                ? 'bg-[#e49505] text-white shadow-md'
+                ? 'bg-primary text-white shadow-md'
                 : 'text-zinc-400 hover:text-white'
             }`}
           >
@@ -55,7 +55,7 @@ export default function MarkdownEditor({ id, value, onChange, placeholder }: Mar
             onClick={() => setActiveTab('preview')}
             className={`px-3.5 py-1 text-xs font-semibold rounded-md transition-all ${
               activeTab === 'preview'
-                ? 'bg-[#e49505] text-white shadow-md'
+                ? 'bg-primary text-white shadow-md'
                 : 'text-zinc-400 hover:text-white'
             }`}
           >
@@ -69,7 +69,7 @@ export default function MarkdownEditor({ id, value, onChange, placeholder }: Mar
             <button
               type="button"
               onClick={() => insertText('**', '**')}
-              className="p-1.5 rounded hover:bg-white/10 text-zinc-400 hover:text-[#e49505] transition-colors"
+              className="p-1.5 rounded hover:bg-white/10 text-zinc-400 hover:text-primary transition-colors"
               title="Bold"
             >
               <Bold className="h-4 w-4" />
@@ -77,7 +77,7 @@ export default function MarkdownEditor({ id, value, onChange, placeholder }: Mar
             <button
               type="button"
               onClick={() => insertText('*', '*')}
-              className="p-1.5 rounded hover:bg-white/10 text-zinc-400 hover:text-[#e49505] transition-colors"
+              className="p-1.5 rounded hover:bg-white/10 text-zinc-400 hover:text-primary transition-colors"
               title="Italic"
             >
               <Italic className="h-4 w-4" />
@@ -85,7 +85,7 @@ export default function MarkdownEditor({ id, value, onChange, placeholder }: Mar
             <button
               type="button"
               onClick={() => insertText('# ')}
-              className="p-1.5 rounded hover:bg-white/10 text-zinc-400 hover:text-[#e49505] transition-colors"
+              className="p-1.5 rounded hover:bg-white/10 text-zinc-400 hover:text-primary transition-colors"
               title="Heading 1"
             >
               <Heading1 className="h-4 w-4" />
@@ -93,7 +93,7 @@ export default function MarkdownEditor({ id, value, onChange, placeholder }: Mar
             <button
               type="button"
               onClick={() => insertText('## ')}
-              className="p-1.5 rounded hover:bg-white/10 text-zinc-400 hover:text-[#e49505] transition-colors"
+              className="p-1.5 rounded hover:bg-white/10 text-zinc-400 hover:text-primary transition-colors"
               title="Heading 2"
             >
               <Heading2 className="h-4 w-4" />
@@ -101,7 +101,7 @@ export default function MarkdownEditor({ id, value, onChange, placeholder }: Mar
             <button
               type="button"
               onClick={() => insertText('### ')}
-              className="p-1.5 rounded hover:bg-white/10 text-zinc-400 hover:text-[#e49505] transition-colors"
+              className="p-1.5 rounded hover:bg-white/10 text-zinc-400 hover:text-primary transition-colors"
               title="Heading 3"
             >
               <Heading3 className="h-4 w-4" />
@@ -110,7 +110,7 @@ export default function MarkdownEditor({ id, value, onChange, placeholder }: Mar
             <button
               type="button"
               onClick={() => insertText('[', '](url)')}
-              className="p-1.5 rounded hover:bg-white/10 text-zinc-400 hover:text-[#e49505] transition-colors"
+              className="p-1.5 rounded hover:bg-white/10 text-zinc-400 hover:text-primary transition-colors"
               title="Link"
             >
               <LinkIcon className="h-4 w-4" />
@@ -118,7 +118,7 @@ export default function MarkdownEditor({ id, value, onChange, placeholder }: Mar
             <button
               type="button"
               onClick={() => insertText('```\n', '\n```')}
-              className="p-1.5 rounded hover:bg-white/10 text-zinc-400 hover:text-[#e49505] transition-colors"
+              className="p-1.5 rounded hover:bg-white/10 text-zinc-400 hover:text-primary transition-colors"
               title="Code Block"
             >
               <Code className="h-4 w-4" />
@@ -126,7 +126,7 @@ export default function MarkdownEditor({ id, value, onChange, placeholder }: Mar
             <button
               type="button"
               onClick={() => insertText('- ')}
-              className="p-1.5 rounded hover:bg-white/10 text-zinc-400 hover:text-[#e49505] transition-colors"
+              className="p-1.5 rounded hover:bg-white/10 text-zinc-400 hover:text-primary transition-colors"
               title="Unordered List"
             >
               <List className="h-4 w-4" />
@@ -134,7 +134,7 @@ export default function MarkdownEditor({ id, value, onChange, placeholder }: Mar
             <button
               type="button"
               onClick={() => insertText('1. ')}
-              className="p-1.5 rounded hover:bg-white/10 text-zinc-400 hover:text-[#e49505] transition-colors"
+              className="p-1.5 rounded hover:bg-white/10 text-zinc-400 hover:text-primary transition-colors"
               title="Ordered List"
             >
               <ListOrdered className="h-4 w-4" />
@@ -157,7 +157,7 @@ export default function MarkdownEditor({ id, value, onChange, placeholder }: Mar
           <div className="w-full min-h-[250px] p-6 text-zinc-200 overflow-y-auto max-h-[400px]">
             {previewHtml ? (
               <div 
-                className="prose prose-invert prose-headings:text-white prose-a:text-[#e49505] prose-strong:text-white max-w-none text-sm leading-relaxed"
+                className="prose prose-invert prose-headings:text-white prose-a:text-primary prose-strong:text-white max-w-none text-sm leading-relaxed"
                 dangerouslySetInnerHTML={{ __html: previewHtml }}
               />
             ) : (

@@ -65,10 +65,10 @@ export function parseMarkdown(md: string): string {
   html = html.replace(/\*([^*]+)\*/g, '<em>$1</em>');
 
   // Links
-  html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer" class="text-[#e49505] hover:underline">$1</a>');
+  html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline">$1</a>');
 
   // Inline code
-  html = html.replace(/`([^`]+)`/g, '<code class="bg-black/30 px-1.5 py-0.5 rounded text-xs font-mono text-[#e49505]">$1</code>');
+  html = html.replace(/`([^`]+)`/g, '<code class="bg-black/30 px-1.5 py-0.5 rounded text-xs font-mono text-primary">$1</code>');
 
   // Lists (Unordered and Ordered)
   html = html.replace(/^\s*[-*]\s+(.*?)$/gm, '<li class="list-disc ml-6 my-1">$1</li>');

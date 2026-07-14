@@ -40,7 +40,7 @@ export const StickyAside = ({ children }: { children: ReactNode }) => {
     <aside 
       ref={asideRef}
       data-lenis-prevent
-      className="py-10 z-10 bg-zinc-50 dark:bg-[#1e1e1e] text-zinc-900 dark:text-white border border-zinc-200 dark:border-none shadow-sm dark:shadow-black w-full md:w-[20rem] md:min-w-[20rem] md:max-w-[20rem] max-md:max-w-full rounded-xl mr-0 p-5 h-auto max-md:p-0 max-md:m-0 md:sticky md:top-0 md:h-screen md:overflow-y-auto custom-scrollbar sidebar-container"
+      className="py-10 z-10 bg-zinc-50 dark:bg-big-card text-zinc-900 dark:text-white border border-zinc-200 dark:border-none shadow-sm dark:shadow-black w-full md:w-[20rem] md:min-w-[20rem] md:max-w-[20rem] max-md:max-w-full rounded-xl mr-0 p-5 h-auto max-md:p-0 max-md:m-0 md:sticky md:top-0 md:h-screen md:overflow-y-auto custom-scrollbar sidebar-container"
     >
       {children}
     </aside>

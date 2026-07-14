@@ -78,7 +78,7 @@ export default function Component() {
           initial="hidden"
           animate="visible"
           variants={cardVariants}
-          className="lg:col-span-7 bg-zinc-50 dark:bg-[#1a1a1c]/60 border border-zinc-200 dark:border-zinc-800/80 dark:backdrop-blur-xl rounded-2xl p-6 sm:p-8 shadow-sm dark:shadow-2xl relative overflow-hidden transition-all duration-300 hover:border-primary/20 flex flex-col"
+          className="lg:col-span-7 bg-zinc-50 dark:bg-card-bg-3/60 border border-zinc-200 dark:border-zinc-800/80 dark:backdrop-blur-xl rounded-2xl p-6 sm:p-8 shadow-sm dark:shadow-2xl relative overflow-hidden transition-all duration-300 hover:border-primary/20 flex flex-col"
         >
           <div className="absolute top-0 right-0 -mr-16 -mt-16 w-32 h-32 bg-primary/10 rounded-full blur-3xl pointer-events-none" />
           <div className="space-y-6 relative z-10 flex-1">
@@ -105,7 +105,7 @@ export default function Component() {
             initial="hidden"
             animate="visible"
             variants={cardVariants}
-            className="bg-zinc-50 dark:bg-[#1a1a1c]/60 border border-zinc-200 dark:border-zinc-800/80 dark:backdrop-blur-xl rounded-2xl p-6 shadow-sm dark:shadow-2xl relative overflow-hidden transition-all duration-300 hover:border-primary/20"
+            className="bg-zinc-50 dark:bg-card-bg-3/60 border border-zinc-200 dark:border-zinc-800/80 dark:backdrop-blur-xl rounded-2xl p-6 shadow-sm dark:shadow-2xl relative overflow-hidden transition-all duration-300 hover:border-primary/20"
           >
             <div className="space-y-4">
               <div className="flex items-center gap-3">
@@ -119,7 +119,7 @@ export default function Component() {
                 {/* Email */}
                 <div className="group/item flex items-center justify-between p-2.5 rounded-xl bg-zinc-100/50 dark:bg-black/20 border border-zinc-200/50 dark:border-zinc-800/30 hover:border-primary/30 transition-all duration-200">
                   <div className="flex items-center gap-3 min-w-0">
-                    <div className="h-8 w-8 rounded-lg bg-zinc-200/50 dark:bg-primary/5 flex items-center justify-center text-[#e49505] border border-zinc-300/50 dark:border-primary/10">
+                    <div className="h-8 w-8 rounded-lg bg-zinc-200/50 dark:bg-primary/5 flex items-center justify-center text-primary border border-zinc-300/50 dark:border-primary/10">
                       <Mail className="h-4 w-4" />
                     </div>
                     <div className="min-w-0">
@@ -134,7 +134,7 @@ export default function Component() {
                 {/* Phone */}
                 <div className="group/item flex items-center justify-between p-2.5 rounded-xl bg-zinc-100/50 dark:bg-black/20 border border-zinc-200/50 dark:border-zinc-800/30 hover:border-primary/30 transition-all duration-200">
                   <div className="flex items-center gap-3 min-w-0">
-                    <div className="h-8 w-8 rounded-lg bg-zinc-200/50 dark:bg-primary/5 flex items-center justify-center text-[#e49505] border border-zinc-300/50 dark:border-primary/10">
+                    <div className="h-8 w-8 rounded-lg bg-zinc-200/50 dark:bg-primary/5 flex items-center justify-center text-primary border border-zinc-300/50 dark:border-primary/10">
                       <Phone className="h-4 w-4" />
                     </div>
                     <div className="min-w-0">
@@ -149,7 +149,7 @@ export default function Component() {
                 {/* Website */}
                 <div className="group/item flex items-center justify-between p-2.5 rounded-xl bg-zinc-100/50 dark:bg-black/20 border border-zinc-200/50 dark:border-zinc-800/30 hover:border-primary/30 transition-all duration-200">
                   <div className="flex items-center gap-3 min-w-0">
-                    <div className="h-8 w-8 rounded-lg bg-zinc-200/50 dark:bg-primary/5 flex items-center justify-center text-[#e49505] border border-zinc-300/50 dark:border-primary/10">
+                    <div className="h-8 w-8 rounded-lg bg-zinc-200/50 dark:bg-primary/5 flex items-center justify-center text-primary border border-zinc-300/50 dark:border-primary/10">
                       <Globe className="h-4 w-4" />
                     </div>
                     <div className="min-w-0">
@@ -171,7 +171,7 @@ export default function Component() {
             initial="hidden"
             animate="visible"
             variants={cardVariants}
-            className="bg-zinc-50 dark:bg-[#1a1a1c]/60 border border-zinc-200 dark:border-zinc-800/80 dark:backdrop-blur-xl rounded-2xl p-5 shadow-sm dark:shadow-2xl relative overflow-hidden transition-all duration-300 hover:border-primary/20"
+            className="bg-zinc-50 dark:bg-card-bg-3/60 border border-zinc-200 dark:border-zinc-800/80 dark:backdrop-blur-xl rounded-2xl p-5 shadow-sm dark:shadow-2xl relative overflow-hidden transition-all duration-300 hover:border-primary/20"
           >
             <div className="space-y-3">
               <div className="flex items-center gap-3">
@@ -188,7 +188,7 @@ export default function Component() {
                 </div>
                 <div className="flex items-center justify-between">
                   <span className="text-zinc-500">Employment Status:</span>
-                  <span className="font-semibold text-[#e49505] bg-[#e49505]/10 px-2 py-0.5 rounded border border-[#e49505]/20 text-[10px] flex items-center gap-1">
+                  <span className="font-semibold text-primary bg-primary/10 px-2 py-0.5 rounded border border-primary/20 text-[10px] flex items-center gap-1">
                     <Briefcase className="h-2.5 w-2.5" />
                     <span>Open for Hire</span>
                   </span>
@@ -203,7 +203,7 @@ export default function Component() {
             initial="hidden"
             animate="visible"
             variants={cardVariants}
-            className="bg-zinc-50 dark:bg-[#1a1a1c]/60 border border-zinc-200 dark:border-zinc-800/80 dark:backdrop-blur-xl rounded-2xl p-6 shadow-sm dark:shadow-2xl relative overflow-hidden transition-all duration-300 hover:border-primary/20"
+            className="bg-zinc-50 dark:bg-card-bg-3/60 border border-zinc-200 dark:border-zinc-800/80 dark:backdrop-blur-xl rounded-2xl p-6 shadow-sm dark:shadow-2xl relative overflow-hidden transition-all duration-300 hover:border-primary/20"
           >
             <div className="space-y-4">
               <div className="flex items-center gap-3">
@@ -237,7 +237,7 @@ export default function Component() {
             initial="hidden"
             animate="visible"
             variants={cardVariants}
-            className="bg-zinc-50 dark:bg-[#1a1a1c]/60 border border-zinc-200 dark:border-zinc-800/80 dark:backdrop-blur-xl rounded-2xl p-3.5 shadow-sm dark:shadow-2xl relative overflow-hidden transition-all duration-300 hover:border-primary/20 group/map"
+            className="bg-zinc-50 dark:bg-card-bg-3/60 border border-zinc-200 dark:border-zinc-800/80 dark:backdrop-blur-xl rounded-2xl p-3.5 shadow-sm dark:shadow-2xl relative overflow-hidden transition-all duration-300 hover:border-primary/20 group/map"
           >
             <div className="relative h-48 rounded-xl overflow-hidden bg-zinc-150 dark:bg-black/40">
               <iframe 

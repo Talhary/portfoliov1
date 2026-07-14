@@ -156,22 +156,22 @@ export default function EditProjectForm({ project }: { project: any }) {
             Back to Dashboard
           </button>
         </Link>
-        <span className="text-xs bg-[#e49505]/10 border border-[#e49505]/20 text-[#e49505] px-3 py-1 rounded-full font-semibold uppercase tracking-wider">
+        <span className="text-xs bg-primary/10 border border-primary/20 text-primary px-3 py-1 rounded-full font-semibold uppercase tracking-wider">
           Live Editor
         </span>
       </div>
 
-      <form onSubmit={handleSave} className="space-y-6 py-8 px-6 sm:px-8 rounded-2xl border border-stone-200/50 dark:border-white/5 bg-white bg-opacity-20 dark:bg-zinc-900/30 backdrop-blur-md shadow-2xl relative overflow-hidden transition-all hover:shadow-[#e49505]/5 duration-300 text-white">
+      <form onSubmit={handleSave} className="space-y-6 py-8 px-6 sm:px-8 rounded-2xl border border-stone-200/50 dark:border-white/5 bg-white bg-opacity-20 dark:bg-zinc-900/30 backdrop-blur-md shadow-2xl relative overflow-hidden transition-all hover:shadow-primary/5 duration-300 text-white">
         
         {/* Top Accent Line */}
-        <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-transparent via-[#e49505] to-transparent animate-pulse" />
+        <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-transparent via-primary to-transparent animate-pulse" />
 
         {/* Title Field */}
         <div className="space-y-1.5">
           <label className="block text-xs font-semibold uppercase tracking-wider text-stone-600 dark:text-zinc-400" htmlFor="title">
             Project Title
           </label>
-          <div className="relative rounded-xl border border-stone-250 dark:border-zinc-800 bg-white/[0.05] dark:bg-black/25 transition-all focus-within:border-[#e49505] focus-within:ring-1 focus-within:ring-[#e49505]">
+          <div className="relative rounded-xl border border-stone-250 dark:border-zinc-800 bg-white/[0.05] dark:bg-black/25 transition-all focus-within:border-primary focus-within:ring-1 focus-within:ring-primary">
             <span className="absolute inset-y-0 left-0 flex items-center pl-3.5 text-stone-400 dark:text-zinc-500">
               <Terminal className="h-4 w-4" />
             </span>
@@ -207,13 +207,13 @@ export default function EditProjectForm({ project }: { project: any }) {
           </label>
           <div className="relative">
             <MultiSelector values={value} onValuesChange={setValue} loop={false}>
-              <MultiSelectorTrigger className="rounded-xl border border-stone-250 dark:border-zinc-800 bg-white/[0.05] dark:bg-black/25 text-stone-900 dark:text-white focus-within:border-[#e49505] focus-within:ring-1 focus-within:ring-[#e49505] py-2 px-3">
+              <MultiSelectorTrigger className="rounded-xl border border-stone-250 dark:border-zinc-800 bg-white/[0.05] dark:bg-black/25 text-stone-900 dark:text-white focus-within:border-primary focus-within:ring-1 focus-within:ring-primary py-2 px-3">
                 <MultiSelectorInput placeholder="Choose tag categories..." className="placeholder-stone-450 dark:placeholder-zinc-650" />
               </MultiSelectorTrigger>
               <MultiSelectorContent>
                 <MultiSelectorList className="bg-white dark:bg-zinc-950 border border-stone-200 dark:border-zinc-800 text-stone-900 dark:text-white rounded-xl shadow-2xl p-1.5 space-y-1 z-50">
                   {options.map((option, i) => (
-                    <MultiSelectorItem key={i} value={option.value} className="rounded-lg hover:bg-[#e49505]/10 hover:text-[#e49505] cursor-pointer">
+                    <MultiSelectorItem key={i} value={option.value} className="rounded-lg hover:bg-primary/10 hover:text-primary cursor-pointer">
                       {option.label}
                     </MultiSelectorItem>
                   ))}
@@ -229,7 +229,7 @@ export default function EditProjectForm({ project }: { project: any }) {
             Tech Stack (Frameworks / Libraries)
           </label>
           <div className="flex gap-2">
-            <div className="relative flex-1 rounded-xl border border-stone-250 dark:border-zinc-800 bg-white/[0.05] dark:bg-black/25 transition-all focus-within:border-[#e49505] focus-within:ring-1 focus-within:ring-[#e49505]">
+            <div className="relative flex-1 rounded-xl border border-stone-250 dark:border-zinc-800 bg-white/[0.05] dark:bg-black/25 transition-all focus-within:border-primary focus-within:ring-1 focus-within:ring-primary">
               <input 
                 type="text"
                 placeholder="Enter technology (e.g. Next.js, React)..." 
@@ -247,7 +247,7 @@ export default function EditProjectForm({ project }: { project: any }) {
             <button 
               type="button" 
               onClick={addStackItem}
-              className="bg-[#e49505] hover:bg-[#c98304] text-white rounded-xl px-4 flex items-center justify-center gap-1 text-sm font-semibold transition-colors"
+              className="bg-primary hover:bg-primary-hover text-white rounded-xl px-4 flex items-center justify-center gap-1 text-sm font-semibold transition-colors"
             >
               <Plus className="h-4 w-4" />
               <span>Add</span>
@@ -282,7 +282,7 @@ export default function EditProjectForm({ project }: { project: any }) {
             <label className="block text-xs font-semibold uppercase tracking-wider text-stone-600 dark:text-zinc-400" htmlFor="link">
               Production Live Url
             </label>
-            <div className="relative rounded-xl border border-stone-250 dark:border-zinc-800 bg-white/[0.05] dark:bg-black/25 transition-all focus-within:border-[#e49505] focus-within:ring-1 focus-within:ring-[#e49505]">
+            <div className="relative rounded-xl border border-stone-250 dark:border-zinc-800 bg-white/[0.05] dark:bg-black/25 transition-all focus-within:border-primary focus-within:ring-1 focus-within:ring-primary">
               <span className="absolute inset-y-0 left-0 flex items-center pl-3.5 text-stone-400 dark:text-zinc-500">
                 <Globe className="h-4 w-4" />
               </span>
@@ -303,7 +303,7 @@ export default function EditProjectForm({ project }: { project: any }) {
             <label className="block text-xs font-semibold uppercase tracking-wider text-stone-600 dark:text-zinc-400" htmlFor="githubUrl">
               Repository Github Url
             </label>
-            <div className="relative rounded-xl border border-stone-250 dark:border-zinc-800 bg-white/[0.05] dark:bg-black/25 transition-all focus-within:border-[#e49505] focus-within:ring-1 focus-within:ring-[#e49505]">
+            <div className="relative rounded-xl border border-stone-250 dark:border-zinc-800 bg-white/[0.05] dark:bg-black/25 transition-all focus-within:border-primary focus-within:ring-1 focus-within:ring-primary">
               <span className="absolute inset-y-0 left-0 flex items-center pl-3.5 text-stone-400 dark:text-zinc-500">
                 <Github className="h-4 w-4" />
               </span>
@@ -324,7 +324,7 @@ export default function EditProjectForm({ project }: { project: any }) {
             <label className="block text-xs font-semibold uppercase tracking-wider text-stone-600 dark:text-zinc-400" htmlFor="order">
               Display Order
             </label>
-            <div className="relative rounded-xl border border-stone-250 dark:border-zinc-800 bg-white/[0.05] dark:bg-black/25 transition-all focus-within:border-[#e49505] focus-within:ring-1 focus-within:ring-[#e49505]">
+            <div className="relative rounded-xl border border-stone-250 dark:border-zinc-800 bg-white/[0.05] dark:bg-black/25 transition-all focus-within:border-primary focus-within:ring-1 focus-within:ring-primary">
               <span className="absolute inset-y-0 left-0 flex items-center pl-3.5 text-stone-400 dark:text-zinc-500 text-xs font-bold">
                 #
               </span>
@@ -344,7 +344,7 @@ export default function EditProjectForm({ project }: { project: any }) {
         {/* IMAGE ORDERING AND UPLOAD MANAGER */}
         <div className="space-y-3 pt-4 border-t border-stone-200/50 dark:border-white/5">
           <label className="block text-xs font-semibold uppercase tracking-wider text-stone-600 dark:text-zinc-400 flex items-center gap-1.5">
-            <ImageIcon className="h-4 w-4 text-[#e49505]" />
+            <ImageIcon className="h-4 w-4 text-primary" />
             <span>Manage & Order Screenshots (1st is Main Cover)</span>
           </label>
 
@@ -364,7 +364,7 @@ export default function EditProjectForm({ project }: { project: any }) {
                   />
 
                   {/* Order Number Badge */}
-                  <div className="absolute top-2 left-2 bg-[#e49505] text-white text-[10px] font-bold px-2 py-0.5 rounded-full shadow-md z-20">
+                  <div className="absolute top-2 left-2 bg-primary text-white text-[10px] font-bold px-2 py-0.5 rounded-full shadow-md z-20">
                     {index === 0 ? "Cover (1st)" : `${index + 1}`}
                   </div>
 
@@ -389,7 +389,7 @@ export default function EditProjectForm({ project }: { project: any }) {
                         type="button"
                         onClick={() => moveLeft(index)}
                         disabled={index === 0}
-                        className="flex-1 bg-white/10 hover:bg-[#e49505] disabled:bg-zinc-800/50 disabled:text-zinc-600 text-white font-semibold py-1.5 rounded-lg text-xs transition-all active:scale-[0.95] flex items-center justify-center gap-0.5 disabled:pointer-events-none"
+                        className="flex-1 bg-white/10 hover:bg-primary disabled:bg-zinc-800/50 disabled:text-zinc-600 text-white font-semibold py-1.5 rounded-lg text-xs transition-all active:scale-[0.95] flex items-center justify-center gap-0.5 disabled:pointer-events-none"
                         title="Move Left"
                       >
                         <ChevronLeft className="h-4 w-4" />
@@ -400,7 +400,7 @@ export default function EditProjectForm({ project }: { project: any }) {
                         type="button"
                         onClick={() => moveRight(index)}
                         disabled={index === imageUrl.length - 1}
-                        className="flex-1 bg-white/10 hover:bg-[#e49505] disabled:bg-zinc-800/50 disabled:text-zinc-650 text-white font-semibold py-1.5 rounded-lg text-xs transition-all active:scale-[0.95] flex items-center justify-center gap-0.5 disabled:pointer-events-none"
+                        className="flex-1 bg-white/10 hover:bg-primary disabled:bg-zinc-800/50 disabled:text-zinc-650 text-white font-semibold py-1.5 rounded-lg text-xs transition-all active:scale-[0.95] flex items-center justify-center gap-0.5 disabled:pointer-events-none"
                         title="Move Right"
                       >
                         <span>Move Right</span>
@@ -429,7 +429,7 @@ export default function EditProjectForm({ project }: { project: any }) {
               onUploadError={(error: Error) => {
                 alert(`Upload Error! ${error.message}`);
               }}
-              className="border-0 bg-transparent ut-allowed-content:text-stone-500 dark:ut-allowed-content:text-zinc-500 ut-label:text-stone-700 dark:ut-label:text-zinc-300 ut-button:bg-[#e49505] ut-button:hover:bg-[#c98304] ut-button:text-white ut-button:rounded-xl ut-button:font-semibold rounded-xl p-4 cursor-pointer"
+              className="border-0 bg-transparent ut-allowed-content:text-stone-500 dark:ut-allowed-content:text-zinc-500 ut-label:text-stone-700 dark:ut-label:text-zinc-300 ut-button:bg-primary ut-button:hover:bg-primary-hover ut-button:text-white ut-button:rounded-xl ut-button:font-semibold rounded-xl p-4 cursor-pointer"
             />
           </div>
         </div>
@@ -454,7 +454,7 @@ export default function EditProjectForm({ project }: { project: any }) {
         <Button 
           type="submit" 
           disabled={loading} 
-          className="w-full flex items-center justify-center bg-[#e49505] hover:bg-[#c98304] disabled:bg-[#e49505]/50 text-white font-semibold py-3.5 px-4 rounded-xl shadow-lg shadow-[#e49505]/10 hover:shadow-[#e49505]/20 transition-all active:scale-[0.98] duration-200 text-base"
+          className="w-full flex items-center justify-center bg-primary hover:bg-primary-hover disabled:bg-primary/50 text-white font-semibold py-3.5 px-4 rounded-xl shadow-lg shadow-primary/10 hover:shadow-primary/20 transition-all active:scale-[0.98] duration-200 text-base"
         >
           {loading ? (
             <>

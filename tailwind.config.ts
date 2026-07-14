@@ -1,4 +1,6 @@
 import { withUt } from "uploadthing/tw";
+import { themeColors } from "./lib/colors";
+
 export default withUt({
   darkMode: ["class"],
   content: [
@@ -23,12 +25,15 @@ export default withUt({
         'mid':'1220px',
       },
       colors:{
-        'big-card':'#1e1e1e',
-        'card-bg':'#32312f',
-        'card-light-bg':'#32312f',
-        'primary':'#e49505',
-        "card-bg-1":'#282828',
-        "card-bg-2":'#222224',
+        'big-card': themeColors.bigCard,
+        'card-bg': themeColors.cardBg,
+        'card-light-bg': themeColors.cardLightBg,
+        'primary': themeColors.primary,
+        'primary-hover': themeColors.primaryHover,
+        "card-bg-1": themeColors.cardBg1,
+        "card-bg-2": themeColors.cardBg2,
+        "card-bg-3": themeColors.cardBg3,
+        'slider-bg': themeColors.sliderBg,
       },
       keyframes: {
         "accordion-down": {

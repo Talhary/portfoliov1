@@ -35,7 +35,7 @@ const ItemList = ({ initialItems }: { initialItems: any }) => {
       {/* Visual Header Separator */}
       <div className="flex items-center gap-3 pb-2 border-b border-stone-200/50 dark:border-white/5">
         <h3 className="text-xl font-bold text-stone-900 dark:text-white tracking-tight">Active Live Projects</h3>
-        <span className="text-xs bg-[#e49505]/10 border border-[#e49505]/20 text-[#e49505] px-2 py-0.5 rounded-full font-semibold">
+        <span className="text-xs bg-primary/10 border border-primary/20 text-primary px-2 py-0.5 rounded-full font-semibold">
           {items.length} Total
         </span>
       </div>
@@ -52,7 +52,7 @@ const ItemList = ({ initialItems }: { initialItems: any }) => {
         {items.map((item: z.infer<typeof formSchema>) => (
           <div
             key={item.id}
-            className="group rounded-2xl border border-stone-200/50 dark:border-white/5 bg-white bg-opacity-20 dark:bg-zinc-900/30 backdrop-blur-md shadow-xl hover:shadow-2xl overflow-hidden flex flex-col justify-between transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[#e49505]/5 relative"
+            className="group rounded-2xl border border-stone-200/50 dark:border-white/5 bg-white bg-opacity-20 dark:bg-zinc-900/30 backdrop-blur-md shadow-xl hover:shadow-2xl overflow-hidden flex flex-col justify-between transition-all duration-300 hover:-translate-y-1.5 hover:shadow-primary/5 relative"
           >
             {/* Image Gallery Header Carousel */}
             <div className="w-full relative overflow-hidden">
@@ -71,7 +71,7 @@ const ItemList = ({ initialItems }: { initialItems: any }) => {
                   {item.type.split('|').map((el: any) => (
                     <span
                       key={el}
-                      className="text-[9px] font-bold bg-[#e49505]/10 border border-[#e49505]/20 text-[#e49505] uppercase tracking-wider px-2 py-0.5 rounded-full"
+                      className="text-[9px] font-bold bg-primary/10 border border-primary/20 text-primary uppercase tracking-wider px-2 py-0.5 rounded-full"
                     >
                       {el}
                     </span>
@@ -82,13 +82,13 @@ const ItemList = ({ initialItems }: { initialItems: any }) => {
               {/* Visit Live & Repository Buttons */}
               <div className="flex items-center gap-3 pt-3 border-t border-stone-200/50 dark:border-white/5 mt-auto">
                 <a href={item.link} className="flex-1" target="_blank" rel="noopener noreferrer">
-                  <button className="w-full flex items-center justify-center gap-1.5 border border-stone-350 dark:border-zinc-700 text-stone-700 dark:text-stone-300 hover:bg-[#e49505]/10 hover:text-[#e49505] hover:border-[#e49505]/20 transition-all font-semibold rounded-xl text-xs py-2 px-3">
+                  <button className="w-full flex items-center justify-center gap-1.5 border border-stone-350 dark:border-zinc-700 text-stone-700 dark:text-stone-300 hover:bg-primary/10 hover:text-primary hover:border-primary/20 transition-all font-semibold rounded-xl text-xs py-2 px-3">
                     <ExternalLink className="h-3.5 w-3.5" />
                     Visit
                   </button>
                 </a>
                 <a href={item.githubUrl} className="flex-1" target="_blank" rel="noopener noreferrer">
-                  <button className="w-full flex items-center justify-center gap-1.5 bg-[#e49505] hover:bg-[#c98304] text-white transition-all font-semibold rounded-xl text-xs py-2 px-3 shadow-md shadow-[#e49505]/10">
+                  <button className="w-full flex items-center justify-center gap-1.5 bg-primary hover:bg-primary-hover text-white transition-all font-semibold rounded-xl text-xs py-2 px-3 shadow-md shadow-primary/10">
                     <Code2 className="h-3.5 w-3.5" />
                     Code
                   </button>

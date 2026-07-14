@@ -8,10 +8,10 @@ body {
 
 .point {
     @apply border-none shadow-lg;
-    box-shadow: 0px 0px 4px 3px #e49505; /* Custom shadow */
+    box-shadow: 0px 0px 4px 3px var(--primary); /* Custom shadow from unified theme */
 }
 .card {
-    @apply bg-zinc-50 dark:bg-[#222224] border border-zinc-200 dark:border-white/5 hover:shadow-xl transition-all duration-300 shadow-sm dark:shadow-md;
+    @apply bg-zinc-50 dark:bg-card-bg-2 border border-zinc-200 dark:border-white/5 hover:shadow-xl transition-all duration-300 shadow-sm dark:shadow-md;
 }
 
 /* Custom Global Scrollbar */
@@ -23,33 +23,33 @@ body {
     background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-    background: rgba(228, 149, 5, 0.35); /* primary orange translucent */
+    background: rgba(var(--primary-rgb), 0.35); /* primary translucent */
     border-radius: 9999px;
     border: 2px solid transparent;
     background-clip: padding-box;
 }
 ::-webkit-scrollbar-thumb:hover {
-    background: rgba(228, 149, 5, 0.65);
+    background: rgba(var(--primary-rgb), 0.65);
     border: 2px solid transparent;
     background-clip: padding-box;
 }
 .dark ::-webkit-scrollbar-thumb {
-    background: rgba(228, 149, 5, 0.25);
+    background: rgba(var(--primary-rgb), 0.25);
     border: 2px solid transparent;
     background-clip: padding-box;
 }
 .dark ::-webkit-scrollbar-thumb:hover {
-    background: rgba(228, 149, 5, 0.55);
+    background: rgba(var(--primary-rgb), 0.55);
     border: 2px solid transparent;
     background-clip: padding-box;
 }
 
 html {
     scrollbar-width: thin;
-    scrollbar-color: rgba(228, 149, 5, 0.3) transparent;
+    scrollbar-color: rgba(var(--primary-rgb), 0.3) transparent;
 }
 html.dark {
-    scrollbar-color: rgba(228, 149, 5, 0.25) transparent;
+    scrollbar-color: rgba(var(--primary-rgb), 0.25) transparent;
 }
 
 /* Sidebar dynamic compression for smaller viewport heights */

@@ -12,19 +12,19 @@ export const Spinner = () => {
     >
       <div className="relative w-16 h-16">
         {/* Outer Ring */}
-        <div className="absolute inset-0 border-4 border-transparent border-t-[#e49505] border-r-[#e49505] rounded-full animate-spin duration-1000" />
+        <div className="absolute inset-0 border-4 border-transparent border-t-primary border-r-primary rounded-full animate-spin duration-1000" />
         
         {/* Inner Ring (rotating in reverse) */}
         <div 
-          className="absolute inset-2 border-4 border-transparent border-b-[#e49505] border-l-[#e49505] rounded-full animate-spin" 
+          className="absolute inset-2 border-4 border-transparent border-b-primary border-l-primary rounded-full animate-spin" 
           style={{ animationDirection: 'reverse', animationDuration: '0.8s' }} 
         />
         
         {/* Glowing Center Dot */}
-        <div className="absolute inset-[20px] bg-[#e49505] rounded-full shadow-[0_0_12px_#e49505] animate-pulse" />
+        <div className="absolute inset-[20px] bg-primary rounded-full shadow-[0_0_12px_var(--primary)] animate-pulse" />
       </div>
       
-      <span className="text-xs uppercase tracking-widest text-[#e49505] font-bold animate-pulse">
+      <span className="text-xs uppercase tracking-widest text-primary font-bold animate-pulse">
         Loading
       </span>
     </motion.div>

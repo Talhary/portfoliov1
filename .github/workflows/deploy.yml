@@ -29,6 +29,7 @@ jobs:
             --build-arg JWT_TOKEN="${{ secrets.JWT_TOKEN }}" \
             --build-arg BLOG_API_KEY="${{ secrets.BLOG_API_KEY }}" \
             --build-arg UPLOADTHING_TOKEN="${{ secrets.UPLOADTHING_TOKEN }}" \
+            --build-arg MEDIA_DOWNLOAD_API_URL="${{ secrets.MEDIA_DOWNLOAD_API_URL }}" \
             .
           docker save portfolio:latest | gzip > portfolio.tar.gz
 

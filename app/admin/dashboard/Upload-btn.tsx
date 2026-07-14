@@ -24,7 +24,7 @@ const Home = ({ setImgUrl, imgUrl }: UploadProps) => {
           {currentImages.map((url, index) => (
             <div 
               key={url} 
-              className="group relative aspect-video rounded-xl overflow-hidden border border-stone-250/30 dark:border-white/5 bg-black/40 shadow-lg transition-all duration-300 hover:scale-[1.02] hover:shadow-[#e49505]/5"
+              className="group relative aspect-video rounded-xl overflow-hidden border border-stone-250/30 dark:border-white/5 bg-black/40 shadow-lg transition-all duration-300 hover:scale-[1.02] hover:shadow-primary/5"
             >
               <Image 
                 alt={`Screenshot ${index + 1}`} 
@@ -63,7 +63,7 @@ const Home = ({ setImgUrl, imgUrl }: UploadProps) => {
           onUploadError={(error: Error) => {
             alert(`Upload Error! ${error.message}`);
           }}
-          className="border border-dashed border-stone-250 dark:border-zinc-800 bg-white/[0.02] dark:bg-black/15 ut-allowed-content:text-stone-500 dark:ut-allowed-content:text-zinc-500 ut-label:text-stone-700 dark:ut-label:text-zinc-300 ut-button:bg-[#e49505] ut-button:hover:bg-[#c98304] ut-button:text-white ut-button:rounded-xl ut-button:font-semibold rounded-xl p-8 hover:bg-white/[0.04] dark:hover:bg-black/25 transition-all cursor-pointer"
+          className="border border-dashed border-stone-250 dark:border-zinc-800 bg-white/[0.02] dark:bg-black/15 ut-allowed-content:text-stone-500 dark:ut-allowed-content:text-zinc-500 ut-label:text-stone-700 dark:ut-label:text-zinc-300 ut-button:bg-primary ut-button:hover:bg-primary-hover ut-button:text-white ut-button:rounded-xl ut-button:font-semibold rounded-xl p-8 hover:bg-white/[0.04] dark:hover:bg-black/25 transition-all cursor-pointer"
         />
       </div>
     </div>

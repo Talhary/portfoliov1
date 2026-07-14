@@ -56,22 +56,22 @@ export const RadarChart = () => {
   });
 
   return (
-    <div className="bg-zinc-50 dark:bg-[#1a1a1c]/60 border border-zinc-200 dark:border-zinc-800/80 dark:backdrop-blur-xl rounded-2xl p-6 sm:p-8 shadow-sm dark:shadow-2xl relative overflow-hidden transition-all duration-300 hover:border-[#e49505]/20 group flex flex-col md:flex-row items-center gap-8">
+    <div className="bg-zinc-50 dark:bg-card-bg-3/60 border border-zinc-200 dark:border-zinc-800/80 dark:backdrop-blur-xl rounded-2xl p-6 sm:p-8 shadow-sm dark:shadow-2xl relative overflow-hidden transition-all duration-300 hover:border-primary/20 group flex flex-col md:flex-row items-center gap-8">
       {/* Glow highlight */}
-      <div className="absolute top-0 right-0 -mr-12 -mt-12 w-28 h-28 bg-[#e49505]/5 rounded-full blur-3xl pointer-events-none group-hover:bg-[#e49505]/10 transition-colors duration-300" />
-
+      <div className="absolute top-0 right-0 -mr-12 -mt-12 w-28 h-28 bg-primary/5 rounded-full blur-3xl pointer-events-none group-hover:bg-primary/10 transition-colors duration-300" />
+ 
       {/* Left Column: Visual SVG Chart */}
       <div className="relative shrink-0 select-none">
         <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`} className="overflow-visible">
           <defs>
             {/* Soft gold drop shadow glow for the active shape */}
             <filter id="gold-glow" x="-20%" y="-20%" width="140%" height="140%">
-              <feDropShadow dx="0" dy="0" stdDeviation="6" floodColor="#e49505" floodOpacity="0.4" />
+              <feDropShadow dx="0" dy="0" stdDeviation="6" floodColor="var(--primary)" floodOpacity="0.4" />
             </filter>
             {/* Gradient fill */}
             <radialGradient id="gold-grad" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stopColor="#e49505" stopOpacity="0.15" />
-              <stop offset="100%" stopColor="#e49505" stopOpacity="0.35" />
+              <stop offset="0%" stopColor="var(--primary)" stopOpacity="0.15" />
+              <stop offset="100%" stopColor="var(--primary)" stopOpacity="0.35" />
             </radialGradient>
           </defs>
 
@@ -103,7 +103,7 @@ export const RadarChart = () => {
           <polygon
             points={skillPoints}
             fill="url(#gold-grad)"
-            className="stroke-[#e49505] stroke-2"
+            className="stroke-primary stroke-2"
             filter="url(#gold-glow)"
           />
 
@@ -122,8 +122,8 @@ export const RadarChart = () => {
                   cx={x}
                   cy={y}
                   r={isHovered ? 6 : 4}
-                  className={`fill-[#e49505] stroke-white dark:stroke-black transition-all duration-200 ${
-                    isHovered ? 'ring-4 ring-[#e49505]/40 scale-125' : ''
+                  className={`fill-primary stroke-white dark:stroke-black transition-all duration-200 ${
+                    isHovered ? 'ring-4 ring-primary/40 scale-125' : ''
                   }`}
                   strokeWidth={2}
                 />
@@ -148,7 +148,7 @@ export const RadarChart = () => {
                 textAnchor={anchor}
                 className={`text-[11px] font-bold uppercase tracking-wider transition-colors duration-200 select-none ${
                   isHovered 
-                    ? 'fill-[#e49505]' 
+                    ? 'fill-primary' 
                     : 'fill-stone-600 dark:fill-zinc-400'
                 }`}
               >
@@ -162,7 +162,7 @@ export const RadarChart = () => {
       {/* Right Column: Detailed Skill Descriptions & Hover Info */}
       <div className="flex-1 space-y-4 w-full">
         <div>
-          <span className="text-[10px] text-[#e49505] bg-[#e49505]/10 border border-[#e49505]/20 px-2.5 py-1 rounded-full font-bold uppercase tracking-widest">
+          <span className="text-[10px] text-primary bg-primary/10 border border-primary/20 px-2.5 py-1 rounded-full font-bold uppercase tracking-widest">
             Infographic
           </span>
           <h4 className="text-xl font-bold text-zinc-900 dark:text-white tracking-tight mt-2.5">
@@ -186,15 +186,15 @@ export const RadarChart = () => {
                 onMouseLeave={() => setHoveredIdx(null)}
                 className={`flex items-center justify-between p-2 rounded-xl border transition-all duration-200 ${
                   isHovered
-                    ? 'bg-[#e49505]/10 border-[#e49505]/30 translate-x-1'
+                    ? 'bg-primary/10 border-primary/30 translate-x-1'
                     : 'bg-white/[0.01] border-transparent hover:border-white/5 dark:hover:border-zinc-800/30'
                 }`}
               >
                 <div className="flex items-center gap-2.5">
                   <div className={`h-6 w-6 rounded-lg flex items-center justify-center border text-xs font-semibold ${
                     isHovered
-                      ? 'bg-[#e49505] text-black border-[#e49505]'
-                      : 'bg-white/5 border-white/10 text-[#e49505]'
+                      ? 'bg-primary text-black border-primary'
+                      : 'bg-white/5 border-white/10 text-primary'
                   }`}>
                     {i + 1}
                   </div>
@@ -208,8 +208,8 @@ export const RadarChart = () => {
                   </div>
                 </div>
                 <div className="flex items-center gap-1">
-                  <span className="text-xs font-bold text-[#e49505]">{cat.value}%</span>
-                  <CheckCircle2 className={`h-3.5 w-3.5 text-[#e49505] transition-all ${isHovered ? 'scale-110 opacity-100' : 'opacity-40'}`} />
+                  <span className="text-xs font-bold text-primary">{cat.value}%</span>
+                  <CheckCircle2 className={`h-3.5 w-3.5 text-primary transition-all ${isHovered ? 'scale-110 opacity-100' : 'opacity-40'}`} />
                 </div>
               </div>
             );

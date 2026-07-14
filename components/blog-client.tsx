@@ -120,7 +120,7 @@ export function BlogClient({
                 placeholder="Search articles..."
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                className="w-full pl-10 pr-10 py-3 rounded-2xl bg-zinc-100 dark:bg-[#1a1a1c]/60 border border-zinc-200 dark:border-zinc-800/80 text-zinc-900 dark:text-white placeholder-zinc-500 text-sm focus:outline-none focus:border-[#e49505] focus:shadow-[0_0_15px_rgba(228,149,5,0.15)] transition-all duration-300"
+                className="w-full pl-10 pr-10 py-3 rounded-2xl bg-zinc-100 dark:bg-card-bg-3/60 border border-zinc-200 dark:border-zinc-800/80 text-zinc-900 dark:text-white placeholder-zinc-500 text-sm focus:outline-none focus:border-primary focus:shadow-[0_0_15px_rgba(var(--primary-rgb),0.15)] transition-all duration-300"
               />
               <Search className="absolute left-3.5 top-3.5 h-4 w-4 text-zinc-500" />
               {search && (
@@ -146,7 +146,7 @@ export function BlogClient({
           <div className="flex items-center gap-2">
             <span className="text-xs uppercase font-bold tracking-widest text-zinc-500 mr-2">Tags:</span>
             {currentTag && currentTag !== 'all' && (
-              <span className="text-xs bg-[#e49505]/10 border border-[#e49505]/20 text-[#e49505] px-2.5 py-0.5 rounded-full font-semibold uppercase tracking-wider">
+              <span className="text-xs bg-primary/10 border border-primary/20 text-primary px-2.5 py-0.5 rounded-full font-semibold uppercase tracking-wider">
                 Active: {currentTag}
               </span>
             )}
@@ -162,7 +162,7 @@ export function BlogClient({
                 setTagSearch(e.target.value);
                 setShowAllTags(true); // Automatically expand when searching
               }}
-              className="w-full pl-8 pr-8 py-1.5 rounded-xl bg-zinc-100 dark:bg-[#1a1a1c]/60 border border-zinc-200 dark:border-zinc-800/80 text-zinc-900 dark:text-white placeholder-zinc-500 text-xs focus:outline-none focus:border-[#e49505] transition-all duration-300"
+              className="w-full pl-8 pr-8 py-1.5 rounded-xl bg-zinc-100 dark:bg-card-bg-3/60 border border-zinc-200 dark:border-zinc-800/80 text-zinc-900 dark:text-white placeholder-zinc-500 text-xs focus:outline-none focus:border-primary transition-all duration-300"
             />
             <Search className="absolute left-2.5 top-2 h-3.5 w-3.5 text-zinc-500" />
             {tagSearch && (
@@ -183,8 +183,8 @@ export function BlogClient({
             onClick={() => updateFilters({ tag: 'all' })}
             className={`px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider transition-all duration-200 ${
               currentTag === 'all' || !currentTag
-                ? 'bg-[#e49505] text-white shadow-md shadow-[#e49505]/20 scale-105'
-                : 'bg-zinc-100 dark:bg-[#1a1a1c]/40 border border-zinc-200 dark:border-white/10 text-zinc-650 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-200 dark:hover:bg-white/10'
+                ? 'bg-primary text-white shadow-md shadow-primary/20 scale-105'
+                : 'bg-zinc-100 dark:bg-card-bg-3/40 border border-zinc-200 dark:border-white/10 text-zinc-650 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-200 dark:hover:bg-white/10'
             }`}
           >
             All Posts
@@ -196,8 +196,8 @@ export function BlogClient({
               onClick={() => updateFilters({ tag })}
               className={`tag-item px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider transition-all duration-200 ${
                 currentTag === tag
-                  ? 'bg-[#e49505] text-white shadow-md shadow-[#e49505]/20 scale-105'
-                  : 'bg-zinc-100 dark:bg-[#1a1a1c]/40 border border-zinc-200 dark:border-white/10 text-zinc-650 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-200 dark:hover:bg-white/10'
+                  ? 'bg-primary text-white shadow-md shadow-primary/20 scale-105'
+                  : 'bg-zinc-100 dark:bg-card-bg-3/40 border border-zinc-200 dark:border-white/10 text-zinc-650 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-200 dark:hover:bg-white/10'
               }`}
             >
               {tag}
@@ -208,7 +208,7 @@ export function BlogClient({
           {filteredTags.length > 12 && !tagSearch && (
             <button
               onClick={() => setShowAllTags(!showAllTags)}
-              className="px-4 py-1.5 rounded-full text-xs font-bold text-[#e49505] bg-[#e49505]/10 border border-[#e49505]/20 hover:bg-[#e49505]/20 transition-all uppercase tracking-wider"
+              className="px-4 py-1.5 rounded-full text-xs font-bold text-primary bg-primary/10 border border-primary/20 hover:bg-primary/20 transition-all uppercase tracking-wider"
             >
               {showAllTags ? 'Show Less' : `Show More (+${filteredTags.length - 12})`}
             </button>
@@ -225,10 +225,10 @@ export function BlogClient({
       <section id="blog-posts" className="px-2 md:px-4 min-h-[300px]">
         {isPending ? (
           <div className="flex justify-center items-center py-20">
-            <div className="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-[#e49505]"></div>
+            <div className="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-primary"></div>
           </div>
         ) : initialBlogs.length === 0 ? (
-          <div className="text-center py-20 space-y-4 bg-zinc-50 dark:bg-[#1a1a1c]/20 border border-zinc-200 dark:border-white/5 rounded-2xl">
+          <div className="text-center py-20 space-y-4 bg-zinc-50 dark:bg-card-bg-3/20 border border-zinc-200 dark:border-white/5 rounded-2xl">
             <BookOpen className="h-12 w-12 text-zinc-650 mx-auto" />
             <h3 className="text-xl font-bold text-zinc-900 dark:text-white">No articles found</h3>
             <p className="text-sm text-zinc-500 dark:text-zinc-450 max-w-sm mx-auto font-light leading-relaxed">
@@ -249,9 +249,9 @@ export function BlogClient({
               return (
                 <div
                   key={post.id}
-                  className="relative p-[1px] rounded-2xl overflow-hidden bg-zinc-200 dark:bg-zinc-800/85 hover:bg-gradient-to-br hover:from-[#e49505] hover:to-amber-300 transition-all duration-300 hover:shadow-[0_10px_30px_rgba(228,149,5,0.12)] hover:-translate-y-1.5 group flex flex-col"
+                  className="relative p-[1px] rounded-2xl overflow-hidden bg-zinc-200 dark:bg-zinc-800/85 hover:bg-gradient-to-br hover:from-primary hover:to-primary-hover transition-all duration-300 hover:shadow-[0_10px_30px_rgba(var(--primary-rgb),0.12)] hover:-translate-y-1.5 group flex flex-col"
                 >
-                  <div className="h-full w-full rounded-2xl bg-white dark:bg-[#1a1a1c]/95 overflow-hidden flex flex-col justify-between relative">
+                  <div className="h-full w-full rounded-2xl bg-white dark:bg-card-bg-3/95 overflow-hidden flex flex-col justify-between relative">
                     {/* Blog Image */}
                     {post.imageUrl && (
                       <div className="w-full aspect-[2/1] relative overflow-hidden bg-zinc-100 dark:bg-zinc-900 border-b border-zinc-200 dark:border-white/5">
@@ -266,16 +266,16 @@ export function BlogClient({
                     <div className="p-6 flex-grow flex flex-col justify-between relative z-10">
                       <div className="space-y-4">
                         {/* Meta details */}
-                        <div className="flex items-center gap-4 text-xs text-zinc-400 dark:text-zinc-500 font-medium">
+                        <div className="flex items-center gap-4 text-xs text-zinc-400 dark:text-zinc-505 font-medium">
                           <div className="flex items-center gap-1">
-                            <Calendar className="h-3.5 w-3.5 text-[#e49505]" />
+                            <Calendar className="h-3.5 w-3.5 text-primary" />
                             <span>{formattedDate}</span>
                           </div>
                         </div>
 
                         {/* Title */}
                         <Link href={`/blog/${post.slug}`} className="block group/title">
-                          <h3 className="text-xl sm:text-2xl font-bold text-zinc-900 dark:text-white group-hover/title:text-[#e49505] transition-colors duration-200 tracking-tight leading-snug">
+                          <h3 className="text-xl sm:text-2xl font-bold text-zinc-900 dark:text-white group-hover/title:text-primary transition-colors duration-200 tracking-tight leading-snug">
                             {post.title}
                           </h3>
                         </Link>
@@ -301,7 +301,7 @@ export function BlogClient({
 
                         <Link
                           href={`/blog/${post.slug}`}
-                          className="flex items-center gap-1 text-xs font-bold text-[#e49505] hover:underline shrink-0 group/read"
+                          className="flex items-center gap-1 text-xs font-bold text-primary hover:underline shrink-0 group/read"
                         >
                           <span>Read Article</span>
                           <ArrowRight className="h-3.5 w-3.5 transition-transform duration-200 group-hover/read:translate-x-1" />
@@ -322,7 +322,7 @@ export function BlogClient({
           <button
             onClick={() => updateFilters({ page: currentPage - 1 })}
             disabled={currentPage <= 1}
-            className="flex items-center justify-center p-2.5 rounded-xl bg-zinc-100 dark:bg-[#1a1a1c]/60 border border-zinc-200 dark:border-zinc-800/80 text-zinc-800 dark:text-white disabled:opacity-30 disabled:cursor-not-allowed hover:bg-[#e49505]/10 hover:border-[#e49505]/30 transition-all"
+            className="flex items-center justify-center p-2.5 rounded-xl bg-zinc-100 dark:bg-card-bg-3/60 border border-zinc-200 dark:border-zinc-800/80 text-zinc-800 dark:text-white disabled:opacity-30 disabled:cursor-not-allowed hover:bg-primary/10 hover:border-primary/30 transition-all"
             title="Previous Page"
           >
             <ChevronLeft className="h-5 w-5" />
@@ -330,7 +330,7 @@ export function BlogClient({
 
           <div className="flex items-center gap-1.5 px-4 text-sm font-semibold text-zinc-700 dark:text-zinc-400">
             <span>Page</span>
-            <span className="text-[#e49505] font-bold">{currentPage}</span>
+            <span className="text-primary font-bold">{currentPage}</span>
             <span>of</span>
             <span>{totalPages}</span>
           </div>
@@ -338,7 +338,7 @@ export function BlogClient({
           <button
             onClick={() => updateFilters({ page: currentPage + 1 })}
             disabled={currentPage >= totalPages}
-            className="flex items-center justify-center p-2.5 rounded-xl bg-zinc-100 dark:bg-[#1a1a1c]/60 border border-zinc-200 dark:border-zinc-800/80 text-zinc-800 dark:text-white disabled:opacity-30 disabled:cursor-not-allowed hover:bg-[#e49505]/10 hover:border-[#e49505]/30 transition-all"
+            className="flex items-center justify-center p-2.5 rounded-xl bg-zinc-100 dark:bg-card-bg-3/60 border border-zinc-200 dark:border-zinc-800/80 text-zinc-800 dark:text-white disabled:opacity-30 disabled:cursor-not-allowed hover:bg-primary/10 hover:border-primary/30 transition-all"
             title="Next Page"
           >
             <ChevronRight className="h-5 w-5" />
@@ -351,10 +351,10 @@ export function BlogClient({
 
       {/* Blog Newsletter placeholder section */}
       <section id="blog-newsletter" className="px-2 md:px-4">
-        <div className="bg-zinc-50 dark:bg-[#1a1a1c]/60 border border-zinc-200 dark:border-zinc-800/80 dark:backdrop-blur-xl rounded-2xl p-6 sm:p-8 shadow-sm dark:shadow-2xl relative overflow-hidden transition-all duration-300 hover:border-primary/20 group text-center max-w-2xl mx-auto">
+        <div className="bg-zinc-50 dark:bg-card-bg-3/60 border border-zinc-200 dark:border-zinc-800/80 dark:backdrop-blur-xl rounded-2xl p-6 sm:p-8 shadow-sm dark:shadow-2xl relative overflow-hidden transition-all duration-300 hover:border-primary/20 group text-center max-w-2xl mx-auto">
           <div className="absolute top-0 right-0 -mr-16 -mt-16 w-32 h-32 bg-primary/10 rounded-full blur-3xl pointer-events-none" />
           <div className="relative z-10 space-y-4">
-            <BookOpen className="h-10 w-10 text-[#e49505] mx-auto" />
+            <BookOpen className="h-10 w-10 text-primary mx-auto" />
             <h3 className="text-xl sm:text-2xl font-bold text-zinc-900 dark:text-white tracking-tight">Stay Updated</h3>
             <p className="text-sm text-zinc-400 max-w-md mx-auto font-light leading-relaxed">
               Subscribe to my newsletter to receive the latest updates, articles, and tutorials on modern web development directly in your inbox.
@@ -363,12 +363,12 @@ export function BlogClient({
               <input
                 type="email"
                 placeholder="Enter your email address"
-                className="flex-1 px-4 py-2.5 rounded-xl bg-zinc-100 dark:bg-black/35 border border-zinc-200 dark:border-zinc-800 text-zinc-900 dark:text-white placeholder-zinc-500 text-sm focus:outline-none focus:border-[#e49505] transition-colors"
+                className="flex-1 px-4 py-2.5 rounded-xl bg-zinc-100 dark:bg-black/35 border border-zinc-200 dark:border-zinc-800 text-zinc-900 dark:text-white placeholder-zinc-500 text-sm focus:outline-none focus:border-primary transition-colors"
                 disabled
               />
               <button
                 type="button"
-                className="bg-[#e49505] text-white hover:bg-[#c98304] font-semibold text-sm px-6 py-2.5 rounded-xl shadow-lg transition-colors cursor-not-allowed opacity-70"
+                className="bg-primary text-white hover:bg-primary-hover font-semibold text-sm px-6 py-2.5 rounded-xl shadow-lg transition-colors cursor-not-allowed opacity-70"
                 disabled
               >
                 Subscribe

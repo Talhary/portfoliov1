@@ -74,7 +74,7 @@ export function ProgressiveImage({
         <div className="absolute inset-0 flex items-center justify-center bg-black/5 dark:bg-black/20 backdrop-blur-[1px] pointer-events-none transition-opacity duration-300">
           <div className="relative flex items-center justify-center">
             {/* Spinning Gold Arc */}
-            <div className="w-8 h-8 border-2 border-[#e49505]/15 border-t-[#e49505] rounded-full animate-spin" />
+            <div className="w-8 h-8 border-2 border-primary/15 border-t-primary rounded-full animate-spin" />
           </div>
         </div>
       )}
