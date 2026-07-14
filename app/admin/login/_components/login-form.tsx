@@ -41,14 +41,14 @@ const LoginForm = () => {
 
   return (
     <div className="h-[100vh] flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-      <div className="w-full max-w-md p-8 rounded-2xl border border-stone-250/30 dark:border-white/5 bg-white bg-opacity-20 dark:bg-zinc-900/30 backdrop-blur-md shadow-2xl space-y-6 relative overflow-hidden transition-all hover:shadow-[#e49505]/5 duration-300">
+      <div className="w-full max-w-md p-8 rounded-2xl border border-stone-250/30 dark:border-white/5 bg-white bg-opacity-20 dark:bg-zinc-900/30 backdrop-blur-md shadow-2xl space-y-6 relative overflow-hidden transition-all hover:shadow-primary/5 duration-300">
 
         {/* Decorative Top Accent Glow Line */}
-        <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-transparent via-[#e49505] to-transparent animate-pulse" />
+        <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-transparent via-primary to-transparent animate-pulse" />
 
         <div className="text-center">
           {/* Fingerprint Header Icon */}
-          <div className="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-[#e49505]/10 border border-[#e49505]/20 text-[#e49505] mb-4">
+          <div className="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-primary/10 border border-primary/20 text-primary mb-4">
             <Fingerprint className="h-6 w-6 animate-pulse" />
           </div>
           <h2 className="text-2xl font-bold tracking-tight text-stone-900 dark:text-white">
@@ -63,9 +63,9 @@ const LoginForm = () => {
           {/* Email Field */}
           <div className="space-y-1.5">
             <label className="block text-xs font-semibold uppercase tracking-wider text-stone-550 dark:text-zinc-400" htmlFor="email">
-              Email Address
+               Email Address
             </label>
-            <div className="relative rounded-xl border border-stone-200 dark:border-zinc-800 bg-white/[0.05] dark:bg-black/25 transition-all focus-within:border-[#e49505] focus-within:ring-1 focus-within:ring-[#e49505]">
+            <div className="relative rounded-xl border border-stone-200 dark:border-zinc-800 bg-white/[0.05] dark:bg-black/25 transition-all focus-within:border-primary focus-within:ring-1 focus-within:ring-primary">
               <span className="absolute inset-y-0 left-0 flex items-center pl-3.5 text-stone-400 dark:text-zinc-505">
                 <Mail className="h-4 w-4" />
               </span>
@@ -75,7 +75,7 @@ const LoginForm = () => {
                 id="email"
                 placeholder="admin@example.com"
                 disabled={loading}
-                className="w-full bg-transparent py-2.5 pl-10 pr-4 text-sm text-stone-900 dark:text-white placeholder-stone-400 dark:placeholder-zinc-650 rounded-xl focus:outline-none disabled:opacity-50"
+                className="w-full bg-transparent py-2.5 pl-10 pr-4 text-sm text-stone-900 dark:text-white placeholder-stone-400 dark:placeholder-zinc-655 rounded-xl focus:outline-none disabled:opacity-50"
                 required
               />
             </div>
@@ -83,10 +83,10 @@ const LoginForm = () => {
 
           {/* Password Field */}
           <div className="space-y-1.5">
-            <label className="block text-xs font-semibold uppercase tracking-wider text-stone-550 dark:text-zinc-400" htmlFor="password">
+            <label className="block text-xs font-semibold uppercase tracking-wider text-stone-555 dark:text-zinc-400" htmlFor="password">
               Password
             </label>
-            <div className="relative rounded-xl border border-stone-200 dark:border-zinc-800 bg-white/[0.05] dark:bg-black/25 transition-all focus-within:border-[#e49505] focus-within:ring-1 focus-within:ring-[#e49505]">
+            <div className="relative rounded-xl border border-stone-200 dark:border-zinc-800 bg-white/[0.05] dark:bg-black/25 transition-all focus-within:border-primary focus-within:ring-1 focus-within:ring-primary">
               <span className="absolute inset-y-0 left-0 flex items-center pl-3.5 text-stone-400 dark:text-zinc-555">
                 <Lock className="h-4 w-4" />
               </span>
@@ -114,7 +114,7 @@ const LoginForm = () => {
           <button
             type="submit"
             disabled={loading}
-            className="w-full flex items-center justify-center bg-[#e49505] hover:bg-[#c98304] disabled:bg-[#e49505]/50 text-white font-semibold py-3 px-4 rounded-xl shadow-lg shadow-[#e49505]/10 hover:shadow-[#e49505]/20 transition-all active:scale-[0.98] duration-200 disabled:pointer-events-none"
+            className="w-full flex items-center justify-center bg-primary hover:bg-primary-hover disabled:bg-primary/50 text-white font-semibold py-3 px-4 rounded-xl shadow-lg shadow-primary/10 hover:shadow-primary/20 transition-all active:scale-[0.98] duration-200 disabled:pointer-events-none"
           >
             {loading ? (
               <>

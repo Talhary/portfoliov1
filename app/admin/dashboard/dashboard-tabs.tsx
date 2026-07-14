@@ -22,12 +22,12 @@ export default function DashboardTabs({
     <div className="w-full space-y-6">
       {/* Premium Tab Toggles */}
       <div className="flex justify-center items-center">
-        <div className="flex bg-white/5 dark:bg-[#1a1a1c]/60 border border-white/10 dark:border-zinc-800/80 p-1.5 rounded-2xl shadow-xl backdrop-blur-md">
+        <div className="flex bg-white/5 dark:bg-card-bg-3/60 border border-white/10 dark:border-zinc-800/80 p-1.5 rounded-2xl shadow-xl backdrop-blur-md">
           <button
             onClick={() => setActiveTab('projects')}
             className={`flex items-center gap-2.5 px-6 py-3 rounded-xl text-sm font-bold tracking-wide transition-all duration-300 ${
               activeTab === 'projects'
-                ? 'bg-[#e49505] text-white shadow-lg shadow-[#e49505]/10 scale-[1.02]'
+                ? 'bg-primary text-white shadow-lg shadow-primary/10 scale-[1.02]'
                 : 'text-zinc-400 hover:text-white'
             }`}
           >
@@ -39,7 +39,7 @@ export default function DashboardTabs({
             onClick={() => setActiveTab('blogs')}
             className={`flex items-center gap-2.5 px-6 py-3 rounded-xl text-sm font-bold tracking-wide transition-all duration-300 ${
               activeTab === 'blogs'
-                ? 'bg-[#e49505] text-white shadow-lg shadow-[#e49505]/10 scale-[1.02]'
+                ? 'bg-primary text-white shadow-lg shadow-primary/10 scale-[1.02]'
                 : 'text-zinc-400 hover:text-white'
             }`}
           >

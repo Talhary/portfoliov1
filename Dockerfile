@@ -27,6 +27,7 @@ ARG GMAIL
 ARG JWT_TOKEN
 ARG BLOG_API_KEY
 ARG UPLOADTHING_TOKEN
+ARG MEDIA_DOWNLOAD_API_URL
 
 # Set environment variables from build arguments for build-time availability
 ENV DATABASE_URL=$DATABASE_URL
@@ -39,6 +40,7 @@ ENV GMAIL=$GMAIL
 ENV JWT_TOKEN=$JWT_TOKEN
 ENV BLOG_API_KEY=$BLOG_API_KEY
 ENV UPLOADTHING_TOKEN=$UPLOADTHING_TOKEN
+ENV MEDIA_DOWNLOAD_API_URL=$MEDIA_DOWNLOAD_API_URL
 
 # Generate Prisma Client (crucial for build type safety and queries)
 RUN npx prisma generate

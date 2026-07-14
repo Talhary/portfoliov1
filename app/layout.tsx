@@ -2,12 +2,11 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import "highlight.js/styles/github-dark.css";
-import Aside from "@/components/aside";
-import { Navbar } from "@/components/navbar";
 import { ThemeProvider } from "@/components/theme-provider"
-import { GetToTopButton } from "@/components/get-to-top";
 import { SmoothScroll } from "@/components/smooth-scroll";
-import { StickyAside } from "@/components/sticky-aside";
+import { themeColors, hexToRgb } from "@/lib/colors";
+import LayoutWrapper from "@/components/layout-wrapper";
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -29,8 +28,26 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const cssVariables = `
+    :root {
+      --primary: ${themeColors.primary};
+      --primary-hover: ${themeColors.primaryHover};
+      --primary-rgb: ${hexToRgb(themeColors.primary)};
+      --big-card: ${themeColors.bigCard};
+      --card-bg: ${themeColors.cardBg};
+      --card-light-bg: ${themeColors.cardLightBg};
+      --card-bg-1: ${themeColors.cardBg1};
+      --card-bg-2: ${themeColors.cardBg2};
+      --card-bg-3: ${themeColors.cardBg3};
+      --slider-bg: ${themeColors.sliderBg};
+    }
+  `;
+
   return (
     <html lang="en" className="" suppressHydrationWarning>
+      <head>
+        <style dangerouslySetInnerHTML={{ __html: cssVariables }} />
+      </head>
       <body className={`${inter.className}  flex flex-row  max-md:flex-col-reverse `} >
         <ThemeProvider
           attribute="class"
@@ -39,16 +56,9 @@ export default async function RootLayout({
           disableTransitionOnChange
         >
           <SmoothScroll />
-          <StickyAside>
-            <Aside />
-          </StickyAside>
-          <div className='flex-auto max-md:ml-0 relative min-w-0 max-w-full overflow-hidden'>
-            <Navbar className='z-50' />
-            <div className="bg-zinc-50 dark:bg-big-card border border-zinc-200 dark:border-none shadow-sm dark:shadow-black relative ml-0 text-zinc-900 dark:text-zinc-100 max-md:m-4 max-xs:m-1 max-xs:p-3 rounded-2xl p-5 max-md:p-3 w-full max-w-full overflow-hidden">
-              <GetToTopButton />
-              {children}
-            </div>
-          </div>
+          <LayoutWrapper>
+            {children}
+          </LayoutWrapper>
         </ThemeProvider>
       </body>
     </html>

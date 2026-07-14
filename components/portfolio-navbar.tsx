@@ -22,11 +22,11 @@ export const PortfolioNavbar = ({ filter, items }: { filter: string; items: Arra
     <div className="py-3 px-6 shadow-sm border border-stone-200 dark:border-white/5 bg-white dark:bg-zinc-900/30 dark:backdrop-blur-md rounded-2xl inline-block text-stone-900 dark:text-white mb-6 transition-all duration-300">
       <button 
         type="button"
-        className="xs:hidden flex flex-row gap-x-2 items-center justify-center font-bold text-[#e49505]" 
+        className="xs:hidden flex flex-row gap-x-2 items-center justify-center font-bold text-primary" 
         onClick={() => setOpen(!open)}
       > 
         <IoFilter size={20} /> 
-        <span className="bg-[#e49505]/10 border border-[#e49505]/20 text-[#e49505] px-2 py-0.5 rounded-full font-semibold text-xs uppercase tracking-wider">
+        <span className="bg-primary/10 border border-primary/20 text-primary px-2 py-0.5 rounded-full font-semibold text-xs uppercase tracking-wider">
           {filter}
         </span> 
       </button>
@@ -39,9 +39,9 @@ export const PortfolioNavbar = ({ filter, items }: { filter: string; items: Arra
         {items.map((item) => (
           <li 
             key={item.value} 
-            className={`tracking-wider font-bold uppercase text-xs transition-colors hover:text-[#e49505] ${
+            className={`tracking-wider font-bold uppercase text-xs transition-colors hover:text-primary ${
               filter === item.value 
-                ? 'text-[#e49505]' 
+                ? 'text-primary' 
                 : 'text-stone-600 dark:text-zinc-400'
             }`}
           >

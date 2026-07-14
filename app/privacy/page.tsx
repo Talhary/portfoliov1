@@ -31,7 +31,7 @@ export default function PrivacyPolicyPage() {
         </p>
 
         <p>
-          At <strong>Talha Codes Portfolio & Blog</strong> (accessible from <Link href="/" className="text-[#e49505] hover:underline font-semibold">talhacodes.site</Link>), one of our main priorities is the privacy of our visitors. This Privacy Policy document contains types of information that is collected and recorded by our website and how we use it.
+          At <strong>Talha Codes Portfolio & Blog</strong> (accessible from <Link href="/" className="text-primary hover:underline font-semibold">talhacodes.site</Link>), one of our main priorities is the privacy of our visitors. This Privacy Policy document contains types of information that is collected and recorded by our website and how we use it.
         </p>
 
         <p>
@@ -50,7 +50,7 @@ export default function PrivacyPolicyPage() {
 
         <h2 className="text-xl font-bold text-zinc-900 dark:text-white mt-8 border-b border-zinc-200 dark:border-white/5 pb-2">Google DoubleClick DART Cookie</h2>
         <p>
-          Google is one of the third-party vendors on our site. It also uses cookies, known as DART cookies, to serve ads to our site visitors based upon their visit to our site and other sites on the internet. However, visitors may choose to decline the use of DART cookies by visiting the Google ad and content network Privacy Policy at the following URL: <a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener noreferrer" className="text-[#e49505] hover:underline font-semibold">https://policies.google.com/technologies/ads</a>
+          Google is one of the third-party vendors on our site. It also uses cookies, known as DART cookies, to serve ads to our site visitors based upon their visit to our site and other sites on the internet. However, visitors may choose to decline the use of DART cookies by visiting the Google ad and content network Privacy Policy at the following URL: <a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-semibold">https://policies.google.com/technologies/ads</a>
         </p>
 
         <h2 className="text-xl font-bold text-zinc-900 dark:text-white mt-8 border-b border-zinc-200 dark:border-white/5 pb-2">Our Advertising Partners</h2>
@@ -59,7 +59,7 @@ export default function PrivacyPolicyPage() {
         </p>
         <ul className="list-disc list-inside pl-4 space-y-2">
           <li>
-            <strong>Google AdSense:</strong> Their Privacy Policy can be found at <a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener noreferrer" className="text-[#e49505] hover:underline font-semibold">https://policies.google.com/technologies/ads</a>.
+            <strong>Google AdSense:</strong> Their Privacy Policy can be found at <a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline font-semibold">https://policies.google.com/technologies/ads</a>.
           </li>
         </ul>
 

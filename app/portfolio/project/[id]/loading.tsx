@@ -25,8 +25,8 @@ const Loading = () => {
             <div className="space-y-6">
               {/* Tag Badges */}
               <div className="flex gap-2">
-                <div className="h-6 w-16 bg-[#e49505]/10 border border-[#e49505]/20 rounded-full" />
-                <div className="h-6 w-20 bg-[#e49505]/10 border border-[#e49505]/20 rounded-full" />
+                <div className="h-6 w-16 bg-primary/10 border border-primary/20 rounded-full" />
+                <div className="h-6 w-20 bg-primary/10 border border-primary/20 rounded-full" />
               </div>
 
               {/* Title */}

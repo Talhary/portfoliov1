@@ -131,7 +131,7 @@ const Page = () => {
                 skill.name === 'TypeScript' ? 'rgba(59,130,246,0.4)' :
                 skill.name === 'JavaScript' ? 'rgba(234,179,8,0.4)' :
                 skill.name === 'MongoDB' ? 'rgba(16,185,129,0.4)' :
-                'rgba(228,149,5,0.4)';
+                'rgba(var(--primary-rgb),0.4)';
               return (
                 <div
                   key={skill.name}
@@ -163,12 +163,12 @@ const Page = () => {
             {focusAreas.map((el, i) => (
               <div
                 key={i}
-                className="relative p-[1px] rounded-2xl overflow-hidden bg-zinc-200 dark:bg-zinc-800/80 hover:bg-gradient-to-br hover:from-[#e49505] hover:to-amber-300 transition-all duration-300 hover:shadow-[0_10px_30px_rgba(228,149,5,0.15)] group"
+                className="relative p-[1px] rounded-2xl overflow-hidden bg-zinc-200 dark:bg-zinc-800/80 hover:bg-gradient-to-br hover:from-primary hover:to-primary-hover transition-all duration-300 hover:shadow-[0_10px_30px_rgba(var(--primary-rgb),0.15)] group"
               >
-                <div className="h-full w-full rounded-2xl bg-zinc-50 dark:bg-[#1a1a1c]/95 p-6 flex flex-col sm:flex-row items-start gap-4 relative overflow-hidden">
-                  <div className="absolute top-0 right-0 -mr-8 -mt-8 w-16 h-16 bg-[#e49505]/5 rounded-full blur-xl pointer-events-none group-hover:bg-[#e49505]/10 transition-colors duration-300" />
+                <div className="h-full w-full rounded-2xl bg-zinc-50 dark:bg-card-bg-3/95 p-6 flex flex-col sm:flex-row items-start gap-4 relative overflow-hidden">
+                  <div className="absolute top-0 right-0 -mr-8 -mt-8 w-16 h-16 bg-primary/5 rounded-full blur-xl pointer-events-none group-hover:bg-primary/10 transition-colors duration-300" />
                   <div className='flex-shrink-0 max-md:hidden'>
-                    {React.createElement(el.icon, { className: 'text-[#e49505] text-3xl sm:text-4xl' })}
+                    {React.createElement(el.icon, { className: 'text-primary text-3xl sm:text-4xl' })}
                   </div>
                   <div className='flex-grow space-y-2 relative z-10'>
                     <h3 className='font-semibold text-xl text-zinc-900 dark:text-primary'>{el.title}</h3>
@@ -188,9 +188,9 @@ const Page = () => {
             {experiences.map((el, i) => (
               <div
                 key={i}
-                className="relative p-[1px] rounded-2xl overflow-hidden bg-zinc-200 dark:bg-zinc-800/80 hover:bg-gradient-to-br hover:from-[#e49505] hover:to-amber-300 transition-all duration-300 hover:shadow-[0_10px_30px_rgba(228,149,5,0.15)] group"
+                className="relative p-[1px] rounded-2xl overflow-hidden bg-zinc-200 dark:bg-zinc-800/80 hover:bg-gradient-to-br hover:from-primary hover:to-primary-hover transition-all duration-300 hover:shadow-[0_10px_30px_rgba(var(--primary-rgb),0.15)] group"
               >
-                <div className="h-full w-full rounded-2xl bg-zinc-50 dark:bg-[#1a1a1c]/95 p-6 flex flex-col gap-4 relative overflow-hidden">
+                <div className="h-full w-full rounded-2xl bg-zinc-50 dark:bg-card-bg-3/95 p-6 flex flex-col gap-4 relative overflow-hidden">
                   <div className="absolute top-0 right-0 -mr-12 -mt-12 w-24 h-24 bg-emerald-500/5 rounded-full blur-2xl pointer-events-none group-hover:bg-emerald-500/10 transition-colors duration-300" />
                   <div className="flex items-center gap-3">
                     <div className='flex items-center justify-center p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-450'>
@@ -198,7 +198,7 @@ const Page = () => {
                     </div>
                     <div>
                       <h3 className='font-bold text-lg text-zinc-900 dark:text-zinc-100 tracking-tight'>{el.title}</h3>
-                      <h3 className='text-xs text-[#e49505] uppercase tracking-wider font-semibold'>At {el.company}</h3>
+                      <h3 className='text-xs text-primary uppercase tracking-wider font-semibold'>At {el.company}</h3>
                     </div>
                   </div>
                   <p className='text-sm text-zinc-500 dark:text-neutral-450 leading-relaxed font-light'>{el.description}</p>

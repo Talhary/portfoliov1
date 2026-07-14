@@ -70,7 +70,7 @@ export const ContactForm = () => {
                                             id="name"
                                             placeholder="John Doe"
                                             {...field}
-                                            className="bg-zinc-100/50 dark:bg-black/35 border-zinc-250 dark:border-zinc-800/80 text-zinc-900 dark:text-white placeholder-zinc-400 dark:placeholder-zinc-500 focus-visible:ring-1 focus-visible:ring-[#e49505] focus-visible:border-[#e49505] focus:border-[#e49505] hover:border-zinc-300 dark:hover:border-zinc-700 rounded-xl h-11 transition-all duration-300 focus:shadow-[0_0_15px_rgba(228,149,5,0.15)]"
+                                            className="bg-zinc-100/50 dark:bg-black/35 border-zinc-250 dark:border-zinc-800/80 text-zinc-900 dark:text-white placeholder-zinc-400 dark:placeholder-zinc-500 focus-visible:ring-1 focus-visible:ring-primary focus-visible:border-primary focus:border-primary hover:border-zinc-300 dark:hover:border-zinc-700 rounded-xl h-11 transition-all duration-300 focus:shadow-[0_0_15px_rgba(var(--primary-rgb),0.15)]"
                                         />
                                     </FormControl>
                                     <FormMessage className="text-xs text-red-400" />
@@ -90,7 +90,7 @@ export const ContactForm = () => {
                                             type="email"
                                             placeholder="john@example.com"
                                             {...field}
-                                            className="bg-zinc-100/50 dark:bg-black/35 border-zinc-250 dark:border-zinc-800/80 text-zinc-900 dark:text-white placeholder-zinc-400 dark:placeholder-zinc-500 focus-visible:ring-1 focus-visible:ring-[#e49505] focus-visible:border-[#e49505] focus:border-[#e49505] hover:border-zinc-300 dark:hover:border-zinc-700 rounded-xl h-11 transition-all duration-300 focus:shadow-[0_0_15px_rgba(228,149,5,0.15)]"
+                                            className="bg-zinc-100/50 dark:bg-black/35 border-zinc-250 dark:border-zinc-800/80 text-zinc-900 dark:text-white placeholder-zinc-400 dark:placeholder-zinc-500 focus-visible:ring-1 focus-visible:ring-primary focus-visible:border-primary focus:border-primary hover:border-zinc-300 dark:hover:border-zinc-700 rounded-xl h-11 transition-all duration-300 focus:shadow-[0_0_15px_rgba(var(--primary-rgb),0.15)]"
                                         />
                                     </FormControl>
                                     <FormMessage className="text-xs text-red-400" />
@@ -111,7 +111,7 @@ export const ContactForm = () => {
                                         rows={5}
                                         placeholder="How can I help you?"
                                         {...field}
-                                        className="bg-zinc-100/50 dark:bg-black/35 border-zinc-250 dark:border-zinc-800/80 text-zinc-900 dark:text-white placeholder-zinc-400 dark:placeholder-zinc-500 focus-visible:ring-1 focus-visible:ring-[#e49505] focus-visible:border-[#e49505] focus:border-[#e49505] hover:border-zinc-300 dark:hover:border-zinc-700 rounded-xl min-h-[120px] transition-all duration-300 focus:shadow-[0_0_15px_rgba(228,149,5,0.15)]"
+                                        className="bg-zinc-100/50 dark:bg-black/35 border-zinc-250 dark:border-zinc-800/80 text-zinc-900 dark:text-white placeholder-zinc-400 dark:placeholder-zinc-500 focus-visible:ring-1 focus-visible:ring-primary focus-visible:border-primary focus:border-primary hover:border-zinc-300 dark:hover:border-zinc-700 rounded-xl min-h-[120px] transition-all duration-300 focus:shadow-[0_0_15px_rgba(var(--primary-rgb),0.15)]"
                                     />
                                 </FormControl>
                                 <FormMessage className="text-xs text-red-400" />
@@ -121,7 +121,7 @@ export const ContactForm = () => {
                     <button
                         type="submit"
                         disabled={loading}
-                        className="relative w-full overflow-hidden bg-[#e49505] hover:bg-[#c98304] text-white transition-all font-semibold rounded-xl text-sm py-3 px-8 shadow-lg hover:shadow-[0_0_20px_rgba(228,149,5,0.45)] hover:scale-[1.01] active:scale-[0.99] duration-300 flex items-center justify-center gap-2 group/submit"
+                        className="relative w-full overflow-hidden bg-primary hover:bg-primary-hover text-white transition-all font-semibold rounded-xl text-sm py-3 px-8 shadow-lg hover:shadow-[0_0_20px_rgba(var(--primary-rgb),0.45)] hover:scale-[1.01] active:scale-[0.99] duration-300 flex items-center justify-center gap-2 group/submit"
                     >
                         {/* Glowing shimmer background */}
                         <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/25 to-transparent -translate-x-full group-hover/submit:translate-x-full transition-transform duration-1000 ease-out" />
@@ -156,7 +156,7 @@ export const ContactForm = () => {
                     <DialogFooter className="sm:justify-center mt-6">
                         <Button 
                             onClick={() => setSuccessDialogOpen(false)}
-                            className="bg-primary hover:bg-[#c98304] text-white dark:text-black font-semibold rounded-xl px-8 py-2 h-10 w-full sm:w-auto"
+                            className="bg-primary hover:bg-primary-hover text-white dark:text-black font-semibold rounded-xl px-8 py-2 h-10 w-full sm:w-auto"
                         >
                             OK
                         </Button>

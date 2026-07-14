@@ -88,13 +88,13 @@ export const BlogForm = () => {
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-8">
-      <div className="bg-white/5 dark:bg-[#1a1a1c]/60 border border-white/10 dark:border-zinc-800/80 backdrop-blur-xl rounded-2xl p-6 sm:p-8 shadow-2xl relative overflow-hidden group">
+      <div className="bg-white/5 dark:bg-card-bg-3/60 border border-white/10 dark:border-zinc-800/80 backdrop-blur-xl rounded-2xl p-6 sm:p-8 shadow-2xl relative overflow-hidden group">
         <div className="absolute top-0 right-0 -mr-16 -mt-16 w-32 h-32 bg-primary/10 rounded-full blur-3xl pointer-events-none" />
         
         <div className="space-y-6 relative z-10">
           <div>
             <h3 className="text-2xl font-bold text-white tracking-tight flex items-center gap-2">
-              <FileText className="h-6 w-6 text-[#e49505]" />
+              <FileText className="h-6 w-6 text-primary" />
               Publish Dynamic Blog Post
             </h3>
             <p className="text-sm text-zinc-400 mt-1 font-light leading-relaxed">
@@ -129,7 +129,7 @@ export const BlogForm = () => {
                       <Input 
                         placeholder="e.g. Mastering React State & Animations" 
                         {...field} 
-                        className="bg-black/10 dark:bg-black/35 border-white/10 text-white rounded-xl py-3 focus:border-[#e49505] transition-colors"
+                        className="bg-black/10 dark:bg-black/35 border-white/10 text-white rounded-xl py-3 focus:border-primary transition-colors"
                       />
                     </FormControl>
                     <FormMessage className="text-red-450" />
@@ -148,7 +148,7 @@ export const BlogForm = () => {
                       <Input 
                         placeholder="A brief summary shown in the listing card..." 
                         {...field} 
-                        className="bg-black/10 dark:bg-black/35 border-white/10 text-white rounded-xl py-3 focus:border-[#e49505] transition-colors"
+                        className="bg-black/10 dark:bg-black/35 border-white/10 text-white rounded-xl py-3 focus:border-primary transition-colors"
                       />
                     </FormControl>
                     <FormDescription className="text-[10px] text-zinc-500">
@@ -162,7 +162,7 @@ export const BlogForm = () => {
               {/* Tags Field */}
               <FormItem>
                 <FormLabel className="text-zinc-300 font-semibold tracking-wide flex items-center gap-1.5">
-                  <Tags className="h-4 w-4 text-[#e49505]" />
+                  <Tags className="h-4 w-4 text-primary" />
                   Tags (Comma Separated)
                 </FormLabel>
                 <FormControl>
@@ -170,7 +170,7 @@ export const BlogForm = () => {
                     placeholder="e.g. Next.js, Performance, Frontend, React" 
                     value={tagInput}
                     onChange={(e) => setTagInput(e.target.value)}
-                    className="bg-black/10 dark:bg-black/35 border-white/10 text-white rounded-xl py-3 focus:border-[#e49505] transition-colors"
+                    className="bg-black/10 dark:bg-black/35 border-white/10 text-white rounded-xl py-3 focus:border-primary transition-colors"
                   />
                 </FormControl>
                 <FormDescription className="text-[10px] text-zinc-500">
@@ -185,7 +185,7 @@ export const BlogForm = () => {
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel className="text-zinc-300 font-semibold tracking-wide flex items-center gap-1.5">
-                      <Terminal className="h-4 w-4 text-[#e49505]" />
+                      <Terminal className="h-4 w-4 text-primary" />
                       Article Body (Markdown Supported)
                     </FormLabel>
                     <FormControl>
@@ -204,7 +204,7 @@ export const BlogForm = () => {
               {/* Main Banner Image Upload */}
               <FormItem className="space-y-3">
                 <FormLabel className="text-zinc-300 font-semibold tracking-wide flex items-center gap-1.5">
-                  <ImageIcon className="h-4 w-4 text-[#e49505]" />
+                  <ImageIcon className="h-4 w-4 text-primary" />
                   Cover Image (Upload via Uploadthing)
                 </FormLabel>
                 <div className="border border-white/5 bg-black/10 dark:bg-black/25 rounded-2xl p-4">
@@ -217,7 +217,7 @@ export const BlogForm = () => {
                 <Button 
                   type="submit" 
                   disabled={loading}
-                  className="w-full flex items-center justify-center gap-2 bg-[#e49505] hover:bg-[#c98304] text-white font-bold py-3.5 rounded-xl transition-all shadow-lg shadow-[#e49505]/10 hover:shadow-[#e49505]/20 hover:scale-[1.01] active:scale-[0.99] disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full flex items-center justify-center gap-2 bg-primary hover:bg-primary-hover text-white font-bold py-3.5 rounded-xl transition-all shadow-lg shadow-primary/10 hover:shadow-primary/20 hover:scale-[1.01] active:scale-[0.99] disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {loading ? (
                     <>

@@ -76,7 +76,7 @@ const experiences = [
 
 const Highlight = ({ text }: { text: string }) => {
   return (
-    <span className='dark:text-primary dark:font-semibold text-[#e49505] font-bold'>
+    <span className='dark:text-primary dark:font-semibold text-primary font-bold'>
       <code>{text}</code>
     </span>
   );
@@ -134,7 +134,7 @@ export default async function Home() {
                   skill.name === 'TypeScript' ? 'rgba(59,130,246,0.4)' :
                   skill.name === 'JavaScript' ? 'rgba(234,179,8,0.4)' :
                   skill.name === 'MongoDB' ? 'rgba(16,185,129,0.4)' :
-                  'rgba(228,149,5,0.4)';
+                  'rgba(var(--primary-rgb),0.4)';
                 return (
                   <div
                     key={skill.name}
@@ -165,11 +165,11 @@ export default async function Home() {
               {focusAreas.map((el, i) => (
                 <div
                   key={i}
-                  className="relative p-[1px] rounded-2xl overflow-hidden bg-zinc-200 dark:bg-zinc-800/80 hover:bg-gradient-to-br hover:from-[#e49505] hover:to-amber-300 transition-all duration-300 hover:shadow-[0_10px_30px_rgba(228,149,5,0.15)] hover:-translate-y-1 group"
+                  className="relative p-[1px] rounded-2xl overflow-hidden bg-zinc-200 dark:bg-zinc-800/80 hover:bg-gradient-to-br hover:from-primary hover:to-primary-hover transition-all duration-300 hover:shadow-[0_10px_30px_rgba(var(--primary-rgb),0.15)] hover:-translate-y-1 group"
                 >
-                  <div className="h-full w-full rounded-2xl bg-zinc-50 dark:bg-[#1a1a1c]/95 p-5 flex flex-col items-start gap-4 relative overflow-hidden">
-                    <div className="absolute top-0 right-0 -mr-8 -mt-8 w-16 h-16 bg-[#e49505]/5 rounded-full blur-xl pointer-events-none group-hover:bg-[#e49505]/10 transition-colors duration-300" />
-                    <div className='flex items-center justify-center p-3 rounded-xl bg-[#e49505]/10 border border-[#e49505]/20 text-[#e49505]'>
+                  <div className="h-full w-full rounded-2xl bg-zinc-50 dark:bg-card-bg-3/95 p-5 flex flex-col items-start gap-4 relative overflow-hidden">
+                    <div className="absolute top-0 right-0 -mr-8 -mt-8 w-16 h-16 bg-primary/5 rounded-full blur-xl pointer-events-none group-hover:bg-primary/10 transition-colors duration-300" />
+                    <div className='flex items-center justify-center p-3 rounded-xl bg-primary/10 border border-primary/20 text-primary'>
                       {React.createElement(el.icon, { className: 'text-2xl shrink-0' })}
                     </div>
                     <div className='space-y-1.5'>
@@ -189,9 +189,9 @@ export default async function Home() {
               {experiences.map((el, i) => (
                 <div
                   key={i}
-                  className="relative p-[1px] rounded-2xl overflow-hidden bg-zinc-200 dark:bg-zinc-800/80 hover:bg-gradient-to-br hover:from-[#e49505] hover:to-amber-300 transition-all duration-300 hover:shadow-[0_10px_30px_rgba(228,149,5,0.15)] hover:-translate-y-1 group"
+                  className="relative p-[1px] rounded-2xl overflow-hidden bg-zinc-200 dark:bg-zinc-800/80 hover:bg-gradient-to-br hover:from-primary hover:to-primary-hover transition-all duration-300 hover:shadow-[0_10px_30px_rgba(var(--primary-rgb),0.15)] hover:-translate-y-1 group"
                 >
-                  <div className="h-full w-full rounded-2xl bg-zinc-50 dark:bg-[#1a1a1c]/95 p-6 flex flex-col gap-4 relative overflow-hidden">
+                  <div className="h-full w-full rounded-2xl bg-zinc-50 dark:bg-card-bg-3/95 p-6 flex flex-col gap-4 relative overflow-hidden">
                     <div className="absolute top-0 right-0 -mr-12 -mt-12 w-24 h-24 bg-emerald-500/5 rounded-full blur-2xl pointer-events-none group-hover:bg-emerald-500/10 transition-colors duration-300" />
                     <div className="flex items-center gap-3">
                       <div className='flex items-center justify-center p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400'>
@@ -199,7 +199,7 @@ export default async function Home() {
                       </div>
                       <div>
                         <h4 className='font-bold text-lg text-zinc-900 dark:text-zinc-100 tracking-tight'>{el.title}</h4>
-                        <p className='text-xs text-[#e49505] uppercase tracking-wider font-semibold'>At {el.company}</p>
+                        <p className='text-xs text-primary uppercase tracking-wider font-semibold'>At {el.company}</p>
                       </div>
                     </div>
                     <p className='text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed font-light'>{el.description}</p>
@@ -221,7 +221,7 @@ export default async function Home() {
 
             <div className="mt-10 flex justify-center max-md:mx-0">
               <Link href="/portfolio/all" className="group/btn relative overflow-hidden rounded-xl">
-                <button className="relative group/uibtn flex items-center gap-2 bg-[#e49505] hover:bg-[#c98304] text-white transition-all font-semibold rounded-xl text-sm py-3 px-8 shadow-lg hover:shadow-[0_0_20px_rgba(228,149,5,0.45)] hover:scale-[1.02] active:scale-[0.98] duration-300 overflow-hidden">
+                <button className="relative group/uibtn flex items-center gap-2 bg-primary hover:bg-primary-hover text-white transition-all font-semibold rounded-xl text-sm py-3 px-8 shadow-lg hover:shadow-[0_0_20px_rgba(var(--primary-rgb),0.45)] hover:scale-[1.02] active:scale-[0.98] duration-300 overflow-hidden">
                   <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover/uibtn:translate-x-full transition-transform duration-1000 ease-out" />
                   <span className="relative z-10 flex items-center gap-2">
                     <span>View All Projects</span>
@@ -244,7 +244,7 @@ export default async function Home() {
 
           <div className="mx-2 mt-8 max-md:mx-0">
             <div className="flex gap-x-3 items-center justify-start mb-6">
-              <BookOpen className="text-[#e49505] w-6 h-6 shrink-0" />
+              <BookOpen className="text-primary w-6 h-6 shrink-0" />
               <h3 className='text-2xl font-semibold text-zinc-900 dark:text-zinc-100 tracking-tight'>Education</h3>
             </div>
 
@@ -279,7 +279,7 @@ export default async function Home() {
               <div className="grid md:grid-cols-5 gap-8 items-start">
 
                 {/* Contact Form Card */}
-                <div className="md:col-span-3 bg-zinc-50 dark:bg-[#1a1a1c]/60 border border-zinc-200 dark:border-zinc-800/80 dark:backdrop-blur-xl rounded-2xl p-6 sm:p-8 shadow-sm dark:shadow-2xl relative overflow-hidden transition-all duration-300 hover:border-primary/20 group">
+                <div className="md:col-span-3 bg-zinc-50 dark:bg-card-bg-3/60 border border-zinc-200 dark:border-zinc-800/80 dark:backdrop-blur-xl rounded-2xl p-6 sm:p-8 shadow-sm dark:shadow-2xl relative overflow-hidden transition-all duration-300 hover:border-primary/20 group">
                   <div className="absolute top-0 right-0 -mr-16 -mt-16 w-32 h-32 bg-primary/10 rounded-full blur-3xl pointer-events-none" />
 
                   <div className="space-y-6 relative z-10">
@@ -297,7 +297,7 @@ export default async function Home() {
                 </div>
 
                 {/* Contact Details Card */}
-                <div className="md:col-span-2 bg-zinc-50 dark:bg-[#1a1a1c]/60 border border-zinc-200 dark:border-zinc-800/80 dark:backdrop-blur-xl rounded-2xl p-6 sm:p-8 shadow-sm dark:shadow-2xl relative overflow-hidden transition-all duration-300 hover:border-primary/20 group">
+                <div className="md:col-span-2 bg-zinc-50 dark:bg-card-bg-3/60 border border-zinc-200 dark:border-zinc-800/80 dark:backdrop-blur-xl rounded-2xl p-6 sm:p-8 shadow-sm dark:shadow-2xl relative overflow-hidden transition-all duration-300 hover:border-primary/20 group">
                   <div className="absolute top-0 right-0 -mr-16 -mt-16 w-32 h-32 bg-primary/10 rounded-full blur-3xl pointer-events-none" />
 
                   <div className="space-y-6 relative z-10">
@@ -314,7 +314,7 @@ export default async function Home() {
 
                       {/* Phone Item */}
                       <div className="group/item flex items-center gap-3.5 p-3 rounded-xl bg-white/[0.02] dark:bg-black/20 border border-white/[0.03] dark:border-zinc-800/30 hover:border-primary/30 transition-all duration-200">
-                        <div className="h-9 w-9 rounded-lg bg-[#e49505]/10 flex items-center justify-center text-[#e49505] border border-[#e49505]/20 group-hover/item:bg-[#e49505]/15 transition-all">
+                        <div className="h-9 w-9 rounded-lg bg-primary/10 flex items-center justify-center text-primary border border-primary/20 group-hover/item:bg-primary/15 transition-all">
                           <Phone className="h-4.5 w-4.5 shrink-0" />
                         </div>
                         <div className="flex flex-col min-w-0">
@@ -327,12 +327,12 @@ export default async function Home() {
 
                       {/* Email Item */}
                       <div className="group/item flex items-center gap-3.5 p-3 rounded-xl bg-white/[0.02] dark:bg-black/20 border border-white/[0.03] dark:border-zinc-800/30 hover:border-primary/30 transition-all duration-200">
-                        <div className="h-9 w-9 rounded-lg bg-[#e49505]/10 flex items-center justify-center text-[#e49505] border border-[#e49505]/20 group-hover/item:bg-[#e49505]/15 transition-all">
+                        <div className="h-9 w-9 rounded-lg bg-primary/10 flex items-center justify-center text-primary border border-primary/20 group-hover/item:bg-primary/15 transition-all">
                           <Mail className="h-4.5 w-4.5 shrink-0" />
                         </div>
                         <div className="flex flex-col min-w-0">
                           <span className="text-[10px] text-zinc-450 dark:text-zinc-555 uppercase font-semibold tracking-wider">Email</span>
-                          <a href="mailto:mtalhamaths@gmail.com" className="text-sm font-semibold text-zinc-200 dark:text-zinc-300 hover:text-[#e49505] transition-colors truncate">
+                          <a href="mailto:mtalhamaths@gmail.com" className="text-sm font-semibold text-zinc-200 dark:text-zinc-300 hover:text-primary transition-colors truncate">
                             mtalhamaths@gmail.com
                           </a>
                         </div>
@@ -340,12 +340,12 @@ export default async function Home() {
 
                       {/* Website Item */}
                       <div className="group/item flex items-center gap-3.5 p-3 rounded-xl bg-white/[0.02] dark:bg-black/20 border border-white/[0.03] dark:border-zinc-800/30 hover:border-primary/30 transition-all duration-200">
-                        <div className="h-9 w-9 rounded-lg bg-[#e49505]/10 flex items-center justify-center text-[#e49505] border border-[#e49505]/20 group-hover/item:bg-[#e49505]/15 transition-all">
+                        <div className="h-9 w-9 rounded-lg bg-primary/10 flex items-center justify-center text-primary border border-primary/20 group-hover/item:bg-primary/15 transition-all">
                           <Globe className="h-4.5 w-4.5 shrink-0" />
                         </div>
                         <div className="flex flex-col min-w-0">
                           <span className="text-[10px] text-zinc-450 dark:text-zinc-555 uppercase font-semibold tracking-wider">Website</span>
-                          <Link href="/" className="text-sm font-semibold text-zinc-200 dark:text-[#e49505] hover:text-[#e49505] hover:underline transition-colors truncate">
+                          <Link href="/" className="text-sm font-semibold text-zinc-200 dark:text-primary hover:text-primary hover:underline transition-colors truncate">
                             talhacodes.site
                           </Link>
                         </div>
@@ -353,7 +353,7 @@ export default async function Home() {
 
                       {/* Location Item */}
                       <div className="group/item flex items-center gap-3.5 p-3 rounded-xl bg-white/[0.02] dark:bg-black/20 border border-white/[0.03] dark:border-zinc-800/30 hover:border-primary/20 transition-all duration-200">
-                        <div className="h-9 w-9 rounded-lg bg-[#e49505]/10 flex items-center justify-center text-[#e49505] border border-[#e49505]/20">
+                        <div className="h-9 w-9 rounded-lg bg-primary/10 flex items-center justify-center text-primary border border-primary/20">
                           <MapPin className="h-4.5 w-4.5 shrink-0" />
                         </div>
                         <div className="flex flex-col min-w-0">
@@ -390,14 +390,14 @@ export default async function Home() {
           <div className="flex flex-col items-center md:items-end gap-2.5">
             <div className="flex items-center gap-1.5 text-[10px] text-zinc-500 font-semibold uppercase tracking-widest">
               <span>Built with</span>
-              <span className="text-[#e49505] font-bold">Next.js</span>
+              <span className="text-primary font-bold">Next.js</span>
               <span>•</span>
-              <span className="text-[#e49505] font-bold">Tailwind</span>
+              <span className="text-primary font-bold">Tailwind</span>
               <span>•</span>
-              <span className="text-[#e49505] font-bold">Prisma</span>
+              <span className="text-primary font-bold">Prisma</span>
             </div>
             <p className="text-[11px] text-zinc-600 dark:text-zinc-500 font-light">
-              © {new Date().getFullYear()} Talha Codes. All rights reserved. • <Link href="/privacy" className="hover:text-[#e49505] transition-colors">Privacy Policy</Link>
+              © {new Date().getFullYear()} Talha Codes. All rights reserved. • <Link href="/privacy" className="hover:text-primary transition-colors">Privacy Policy</Link>
             </p>
           </div>
 

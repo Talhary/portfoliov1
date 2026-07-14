@@ -95,7 +95,7 @@ export const AllProjects = ({ projects }: { projects: z.infer<typeof formSchema>
             '--badge-text-dark': colors.badgeTextDark,
           } as React.CSSProperties}
         >
-          <div className="h-full w-full rounded-3xl bg-white dark:bg-[#1a1a1c]/95 p-6 md:p-8 flex flex-col lg:flex-row gap-8 items-stretch relative overflow-hidden">
+          <div className="h-full w-full rounded-3xl bg-white dark:bg-card-bg-3/95 p-6 md:p-8 flex flex-col lg:flex-row gap-8 items-stretch relative overflow-hidden">
             {/* Iridescent Dual Ambient Background Glows */}
             <div className="absolute top-0 right-0 -mr-16 -mt-16 w-44 h-44 bg-[var(--project-color)]/5 rounded-full blur-3xl pointer-events-none group-hover:bg-[var(--project-color)]/10 transition-colors duration-500" />
             
@@ -163,21 +163,24 @@ export const AllProjects = ({ projects }: { projects: z.infer<typeof formSchema>
               </div>
 
               {/* Action Buttons */}
-              <div className="flex flex-col sm:flex-row items-center gap-3.5 pt-6 border-t border-stone-200/50 dark:border-white/5 mt-auto">
-                <Link href={`/portfolio/project/${projectSlug}`} className="w-full sm:flex-1 relative cursor-pointer">
-                  <button className="w-full overflow-hidden flex items-center justify-center gap-2 border border-stone-300 dark:border-zinc-750 text-stone-700 dark:text-stone-300 hover:bg-zinc-50 dark:hover:bg-[#222224] hover:text-[var(--project-color)] hover:border-[var(--project-color)]/40 transition-all font-semibold rounded-xl text-sm py-3 px-4 relative z-20 group/detbtn active:scale-95 duration-300">
-                    <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover/detbtn:translate-x-full transition-transform duration-1000 ease-out" />
-                    <Layers className="h-4 w-4 relative z-10 transition-transform duration-300 group-hover/detbtn:scale-110" />
-                    <span className="relative z-10">Details Overview</span>
-                  </button>
-                </Link>
-                <a href={project.link} target="_blank" rel="noopener noreferrer" className="w-full sm:flex-1 relative z-20">
-                  <button className="w-full overflow-hidden flex items-center justify-center gap-2 bg-gradient-to-r from-[var(--project-color)] to-[var(--project-grad-end)] hover:from-[var(--project-hover)] hover:to-[var(--project-grad-end-hover)] text-white transition-all font-semibold rounded-xl text-sm py-3 px-4 shadow-md hover:shadow-[0_0_20px_var(--project-glow)] group/livebtn active:scale-95 duration-300">
-                    <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover/livebtn:translate-x-full transition-transform duration-1000 ease-out" />
-                    <ExternalLink className="h-4 w-4 relative z-10 transition-transform duration-300 group-hover/livebtn:translate-x-0.5 group-hover/livebtn:-translate-y-0.5" />
-                    <span className="relative z-10">Visit Live Link</span>
-                  </button>
-                </a>
+              <div className="flex flex-col sm:flex-row items-center gap-3.5 pt-6 border-t border-stone-200/50 dark:border-white/5 mt-auto w-full">
+                {project.link.startsWith('/') ? (
+                  <Link href={project.link} className="w-full relative z-20">
+                    <button className="w-full overflow-hidden flex items-center justify-center gap-2 bg-gradient-to-r from-[var(--project-color)] to-[var(--project-grad-end)] hover:from-[var(--project-hover)] hover:to-[var(--project-grad-end-hover)] text-white transition-all font-semibold rounded-xl text-sm py-3 px-4 shadow-md hover:shadow-[0_0_20px_var(--project-glow)] group/livebtn active:scale-95 duration-300">
+                      <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover/livebtn:translate-x-full transition-transform duration-1000 ease-out" />
+                      <ExternalLink className="h-4 w-4 relative z-10 transition-transform duration-300 group-hover/livebtn:translate-x-0.5 group-hover/livebtn:-translate-y-0.5" />
+                      <span className="relative z-10">Use Tool</span>
+                    </button>
+                  </Link>
+                ) : (
+                  <a href={project.link} target="_blank" rel="noopener noreferrer" className="w-full relative z-20">
+                    <button className="w-full overflow-hidden flex items-center justify-center gap-2 bg-gradient-to-r from-[var(--project-color)] to-[var(--project-grad-end)] hover:from-[var(--project-hover)] hover:to-[var(--project-grad-end-hover)] text-white transition-all font-semibold rounded-xl text-sm py-3 px-4 shadow-md hover:shadow-[0_0_20px_var(--project-glow)] group/livebtn active:scale-95 duration-300">
+                      <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover/livebtn:translate-x-full transition-transform duration-1000 ease-out" />
+                      <ExternalLink className="h-4 w-4 relative z-10 transition-transform duration-300 group-hover/livebtn:translate-x-0.5 group-hover/livebtn:-translate-y-0.5" />
+                      <span className="relative z-10">Visit Live Link</span>
+                    </button>
+                  </a>
+                )}
               </div>
             </div>
           </div>
@@ -212,7 +215,7 @@ export const AllProjects = ({ projects }: { projects: z.infer<typeof formSchema>
               '--badge-text-dark': colors.badgeTextDark,
             } as React.CSSProperties}
           >
-            <div className="h-full w-full rounded-2xl bg-white dark:bg-[#1a1a1c]/95 overflow-hidden flex flex-col justify-between relative">
+            <div className="h-full w-full rounded-2xl bg-white dark:bg-card-bg-3/95 overflow-hidden flex flex-col justify-between relative">
               {/* Glowing Top Accent Line on Hover */}
               <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[var(--project-color)] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10" />
 
@@ -270,21 +273,24 @@ export const AllProjects = ({ projects }: { projects: z.infer<typeof formSchema>
                 </div>
 
                 {/* Action Buttons */}
-                <div className="flex items-center gap-3 pt-3 border-t border-stone-200/50 dark:border-white/5 mt-auto">
-                  <Link href={`/portfolio/project/${projectSlug}`} className="flex-1 cursor-pointer">
-                    <button className="w-full overflow-hidden flex items-center justify-center gap-1.5 border border-stone-300 dark:border-zinc-700 text-stone-700 dark:text-stone-300 hover:bg-zinc-50 dark:hover:bg-[#222224] hover:text-[var(--project-color)] hover:border-[var(--project-color)]/40 transition-all font-semibold rounded-xl text-xs py-2.5 px-3 relative z-20 group/detbtn active:scale-95 duration-300">
-                      <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover/detbtn:translate-x-full transition-transform duration-1000 ease-out" />
-                      <Layers className="h-3.5 w-3.5 relative z-10 transition-transform duration-300 group-hover/detbtn:scale-110" />
-                      <span className="relative z-10">Details</span>
-                    </button>
-                  </Link>
-                  <a href={project.link} target="_blank" rel="noopener noreferrer" className="flex-1 relative z-20">
-                    <button className="w-full overflow-hidden flex items-center justify-center gap-1.5 bg-gradient-to-r from-[var(--project-color)] to-[var(--project-grad-end)] hover:from-[var(--project-hover)] hover:to-[var(--project-grad-end-hover)] text-white transition-all font-semibold rounded-xl text-xs py-2.5 px-3 shadow-md hover:shadow-[0_0_15px_var(--project-glow)] group/livebtn active:scale-95 duration-300">
-                      <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover/livebtn:translate-x-full transition-transform duration-1000 ease-out" />
-                      <ExternalLink className="h-3.5 w-3.5 relative z-10 transition-transform duration-300 group-hover/livebtn:translate-x-0.5 group-hover/livebtn:-translate-y-0.5" />
-                      <span className="relative z-10">Visit Live</span>
-                    </button>
-                  </a>
+                <div className="flex items-center gap-3 pt-3 border-t border-stone-200/50 dark:border-white/5 mt-auto w-full">
+                  {project.link.startsWith('/') ? (
+                    <Link href={project.link} className="w-full relative z-20">
+                      <button className="w-full overflow-hidden flex items-center justify-center gap-1.5 bg-gradient-to-r from-[var(--project-color)] to-[var(--project-grad-end)] hover:from-[var(--project-hover)] hover:to-[var(--project-grad-end-hover)] text-white transition-all font-semibold rounded-xl text-xs py-2.5 px-3 shadow-md hover:shadow-[0_0_15px_var(--project-glow)] group/livebtn active:scale-95 duration-300">
+                        <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover/livebtn:translate-x-full transition-transform duration-1000 ease-out" />
+                        <ExternalLink className="h-3.5 w-3.5 relative z-10 transition-transform duration-300 group-hover/livebtn:translate-x-0.5 group-hover/livebtn:-translate-y-0.5" />
+                        <span className="relative z-10">Use Tool</span>
+                      </button>
+                    </Link>
+                  ) : (
+                    <a href={project.link} target="_blank" rel="noopener noreferrer" className="w-full relative z-20">
+                      <button className="w-full overflow-hidden flex items-center justify-center gap-1.5 bg-gradient-to-r from-[var(--project-color)] to-[var(--project-grad-end)] hover:from-[var(--project-hover)] hover:to-[var(--project-grad-end-hover)] text-white transition-all font-semibold rounded-xl text-xs py-2.5 px-3 shadow-md hover:shadow-[0_0_15px_var(--project-glow)] group/livebtn active:scale-95 duration-300">
+                        <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover/livebtn:translate-x-full transition-transform duration-1000 ease-out" />
+                        <ExternalLink className="h-3.5 w-3.5 relative z-10 transition-transform duration-300 group-hover/livebtn:translate-x-0.5 group-hover/livebtn:-translate-y-0.5" />
+                        <span className="relative z-10">Visit Live</span>
+                      </button>
+                    </a>
+                  )}
                 </div>
               </div>
             </div>

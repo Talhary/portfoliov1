@@ -60,7 +60,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         </p>
         <Link
           href="/blog"
-          className="inline-flex items-center gap-2 text-sm font-semibold text-[#e49505] hover:underline"
+          className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:underline"
         >
           <ArrowLeft className="w-4 h-4" />
           <span>Back to Blog list</span>
@@ -98,7 +98,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       {/* Main Card Container */}
       <article className="bg-zinc-50 dark:bg-zinc-900/40 dark:backdrop-blur-xl border border-zinc-200 dark:border-zinc-800 p-6 sm:p-10 rounded-2xl shadow-sm dark:shadow-2xl relative overflow-hidden group">
         {/* Ambient gold glow decorative element */}
-        <div className="absolute -top-12 -right-12 w-32 h-32 bg-[#e49505]/10 rounded-full blur-3xl pointer-events-none transition-opacity duration-500 group-hover:bg-[#e49505]/15" />
+        <div className="absolute -top-12 -right-12 w-32 h-32 bg-primary/10 rounded-full blur-3xl pointer-events-none transition-opacity duration-500 group-hover:bg-primary/15" />
 
         {/* Blog Header Image */}
         {post.imageUrl && (
@@ -114,12 +114,12 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
         {/* Metadata section */}
         <div className="flex flex-wrap items-center gap-4 text-xs text-zinc-400 font-medium mb-4">
           <div className="flex items-center gap-1">
-            <Calendar className="h-4 w-4 text-[#e49505]" />
+            <Calendar className="h-4 w-4 text-primary" />
             <span>{formattedDate}</span>
           </div>
           <span>•</span>
           <div className="flex items-center gap-1">
-            <Clock className="h-4 w-4 text-[#e49505]" />
+            <Clock className="h-4 w-4 text-primary" />
             <span>{readTimeMinutes} min read</span>
           </div>
         </div>
@@ -134,7 +134,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
           {post.tags.map((tag) => (
             <span
               key={tag}
-              className="flex items-center gap-1 text-xs font-semibold px-3 py-1 rounded-full bg-[#e49505]/10 border border-[#e49505]/20 text-[#e49505] uppercase tracking-wider transition-colors hover:bg-[#e49505]/20 cursor-default"
+              className="flex items-center gap-1 text-xs font-semibold px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary uppercase tracking-wider transition-colors hover:bg-primary/20 cursor-default"
             >
               <Tag className="h-3 w-3" />
               <span>{tag}</span>
@@ -147,7 +147,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
         {/* Article Body (Rendered as Visual Markdown via Tailwind Typography) */}
         <div
-          className="prose dark:prose-invert prose-headings:text-zinc-900 dark:prose-headings:text-white prose-a:text-[#e49505] prose-strong:text-zinc-900 dark:prose-strong:text-white prose-code:text-[#e49505] max-w-none text-zinc-800 dark:text-zinc-300 text-base leading-relaxed font-normal"
+          className="prose dark:prose-invert prose-headings:text-zinc-900 dark:prose-headings:text-white prose-a:text-primary prose-strong:text-zinc-900 dark:prose-strong:text-white prose-code:text-primary max-w-none text-zinc-800 dark:text-zinc-300 text-base leading-relaxed font-normal"
           dangerouslySetInnerHTML={{ __html: parseMarkdown(post.content || '') }}
         />
       </article>
