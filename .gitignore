@@ -19,6 +19,9 @@
 # misc
 .DS_Store
 *.pem
+*.key
+ssh-key-2026-03-15.key
+
 
 # debug
 npm-debug.log*
