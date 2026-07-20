@@ -303,7 +303,7 @@ export default async function Home() {
               <div className="grid md:grid-cols-5 gap-8 items-start">
 
                 {/* Contact Form Card */}
-                <div className="md:col-span-3 bg-zinc-50 dark:bg-card-bg-3/60 border border-zinc-200 dark:border-zinc-800/80 dark:backdrop-blur-xl rounded-2xl p-6 sm:p-8 shadow-sm dark:shadow-2xl relative overflow-hidden transition-all duration-300 hover:border-primary/20 group">
+                <div className="md:col-span-3 bg-zinc-50 dark:bg-card-bg-3/60 border border-zinc-200 dark:border-zinc-800/80 dark:backdrop-blur-xl rounded-2xl p-4 sm:p-8 shadow-sm dark:shadow-2xl relative overflow-hidden transition-all duration-300 hover:border-primary/20 group">
                   <div className="absolute top-0 right-0 -mr-16 -mt-16 w-32 h-32 bg-primary/10 rounded-full blur-3xl pointer-events-none" />
 
                   <div className="space-y-6 relative z-10">
@@ -321,7 +321,7 @@ export default async function Home() {
                 </div>
 
                 {/* Contact Details Card */}
-                <div className="md:col-span-2 bg-zinc-50 dark:bg-card-bg-3/60 border border-zinc-200 dark:border-zinc-800/80 dark:backdrop-blur-xl rounded-2xl p-6 sm:p-8 shadow-sm dark:shadow-2xl relative overflow-hidden transition-all duration-300 hover:border-primary/20 group">
+                <div className="md:col-span-2 bg-zinc-50 dark:bg-card-bg-3/60 border border-zinc-200 dark:border-zinc-800/80 dark:backdrop-blur-xl rounded-2xl p-4 sm:p-8 shadow-sm dark:shadow-2xl relative overflow-hidden transition-all duration-300 hover:border-primary/20 group">
                   <div className="absolute top-0 right-0 -mr-16 -mt-16 w-32 h-32 bg-primary/10 rounded-full blur-3xl pointer-events-none" />
 
                   <div className="space-y-6 relative z-10">

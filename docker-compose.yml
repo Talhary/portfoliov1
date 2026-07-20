@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  portfoliov1-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        DATABASE_URL: ${DATABASE_URL}
+        NEXT_PUBLIC_APP_URL: ${NEXT_PUBLIC_APP_URL:-https://talhacodes.site}
+    container_name: portfoliov1_app
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - HOSTNAME=0.0.0.0
+      - DATABASE_URL=${DATABASE_URL}
+      - UPLOADTHING_SECRET=${UPLOADTHING_SECRET}
+      - JWT_KEY=${JWT_KEY}
+      - AUTH_SECRET=${AUTH_SECRET}
+      - UPLOADTHING_APP_ID=${UPLOADTHING_APP_ID}
+      - GMAIL_PASS=${GMAIL_PASS}
+      - GMAIL=${GMAIL}
+      - BLOG_API_KEY=${BLOG_API_KEY}
+    volumes:
+      - temp_jobs_data:/app/public/temp-jobs
+
+volumes:
+  temp_jobs_data:

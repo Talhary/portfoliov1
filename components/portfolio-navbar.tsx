@@ -19,7 +19,7 @@ export const PortfolioNavbar = ({ filter, items }: { filter: string; items: Arra
   const [open, setOpen] = useState(false);
   
   return (
-    <div className="py-3 px-6 shadow-sm border border-stone-200 dark:border-white/5 bg-white dark:bg-zinc-900/30 dark:backdrop-blur-md rounded-2xl inline-block text-stone-900 dark:text-white mb-6 transition-all duration-300">
+    <div className="py-2.5 px-4 max-sm:w-full shadow-sm border border-stone-200 dark:border-white/5 bg-white dark:bg-zinc-900/30 dark:backdrop-blur-md rounded-xl sm:rounded-2xl inline-block text-stone-900 dark:text-white mb-6 transition-all duration-300">
       <button 
         type="button"
         className="xs:hidden flex flex-row gap-x-2 items-center justify-center font-bold text-primary" 

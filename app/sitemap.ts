@@ -63,12 +63,35 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.8,
     },
     {
+      url: `${baseUrl}/tools`,
+      lastModified: new Date(),
+      changeFrequency: "weekly" as const,
+      priority: 0.9,
+    },
+    {
       url: `${baseUrl}/tools/instagram-reels-downloader`,
       lastModified: new Date(),
       changeFrequency: "weekly" as const,
       priority: 0.9,
     },
   ];
+
+  // Dynamic Tools & Category entries from registry
+  const { ALL_TOOLS, TOOL_CATEGORIES } = await import("@/lib/tools/registry");
+
+  const toolCategoryEntries = TOOL_CATEGORIES.map((cat) => ({
+    url: `${baseUrl}/tools/${cat.slug}`,
+    lastModified: new Date(),
+    changeFrequency: "weekly" as const,
+    priority: 0.8,
+  }));
+
+  const toolIndividualEntries = ALL_TOOLS.map((tool) => ({
+    url: `${baseUrl}/tools/${tool.category}/${tool.slug}`,
+    lastModified: new Date(),
+    changeFrequency: "weekly" as const,
+    priority: 0.8,
+  }));
 
   // Fetch dynamic sections in parallel with a strict 4-second timeout limit
   const [projectPaths, categoryPaths, blogPaths] = await Promise.all([
@@ -134,5 +157,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ),
   ]);
 
-  return [...staticPaths, ...projectPaths, ...categoryPaths, ...blogPaths];
+  return [...staticPaths, ...toolCategoryEntries, ...toolIndividualEntries, ...projectPaths, ...categoryPaths, ...blogPaths];
 }

@@ -49,7 +49,7 @@ RUN npm run build
 
 # Stage 3: Runner
 FROM node:24-alpine AS runner
-RUN apk add --no-cache openssl
+RUN apk add --no-cache openssl ffmpeg poppler-utils tesseract-ocr libreoffice
 WORKDIR /app
 
 ENV NODE_ENV=production
@@ -60,9 +60,9 @@ RUN adduser --system --uid 1001 nextjs
 
 COPY --from=builder /app/public ./public
 
-# Set the correct permission for prerender cache
-RUN mkdir .next
-RUN chown nextjs:nodejs .next
+# Set the correct permission for prerender cache & job file storage
+RUN mkdir -p .next public/temp-jobs
+RUN chown -R nextjs:nodejs .next public/temp-jobs
 
 # Automatically leverage output traces to reduce image size
 # https://nextjs.org/docs/advanced-features/output-file-tracing

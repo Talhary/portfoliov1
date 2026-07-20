@@ -21,7 +21,7 @@ export default function LayoutWrapper({ children }: { children: React.ReactNode 
     return (
       <div className="w-full min-h-screen bg-zinc-50 dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 flex flex-col">
         {/* Clean top header for tool page */}
-        <header className="w-full sticky top-0 py-4 px-6 border-b border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 flex items-center justify-between z-50 shadow-sm">
+        <header className="w-full sticky top-0 py-3 sm:py-4 px-3.5 sm:px-10 border-b border-zinc-200 dark:border-zinc-800 bg-white/80 dark:bg-zinc-900/80 backdrop-blur-md flex items-center justify-between z-50 shadow-sm">
           <div className="flex items-center gap-4">
             <Link 
               href="/" 
@@ -38,16 +38,22 @@ export default function LayoutWrapper({ children }: { children: React.ReactNode 
               <span>Back to Portfolio</span>
             </Link>
           </div>
-          <div className="text-xs text-zinc-400 dark:text-zinc-500 font-light max-sm:hidden">
-            Talha Codes Tools
+          <div className="flex items-center gap-6">
+            <Link 
+              href="/tools" 
+              className="text-xs sm:text-sm font-bold text-zinc-700 dark:text-zinc-200 hover:text-primary transition-colors"
+            >
+              Tools Catalog
+            </Link>
+            <div className="text-xs text-zinc-400 dark:text-zinc-500 font-light max-sm:hidden">
+              Talha Codes Tools
+            </div>
           </div>
         </header>
         
         {/* Full-width content wrapper for tools */}
-        <main className="flex-grow flex flex-col p-4 sm:p-8 max-w-5xl w-full mx-auto animate-fadeIn">
-          <div className="w-full bg-zinc-50 dark:bg-big-card border border-zinc-200 dark:border-none shadow-sm dark:shadow-black relative rounded-2xl p-5 md:p-8 overflow-hidden">
-            {children}
-          </div>
+        <main className="flex-grow w-full animate-fadeIn">
+          {children}
         </main>
       </div>
     );
@@ -61,7 +67,7 @@ export default function LayoutWrapper({ children }: { children: React.ReactNode 
       </StickyAside>
       <div className='flex-auto max-md:ml-0 relative min-w-0 max-w-full overflow-hidden'>
         <Navbar className='z-50' />
-        <div className="bg-zinc-50 dark:bg-big-card border border-zinc-200 dark:border-none shadow-sm dark:shadow-black relative ml-0 text-zinc-900 dark:text-zinc-100 max-md:m-4 max-xs:m-1 max-xs:p-3 rounded-2xl p-5 max-md:p-3 w-full max-w-full overflow-hidden">
+        <div className="bg-zinc-50 dark:bg-big-card border-0 sm:border border-zinc-200 dark:border-none shadow-none sm:shadow-sm dark:shadow-black relative ml-0 text-zinc-900 dark:text-zinc-100 m-0 rounded-none sm:rounded-2xl p-3 sm:p-5 w-full max-w-full overflow-hidden">
           <GetToTopButton />
           {children}
         </div>

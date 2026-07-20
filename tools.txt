@@ -1,0 +1,163 @@
+Viewed registry.js:1-144
+
+Here is the complete catalog of all **built tools** currently available in WebVix, followed by the **planned / upcoming tools and enhancements**.
+
+---
+
+# 🛠️ 1. Built Tools in WebVix (97 Total across 10 Categories)
+
+### 🧮 Calculators (13 Tools)
+1. **Basic Calculator**: Everyday clean keypad calculator.
+2. **Percentage Calculator**: Calculate percentages, tips, and discounts.
+3. **BMI Calculator**: Body Mass Index estimator with metric/imperial units.
+4. **Loan Calculator**: Monthly payment & interest estimator.
+5. **Age Calculator**: Exact age breakdown in years, months, days, hours.
+6. **Tip Calculator**: Split bills and tips among multiple people.
+7. **Currency Converter**: Convert between common global currencies.
+8. **Discount Calculator**: Instant final price and savings calculator.
+9. **GPA Calculator**: Estimate cumulative GPA from course lists.
+10. **Salary Calculator**: Annual, monthly, and hourly net pay estimator.
+11. **Time Duration Calculator**: Measure elapsed time between clock times.
+12. **Compound Interest Calculator**: Project investment compounding growth.
+13. **Electricity Bill Calculator**: Power cost estimator based on wattage/usage.
+
+---
+
+### 🖼️ Image Tools (13 Tools)
+14. **PNG to JPG Converter**: Convert PNG images to optimized JPG.
+15. **JPG to PNG Converter**: Convert JPG images to transparent-ready PNG.
+16. **Image Compressor**: Reduce image file size while preserving quality.
+17. **Image Resizer**: Resize images to exact width and height dimensions.
+18. **WebP to PNG Converter**: Quick WebP to PNG image conversion.
+19. **Image Cropper**: Crop images with pixel precision.
+20. **Background Remover**: Remove solid background colors from images.
+21. **Image to Base64**: Convert images into Base64 data URLs.
+22. **Base64 to Image**: Decode Base64 strings into previewable images.
+23. **Image Color Picker**: Extract color palettes directly from uploaded images.
+24. **Image to Text (OCR)**: Extract text from image files via Tesseract OCR.
+25. **Image Rotator / Flipper**: One-click rotation and horizontal/vertical flipping.
+26. **SVG Optimizer**: Minify and clean SVG markup.
+
+---
+
+### 📝 Text Tools (11 Tools)
+27. **Word Counter**: Live word, character, sentence, and paragraph counter.
+28. **Character Counter**: Track characters against custom length limits.
+29. **Case Converter**: UPPERCASE, lowercase, Title, camelCase, snake_case.
+30. **Remove Duplicate Lines**: Clean up lists by removing duplicate entries.
+31. **Text to Speech**: Convert written text into spoken audio in browser.
+32. **Speech to Text**: Real-time microphone speech-to-text dictation.
+33. **Grammar Checker**: Catch common typos, spelling, and grammar errors.
+34. **Fancy Text Generator**: Generate stylized font text for social bios.
+35. **Plagiarism Checker**: Compare two text documents for wording similarity.
+36. **Text Reverser**: Reverse characters, words, or line order.
+37. **URL Encoder / Decoder**: Safely encode and decode URL parameters.
+
+---
+
+### 🎨 Color Tools (8 Tools)
+38. **Color Picker**: HEX, RGB, HSL color selection tool.
+39. **Color Picker from Image**: Extract hex palette details from uploaded images.
+40. **HEX to RGB Converter**: Instant HEX ⇄ RGB conversions.
+41. **Gradient Generator**: Custom CSS gradient builder with code output.
+42. **CSS Color Generator**: Custom HSL color sliders & CSS snippets.
+43. **Palette Generator**: One-click cohesive palette generation.
+44. **Contrast Checker**: WCAG accessibility compliance checker.
+45. **Tailwind Color Generator**: Generate full Tailwind-ready shade scale palettes.
+
+---
+
+### 💻 Developer Utilities (14 Tools)
+46. **JSON Formatter**: Beautify or minify JSON payloads.
+47. **XML Formatter**: Pretty-print XML documents.
+48. **CSS Formatter**: Format and compress CSS markup.
+49. **HTML Encoder / Decoder**: Escape and unescape HTML entities.
+50. **URL Encoder / Decoder**: Encode and decode URL components.
+51. **Base64 Encoder / Decoder**: Encode and decode text using Base64.
+52. **Markdown to HTML**: Render Markdown text into HTML with preview.
+53. **.htaccess Generator**: Build common Apache rewrite rules.
+54. **Robots.txt Generator**: Generate customized robots.txt files.
+55. **Meta Tag Generator**: SEO meta and Open Graph tag builder.
+56. **Password Generator**: Secure password generator with custom rules.
+57. **QR Code Generator**: Generate downloadable QR codes for URLs/text.
+58. **UUID Generator**: Generate v4 cryptographically strong UUIDs.
+59. **Regex Tester**: Test regular expressions with live syntax highlighting.
+
+---
+
+### 📅 Date & Time Tools (5 Tools)
+60. **Date Difference**: Calculate days, weeks, and months between dates.
+61. **Timezone Converter**: Convert timestamps across global timezones.
+62. **Countdown Timer**: Real-time countdown timer to specific dates.
+63. **Cron Parser**: Translate cron expressions into plain human readable text.
+64. **Unix Timestamp Converter**: Convert Unix timestamps ⇄ readable dates.
+
+---
+
+### 🔀 Converters (7 Tools)
+65. **CSV to JSON**: Convert tabular CSV data to structured JSON arrays.
+66. **JSON to CSV**: Flatten JSON arrays into downloadable CSV tables.
+67. **Text to Speech**: Convert text to synthesized speech.
+68. **Binary Converter**: Text ⇄ Binary conversion.
+69. **Morse Code Converter**: Text ⇄ Morse code with audio playback.
+70. **Roman Numeral Converter**: Decimal ⇄ Roman numerals.
+71. **Number Base Converter**: Convert between decimal, binary, hex, and octal.
+
+---
+
+### 🛡️ Security Utilities (9 Tools)
+72. **MD5 Hash Generator**: Standard MD5 checksum generator.
+73. **SHA-256 Hash**: Secure SHA-256 hash generator.
+74. **SHA-512 Hash**: SHA-512 cryptographic hash generator.
+75. **Password Strength Meter**: Evaluate password entropy and strength.
+76. **Random String Generator**: Generate random alphanumeric strings.
+77. **Password Generator**: Custom rules password builder.
+78. **UUID Generator**: Secure UUID generation.
+79. **Random Number Generator**: Range-based random number generator.
+80. **IP Address Lookup**: Retrieve public IP address & location info.
+
+---
+
+### 🔍 SEO Tools (9 Tools)
+81. **Keyword Density Checker**: Frequency analysis for keywords in articles.
+82. **Meta Tag Analyzer**: Inspect title, meta description, and social tags.
+83. **Sitemap Generator**: Create `sitemap.xml` files.
+84. **Open Graph Preview**: Preview social card previews (Twitter/FB/LinkedIn).
+85. **Canonical URL Checker**: Check URL formatting and canonical tags.
+86. **Page Speed Estimator**: Estimate page load speeds across 2G/3G/LTE/WiFi.
+87. **Backlink Checker**: SEO backlink building suggestions & resources.
+88. **SEO Score Checker**: Calculate content health scores.
+89. **Google Index Checker**: Check indexability readiness.
+
+---
+
+### 📁 File Tools (8 Tools)
+90. **PDF to Word Converter**: Convert PDF documents to Word (.doc).
+91. **Word to PDF Converter**: Export Word files (.docx) to PDF format.
+92. **PDF Compressor**: Reduce PDF file size.
+93. **Merge PDF**: Merge multiple PDFs into a single document.
+94. **Split PDF**: Split PDF page ranges into separate files.
+95. **ZIP Extractor**: Inspect and extract `.zip` archive structures.
+96. **File Size Converter**: Convert Bytes, KB, MB, GB, and TB.
+97. **Video to MP3 Converter**: Extract MP3 audio tracks from videos.
+
+---
+
+# 🚀 2. Planned & Upcoming Tools / Enhancements
+
+### ⚙️ Server-Side Backend API Integrations (High Priority)
+- **`/api/tools/files/*`**: Dedicated Node PDF conversion engine (PDF to Word, Word to PDF, PDF Compressor, PDF Merge/Split) & ZIP parsing.
+- **`/api/tools/seo/*`**: Server-side URL scraper bypassing client CORS limits for Meta Tag Inspection, Index Checking, and real TTFB speed tests.
+- **`/api/tools/security/ip-lookup` & `dns-lookup`**: Server-side IP Geolocation & live DNS record lookup (A, MX, TXT, NS, CNAME).
+- **`/api/tools/text/grammar`**: Server-assisted grammar & readability scoring engine.
+
+### 🆕 New Tools to Add to WebVix (Upcoming)
+1. **DNS Lookup Tool**: Perform live DNS queries for any domain.
+2. **SSL / TLS Certificate Inspector**: Check domain SSL certificate validity, issuer, and expiration date.
+3. **Image Watermarker**: Apply custom text or logo watermarks to uploaded images.
+4. **HEIC to JPG Converter**: Convert Apple HEIC photos to JPG format.
+5. **JSON ⇄ YAML Converter**: Convert between JSON and YAML syntax.
+6. **JWT Token Decoder**: Decode and inspect JSON Web Token headers, payload, and expiry dates.
+7. **SQL Formatter & Sanitizer**: Format and clean complex SQL queries.
+8. **WHOIS Domain Lookup**: Inspect domain registration records, registrar details, and dates.
+9. **Audio Cutter / Trimmer**: Trim audio files directly in browser.

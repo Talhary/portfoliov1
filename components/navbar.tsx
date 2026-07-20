@@ -7,8 +7,8 @@ type PageStates = {
   blog: boolean | null;
   contact: boolean | null;
 };
-const list = ['Home', 'About', 'Resume', 'Portfolio', 'Blog', 'Contact']
-const hrefList = ['/', '/about', '/resume', '/portfolio/all', '/blog', '/contact']
+const list = ['Home', 'About', 'Resume', 'Portfolio', 'Tools', 'Blog', 'Contact']
+const hrefList = ['/', '/about', '/resume', '/portfolio/all', '/tools', '/blog', '/contact']
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation';

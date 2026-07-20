@@ -28,6 +28,30 @@ export type Category = $Result.DefaultSelection<Prisma.$CategoryPayload>
  * 
  */
 export type BlogPost = $Result.DefaultSelection<Prisma.$BlogPostPayload>
+/**
+ * Model ToolJob
+ * 
+ */
+export type ToolJob = $Result.DefaultSelection<Prisma.$ToolJobPayload>
+
+/**
+ * Enums
+ */
+export namespace $Enums {
+  export const JobStatus: {
+  PENDING: 'PENDING',
+  PROCESSING: 'PROCESSING',
+  COMPLETED: 'COMPLETED',
+  FAILED: 'FAILED'
+};
+
+export type JobStatus = (typeof JobStatus)[keyof typeof JobStatus]
+
+}
+
+export type JobStatus = $Enums.JobStatus
+
+export const JobStatus: typeof $Enums.JobStatus
 
 /**
  * ##  Prisma Client ʲˢ
@@ -181,6 +205,16 @@ export class PrismaClient<
     * ```
     */
   get blogPost(): Prisma.BlogPostDelegate<ExtArgs>;
+
+  /**
+   * `prisma.toolJob`: Exposes CRUD operations for the **ToolJob** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ToolJobs
+    * const toolJobs = await prisma.toolJob.findMany()
+    * ```
+    */
+  get toolJob(): Prisma.ToolJobDelegate<ExtArgs>;
 }
 
 export namespace Prisma {
@@ -624,7 +658,8 @@ export namespace Prisma {
   export const ModelName: {
     Projects: 'Projects',
     Category: 'Category',
-    BlogPost: 'BlogPost'
+    BlogPost: 'BlogPost',
+    ToolJob: 'ToolJob'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -640,7 +675,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> = {
     meta: {
-      modelProps: "projects" | "category" | "blogPost"
+      modelProps: "projects" | "category" | "blogPost" | "toolJob"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -851,6 +886,76 @@ export namespace Prisma {
           count: {
             args: Prisma.BlogPostCountArgs<ExtArgs>
             result: $Utils.Optional<BlogPostCountAggregateOutputType> | number
+          }
+        }
+      }
+      ToolJob: {
+        payload: Prisma.$ToolJobPayload<ExtArgs>
+        fields: Prisma.ToolJobFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ToolJobFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ToolJobPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ToolJobFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ToolJobPayload>
+          }
+          findFirst: {
+            args: Prisma.ToolJobFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ToolJobPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ToolJobFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ToolJobPayload>
+          }
+          findMany: {
+            args: Prisma.ToolJobFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ToolJobPayload>[]
+          }
+          create: {
+            args: Prisma.ToolJobCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ToolJobPayload>
+          }
+          createMany: {
+            args: Prisma.ToolJobCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ToolJobCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ToolJobPayload>[]
+          }
+          delete: {
+            args: Prisma.ToolJobDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ToolJobPayload>
+          }
+          update: {
+            args: Prisma.ToolJobUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ToolJobPayload>
+          }
+          deleteMany: {
+            args: Prisma.ToolJobDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ToolJobUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.ToolJobUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ToolJobPayload>
+          }
+          aggregate: {
+            args: Prisma.ToolJobAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateToolJob>
+          }
+          groupBy: {
+            args: Prisma.ToolJobGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ToolJobGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ToolJobCountArgs<ExtArgs>
+            result: $Utils.Optional<ToolJobCountAggregateOutputType> | number
           }
         }
       }
@@ -3780,6 +3885,970 @@ export namespace Prisma {
 
 
   /**
+   * Model ToolJob
+   */
+
+  export type AggregateToolJob = {
+    _count: ToolJobCountAggregateOutputType | null
+    _avg: ToolJobAvgAggregateOutputType | null
+    _sum: ToolJobSumAggregateOutputType | null
+    _min: ToolJobMinAggregateOutputType | null
+    _max: ToolJobMaxAggregateOutputType | null
+  }
+
+  export type ToolJobAvgAggregateOutputType = {
+    progress: number | null
+  }
+
+  export type ToolJobSumAggregateOutputType = {
+    progress: number | null
+  }
+
+  export type ToolJobMinAggregateOutputType = {
+    id: string | null
+    toolId: string | null
+    status: $Enums.JobStatus | null
+    progress: number | null
+    outputFile: string | null
+    error: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type ToolJobMaxAggregateOutputType = {
+    id: string | null
+    toolId: string | null
+    status: $Enums.JobStatus | null
+    progress: number | null
+    outputFile: string | null
+    error: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type ToolJobCountAggregateOutputType = {
+    id: number
+    toolId: number
+    status: number
+    progress: number
+    inputParams: number
+    resultData: number
+    outputFile: number
+    error: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type ToolJobAvgAggregateInputType = {
+    progress?: true
+  }
+
+  export type ToolJobSumAggregateInputType = {
+    progress?: true
+  }
+
+  export type ToolJobMinAggregateInputType = {
+    id?: true
+    toolId?: true
+    status?: true
+    progress?: true
+    outputFile?: true
+    error?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type ToolJobMaxAggregateInputType = {
+    id?: true
+    toolId?: true
+    status?: true
+    progress?: true
+    outputFile?: true
+    error?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type ToolJobCountAggregateInputType = {
+    id?: true
+    toolId?: true
+    status?: true
+    progress?: true
+    inputParams?: true
+    resultData?: true
+    outputFile?: true
+    error?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type ToolJobAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ToolJob to aggregate.
+     */
+    where?: ToolJobWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ToolJobs to fetch.
+     */
+    orderBy?: ToolJobOrderByWithRelationInput | ToolJobOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ToolJobWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ToolJobs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ToolJobs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ToolJobs
+    **/
+    _count?: true | ToolJobCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: ToolJobAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: ToolJobSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ToolJobMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ToolJobMaxAggregateInputType
+  }
+
+  export type GetToolJobAggregateType<T extends ToolJobAggregateArgs> = {
+        [P in keyof T & keyof AggregateToolJob]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateToolJob[P]>
+      : GetScalarType<T[P], AggregateToolJob[P]>
+  }
+
+
+
+
+  export type ToolJobGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ToolJobWhereInput
+    orderBy?: ToolJobOrderByWithAggregationInput | ToolJobOrderByWithAggregationInput[]
+    by: ToolJobScalarFieldEnum[] | ToolJobScalarFieldEnum
+    having?: ToolJobScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ToolJobCountAggregateInputType | true
+    _avg?: ToolJobAvgAggregateInputType
+    _sum?: ToolJobSumAggregateInputType
+    _min?: ToolJobMinAggregateInputType
+    _max?: ToolJobMaxAggregateInputType
+  }
+
+  export type ToolJobGroupByOutputType = {
+    id: string
+    toolId: string
+    status: $Enums.JobStatus
+    progress: number
+    inputParams: JsonValue | null
+    resultData: JsonValue | null
+    outputFile: string | null
+    error: string | null
+    createdAt: Date
+    updatedAt: Date
+    _count: ToolJobCountAggregateOutputType | null
+    _avg: ToolJobAvgAggregateOutputType | null
+    _sum: ToolJobSumAggregateOutputType | null
+    _min: ToolJobMinAggregateOutputType | null
+    _max: ToolJobMaxAggregateOutputType | null
+  }
+
+  type GetToolJobGroupByPayload<T extends ToolJobGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ToolJobGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ToolJobGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ToolJobGroupByOutputType[P]>
+            : GetScalarType<T[P], ToolJobGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ToolJobSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    toolId?: boolean
+    status?: boolean
+    progress?: boolean
+    inputParams?: boolean
+    resultData?: boolean
+    outputFile?: boolean
+    error?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["toolJob"]>
+
+  export type ToolJobSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    toolId?: boolean
+    status?: boolean
+    progress?: boolean
+    inputParams?: boolean
+    resultData?: boolean
+    outputFile?: boolean
+    error?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["toolJob"]>
+
+  export type ToolJobSelectScalar = {
+    id?: boolean
+    toolId?: boolean
+    status?: boolean
+    progress?: boolean
+    inputParams?: boolean
+    resultData?: boolean
+    outputFile?: boolean
+    error?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+
+  export type $ToolJobPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ToolJob"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      toolId: string
+      status: $Enums.JobStatus
+      progress: number
+      inputParams: Prisma.JsonValue | null
+      resultData: Prisma.JsonValue | null
+      outputFile: string | null
+      error: string | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["toolJob"]>
+    composites: {}
+  }
+
+  type ToolJobGetPayload<S extends boolean | null | undefined | ToolJobDefaultArgs> = $Result.GetResult<Prisma.$ToolJobPayload, S>
+
+  type ToolJobCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<ToolJobFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: ToolJobCountAggregateInputType | true
+    }
+
+  export interface ToolJobDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ToolJob'], meta: { name: 'ToolJob' } }
+    /**
+     * Find zero or one ToolJob that matches the filter.
+     * @param {ToolJobFindUniqueArgs} args - Arguments to find a ToolJob
+     * @example
+     * // Get one ToolJob
+     * const toolJob = await prisma.toolJob.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ToolJobFindUniqueArgs>(args: SelectSubset<T, ToolJobFindUniqueArgs<ExtArgs>>): Prisma__ToolJobClient<$Result.GetResult<Prisma.$ToolJobPayload<ExtArgs>, T, "findUnique"> | null, null, ExtArgs>
+
+    /**
+     * Find one ToolJob that matches the filter or throw an error with `error.code='P2025'` 
+     * if no matches were found.
+     * @param {ToolJobFindUniqueOrThrowArgs} args - Arguments to find a ToolJob
+     * @example
+     * // Get one ToolJob
+     * const toolJob = await prisma.toolJob.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ToolJobFindUniqueOrThrowArgs>(args: SelectSubset<T, ToolJobFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ToolJobClient<$Result.GetResult<Prisma.$ToolJobPayload<ExtArgs>, T, "findUniqueOrThrow">, never, ExtArgs>
+
+    /**
+     * Find the first ToolJob that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ToolJobFindFirstArgs} args - Arguments to find a ToolJob
+     * @example
+     * // Get one ToolJob
+     * const toolJob = await prisma.toolJob.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ToolJobFindFirstArgs>(args?: SelectSubset<T, ToolJobFindFirstArgs<ExtArgs>>): Prisma__ToolJobClient<$Result.GetResult<Prisma.$ToolJobPayload<ExtArgs>, T, "findFirst"> | null, null, ExtArgs>
+
+    /**
+     * Find the first ToolJob that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ToolJobFindFirstOrThrowArgs} args - Arguments to find a ToolJob
+     * @example
+     * // Get one ToolJob
+     * const toolJob = await prisma.toolJob.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ToolJobFindFirstOrThrowArgs>(args?: SelectSubset<T, ToolJobFindFirstOrThrowArgs<ExtArgs>>): Prisma__ToolJobClient<$Result.GetResult<Prisma.$ToolJobPayload<ExtArgs>, T, "findFirstOrThrow">, never, ExtArgs>
+
+    /**
+     * Find zero or more ToolJobs that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ToolJobFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ToolJobs
+     * const toolJobs = await prisma.toolJob.findMany()
+     * 
+     * // Get first 10 ToolJobs
+     * const toolJobs = await prisma.toolJob.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const toolJobWithIdOnly = await prisma.toolJob.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ToolJobFindManyArgs>(args?: SelectSubset<T, ToolJobFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ToolJobPayload<ExtArgs>, T, "findMany">>
+
+    /**
+     * Create a ToolJob.
+     * @param {ToolJobCreateArgs} args - Arguments to create a ToolJob.
+     * @example
+     * // Create one ToolJob
+     * const ToolJob = await prisma.toolJob.create({
+     *   data: {
+     *     // ... data to create a ToolJob
+     *   }
+     * })
+     * 
+     */
+    create<T extends ToolJobCreateArgs>(args: SelectSubset<T, ToolJobCreateArgs<ExtArgs>>): Prisma__ToolJobClient<$Result.GetResult<Prisma.$ToolJobPayload<ExtArgs>, T, "create">, never, ExtArgs>
+
+    /**
+     * Create many ToolJobs.
+     * @param {ToolJobCreateManyArgs} args - Arguments to create many ToolJobs.
+     * @example
+     * // Create many ToolJobs
+     * const toolJob = await prisma.toolJob.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ToolJobCreateManyArgs>(args?: SelectSubset<T, ToolJobCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many ToolJobs and returns the data saved in the database.
+     * @param {ToolJobCreateManyAndReturnArgs} args - Arguments to create many ToolJobs.
+     * @example
+     * // Create many ToolJobs
+     * const toolJob = await prisma.toolJob.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many ToolJobs and only return the `id`
+     * const toolJobWithIdOnly = await prisma.toolJob.createManyAndReturn({ 
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ToolJobCreateManyAndReturnArgs>(args?: SelectSubset<T, ToolJobCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ToolJobPayload<ExtArgs>, T, "createManyAndReturn">>
+
+    /**
+     * Delete a ToolJob.
+     * @param {ToolJobDeleteArgs} args - Arguments to delete one ToolJob.
+     * @example
+     * // Delete one ToolJob
+     * const ToolJob = await prisma.toolJob.delete({
+     *   where: {
+     *     // ... filter to delete one ToolJob
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ToolJobDeleteArgs>(args: SelectSubset<T, ToolJobDeleteArgs<ExtArgs>>): Prisma__ToolJobClient<$Result.GetResult<Prisma.$ToolJobPayload<ExtArgs>, T, "delete">, never, ExtArgs>
+
+    /**
+     * Update one ToolJob.
+     * @param {ToolJobUpdateArgs} args - Arguments to update one ToolJob.
+     * @example
+     * // Update one ToolJob
+     * const toolJob = await prisma.toolJob.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ToolJobUpdateArgs>(args: SelectSubset<T, ToolJobUpdateArgs<ExtArgs>>): Prisma__ToolJobClient<$Result.GetResult<Prisma.$ToolJobPayload<ExtArgs>, T, "update">, never, ExtArgs>
+
+    /**
+     * Delete zero or more ToolJobs.
+     * @param {ToolJobDeleteManyArgs} args - Arguments to filter ToolJobs to delete.
+     * @example
+     * // Delete a few ToolJobs
+     * const { count } = await prisma.toolJob.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ToolJobDeleteManyArgs>(args?: SelectSubset<T, ToolJobDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ToolJobs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ToolJobUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ToolJobs
+     * const toolJob = await prisma.toolJob.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ToolJobUpdateManyArgs>(args: SelectSubset<T, ToolJobUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one ToolJob.
+     * @param {ToolJobUpsertArgs} args - Arguments to update or create a ToolJob.
+     * @example
+     * // Update or create a ToolJob
+     * const toolJob = await prisma.toolJob.upsert({
+     *   create: {
+     *     // ... data to create a ToolJob
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ToolJob we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ToolJobUpsertArgs>(args: SelectSubset<T, ToolJobUpsertArgs<ExtArgs>>): Prisma__ToolJobClient<$Result.GetResult<Prisma.$ToolJobPayload<ExtArgs>, T, "upsert">, never, ExtArgs>
+
+
+    /**
+     * Count the number of ToolJobs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ToolJobCountArgs} args - Arguments to filter ToolJobs to count.
+     * @example
+     * // Count the number of ToolJobs
+     * const count = await prisma.toolJob.count({
+     *   where: {
+     *     // ... the filter for the ToolJobs we want to count
+     *   }
+     * })
+    **/
+    count<T extends ToolJobCountArgs>(
+      args?: Subset<T, ToolJobCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ToolJobCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ToolJob.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ToolJobAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ToolJobAggregateArgs>(args: Subset<T, ToolJobAggregateArgs>): Prisma.PrismaPromise<GetToolJobAggregateType<T>>
+
+    /**
+     * Group by ToolJob.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ToolJobGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ToolJobGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ToolJobGroupByArgs['orderBy'] }
+        : { orderBy?: ToolJobGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ToolJobGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetToolJobGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ToolJob model
+   */
+  readonly fields: ToolJobFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ToolJob.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ToolJobClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ToolJob model
+   */ 
+  interface ToolJobFieldRefs {
+    readonly id: FieldRef<"ToolJob", 'String'>
+    readonly toolId: FieldRef<"ToolJob", 'String'>
+    readonly status: FieldRef<"ToolJob", 'JobStatus'>
+    readonly progress: FieldRef<"ToolJob", 'Int'>
+    readonly inputParams: FieldRef<"ToolJob", 'Json'>
+    readonly resultData: FieldRef<"ToolJob", 'Json'>
+    readonly outputFile: FieldRef<"ToolJob", 'String'>
+    readonly error: FieldRef<"ToolJob", 'String'>
+    readonly createdAt: FieldRef<"ToolJob", 'DateTime'>
+    readonly updatedAt: FieldRef<"ToolJob", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ToolJob findUnique
+   */
+  export type ToolJobFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ToolJob
+     */
+    select?: ToolJobSelect<ExtArgs> | null
+    /**
+     * Filter, which ToolJob to fetch.
+     */
+    where: ToolJobWhereUniqueInput
+  }
+
+  /**
+   * ToolJob findUniqueOrThrow
+   */
+  export type ToolJobFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ToolJob
+     */
+    select?: ToolJobSelect<ExtArgs> | null
+    /**
+     * Filter, which ToolJob to fetch.
+     */
+    where: ToolJobWhereUniqueInput
+  }
+
+  /**
+   * ToolJob findFirst
+   */
+  export type ToolJobFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ToolJob
+     */
+    select?: ToolJobSelect<ExtArgs> | null
+    /**
+     * Filter, which ToolJob to fetch.
+     */
+    where?: ToolJobWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ToolJobs to fetch.
+     */
+    orderBy?: ToolJobOrderByWithRelationInput | ToolJobOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ToolJobs.
+     */
+    cursor?: ToolJobWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ToolJobs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ToolJobs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ToolJobs.
+     */
+    distinct?: ToolJobScalarFieldEnum | ToolJobScalarFieldEnum[]
+  }
+
+  /**
+   * ToolJob findFirstOrThrow
+   */
+  export type ToolJobFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ToolJob
+     */
+    select?: ToolJobSelect<ExtArgs> | null
+    /**
+     * Filter, which ToolJob to fetch.
+     */
+    where?: ToolJobWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ToolJobs to fetch.
+     */
+    orderBy?: ToolJobOrderByWithRelationInput | ToolJobOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ToolJobs.
+     */
+    cursor?: ToolJobWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ToolJobs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ToolJobs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ToolJobs.
+     */
+    distinct?: ToolJobScalarFieldEnum | ToolJobScalarFieldEnum[]
+  }
+
+  /**
+   * ToolJob findMany
+   */
+  export type ToolJobFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ToolJob
+     */
+    select?: ToolJobSelect<ExtArgs> | null
+    /**
+     * Filter, which ToolJobs to fetch.
+     */
+    where?: ToolJobWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ToolJobs to fetch.
+     */
+    orderBy?: ToolJobOrderByWithRelationInput | ToolJobOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ToolJobs.
+     */
+    cursor?: ToolJobWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ToolJobs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ToolJobs.
+     */
+    skip?: number
+    distinct?: ToolJobScalarFieldEnum | ToolJobScalarFieldEnum[]
+  }
+
+  /**
+   * ToolJob create
+   */
+  export type ToolJobCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ToolJob
+     */
+    select?: ToolJobSelect<ExtArgs> | null
+    /**
+     * The data needed to create a ToolJob.
+     */
+    data: XOR<ToolJobCreateInput, ToolJobUncheckedCreateInput>
+  }
+
+  /**
+   * ToolJob createMany
+   */
+  export type ToolJobCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ToolJobs.
+     */
+    data: ToolJobCreateManyInput | ToolJobCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ToolJob createManyAndReturn
+   */
+  export type ToolJobCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ToolJob
+     */
+    select?: ToolJobSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * The data used to create many ToolJobs.
+     */
+    data: ToolJobCreateManyInput | ToolJobCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ToolJob update
+   */
+  export type ToolJobUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ToolJob
+     */
+    select?: ToolJobSelect<ExtArgs> | null
+    /**
+     * The data needed to update a ToolJob.
+     */
+    data: XOR<ToolJobUpdateInput, ToolJobUncheckedUpdateInput>
+    /**
+     * Choose, which ToolJob to update.
+     */
+    where: ToolJobWhereUniqueInput
+  }
+
+  /**
+   * ToolJob updateMany
+   */
+  export type ToolJobUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ToolJobs.
+     */
+    data: XOR<ToolJobUpdateManyMutationInput, ToolJobUncheckedUpdateManyInput>
+    /**
+     * Filter which ToolJobs to update
+     */
+    where?: ToolJobWhereInput
+  }
+
+  /**
+   * ToolJob upsert
+   */
+  export type ToolJobUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ToolJob
+     */
+    select?: ToolJobSelect<ExtArgs> | null
+    /**
+     * The filter to search for the ToolJob to update in case it exists.
+     */
+    where: ToolJobWhereUniqueInput
+    /**
+     * In case the ToolJob found by the `where` argument doesn't exist, create a new ToolJob with this data.
+     */
+    create: XOR<ToolJobCreateInput, ToolJobUncheckedCreateInput>
+    /**
+     * In case the ToolJob was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ToolJobUpdateInput, ToolJobUncheckedUpdateInput>
+  }
+
+  /**
+   * ToolJob delete
+   */
+  export type ToolJobDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ToolJob
+     */
+    select?: ToolJobSelect<ExtArgs> | null
+    /**
+     * Filter which ToolJob to delete.
+     */
+    where: ToolJobWhereUniqueInput
+  }
+
+  /**
+   * ToolJob deleteMany
+   */
+  export type ToolJobDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ToolJobs to delete
+     */
+    where?: ToolJobWhereInput
+  }
+
+  /**
+   * ToolJob without action
+   */
+  export type ToolJobDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ToolJob
+     */
+    select?: ToolJobSelect<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -3835,12 +4904,36 @@ export namespace Prisma {
   export type BlogPostScalarFieldEnum = (typeof BlogPostScalarFieldEnum)[keyof typeof BlogPostScalarFieldEnum]
 
 
+  export const ToolJobScalarFieldEnum: {
+    id: 'id',
+    toolId: 'toolId',
+    status: 'status',
+    progress: 'progress',
+    inputParams: 'inputParams',
+    resultData: 'resultData',
+    outputFile: 'outputFile',
+    error: 'error',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type ToolJobScalarFieldEnum = (typeof ToolJobScalarFieldEnum)[keyof typeof ToolJobScalarFieldEnum]
+
+
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
   };
 
   export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
+
+
+  export const NullableJsonNullValueInput: {
+    DbNull: typeof DbNull,
+    JsonNull: typeof JsonNull
+  };
+
+  export type NullableJsonNullValueInput = (typeof NullableJsonNullValueInput)[keyof typeof NullableJsonNullValueInput]
 
 
   export const QueryMode: {
@@ -3857,6 +4950,15 @@ export namespace Prisma {
   };
 
   export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
+
+
+  export const JsonNullValueFilter: {
+    DbNull: typeof DbNull,
+    JsonNull: typeof JsonNull,
+    AnyNull: typeof AnyNull
+  };
+
+  export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
 
 
   /**
@@ -3910,6 +5012,27 @@ export namespace Prisma {
    * Reference to a field of type 'Boolean'
    */
   export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+    
+
+
+  /**
+   * Reference to a field of type 'JobStatus'
+   */
+  export type EnumJobStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'JobStatus'>
+    
+
+
+  /**
+   * Reference to a field of type 'JobStatus[]'
+   */
+  export type ListEnumJobStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'JobStatus[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Json'
+   */
+  export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
     
 
 
@@ -4131,6 +5254,85 @@ export namespace Prisma {
     tags?: StringNullableListFilter<"BlogPost">
     createdAt?: DateTimeWithAggregatesFilter<"BlogPost"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"BlogPost"> | Date | string
+  }
+
+  export type ToolJobWhereInput = {
+    AND?: ToolJobWhereInput | ToolJobWhereInput[]
+    OR?: ToolJobWhereInput[]
+    NOT?: ToolJobWhereInput | ToolJobWhereInput[]
+    id?: StringFilter<"ToolJob"> | string
+    toolId?: StringFilter<"ToolJob"> | string
+    status?: EnumJobStatusFilter<"ToolJob"> | $Enums.JobStatus
+    progress?: IntFilter<"ToolJob"> | number
+    inputParams?: JsonNullableFilter<"ToolJob">
+    resultData?: JsonNullableFilter<"ToolJob">
+    outputFile?: StringNullableFilter<"ToolJob"> | string | null
+    error?: StringNullableFilter<"ToolJob"> | string | null
+    createdAt?: DateTimeFilter<"ToolJob"> | Date | string
+    updatedAt?: DateTimeFilter<"ToolJob"> | Date | string
+  }
+
+  export type ToolJobOrderByWithRelationInput = {
+    id?: SortOrder
+    toolId?: SortOrder
+    status?: SortOrder
+    progress?: SortOrder
+    inputParams?: SortOrderInput | SortOrder
+    resultData?: SortOrderInput | SortOrder
+    outputFile?: SortOrderInput | SortOrder
+    error?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ToolJobWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: ToolJobWhereInput | ToolJobWhereInput[]
+    OR?: ToolJobWhereInput[]
+    NOT?: ToolJobWhereInput | ToolJobWhereInput[]
+    toolId?: StringFilter<"ToolJob"> | string
+    status?: EnumJobStatusFilter<"ToolJob"> | $Enums.JobStatus
+    progress?: IntFilter<"ToolJob"> | number
+    inputParams?: JsonNullableFilter<"ToolJob">
+    resultData?: JsonNullableFilter<"ToolJob">
+    outputFile?: StringNullableFilter<"ToolJob"> | string | null
+    error?: StringNullableFilter<"ToolJob"> | string | null
+    createdAt?: DateTimeFilter<"ToolJob"> | Date | string
+    updatedAt?: DateTimeFilter<"ToolJob"> | Date | string
+  }, "id">
+
+  export type ToolJobOrderByWithAggregationInput = {
+    id?: SortOrder
+    toolId?: SortOrder
+    status?: SortOrder
+    progress?: SortOrder
+    inputParams?: SortOrderInput | SortOrder
+    resultData?: SortOrderInput | SortOrder
+    outputFile?: SortOrderInput | SortOrder
+    error?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: ToolJobCountOrderByAggregateInput
+    _avg?: ToolJobAvgOrderByAggregateInput
+    _max?: ToolJobMaxOrderByAggregateInput
+    _min?: ToolJobMinOrderByAggregateInput
+    _sum?: ToolJobSumOrderByAggregateInput
+  }
+
+  export type ToolJobScalarWhereWithAggregatesInput = {
+    AND?: ToolJobScalarWhereWithAggregatesInput | ToolJobScalarWhereWithAggregatesInput[]
+    OR?: ToolJobScalarWhereWithAggregatesInput[]
+    NOT?: ToolJobScalarWhereWithAggregatesInput | ToolJobScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"ToolJob"> | string
+    toolId?: StringWithAggregatesFilter<"ToolJob"> | string
+    status?: EnumJobStatusWithAggregatesFilter<"ToolJob"> | $Enums.JobStatus
+    progress?: IntWithAggregatesFilter<"ToolJob"> | number
+    inputParams?: JsonNullableWithAggregatesFilter<"ToolJob">
+    resultData?: JsonNullableWithAggregatesFilter<"ToolJob">
+    outputFile?: StringNullableWithAggregatesFilter<"ToolJob"> | string | null
+    error?: StringNullableWithAggregatesFilter<"ToolJob"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"ToolJob"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"ToolJob"> | Date | string
   }
 
   export type ProjectsCreateInput = {
@@ -4360,6 +5562,97 @@ export namespace Prisma {
     imageUrl?: NullableStringFieldUpdateOperationsInput | string | null
     published?: BoolFieldUpdateOperationsInput | boolean
     tags?: BlogPostUpdatetagsInput | string[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ToolJobCreateInput = {
+    id?: string
+    toolId: string
+    status?: $Enums.JobStatus
+    progress?: number
+    inputParams?: NullableJsonNullValueInput | InputJsonValue
+    resultData?: NullableJsonNullValueInput | InputJsonValue
+    outputFile?: string | null
+    error?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ToolJobUncheckedCreateInput = {
+    id?: string
+    toolId: string
+    status?: $Enums.JobStatus
+    progress?: number
+    inputParams?: NullableJsonNullValueInput | InputJsonValue
+    resultData?: NullableJsonNullValueInput | InputJsonValue
+    outputFile?: string | null
+    error?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ToolJobUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    toolId?: StringFieldUpdateOperationsInput | string
+    status?: EnumJobStatusFieldUpdateOperationsInput | $Enums.JobStatus
+    progress?: IntFieldUpdateOperationsInput | number
+    inputParams?: NullableJsonNullValueInput | InputJsonValue
+    resultData?: NullableJsonNullValueInput | InputJsonValue
+    outputFile?: NullableStringFieldUpdateOperationsInput | string | null
+    error?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ToolJobUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    toolId?: StringFieldUpdateOperationsInput | string
+    status?: EnumJobStatusFieldUpdateOperationsInput | $Enums.JobStatus
+    progress?: IntFieldUpdateOperationsInput | number
+    inputParams?: NullableJsonNullValueInput | InputJsonValue
+    resultData?: NullableJsonNullValueInput | InputJsonValue
+    outputFile?: NullableStringFieldUpdateOperationsInput | string | null
+    error?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ToolJobCreateManyInput = {
+    id?: string
+    toolId: string
+    status?: $Enums.JobStatus
+    progress?: number
+    inputParams?: NullableJsonNullValueInput | InputJsonValue
+    resultData?: NullableJsonNullValueInput | InputJsonValue
+    outputFile?: string | null
+    error?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type ToolJobUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    toolId?: StringFieldUpdateOperationsInput | string
+    status?: EnumJobStatusFieldUpdateOperationsInput | $Enums.JobStatus
+    progress?: IntFieldUpdateOperationsInput | number
+    inputParams?: NullableJsonNullValueInput | InputJsonValue
+    resultData?: NullableJsonNullValueInput | InputJsonValue
+    outputFile?: NullableStringFieldUpdateOperationsInput | string | null
+    error?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ToolJobUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    toolId?: StringFieldUpdateOperationsInput | string
+    status?: EnumJobStatusFieldUpdateOperationsInput | $Enums.JobStatus
+    progress?: IntFieldUpdateOperationsInput | number
+    inputParams?: NullableJsonNullValueInput | InputJsonValue
+    resultData?: NullableJsonNullValueInput | InputJsonValue
+    outputFile?: NullableStringFieldUpdateOperationsInput | string | null
+    error?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -4609,6 +5902,113 @@ export namespace Prisma {
     _max?: NestedBoolFilter<$PrismaModel>
   }
 
+  export type EnumJobStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.JobStatus | EnumJobStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.JobStatus[] | ListEnumJobStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.JobStatus[] | ListEnumJobStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumJobStatusFilter<$PrismaModel> | $Enums.JobStatus
+  }
+  export type JsonNullableFilter<$PrismaModel = never> = 
+    | PatchUndefined<
+        Either<Required<JsonNullableFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonNullableFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonNullableFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonNullableFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonNullableFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
+
+  export type ToolJobCountOrderByAggregateInput = {
+    id?: SortOrder
+    toolId?: SortOrder
+    status?: SortOrder
+    progress?: SortOrder
+    inputParams?: SortOrder
+    resultData?: SortOrder
+    outputFile?: SortOrder
+    error?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ToolJobAvgOrderByAggregateInput = {
+    progress?: SortOrder
+  }
+
+  export type ToolJobMaxOrderByAggregateInput = {
+    id?: SortOrder
+    toolId?: SortOrder
+    status?: SortOrder
+    progress?: SortOrder
+    outputFile?: SortOrder
+    error?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ToolJobMinOrderByAggregateInput = {
+    id?: SortOrder
+    toolId?: SortOrder
+    status?: SortOrder
+    progress?: SortOrder
+    outputFile?: SortOrder
+    error?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type ToolJobSumOrderByAggregateInput = {
+    progress?: SortOrder
+  }
+
+  export type EnumJobStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.JobStatus | EnumJobStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.JobStatus[] | ListEnumJobStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.JobStatus[] | ListEnumJobStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumJobStatusWithAggregatesFilter<$PrismaModel> | $Enums.JobStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumJobStatusFilter<$PrismaModel>
+    _max?: NestedEnumJobStatusFilter<$PrismaModel>
+  }
+  export type JsonNullableWithAggregatesFilter<$PrismaModel = never> = 
+    | PatchUndefined<
+        Either<Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonNullableWithAggregatesFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonNullableWithAggregatesFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedJsonNullableFilter<$PrismaModel>
+    _max?: NestedJsonNullableFilter<$PrismaModel>
+  }
+
   export type ProjectsCreateimageUrlInput = {
     set: string[]
   }
@@ -4658,6 +6058,10 @@ export namespace Prisma {
   export type BlogPostUpdatetagsInput = {
     set?: string[]
     push?: string | string[]
+  }
+
+  export type EnumJobStatusFieldUpdateOperationsInput = {
+    set?: $Enums.JobStatus
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -4809,6 +6213,45 @@ export namespace Prisma {
     _max?: NestedBoolFilter<$PrismaModel>
   }
 
+  export type NestedEnumJobStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.JobStatus | EnumJobStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.JobStatus[] | ListEnumJobStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.JobStatus[] | ListEnumJobStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumJobStatusFilter<$PrismaModel> | $Enums.JobStatus
+  }
+
+  export type NestedEnumJobStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.JobStatus | EnumJobStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.JobStatus[] | ListEnumJobStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.JobStatus[] | ListEnumJobStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumJobStatusWithAggregatesFilter<$PrismaModel> | $Enums.JobStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumJobStatusFilter<$PrismaModel>
+    _max?: NestedEnumJobStatusFilter<$PrismaModel>
+  }
+  export type NestedJsonNullableFilter<$PrismaModel = never> = 
+    | PatchUndefined<
+        Either<Required<NestedJsonNullableFilterBase<$PrismaModel>>, Exclude<keyof Required<NestedJsonNullableFilterBase<$PrismaModel>>, 'path'>>,
+        Required<NestedJsonNullableFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<NestedJsonNullableFilterBase<$PrismaModel>>, 'path'>>
+
+  export type NestedJsonNullableFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
+
 
 
   /**
@@ -4826,6 +6269,10 @@ export namespace Prisma {
      * @deprecated Use BlogPostDefaultArgs instead
      */
     export type BlogPostArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = BlogPostDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use ToolJobDefaultArgs instead
+     */
+    export type ToolJobArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = ToolJobDefaultArgs<ExtArgs>
 
   /**
    * Batch Payload for updateMany & deleteMany & createMany
