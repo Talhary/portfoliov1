@@ -8,14 +8,18 @@ import { FiSearch, FiShare2, FiGlobe, FiCheckCircle } from 'react-icons/fi';
 
 export const SeoModule = ({ tool }: { tool: ToolDefinition }) => {
   const [targetUrl, setTargetUrl] = useState<string>('https://example.com');
-  const [sampleArticle, setSampleArticle] = useState<string>('SEO optimization requires clear title tags, rich content density, and fast server load speed.');
+  const [sampleArticle, setSampleArticle] = useState<string>(
+    'SEO optimization is the practice of improving your website ranking. Good SEO requires clear title tags, ' +
+    'rich content density, fast server load speed, and relevant backlinks. Effective SEO strategy drives ' +
+    'organic traffic. Measure your SEO performance with analytics tools.'
+  );
 
   const { jobState, startJob, resetJob, isProcessing } = useToolJob(tool.id);
 
   // Keyword density calculation
   const getKeywords = (text: string) => {
     const clean = text.toLowerCase().replace(/[^a-z0-9\s]/g, '');
-    const tokens = clean.split(/\s+/).filter((w) => w.length > 3);
+    const tokens = clean.split(/\s+/).filter((w) => w.length >= 3);
     const counts: Record<string, number> = {};
     tokens.forEach((w) => (counts[w] = (counts[w] || 0) + 1));
     return Object.entries(counts)
@@ -54,16 +58,40 @@ export const SeoModule = ({ tool }: { tool: ToolDefinition }) => {
       ) : tool.id === 'open-graph-preview' ? (
         /* OpenGraph Social Card Preview */
         <div className="space-y-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label className="block text-xs font-bold uppercase text-stone-500 mb-1">OG Title</label>
+              <input
+                type="text"
+                id="og-title-input"
+                value={targetUrl}
+                onChange={(e) => setTargetUrl(e.target.value)}
+                placeholder="Enter page title for preview..."
+                className="w-full p-3 bg-stone-50 dark:bg-zinc-950 border border-stone-200 dark:border-zinc-800 rounded-xl font-bold text-sm"
+              />
+            </div>
+            <div>
+              <label className="block text-xs font-bold uppercase text-stone-500 mb-1">OG Description</label>
+              <input
+                type="text"
+                id="og-description-input"
+                value={sampleArticle.slice(0, 120)}
+                onChange={(e) => setSampleArticle(e.target.value)}
+                placeholder="Enter description for preview..."
+                className="w-full p-3 bg-stone-50 dark:bg-zinc-950 border border-stone-200 dark:border-zinc-800 rounded-xl font-bold text-sm"
+              />
+            </div>
+          </div>
           <div className="p-4 bg-stone-50 dark:bg-zinc-950 border border-stone-200 dark:border-zinc-800 rounded-2xl max-w-md mx-auto shadow-md">
             <div className="h-44 bg-zinc-800 rounded-xl mb-3 flex items-center justify-center text-zinc-500 font-bold text-xs uppercase">
               1200 x 630 OpenGraph Image Mockup
             </div>
             <div className="text-xs font-mono uppercase text-stone-400">EXAMPLE.COM</div>
             <div className="text-base font-bold text-stone-900 dark:text-white mt-1">
-              Title Tag - High Performance Web Development Tools
+              {targetUrl || 'Title Tag - High Performance Web Development Tools'}
             </div>
             <div className="text-xs text-stone-500 dark:text-zinc-400 mt-1 line-clamp-2">
-              Meta description preview for social media sharing cards on Facebook, Twitter, and LinkedIn.
+              {sampleArticle.slice(0, 120) || 'Meta description preview for social media sharing cards on Facebook, Twitter, and LinkedIn.'}
             </div>
           </div>
         </div>

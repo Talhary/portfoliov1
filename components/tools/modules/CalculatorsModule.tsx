@@ -77,7 +77,7 @@ export const CalculatorsModule = ({ tool }: { tool: ToolDefinition }) => {
   ]);
 
   // Date of birth state
-  const [dob, setDob] = useState<string>('2000-01-15');
+  const [dob, setDob] = useState<string>('1990-01-01');
 
   // Currency converter state
   const [fromCurr, setFromCurr] = useState<string>('USD');
@@ -111,7 +111,7 @@ export const CalculatorsModule = ({ tool }: { tool: ToolDefinition }) => {
         return (
           <div className="max-w-xs mx-auto bg-stone-900 text-white p-5 rounded-3xl shadow-2xl border border-zinc-800">
             <div className="bg-black/60 p-4 rounded-2xl mb-4 text-right text-3xl font-mono overflow-x-auto">
-              {calcDisplay}
+              <p id="calc-display" data-testid="calc-display">{calcDisplay}</p>
             </div>
             <div className="grid grid-cols-4 gap-2">
               {['C', '÷', '×', '⌫', '7', '8', '9', '-', '4', '5', '6', '+', '1', '2', '3', '=', '0', '.'].map((key) => (
@@ -642,31 +642,34 @@ export const CalculatorsModule = ({ tool }: { tool: ToolDefinition }) => {
       }
 
       case 'salary-calc': {
-        const hourlyRate = parseFloat(valA) || 25;
-        const hoursWeek = parseFloat(valB) || 40;
+        // Accept annual salary directly; derive monthly and weekly
+        const annualSalary = parseFloat(valA) || 60000;
+        const taxRate = parseFloat(valB) || 25;
 
-        const weeklyGross = hourlyRate * hoursWeek;
-        const monthlyGross = (weeklyGross * 52) / 12;
-        const annualGross = weeklyGross * 52;
+        const monthlyGross = annualSalary / 12;
+        const weeklyGross = annualSalary / 52;
+        const monthlyNet = monthlyGross * (1 - taxRate / 100);
 
         return (
           <div className="space-y-6">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label className="block text-xs font-bold uppercase text-stone-500 mb-1">Hourly Wage Rate ($)</label>
+                <label className="block text-xs font-bold uppercase text-stone-500 mb-1">Annual Salary ($)</label>
                 <input
                   type="number"
                   value={valA}
                   onChange={(e) => setValA(e.target.value)}
+                  placeholder="60000"
                   className="w-full p-3 bg-stone-50 dark:bg-zinc-950 border border-stone-200 dark:border-zinc-800 rounded-xl font-mono font-bold"
                 />
               </div>
               <div>
-                <label className="block text-xs font-bold uppercase text-stone-500 mb-1">Hours Worked / Week</label>
+                <label className="block text-xs font-bold uppercase text-stone-500 mb-1">Tax Rate (%)</label>
                 <input
                   type="number"
                   value={valB}
                   onChange={(e) => setValB(e.target.value)}
+                  placeholder="25"
                   className="w-full p-3 bg-stone-50 dark:bg-zinc-950 border border-stone-200 dark:border-zinc-800 rounded-xl font-mono font-bold"
                 />
               </div>
@@ -674,16 +677,16 @@ export const CalculatorsModule = ({ tool }: { tool: ToolDefinition }) => {
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               <div className="p-4 bg-primary/10 border border-primary/20 rounded-2xl text-center">
-                <div className="text-xs uppercase font-bold text-primary">Annual Salary</div>
-                <div className="text-2xl font-black text-primary mt-1">${annualGross.toLocaleString()}</div>
+                <div className="text-xs uppercase font-bold text-primary">Monthly Gross</div>
+                <div className="text-2xl font-black text-primary mt-1">${monthlyGross.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</div>
               </div>
               <div className="p-4 bg-stone-50 dark:bg-zinc-950 border border-stone-200 dark:border-zinc-800 rounded-2xl text-center">
-                <div className="text-xs uppercase font-bold text-stone-500">Monthly Gross</div>
-                <div className="text-2xl font-black text-stone-900 dark:text-white mt-1">${monthlyGross.toFixed(2)}</div>
+                <div className="text-xs uppercase font-bold text-stone-500">Monthly Net (after tax)</div>
+                <div className="text-2xl font-black text-stone-900 dark:text-white mt-1">${monthlyNet.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</div>
               </div>
               <div className="p-4 bg-stone-50 dark:bg-zinc-950 border border-stone-200 dark:border-zinc-800 rounded-2xl text-center">
                 <div className="text-xs uppercase font-bold text-stone-500">Weekly Pay</div>
-                <div className="text-2xl font-black text-stone-900 dark:text-white mt-1">${weeklyGross.toFixed(2)}</div>
+                <div className="text-2xl font-black text-stone-900 dark:text-white mt-1">${weeklyGross.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</div>
               </div>
             </div>
           </div>

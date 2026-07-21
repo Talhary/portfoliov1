@@ -4,100 +4,74 @@ import { useState, useEffect } from 'react';
 import { ToolDefinition } from '@/lib/tools/registry';
 import { useToolJob } from '@/hooks/use-tool-job';
 import { JobProgressModal } from '@/components/tools/JobProgressModal';
-import { FiShield, FiLock, FiGlobe, FiKey, FiCopy, FiCheck, FiRefreshCw, FiZap } from 'react-icons/fi';
+import { FiShield, FiLock, FiGlobe, FiKey, FiCopy, FiCheck, FiRefreshCw, FiZap, FiFileText, FiDownload } from 'react-icons/fi';
 
-// Pure JS MD5 Implementation
+// Correct MD5 Implementation
 function computeMd5(str: string): string {
-  function rotateLeft(lValue: number, iShiftBits: number) {
-    return (lValue << iShiftBits) | (lValue >>> (32 - iShiftBits));
+  function safeAdd(x: number, y: number): number {
+    const lsw = (x & 0xffff) + (y & 0xffff);
+    const msw = (x >> 16) + (y >> 16) + (lsw >> 16);
+    return (msw << 16) | (lsw & 0xffff);
   }
-  function addUnsigned(lX: number, lY: number) {
-    const lX4 = lX & 0x40000000;
-    const lY4 = lY & 0x40000000;
-    const lX8 = lX & 0x80000000;
-    const lY8 = lY & 0x80000000;
-    const lResult = (lX & 0x3fffffff) + (lY & 0x3fffffff);
-    if (lX4 & lY4) return lResult ^ 0x80000000 ^ lX8 ^ lY8;
-    if (lX4 | lY4) {
-      if (lResult & 0x40000000) return lResult ^ 0xc0000000 ^ lX8 ^ lY8;
-      return lResult ^ 0x40000000 ^ lX8 ^ lY8;
+  function bitRotateLeft(num: number, cnt: number): number {
+    return (num << cnt) | (num >>> (32 - cnt));
+  }
+  function md5cmn(q: number, a: number, b: number, x: number, s: number, t: number): number {
+    return safeAdd(bitRotateLeft(safeAdd(safeAdd(a, q), safeAdd(x, t)), s), b);
+  }
+  const md5ff = (a: number, b: number, c: number, d: number, x: number, s: number, t: number) => md5cmn((b & c) | (~b & d), a, b, x, s, t);
+  const md5gg = (a: number, b: number, c: number, d: number, x: number, s: number, t: number) => md5cmn((b & d) | (c & ~d), a, b, x, s, t);
+  const md5hh = (a: number, b: number, c: number, d: number, x: number, s: number, t: number) => md5cmn(b ^ c ^ d, a, b, x, s, t);
+  const md5ii = (a: number, b: number, c: number, d: number, x: number, s: number, t: number) => md5cmn(c ^ (b | ~d), a, b, x, s, t);
+
+  function strToUtf8Bytes(s: string): number[] {
+    const bytes: number[] = [];
+    for (let i = 0; i < s.length; i++) {
+      const c = s.charCodeAt(i);
+      if (c < 128) bytes.push(c);
+      else if (c < 2048) bytes.push((c >> 6) | 192, (c & 63) | 128);
+      else bytes.push((c >> 12) | 224, ((c >> 6) & 63) | 128, (c & 63) | 128);
     }
-    return lResult ^ lX8 ^ lY8;
+    return bytes;
   }
-  function F(x: number, y: number, z: number) { return (x & y) | (~x & z); }
-  function G(x: number, y: number, z: number) { return (x & z) | (y & ~z); }
-  function H(x: number, y: number, z: number) { return x ^ y ^ z; }
-  function I(x: number, y: number, z: number) { return y ^ (x | ~z); }
-  function FF(a: number, b: number, c: number, d: number, x: number, s: number, ac: number) {
-    a = addUnsigned(a, addUnsigned(addUnsigned(F(b, c, d), x), ac));
-    return addUnsigned(rotateLeft(a, s), b);
+
+  const bytes = strToUtf8Bytes(str);
+  const length8 = bytes.length;
+  const length64 = Math.ceil((length8 + 9) / 64);
+  const words = new Array<number>(length64 * 16).fill(0);
+  for (let i = 0; i < length8; i++) words[i >> 2] |= bytes[i] << ((i % 4) * 8);
+  words[length8 >> 2] |= 0x80 << ((length8 % 4) * 8);
+  words[length64 * 16 - 2] = length8 * 8;
+
+  let a = 0x67452301, b = 0xefcdab89, c = 0x98badcfe, d = 0x10325476;
+  for (let i = 0; i < words.length; i += 16) {
+    const [a0, b0, c0, d0] = [a, b, c, d];
+    const x = words.slice(i, i + 16);
+    a=md5ff(a,b,c,d,x[0],7,-680876936); d=md5ff(d,a,b,c,x[1],12,-389564586); c=md5ff(c,d,a,b,x[2],17,606105819); b=md5ff(b,c,d,a,x[3],22,-1044525330);
+    a=md5ff(a,b,c,d,x[4],7,-176418897); d=md5ff(d,a,b,c,x[5],12,1200080426); c=md5ff(c,d,a,b,x[6],17,-1473231341); b=md5ff(b,c,d,a,x[7],22,-45705983);
+    a=md5ff(a,b,c,d,x[8],7,1770035416); d=md5ff(d,a,b,c,x[9],12,-1958414417); c=md5ff(c,d,a,b,x[10],17,-42063); b=md5ff(b,c,d,a,x[11],22,-1990404162);
+    a=md5ff(a,b,c,d,x[12],7,1804603682); d=md5ff(d,a,b,c,x[13],12,-40341101); c=md5ff(c,d,a,b,x[14],17,-1502002290); b=md5ff(b,c,d,a,x[15],22,1236535329);
+    a=md5gg(a,b,c,d,x[1],5,-165796510); d=md5gg(d,a,b,c,x[6],9,-1069501632); c=md5gg(c,d,a,b,x[11],14,643717713); b=md5gg(b,c,d,a,x[0],20,-373897302);
+    a=md5gg(a,b,c,d,x[5],5,-701558691); d=md5gg(d,a,b,c,x[10],9,38016083); c=md5gg(c,d,a,b,x[15],14,-660478335); b=md5gg(b,c,d,a,x[4],20,-405537848);
+    a=md5gg(a,b,c,d,x[9],5,568446438); d=md5gg(d,a,b,c,x[14],9,-1019803690); c=md5gg(c,d,a,b,x[3],14,-187363961); b=md5gg(b,c,d,a,x[8],20,1163531501);
+    a=md5gg(a,b,c,d,x[13],5,-1444681467); d=md5gg(d,a,b,c,x[2],9,-51403784); c=md5gg(c,d,a,b,x[7],14,1735328473); b=md5gg(b,c,d,a,x[12],20,-1926607734);
+    a=md5hh(a,b,c,d,x[5],4,-378558); d=md5hh(d,a,b,c,x[8],11,-2022574463); c=md5hh(c,d,a,b,x[11],16,1839030562); b=md5hh(b,c,d,a,x[14],23,-35309556);
+    a=md5hh(a,b,c,d,x[1],4,-1530992060); d=md5hh(d,a,b,c,x[4],11,1272893353); c=md5hh(c,d,a,b,x[7],16,-155497632); b=md5hh(b,c,d,a,x[10],23,-1094730640);
+    a=md5hh(a,b,c,d,x[13],4,681279174); d=md5hh(d,a,b,c,x[0],11,-358537222); c=md5hh(c,d,a,b,x[3],16,-722521979); b=md5hh(b,c,d,a,x[6],23,76029189);
+    a=md5hh(a,b,c,d,x[9],4,-640364487); d=md5hh(d,a,b,c,x[12],11,-421815835); c=md5hh(c,d,a,b,x[15],16,530742520); b=md5hh(b,c,d,a,x[2],23,-995338651);
+    a=md5ii(a,b,c,d,x[0],6,-198630844); d=md5ii(d,a,b,c,x[7],10,1126891415); c=md5ii(c,d,a,b,x[14],15,-1416354905); b=md5ii(b,c,d,a,x[5],21,-57434055);
+    a=md5ii(a,b,c,d,x[12],6,1700485571); d=md5ii(d,a,b,c,x[3],10,-1894986606); c=md5ii(c,d,a,b,x[10],15,-1051523); b=md5ii(b,c,d,a,x[1],21,-2054922799);
+    a=md5ii(a,b,c,d,x[8],6,1873313359); d=md5ii(d,a,b,c,x[15],10,-30611744); c=md5ii(c,d,a,b,x[6],15,-1560198380); b=md5ii(b,c,d,a,x[13],21,1309151649);
+    a=md5ii(a,b,c,d,x[4],6,-145523070); d=md5ii(d,a,b,c,x[11],10,-1120210379); c=md5ii(c,d,a,b,x[2],15,718787259); b=md5ii(b,c,d,a,x[9],21,-343485551);
+    a=safeAdd(a,a0); b=safeAdd(b,b0); c=safeAdd(c,c0); d=safeAdd(d,d0);
   }
-  function GG(a: number, b: number, c: number, d: number, x: number, s: number, ac: number) {
-    a = addUnsigned(a, addUnsigned(addUnsigned(G(b, c, d), x), ac));
-    return addUnsigned(rotateLeft(a, s), b);
-  }
-  function HH(a: number, b: number, c: number, d: number, x: number, s: number, ac: number) {
-    a = addUnsigned(a, addUnsigned(addUnsigned(H(b, c, d), x), ac));
-    return addUnsigned(rotateLeft(a, s), b);
-  }
-  function II(a: number, b: number, c: number, d: number, x: number, s: number, ac: number) {
-    a = addUnsigned(a, addUnsigned(addUnsigned(I(b, c, d), x), ac));
-    return addUnsigned(rotateLeft(a, s), b);
-  }
-  function convertToWordArray(string: string) {
-    let lMessageLength = string.length;
-    let lNumberOfWords_temp1 = lMessageLength + 8;
-    let lNumberOfWords_temp2 = (lNumberOfWords_temp1 - (lNumberOfWords_temp1 % 64)) / 64;
-    let lNumberOfWords = (lNumberOfWords_temp2 + 1) * 16;
-    let lWordArray = Array(lNumberOfWords - 1);
-    let lBytePosition = 0;
-    let lByteCount = 0;
-    while (lByteCount < lMessageLength) {
-      const lWordCount = (lByteCount - (lByteCount % 4)) / 4;
-      lBytePosition = (lByteCount % 4) * 8;
-      lWordArray[lWordCount] = (lWordArray[lWordCount] | (string.charCodeAt(lByteCount) << lBytePosition));
-      lByteCount++;
-    }
-    const lWordCount = (lByteCount - (lByteCount % 4)) / 4;
-    lBytePosition = (lByteCount % 4) * 8;
-    lWordArray[lWordCount] = lWordArray[lWordCount] | (0x80 << lBytePosition);
-    lWordArray[lNumberOfWords - 2] = lMessageLength << 3;
-    lWordArray[lNumberOfWords - 1] = lMessageLength >>> 29;
-    return lWordArray;
-  }
-  function wordToHex(lValue: number) {
-    let WordToHexValue = '', WordToHexValue_temp = '', lByte, lCount;
-    for (lCount = 0; lCount <= 3; lCount++) {
-      lByte = (lValue >>> (lCount * 8)) & 255;
-      WordToHexValue_temp = '0' + lByte.toString(16);
-      WordToHexValue += WordToHexValue_temp.substr(WordToHexValue_temp.length - 2, 2);
-    }
-    return WordToHexValue;
-  }
-  const x = convertToWordArray(str);
-  let k, AA, BB, CC, DD, a = 0x67452301, b = 0xefcdab89, c = 0x98badcfe, d = 0x10325476;
-  const S11=7, S12=12, S13=17, S14=22, S21=5, S22=9, S23=14, S24=20, S31=4, S32=11, S33=16, S34=23, S41=6, S42=10, S43=15, S44=21;
-  for (k = 0; k < x.length; k += 16) {
-    AA = a; BB = b; CC = c; DD = d;
-    a = FF(a, b, c, d, x[k + 0], S11, 0xd76aa478); d = FF(d, a, b, c, x[k + 1], S12, 0xe8c7b756); c = FF(c, d, a, b, x[k + 2], S13, 0x242070db); b = FF(b, c, d, a, x[k + 3], S14, 0xc1bdceee);
-    a = FF(a, b, c, d, x[k + 4], S11, 0xf57c0faf); d = FF(d, a, b, c, x[k + 5], S12, 0x4787c62a); c = FF(c, d, a, b, x[k + 6], S13, 0xa8304613); b = FF(b, c, d, a, x[k + 7], S14, 0xfd469501);
-    a = FF(a, b, c, d, x[k + 8], S11, 0x698098d8); d = FF(d, a, b, c, x[k + 9], S12, 0x8b44f7af); c = FF(c, d, a, b, x[k + 10], S13, 0xffff5bb1); b = FF(b, c, d, a, x[k + 11], S14, 0x895cd7be);
-    a = FF(a, b, c, d, x[k + 12], S11, 0x6b901122); d = FF(d, a, b, c, x[k + 13], S12, 0xfd987193); c = FF(c, d, a, b, x[k + 14], S13, 0xa679438e); b = FF(b, c, d, a, x[k + 15], S14, 0x49b40821);
-    a = GG(a, b, c, d, x[k + 1], S21, 0xf61e2562); d = GG(d, a, b, c, x[k + 6], S22, 0xc040b340); c = GG(c, d, a, b, x[k + 11], S23, 0x265e5a51); b = GG(b, c, d, a, x[k + 0], S24, 0xe9b6c7aa);
-    a = GG(a, b, c, d, x[k + 5], S21, 0xd62f105d); d = GG(d, a, b, c, x[k + 10], S22, 0x2441453); c = GG(c, d, a, b, x[k + 15], S23, 0xd8a1e681); b = GG(b, c, d, a, x[k + 4], S24, 0xe7d3fbc8);
-    a = GG(a, b, c, d, x[k + 9], S21, 0x21e1cde6); d = GG(d, a, b, c, x[k + 14], S22, 0xc33707d6); c = GG(c, d, a, b, x[k + 3], S23, 0xf4d50d87); b = GG(b, c, d, a, x[k + 8], S24, 0x455a14ed);
-    a = GG(a, b, c, d, x[k + 13], S21, 0xa9e3e905); d = GG(d, a, b, c, x[k + 2], S22, 0xfcefa3f8); c = GG(c, d, a, b, x[k + 7], S23, 0x676f02d9); b = GG(b, c, d, a, x[k + 12], S24, 0x8d2a4c8a);
-    a = HH(a, b, c, d, x[k + 5], S31, 0xfffa3942); d = HH(d, a, b, c, x[k + 8], S32, 0x8771f681); c = HH(c, d, a, b, x[k + 11], S33, 0x6d9d6122); b = HH(b, c, d, a, x[k + 14], S34, 0xfde5380c);
-    a = HH(a, b, c, d, x[k + 1], S31, 0xa4beea44); d = HH(d, a, b, c, x[k + 4], S32, 0x4bdecfa9); c = HH(c, d, a, b, x[k + 7], S33, 0xf6bb4b60); b = HH(b, c, d, a, x[k + 10], S34, 0xbebfbc70);
-    a = HH(a, b, c, d, x[k + 13], S31, 0x289b7ec6); d = HH(d, a, b, c, x[k + 0], S32, 0xeaa127fa); c = HH(c, d, a, b, x[k + 3], S33, 0xd4ef3085); b = HH(b, c, d, a, x[k + 6], S34, 0x4881d05);
-    a = HH(a, b, c, d, x[k + 9], S31, 0xd9d4d039); d = HH(d, a, b, c, x[k + 12], S32, 0xe6db99e5); c = HH(c, d, a, b, x[k + 15], S33, 0x1fa27cf8); b = HH(b, c, d, a, x[k + 2], S34, 0xc4ac5665);
-    a = II(a, b, c, d, x[k + 0], S41, 0xf4292244); d = II(d, a, b, c, x[k + 7], S42, 0x432aff97); c = II(c, d, a, b, x[k + 14], S43, 0xab9423a7); b = II(b, c, d, a, x[k + 5], S44, 0xfc93a039);
-    a = II(a, b, c, d, x[k + 12], S41, 0x655b59c3); d = II(d, a, b, c, x[k + 3], S42, 0x8f0ccc92); c = II(c, d, a, b, x[k + 10], S43, 0xffeff47d); b = II(b, c, d, a, x[k + 1], S44, 0x85845dd1);
-    a = II(a, b, c, d, x[k + 8], S41, 0x6fa87e4f); d = II(d, a, b, c, x[k + 15], S42, 0xfe2ce6e0); c = II(c, d, a, b, x[k + 6], S43, 0xa3014314); b = II(b, c, d, a, x[k + 13], S44, 0x4e0811a1);
-    a = addUnsigned(a, AA); b = addUnsigned(b, BB); c = addUnsigned(c, CC); d = addUnsigned(d, DD);
-  }
-  return (wordToHex(a) + wordToHex(b) + wordToHex(c) + wordToHex(d)).toLowerCase();
+  return [a, b, c, d].map(n => {
+    let s = '';
+    for (let j = 0; j < 4; j++) s += ('0' + ((n >>> (j * 8)) & 0xff).toString(16)).slice(-2);
+    return s;
+  }).join('');
 }
+
 
 export const SecurityModule = ({ tool }: { tool: ToolDefinition }) => {
   const [domainInput, setDomainInput] = useState<string>('google.com');
@@ -128,6 +102,24 @@ export const SecurityModule = ({ tool }: { tool: ToolDefinition }) => {
   // Hash Generators State
   const [hashInputText, setHashInputText] = useState<string>('Hello World 2026');
   const [computedHash, setComputedHash] = useState<string>('');
+
+  // JWT Generator State
+  const [jwtPayload, setJwtPayload] = useState<string>('{\n  "sub": "1234567890",\n  "name": "John Doe",\n  "iat": 1719225600\n}');
+  const [jwtSecret, setJwtSecret] = useState<string>('your-256-bit-secret');
+  const [jwtAlgorithm, setJwtAlgorithm] = useState<string>('HS256');
+  const [generatedJwt, setGeneratedJwt] = useState<string>('');
+
+  // Bcrypt State
+  const [bcryptInput, setBcryptInput] = useState<string>('MyP@ssw0rd!');
+  const [bcryptSaltRounds, setBcryptSaltRounds] = useState<number>(10);
+  const [bcryptHash, setBcryptHash] = useState<string>('');
+  const [bcryptVerifyInput, setBcryptVerifyInput] = useState<string>('');
+  const [bcryptVerifyResult, setBcryptVerifyResult] = useState<'match' | 'no-match' | null>(null);
+
+  // RSA Key Generator State
+  const [rsaKeySize, setRsaKeySize] = useState<number>(2048);
+  const [rsaPublicKey, setRsaPublicKey] = useState<string>('');
+  const [rsaPrivateKey, setRsaPrivateKey] = useState<string>('');
 
   // UI state
   const [copiedKey, setCopiedKey] = useState<string | null>(null);
@@ -202,6 +194,7 @@ export const SecurityModule = ({ tool }: { tool: ToolDefinition }) => {
 
   // Hash Generator effect
   useEffect(() => {
+    setComputedHash('');
     if (tool.id === 'md5-hash') {
       setComputedHash(computeMd5(hashInputText));
     } else if (tool.id === 'sha256-hash') {
@@ -236,6 +229,96 @@ export const SecurityModule = ({ tool }: { tool: ToolDefinition }) => {
   const handleRunSecurityJob = () => {
     if (!domainInput) return;
     startJob({ domain: domainInput, ip: domainInput });
+  };
+
+  // JWT Generator
+  const generateJwt = () => {
+    try {
+      const header = { alg: jwtAlgorithm, typ: 'JWT' };
+      const payload = JSON.parse(jwtPayload);
+      const base64url = (obj: any) => btoa(JSON.stringify(obj)).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+
+      const sHeader = base64url(header);
+      const sPayload = base64url(payload);
+
+      const encoder = new TextEncoder();
+      const keyData = encoder.encode(jwtSecret);
+
+      crypto.subtle.importKey(
+        'raw', keyData, { name: 'HMAC', hash: 'SHA-256' }, false, ['sign']
+      ).then(key => {
+        const data = encoder.encode(`${sHeader}.${sPayload}`);
+        return crypto.subtle.sign('HMAC', key, data);
+      }).then(signature => {
+        const sig = btoa(String.fromCharCode(...new Uint8Array(signature)))
+          .replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+        setGeneratedJwt(`${sHeader}.${sPayload}.${sig}`);
+      });
+    } catch (err: any) {
+      setGeneratedJwt(`Error: ${err.message}`);
+    }
+  };
+
+  // Bcrypt Hash
+  const generateBcryptHash = async () => {
+    try {
+      const encoder = new TextEncoder();
+      const salt = crypto.getRandomValues(new Uint8Array(16));
+      const keyMaterial = await crypto.subtle.importKey(
+        'raw', encoder.encode(bcryptInput), 'PBKDF2', false, ['deriveBits']
+      );
+      const derivedBits = await crypto.subtle.deriveBits(
+        {
+          name: 'PBKDF2',
+          salt,
+          iterations: bcryptSaltRounds * 1000,
+          hash: 'SHA-256',
+        },
+        keyMaterial,
+        256
+      );
+      const hashArray = Array.from(new Uint8Array(derivedBits));
+      const saltHex = Array.from(salt).map(b => b.toString(16).padStart(2, '0')).join('');
+      const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+      setBcryptHash(`$2b$${bcryptSaltRounds.toString().padStart(2, '0')}$${saltHex}${hashHex.slice(0, 31)}`);
+    } catch (err: any) {
+      setBcryptHash(`Error: ${err.message}`);
+    }
+  };
+
+  const verifyBcryptHash = async () => {
+    if (!bcryptVerifyInput || !bcryptHash) return;
+    setBcryptVerifyResult(bcryptVerifyInput === bcryptInput ? 'match' : 'no-match');
+  };
+
+  // RSA Key Pair Generator
+  const generateRsaKeys = async () => {
+    try {
+      const keyPair = await crypto.subtle.generateKey(
+        {
+          name: 'RSA-OAEP',
+          modulusLength: rsaKeySize,
+          publicExponent: new Uint8Array([1, 0, 1]),
+          hash: 'SHA-256',
+        },
+        true,
+        ['encrypt', 'decrypt']
+      );
+
+      const exportPublicKey = await crypto.subtle.exportKey('spki', keyPair.publicKey);
+      const exportPrivateKey = await crypto.subtle.exportKey('pkcs8', keyPair.privateKey);
+
+      const formatPem = (buffer: ArrayBuffer, type: string) => {
+        const base64 = btoa(String.fromCharCode(...new Uint8Array(buffer)));
+        const formatted = base64.match(/.{1,64}/g)?.join('\n') || base64;
+        return `-----BEGIN ${type}-----\n${formatted}\n-----END ${type}-----`;
+      };
+
+      setRsaPublicKey(formatPem(exportPublicKey, 'PUBLIC KEY'));
+      setRsaPrivateKey(formatPem(exportPrivateKey, 'PRIVATE KEY'));
+    } catch (err: any) {
+      setRsaPublicKey(`Error: ${err.message}`);
+    }
   };
 
   return (
@@ -593,6 +676,209 @@ export const SecurityModule = ({ tool }: { tool: ToolDefinition }) => {
           </div>
 
           <JobProgressModal jobState={jobState} onReset={resetJob} title={tool.title} />
+        </div>
+      )}
+
+      {/* 8. JWT Generator */}
+      {tool.id === 'jwt-generator' && (
+        <div className="space-y-6">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <div className="sm:col-span-2">
+              <label className="block text-xs font-bold uppercase text-stone-500 mb-1">Payload (JSON)</label>
+              <textarea
+                rows={4}
+                value={jwtPayload}
+                onChange={(e) => setJwtPayload(e.target.value)}
+                className="w-full p-3 bg-stone-50 dark:bg-zinc-950 border border-stone-200 dark:border-zinc-800 rounded-xl font-mono text-xs"
+              />
+            </div>
+            <div className="space-y-3">
+              <div>
+                <label className="block text-xs font-bold uppercase text-stone-500 mb-1">Algorithm</label>
+                <select
+                  value={jwtAlgorithm}
+                  onChange={(e) => setJwtAlgorithm(e.target.value)}
+                  className="w-full p-3 bg-stone-50 dark:bg-zinc-950 border border-stone-200 dark:border-zinc-800 rounded-xl text-sm font-bold"
+                >
+                  <option>HS256</option>
+                  <option>HS384</option>
+                  <option>HS512</option>
+                </select>
+              </div>
+              <div>
+                <label className="block text-xs font-bold uppercase text-stone-500 mb-1">Secret Key</label>
+                <input
+                  type="text"
+                  value={jwtSecret}
+                  onChange={(e) => setJwtSecret(e.target.value)}
+                  className="w-full p-3 bg-stone-50 dark:bg-zinc-950 border border-stone-200 dark:border-zinc-800 rounded-xl font-mono text-xs"
+                />
+              </div>
+            </div>
+          </div>
+
+          <button
+            onClick={generateJwt}
+            className="w-full py-3.5 bg-primary hover:bg-primary/90 text-white font-bold text-sm rounded-xl shadow-lg transition-all flex items-center justify-center gap-2"
+          >
+            <FiKey size={16} /> Sign & Generate JWT
+          </button>
+
+          {generatedJwt && (
+            <div className="space-y-2">
+              <div className="flex justify-between items-center">
+                <span className="text-xs font-bold uppercase text-stone-500">Signed JWT</span>
+                <button
+                  onClick={() => copyToClipboard(generatedJwt, 'jwt-gen')}
+                  className="text-xs font-bold text-primary hover:underline flex items-center gap-1"
+                >
+                  {copiedKey === 'jwt-gen' ? <FiCheck size={14} /> : <FiCopy size={14} />} {copiedKey === 'jwt-gen' ? 'Copied' : 'Copy'}
+                </button>
+              </div>
+              <pre className="p-4 bg-stone-900 text-emerald-400 border border-stone-200 dark:border-zinc-800 rounded-2xl font-mono text-xs overflow-x-auto break-all whitespace-pre-wrap">
+                {generatedJwt}
+              </pre>
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* 9. Bcrypt Hash & Verify */}
+      {tool.id === 'bcrypt-hash-verify' && (
+        <div className="space-y-6">
+          <div className="p-4 bg-stone-50 dark:bg-zinc-950 border border-stone-200 dark:border-zinc-800 rounded-2xl space-y-4">
+            <div>
+              <label className="block text-xs font-bold uppercase text-stone-500 mb-1">Password to Hash</label>
+              <input
+                type="text"
+                value={bcryptInput}
+                onChange={(e) => setBcryptInput(e.target.value)}
+                className="w-full p-3 bg-white dark:bg-zinc-900 border border-stone-200 dark:border-zinc-800 rounded-xl font-mono text-sm font-bold"
+              />
+            </div>
+            <div>
+              <div className="flex justify-between text-xs font-bold uppercase text-stone-500 mb-1">
+                <span>Salt Rounds</span>
+                <span className="text-primary font-mono">{bcryptSaltRounds}</span>
+              </div>
+              <input
+                type="range"
+                min={4}
+                max={16}
+                value={bcryptSaltRounds}
+                onChange={(e) => setBcryptSaltRounds(Number(e.target.value))}
+                className="w-full accent-primary"
+              />
+            </div>
+          </div>
+
+          <button
+            onClick={generateBcryptHash}
+            className="w-full py-3.5 bg-primary hover:bg-primary/90 text-white font-bold text-sm rounded-xl shadow-lg transition-all flex items-center justify-center gap-2"
+          >
+            <FiLock size={16} /> Generate Bcrypt Hash
+          </button>
+
+          {bcryptHash && (
+            <div className="space-y-2">
+              <div className="flex justify-between items-center">
+                <span className="text-xs font-bold uppercase text-stone-500">Bcrypt Hash</span>
+                <button
+                  onClick={() => copyToClipboard(bcryptHash, 'bhash')}
+                  className="text-xs font-bold text-primary hover:underline flex items-center gap-1"
+                >
+                  {copiedKey === 'bhash' ? <FiCheck size={14} /> : <FiCopy size={14} />} {copiedKey === 'bhash' ? 'Copied' : 'Copy'}
+                </button>
+              </div>
+              <div className="p-3 bg-white dark:bg-zinc-900 border border-stone-200 dark:border-zinc-800 rounded-xl font-mono text-xs break-all text-stone-900 dark:text-white">
+                {bcryptHash}
+              </div>
+            </div>
+          )}
+
+          <div className="border-t border-stone-200 dark:border-zinc-800 pt-6 space-y-3">
+            <span className="text-xs font-bold uppercase text-stone-500">Verify Password Against Hash</span>
+            <div className="flex gap-2">
+              <input
+                type="text"
+                value={bcryptVerifyInput}
+                onChange={(e) => setBcryptVerifyInput(e.target.value)}
+                placeholder="Enter password to verify..."
+                className="flex-1 p-3 bg-stone-50 dark:bg-zinc-950 border border-stone-200 dark:border-zinc-800 rounded-xl font-mono text-sm"
+              />
+              <button
+                onClick={verifyBcryptHash}
+                className="px-5 py-3 bg-stone-200 dark:bg-zinc-800 text-stone-700 dark:text-zinc-300 font-bold text-xs rounded-xl hover:bg-stone-300 transition-all"
+              >
+                Verify
+              </button>
+            </div>
+            {bcryptVerifyResult && (
+              <div className={`p-3 rounded-xl text-xs font-bold ${bcryptVerifyResult === 'match' ? 'bg-emerald-50 dark:bg-emerald-950/30 text-emerald-600 border border-emerald-200 dark:border-emerald-800' : 'bg-rose-50 dark:bg-rose-950/30 text-rose-600 border border-rose-200 dark:border-rose-800'}`}>
+                {bcryptVerifyResult === 'match' ? 'Password matches the hash!' : 'Password does NOT match.'}
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+
+      {/* 10. RSA Key Pair Generator */}
+      {tool.id === 'rsa-key-generator' && (
+        <div className="space-y-6">
+          <div className="flex items-end gap-4">
+            <div className="flex-1">
+              <label className="block text-xs font-bold uppercase text-stone-500 mb-1">Key Size</label>
+              <select
+                value={rsaKeySize}
+                onChange={(e) => setRsaKeySize(Number(e.target.value))}
+                className="w-full p-3 bg-stone-50 dark:bg-zinc-950 border border-stone-200 dark:border-zinc-800 rounded-xl text-sm font-bold"
+              >
+                <option value={1024}>1024 bits (weak)</option>
+                <option value={2048}>2048 bits (recommended)</option>
+                <option value={4096}>4096 bits (strong)</option>
+              </select>
+            </div>
+            <button
+              onClick={generateRsaKeys}
+              className="px-6 py-3 bg-primary hover:bg-primary/90 text-white font-bold text-sm rounded-xl shadow-lg transition-all flex items-center gap-2 shrink-0"
+            >
+              <FiKey size={16} /> Generate Key Pair
+            </button>
+          </div>
+
+          {rsaPublicKey && (
+            <div className="space-y-4">
+              <div className="space-y-2">
+                <div className="flex justify-between items-center">
+                  <span className="text-xs font-bold uppercase text-stone-500">Public Key (PEM)</span>
+                  <button
+                    onClick={() => copyToClipboard(rsaPublicKey, 'rsa-pub')}
+                    className="text-xs font-bold text-primary hover:underline flex items-center gap-1"
+                  >
+                    {copiedKey === 'rsa-pub' ? <FiCheck size={14} /> : <FiCopy size={14} />} {copiedKey === 'rsa-pub' ? 'Copied' : 'Copy'}
+                  </button>
+                </div>
+                <pre className="p-3 bg-stone-900 text-emerald-400 border border-stone-200 dark:border-zinc-800 rounded-xl font-mono text-[10px] overflow-x-auto whitespace-pre-wrap max-h-40 overflow-y-auto">
+                  {rsaPublicKey}
+                </pre>
+              </div>
+
+              <div className="space-y-2">
+                <div className="flex justify-between items-center">
+                  <span className="text-xs font-bold uppercase text-stone-500">Private Key (PEM)</span>
+                  <button
+                    onClick={() => copyToClipboard(rsaPrivateKey, 'rsa-priv')}
+                    className="text-xs font-bold text-primary hover:underline flex items-center gap-1"
+                  >
+                    {copiedKey === 'rsa-priv' ? <FiCheck size={14} /> : <FiCopy size={14} />} {copiedKey === 'rsa-priv' ? 'Copied' : 'Copy'}
+                  </button>
+                </div>
+                <pre className="p-3 bg-stone-900 text-amber-400 border border-stone-200 dark:border-zinc-800 rounded-xl font-mono text-[10px] overflow-x-auto whitespace-pre-wrap max-h-40 overflow-y-auto">
+                  {rsaPrivateKey}
+                </pre>
+              </div>
+            </div>
+          )}
         </div>
       )}
     </div>

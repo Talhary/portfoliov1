@@ -13,6 +13,7 @@ import { ConverterModule } from '@/components/tools/modules/ConverterModule';
 import { SecurityModule } from '@/components/tools/modules/SecurityModule';
 import { SeoModule } from '@/components/tools/modules/SeoModule';
 import { FileToolModule } from '@/components/tools/modules/FileToolModule';
+import { AiLlmModule } from '@/components/tools/modules/AiLlmModule';
 
 export function ToolClientContainer({ tool }: { tool: ToolDefinition }) {
   switch (tool.category) {
@@ -36,6 +37,8 @@ export function ToolClientContainer({ tool }: { tool: ToolDefinition }) {
       return <SeoModule tool={tool} />;
     case 'file-tools':
       return <FileToolModule tool={tool} />;
+    case 'ai-llm-tools':
+      return <AiLlmModule tool={tool} />;
     default:
       return <DeveloperToolModule tool={tool} />;
   }

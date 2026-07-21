@@ -16,11 +16,11 @@
     <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-stone-800 pb-6">
       <div>
         <h1 class="text-3xl font-black text-white tracking-tight">Automated Tool Testing Findings</h1>
-        <p class="text-sm text-stone-400 mt-1">Target: <a href="https://talhacodes.site" class="text-sky-400 underline font-mono" target="_blank">https://talhacodes.site</a> | Executed: 7/21/2026, 3:55:32 PM</p>
+        <p class="text-sm text-stone-400 mt-1">Target: <a href="https://talhacodes.site" class="text-sky-400 underline font-mono" target="_blank">https://talhacodes.site</a> | Executed: 7/21/2026, 4:08:45 PM</p>
       </div>
       <div class="flex items-center gap-3">
         <span class="px-4 py-2 bg-stone-900 rounded-xl border border-stone-800 text-xs font-bold text-stone-300">
-          ⏱️ Total Time: 37.6s
+          ⏱️ Total Time: 379.8s
         </span>
       </div>
     </div>
@@ -29,15 +29,15 @@
     <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
       <div class="bg-stone-900 border border-stone-800 rounded-2xl p-5">
         <div class="text-xs uppercase font-bold text-stone-400">Total Tools Tested</div>
-        <div class="text-3xl font-black text-white mt-1">7</div>
+        <div class="text-3xl font-black text-white mt-1">106</div>
       </div>
       <div class="bg-stone-900 border border-stone-800 rounded-2xl p-5">
         <div class="text-xs uppercase font-bold text-emerald-400">Passed</div>
-        <div class="text-3xl font-black text-emerald-400 mt-1">3 <span class="text-sm font-normal text-stone-400">(42.9%)</span></div>
+        <div class="text-3xl font-black text-emerald-400 mt-1">92 <span class="text-sm font-normal text-stone-400">(86.8%)</span></div>
       </div>
       <div class="bg-stone-900 border border-stone-800 rounded-2xl p-5">
         <div class="text-xs uppercase font-bold text-rose-400">Failed</div>
-        <div class="text-3xl font-black text-rose-400 mt-1">4</div>
+        <div class="text-3xl font-black text-rose-400 mt-1">14</div>
       </div>
       <div class="bg-stone-900 border border-stone-800 rounded-2xl p-5">
         <div class="text-xs uppercase font-bold text-amber-400">Warnings</div>
@@ -64,57 +64,1339 @@
           </thead>
           <tbody class="divide-y divide-stone-800 text-sm">
             
-    <tr class="tool-row failed" data-category="converters" data-status="fail">
+    <tr class="tool-row failed" data-category="calculators" data-status="fail">
       <td class="font-mono text-xs text-stone-400">1</td>
+      <td>
+        <div class="font-bold text-stone-900 dark:text-white">Basic Calculator</div>
+        <div class="text-xs font-mono text-stone-500">calculators/basic-calculator</div>
+      </td>
+      <td>
+        <span class="badge badge-fail">FAILED</span>
+      </td>
+      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">6.69s</td>
+      <td class="text-xs text-stone-600 dark:text-zinc-400">
+        <div class="text-red-500 font-semibold mb-1">Output Verification Failed: Tool &quot;Basic Calculator&quot; did not generate or display a valid result component.</div>
+        
+      </td>
+      <td>
+        <a href="results\screenshots\basic-calculator.png" target="_blank" class="text-blue-500 hover:underline text-xs font-bold">View Screenshot</a>
+      </td>
+    </tr>
+  
+    <tr class="tool-row passed" data-category="calculators" data-status="pass">
+      <td class="font-mono text-xs text-stone-400">2</td>
+      <td>
+        <div class="font-bold text-stone-900 dark:text-white">Percentage Calculator</div>
+        <div class="text-xs font-mono text-stone-500">calculators/percentage-calculator</div>
+      </td>
+      <td>
+        <span class="badge badge-pass">PASSED</span>
+      </td>
+      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">4.93s</td>
+      <td class="text-xs text-stone-600 dark:text-zinc-400">
+        <span class="text-emerald-500">No runtime errors</span>
+        
+      </td>
+      <td>
+        -
+      </td>
+    </tr>
+  
+    <tr class="tool-row passed" data-category="calculators" data-status="pass">
+      <td class="font-mono text-xs text-stone-400">3</td>
+      <td>
+        <div class="font-bold text-stone-900 dark:text-white">BMI Calculator</div>
+        <div class="text-xs font-mono text-stone-500">calculators/bmi-calculator</div>
+      </td>
+      <td>
+        <span class="badge badge-pass">PASSED</span>
+      </td>
+      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">6.84s</td>
+      <td class="text-xs text-stone-600 dark:text-zinc-400">
+        <span class="text-emerald-500">No runtime errors</span>
+        
+      </td>
+      <td>
+        -
+      </td>
+    </tr>
+  
+    <tr class="tool-row passed" data-category="calculators" data-status="pass">
+      <td class="font-mono text-xs text-stone-400">4</td>
+      <td>
+        <div class="font-bold text-stone-900 dark:text-white">Loan Calculator</div>
+        <div class="text-xs font-mono text-stone-500">calculators/loan-calculator</div>
+      </td>
+      <td>
+        <span class="badge badge-pass">PASSED</span>
+      </td>
+      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">4.33s</td>
+      <td class="text-xs text-stone-600 dark:text-zinc-400">
+        <span class="text-emerald-500">No runtime errors</span>
+        
+      </td>
+      <td>
+        -
+      </td>
+    </tr>
+  
+    <tr class="tool-row failed" data-category="calculators" data-status="fail">
+      <td class="font-mono text-xs text-stone-400">5</td>
+      <td>
+        <div class="font-bold text-stone-900 dark:text-white">Age Calculator</div>
+        <div class="text-xs font-mono text-stone-500">calculators/age-calculator</div>
+      </td>
+      <td>
+        <span class="badge badge-fail">FAILED</span>
+      </td>
+      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">4.68s</td>
+      <td class="text-xs text-stone-600 dark:text-zinc-400">
+        <div class="text-red-500 font-semibold mb-1">Age Calculator Failed: Expected age ≥ 30 years for DOB 1990-01-01, got: &quot;T
+Back to Portfolio
+Tools Catalog
+Talha Codes Tools
+BACK TO ALL TOOLS
+CALCULATORS
+Age Calculator
+
+Exact age breakdown in years, months, days, hours.
+
+Interactive Calculator Engine
+SELECT DATE OF BIRTH&quot;</div>
+        
+      </td>
+      <td>
+        <a href="results\screenshots\age-calculator.png" target="_blank" class="text-blue-500 hover:underline text-xs font-bold">View Screenshot</a>
+      </td>
+    </tr>
+  
+    <tr class="tool-row passed" data-category="calculators" data-status="pass">
+      <td class="font-mono text-xs text-stone-400">6</td>
+      <td>
+        <div class="font-bold text-stone-900 dark:text-white">Tip Calculator</div>
+        <div class="text-xs font-mono text-stone-500">calculators/tip-calculator</div>
+      </td>
+      <td>
+        <span class="badge badge-pass">PASSED</span>
+      </td>
+      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">3.60s</td>
+      <td class="text-xs text-stone-600 dark:text-zinc-400">
+        <span class="text-emerald-500">No runtime errors</span>
+        
+      </td>
+      <td>
+        -
+      </td>
+    </tr>
+  
+    <tr class="tool-row passed" data-category="calculators" data-status="pass">
+      <td class="font-mono text-xs text-stone-400">7</td>
+      <td>
+        <div class="font-bold text-stone-900 dark:text-white">Currency Converter</div>
+        <div class="text-xs font-mono text-stone-500">calculators/currency-converter</div>
+      </td>
+      <td>
+        <span class="badge badge-pass">PASSED</span>
+      </td>
+      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">6.26s</td>
+      <td class="text-xs text-stone-600 dark:text-zinc-400">
+        <span class="text-emerald-500">No runtime errors</span>
+        
+      </td>
+      <td>
+        -
+      </td>
+    </tr>
+  
+    <tr class="tool-row passed" data-category="calculators" data-status="pass">
+      <td class="font-mono text-xs text-stone-400">8</td>
+      <td>
+        <div class="font-bold text-stone-900 dark:text-white">Discount Calculator</div>
+        <div class="text-xs font-mono text-stone-500">calculators/discount-calculator</div>
+      </td>
+      <td>
+        <span class="badge badge-pass">PASSED</span>
+      </td>
+      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">3.14s</td>
+      <td class="text-xs text-stone-600 dark:text-zinc-400">
+        <span class="text-emerald-500">No runtime errors</span>
+        
+      </td>
+      <td>
+        -
+      </td>
+    </tr>
+  
+    <tr class="tool-row passed" data-category="calculators" data-status="pass">
+      <td class="font-mono text-xs text-stone-400">9</td>
+      <td>
+        <div class="font-bold text-stone-900 dark:text-white">GPA Calculator</div>
+        <div class="text-xs font-mono text-stone-500">calculators/gpa-calculator</div>
+      </td>
+      <td>
+        <span class="badge badge-pass">PASSED</span>
+      </td>
+      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">3.70s</td>
+      <td class="text-xs text-stone-600 dark:text-zinc-400">
+        <span class="text-emerald-500">No runtime errors</span>
+        
+      </td>
+      <td>
+        -
+      </td>
+    </tr>
+  
+    <tr class="tool-row failed" data-category="calculators" data-status="fail">
+      <td class="font-mono text-xs text-stone-400">10</td>
+      <td>
+        <div class="font-bold text-stone-900 dark:text-white">Salary Calculator</div>
+        <div class="text-xs font-mono text-stone-500">calculators/salary-calculator</div>
+      </td>
+      <td>
+        <span class="badge badge-fail">FAILED</span>
+      </td>
+      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">1.77s</td>
+      <td class="text-xs text-stone-600 dark:text-zinc-400">
+        <div class="text-red-500 font-semibold mb-1">Salary Calculator Failed: Expected $5,000 monthly for $60k annual salary.</div>
+        
+      </td>
+      <td>
+        <a href="results\screenshots\salary-calculator.png" target="_blank" class="text-blue-500 hover:underline text-xs font-bold">View Screenshot</a>
+      </td>
+    </tr>
+  
+    <tr class="tool-row passed" data-category="calculators" data-status="pass">
+      <td class="font-mono text-xs text-stone-400">11</td>
+      <td>
+        <div class="font-bold text-stone-900 dark:text-white">Time Duration Calculator</div>
+        <div class="text-xs font-mono text-stone-500">calculators/time-duration-calculator</div>
+      </td>
+      <td>
+        <span class="badge badge-pass">PASSED</span>
+      </td>
+      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">3.95s</td>
+      <td class="text-xs text-stone-600 dark:text-zinc-400">
+        <span class="text-emerald-500">No runtime errors</span>
+        
+      </td>
+      <td>
+        -
+      </td>
+    </tr>
+  
+    <tr class="tool-row passed" data-category="calculators" data-status="pass">
+      <td class="font-mono text-xs text-stone-400">12</td>
+      <td>
+        <div class="font-bold text-stone-900 dark:text-white">Compound Interest Calculator</div>
+        <div class="text-xs font-mono text-stone-500">calculators/compound-interest-calculator</div>
+      </td>
+      <td>
+        <span class="badge badge-pass">PASSED</span>
+      </td>
+      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">2.76s</td>
+      <td class="text-xs text-stone-600 dark:text-zinc-400">
+        <span class="text-emerald-500">No runtime errors</span>
+        
+      </td>
+      <td>
+        -
+      </td>
+    </tr>
+  
+    <tr class="tool-row passed" data-category="calculators" data-status="pass">
+      <td class="font-mono text-xs text-stone-400">13</td>
+      <td>
+        <div class="font-bold text-stone-900 dark:text-white">Electricity Bill Calculator</div>
+        <div class="text-xs font-mono text-stone-500">calculators/electricity-bill-calculator</div>
+      </td>
+      <td>
+        <span class="badge badge-pass">PASSED</span>
+      </td>
+      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">3.18s</td>
+      <td class="text-xs text-stone-600 dark:text-zinc-400">
+        <span class="text-emerald-500">No runtime errors</span>
+        
+      </td>
+      <td>
+        -
+      </td>
+    </tr>
+  
+    <tr class="tool-row passed" data-category="image-tools" data-status="pass">
+      <td class="font-mono text-xs text-stone-400">14</td>
+      <td>
+        <div class="font-bold text-stone-900 dark:text-white">PNG to JPG Converter</div>
+        <div class="text-xs font-mono text-stone-500">image-tools/png-to-jpg</div>
+      </td>
+      <td>
+        <span class="badge badge-pass">PASSED</span>
+      </td>
+      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">1.95s</td>
+      <td class="text-xs text-stone-600 dark:text-zinc-400">
+        <span class="text-emerald-500">No runtime errors</span>
+        
+      </td>
+      <td>
+        -
+      </td>
+    </tr>
+  
+    <tr class="tool-row passed" data-category="image-tools" data-status="pass">
+      <td class="font-mono text-xs text-stone-400">15</td>
+      <td>
+        <div class="font-bold text-stone-900 dark:text-white">JPG to PNG Converter</div>
+        <div class="text-xs font-mono text-stone-500">image-tools/jpg-to-png</div>
+      </td>
+      <td>
+        <span class="badge badge-pass">PASSED</span>
+      </td>
+      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">2.27s</td>
+      <td class="text-xs text-stone-600 dark:text-zinc-400">
+        <span class="text-emerald-500">No runtime errors</span>
+        
+      </td>
+      <td>
+        -
+      </td>
+    </tr>
+  
+    <tr class="tool-row passed" data-category="image-tools" data-status="pass">
+      <td class="font-mono text-xs text-stone-400">16</td>
+      <td>
+        <div class="font-bold text-stone-900 dark:text-white">Image Compressor</div>
+        <div class="text-xs font-mono text-stone-500">image-tools/image-compressor</div>
+      </td>
+      <td>
+        <span class="badge badge-pass">PASSED</span>
+      </td>
+      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">1.96s</td>
+      <td class="text-xs text-stone-600 dark:text-zinc-400">
+        <span class="text-emerald-500">No runtime errors</span>
+        
+      </td>
+      <td>
+        -
+      </td>
+    </tr>
+  
+    <tr class="tool-row passed" data-category="image-tools" data-status="pass">
+      <td class="font-mono text-xs text-stone-400">17</td>
+      <td>
+        <div class="font-bold text-stone-900 dark:text-white">Image Resizer</div>
+        <div class="text-xs font-mono text-stone-500">image-tools/image-resizer</div>
+      </td>
+      <td>
+        <span class="badge badge-pass">PASSED</span>
+      </td>
+      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">2.14s</td>
+      <td class="text-xs text-stone-600 dark:text-zinc-400">
+        <span class="text-emerald-500">No runtime errors</span>
+        
+      </td>
+      <td>
+        -
+      </td>
+    </tr>
+  
+    <tr class="tool-row passed" data-category="image-tools" data-status="pass">
+      <td class="font-mono text-xs text-stone-400">18</td>
+      <td>
+        <div class="font-bold text-stone-900 dark:text-white">WebP to PNG Converter</div>
+        <div class="text-xs font-mono text-stone-500">image-tools/webp-to-png</div>
+      </td>
+      <td>
+        <span class="badge badge-pass">PASSED</span>
+      </td>
+      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">2.12s</td>
+      <td class="text-xs text-stone-600 dark:text-zinc-400">
+        <span class="text-emerald-500">No runtime errors</span>
+        
+      </td>
+      <td>
+        -
+      </td>
+    </tr>
+  
+    <tr class="tool-row passed" data-category="image-tools" data-status="pass">
+      <td class="font-mono text-xs text-stone-400">19</td>
+      <td>
+        <div class="font-bold text-stone-900 dark:text-white">Image Cropper</div>
+        <div class="text-xs font-mono text-stone-500">image-tools/image-cropper</div>
+      </td>
+      <td>
+        <span class="badge badge-pass">PASSED</span>
+      </td>
+      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">2.16s</td>
+      <td class="text-xs text-stone-600 dark:text-zinc-400">
+        <span class="text-emerald-500">No runtime errors</span>
+        
+      </td>
+      <td>
+        -
+      </td>
+    </tr>
+  
+    <tr class="tool-row passed" data-category="image-tools" data-status="pass">
+      <td class="font-mono text-xs text-stone-400">20</td>
+      <td>
+        <div class="font-bold text-stone-900 dark:text-white">Background Remover</div>
+        <div class="text-xs font-mono text-stone-500">image-tools/background-remover</div>
+      </td>
+      <td>
+        <span class="badge badge-pass">PASSED</span>
+      </td>
+      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">1.89s</td>
+      <td class="text-xs text-stone-600 dark:text-zinc-400">
+        <span class="text-emerald-500">No runtime errors</span>
+        
+      </td>
+      <td>
+        -
+      </td>
+    </tr>
+  
+    <tr class="tool-row passed" data-category="image-tools" data-status="pass">
+      <td class="font-mono text-xs text-stone-400">21</td>
+      <td>
+        <div class="font-bold text-stone-900 dark:text-white">Image to Base64</div>
+        <div class="text-xs font-mono text-stone-500">image-tools/image-to-base64</div>
+      </td>
+      <td>
+        <span class="badge badge-pass">PASSED</span>
+      </td>
+      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">2.27s</td>
+      <td class="text-xs text-stone-600 dark:text-zinc-400">
+        <span class="text-emerald-500">No runtime errors</span>
+        
+      </td>
+      <td>
+        -
+      </td>
+    </tr>
+  
+    <tr class="tool-row failed" data-category="image-tools" data-status="fail">
+      <td class="font-mono text-xs text-stone-400">22</td>
+      <td>
+        <div class="font-bold text-stone-900 dark:text-white">Base64 to Image</div>
+        <div class="text-xs font-mono text-stone-500">image-tools/base64-to-image</div>
+      </td>
+      <td>
+        <span class="badge badge-fail">FAILED</span>
+      </td>
+      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">1.82s</td>
+      <td class="text-xs text-stone-600 dark:text-zinc-400">
+        <div class="text-red-500 font-semibold mb-1">Base64 to Image Failed: Image element with decoded Base64 source was not rendered.</div>
+        
+      </td>
+      <td>
+        <a href="results\screenshots\base64-to-image.png" target="_blank" class="text-blue-500 hover:underline text-xs font-bold">View Screenshot</a>
+      </td>
+    </tr>
+  
+    <tr class="tool-row passed" data-category="image-tools" data-status="pass">
+      <td class="font-mono text-xs text-stone-400">23</td>
+      <td>
+        <div class="font-bold text-stone-900 dark:text-white">Image Color Picker</div>
+        <div class="text-xs font-mono text-stone-500">image-tools/image-color-picker</div>
+      </td>
+      <td>
+        <span class="badge badge-pass">PASSED</span>
+      </td>
+      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">2.65s</td>
+      <td class="text-xs text-stone-600 dark:text-zinc-400">
+        <span class="text-emerald-500">No runtime errors</span>
+        
+      </td>
+      <td>
+        -
+      </td>
+    </tr>
+  
+    <tr class="tool-row passed" data-category="image-tools" data-status="pass">
+      <td class="font-mono text-xs text-stone-400">24</td>
+      <td>
+        <div class="font-bold text-stone-900 dark:text-white">Image to Text (OCR)</div>
+        <div class="text-xs font-mono text-stone-500">image-tools/image-to-text-ocr</div>
+      </td>
+      <td>
+        <span class="badge badge-pass">PASSED</span>
+      </td>
+      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">2.31s</td>
+      <td class="text-xs text-stone-600 dark:text-zinc-400">
+        <span class="text-emerald-500">No runtime errors</span>
+        
+      </td>
+      <td>
+        -
+      </td>
+    </tr>
+  
+    <tr class="tool-row passed" data-category="image-tools" data-status="pass">
+      <td class="font-mono text-xs text-stone-400">25</td>
+      <td>
+        <div class="font-bold text-stone-900 dark:text-white">Image Rotator / Flipper</div>
+        <div class="text-xs font-mono text-stone-500">image-tools/image-rotator</div>
+      </td>
+      <td>
+        <span class="badge badge-pass">PASSED</span>
+      </td>
+      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">2.17s</td>
+      <td class="text-xs text-stone-600 dark:text-zinc-400">
+        <span class="text-emerald-500">No runtime errors</span>
+        
+      </td>
+      <td>
+        -
+      </td>
+    </tr>
+  
+    <tr class="tool-row failed" data-category="image-tools" data-status="fail">
+      <td class="font-mono text-xs text-stone-400">26</td>
+      <td>
+        <div class="font-bold text-stone-900 dark:text-white">SVG Optimizer</div>
+        <div class="text-xs font-mono text-stone-500">image-tools/svg-optimizer</div>
+      </td>
+      <td>
+        <span class="badge badge-fail">FAILED</span>
+      </td>
+      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">1.58s</td>
+      <td class="text-xs text-stone-600 dark:text-zinc-400">
+        <div class="text-red-500 font-semibold mb-1">SVG Optimizer Failed: Expected minified SVG without comments, got:
+&quot;&quot;</div>
+        
+      </td>
+      <td>
+        <a href="results\screenshots\svg-optimizer.png" target="_blank" class="text-blue-500 hover:underline text-xs font-bold">View Screenshot</a>
+      </td>
+    </tr>
+  
+    <tr class="tool-row passed" data-category="image-tools" data-status="pass">
+      <td class="font-mono text-xs text-stone-400">27</td>
+      <td>
+        <div class="font-bold text-stone-900 dark:text-white">Image Watermarker</div>
+        <div class="text-xs font-mono text-stone-500">image-tools/image-watermarker</div>
+      </td>
+      <td>
+        <span class="badge badge-pass">PASSED</span>
+      </td>
+      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">2.14s</td>
+      <td class="text-xs text-stone-600 dark:text-zinc-400">
+        <span class="text-emerald-500">No runtime errors</span>
+        
+      </td>
+      <td>
+        -
+      </td>
+    </tr>
+  
+    <tr class="tool-row passed" data-category="image-tools" data-status="pass">
+      <td class="font-mono text-xs text-stone-400">28</td>
+      <td>
+        <div class="font-bold text-stone-900 dark:text-white">HEIC to JPG Converter</div>
+        <div class="text-xs font-mono text-stone-500">image-tools/heic-to-jpg</div>
+      </td>
+      <td>
+        <span class="badge badge-pass">PASSED</span>
+      </td>
+      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">2.11s</td>
+      <td class="text-xs text-stone-600 dark:text-zinc-400">
+        <span class="text-emerald-500">No runtime errors</span>
+        
+      </td>
+      <td>
+        -
+      </td>
+    </tr>
+  
+    <tr class="tool-row passed" data-category="text-tools" data-status="pass">
+      <td class="font-mono text-xs text-stone-400">29</td>
+      <td>
+        <div class="font-bold text-stone-900 dark:text-white">Word Counter</div>
+        <div class="text-xs font-mono text-stone-500">text-tools/word-counter</div>
+      </td>
+      <td>
+        <span class="badge badge-pass">PASSED</span>
+      </td>
+      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">5.83s</td>
+      <td class="text-xs text-stone-600 dark:text-zinc-400">
+        <span class="text-emerald-500">No runtime errors</span>
+        
+      </td>
+      <td>
+        -
+      </td>
+    </tr>
+  
+    <tr class="tool-row passed" data-category="text-tools" data-status="pass">
+      <td class="font-mono text-xs text-stone-400">30</td>
+      <td>
+        <div class="font-bold text-stone-900 dark:text-white">Character Counter</div>
+        <div class="text-xs font-mono text-stone-500">text-tools/character-counter</div>
+      </td>
+      <td>
+        <span class="badge badge-pass">PASSED</span>
+      </td>
+      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">3.48s</td>
+      <td class="text-xs text-stone-600 dark:text-zinc-400">
+        <span class="text-emerald-500">No runtime errors</span>
+        
+      </td>
+      <td>
+        -
+      </td>
+    </tr>
+  
+    <tr class="tool-row passed" data-category="text-tools" data-status="pass">
+      <td class="font-mono text-xs text-stone-400">31</td>
+      <td>
+        <div class="font-bold text-stone-900 dark:text-white">Case Converter</div>
+        <div class="text-xs font-mono text-stone-500">text-tools/case-converter</div>
+      </td>
+      <td>
+        <span class="badge badge-pass">PASSED</span>
+      </td>
+      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">3.80s</td>
+      <td class="text-xs text-stone-600 dark:text-zinc-400">
+        <span class="text-emerald-500">No runtime errors</span>
+        
+      </td>
+      <td>
+        -
+      </td>
+    </tr>
+  
+    <tr class="tool-row passed" data-category="text-tools" data-status="pass">
+      <td class="font-mono text-xs text-stone-400">32</td>
+      <td>
+        <div class="font-bold text-stone-900 dark:text-white">Remove Duplicate Lines</div>
+        <div class="text-xs font-mono text-stone-500">text-tools/remove-duplicate-lines</div>
+      </td>
+      <td>
+        <span class="badge badge-pass">PASSED</span>
+      </td>
+      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">2.55s</td>
+      <td class="text-xs text-stone-600 dark:text-zinc-400">
+        <span class="text-emerald-500">No runtime errors</span>
+        
+      </td>
+      <td>
+        -
+      </td>
+    </tr>
+  
+    <tr class="tool-row failed" data-category="text-tools" data-status="fail">
+      <td class="font-mono text-xs text-stone-400">33</td>
+      <td>
+        <div class="font-bold text-stone-900 dark:text-white">Text to Speech</div>
+        <div class="text-xs font-mono text-stone-500">text-tools/text-to-speech</div>
+      </td>
+      <td>
+        <span class="badge badge-fail">FAILED</span>
+      </td>
+      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">2.64s</td>
+      <td class="text-xs text-stone-600 dark:text-zinc-400">
+        <div class="text-red-500 font-semibold mb-1">Text to Speech failed: Could not find Speak/Play action button.</div>
+        
+      </td>
+      <td>
+        <a href="results\screenshots\text-to-speech.png" target="_blank" class="text-blue-500 hover:underline text-xs font-bold">View Screenshot</a>
+      </td>
+    </tr>
+  
+    <tr class="tool-row passed" data-category="text-tools" data-status="pass">
+      <td class="font-mono text-xs text-stone-400">34</td>
+      <td>
+        <div class="font-bold text-stone-900 dark:text-white">Speech to Text</div>
+        <div class="text-xs font-mono text-stone-500">text-tools/speech-to-text</div>
+      </td>
+      <td>
+        <span class="badge badge-pass">PASSED</span>
+      </td>
+      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">1.97s</td>
+      <td class="text-xs text-stone-600 dark:text-zinc-400">
+        <span class="text-emerald-500">No runtime errors</span>
+        
+      </td>
+      <td>
+        -
+      </td>
+    </tr>
+  
+    <tr class="tool-row passed" data-category="text-tools" data-status="pass">
+      <td class="font-mono text-xs text-stone-400">35</td>
+      <td>
+        <div class="font-bold text-stone-900 dark:text-white">Grammar Checker</div>
+        <div class="text-xs font-mono text-stone-500">text-tools/grammar-checker</div>
+      </td>
+      <td>
+        <span class="badge badge-pass">PASSED</span>
+      </td>
+      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">4.00s</td>
+      <td class="text-xs text-stone-600 dark:text-zinc-400">
+        <span class="text-emerald-500">No runtime errors</span>
+        
+      </td>
+      <td>
+        -
+      </td>
+    </tr>
+  
+    <tr class="tool-row passed" data-category="text-tools" data-status="pass">
+      <td class="font-mono text-xs text-stone-400">36</td>
+      <td>
+        <div class="font-bold text-stone-900 dark:text-white">Fancy Text Generator</div>
+        <div class="text-xs font-mono text-stone-500">text-tools/fancy-text-generator</div>
+      </td>
+      <td>
+        <span class="badge badge-pass">PASSED</span>
+      </td>
+      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">2.38s</td>
+      <td class="text-xs text-stone-600 dark:text-zinc-400">
+        <span class="text-emerald-500">No runtime errors</span>
+        
+      </td>
+      <td>
+        -
+      </td>
+    </tr>
+  
+    <tr class="tool-row passed" data-category="text-tools" data-status="pass">
+      <td class="font-mono text-xs text-stone-400">37</td>
+      <td>
+        <div class="font-bold text-stone-900 dark:text-white">Plagiarism Checker</div>
+        <div class="text-xs font-mono text-stone-500">text-tools/plagiarism-checker</div>
+      </td>
+      <td>
+        <span class="badge badge-pass">PASSED</span>
+      </td>
+      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">3.62s</td>
+      <td class="text-xs text-stone-600 dark:text-zinc-400">
+        <span class="text-emerald-500">No runtime errors</span>
+        
+      </td>
+      <td>
+        -
+      </td>
+    </tr>
+  
+    <tr class="tool-row passed" data-category="text-tools" data-status="pass">
+      <td class="font-mono text-xs text-stone-400">38</td>
+      <td>
+        <div class="font-bold text-stone-900 dark:text-white">Text Reverser</div>
+        <div class="text-xs font-mono text-stone-500">text-tools/text-reverser</div>
+      </td>
+      <td>
+        <span class="badge badge-pass">PASSED</span>
+      </td>
+      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">2.39s</td>
+      <td class="text-xs text-stone-600 dark:text-zinc-400">
+        <span class="text-emerald-500">No runtime errors</span>
+        
+      </td>
+      <td>
+        -
+      </td>
+    </tr>
+  
+    <tr class="tool-row passed" data-category="text-tools" data-status="pass">
+      <td class="font-mono text-xs text-stone-400">39</td>
+      <td>
+        <div class="font-bold text-stone-900 dark:text-white">URL Encoder / Decoder</div>
+        <div class="text-xs font-mono text-stone-500">text-tools/url-encoder-decoder</div>
+      </td>
+      <td>
+        <span class="badge badge-pass">PASSED</span>
+      </td>
+      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">3.61s</td>
+      <td class="text-xs text-stone-600 dark:text-zinc-400">
+        <span class="text-emerald-500">No runtime errors</span>
+        
+      </td>
+      <td>
+        -
+      </td>
+    </tr>
+  
+    <tr class="tool-row passed" data-category="color-tools" data-status="pass">
+      <td class="font-mono text-xs text-stone-400">40</td>
+      <td>
+        <div class="font-bold text-stone-900 dark:text-white">Color Picker</div>
+        <div class="text-xs font-mono text-stone-500">color-tools/color-picker</div>
+      </td>
+      <td>
+        <span class="badge badge-pass">PASSED</span>
+      </td>
+      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">2.35s</td>
+      <td class="text-xs text-stone-600 dark:text-zinc-400">
+        <span class="text-emerald-500">No runtime errors</span>
+        
+      </td>
+      <td>
+        -
+      </td>
+    </tr>
+  
+    <tr class="tool-row passed" data-category="color-tools" data-status="pass">
+      <td class="font-mono text-xs text-stone-400">41</td>
+      <td>
+        <div class="font-bold text-stone-900 dark:text-white">Color Picker from Image</div>
+        <div class="text-xs font-mono text-stone-500">color-tools/color-picker-from-image</div>
+      </td>
+      <td>
+        <span class="badge badge-pass">PASSED</span>
+      </td>
+      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">2.58s</td>
+      <td class="text-xs text-stone-600 dark:text-zinc-400">
+        <span class="text-emerald-500">No runtime errors</span>
+        
+      </td>
+      <td>
+        -
+      </td>
+    </tr>
+  
+    <tr class="tool-row passed" data-category="color-tools" data-status="pass">
+      <td class="font-mono text-xs text-stone-400">42</td>
+      <td>
+        <div class="font-bold text-stone-900 dark:text-white">HEX to RGB Converter</div>
+        <div class="text-xs font-mono text-stone-500">color-tools/hex-to-rgb-converter</div>
+      </td>
+      <td>
+        <span class="badge badge-pass">PASSED</span>
+      </td>
+      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">2.28s</td>
+      <td class="text-xs text-stone-600 dark:text-zinc-400">
+        <span class="text-emerald-500">No runtime errors</span>
+        
+      </td>
+      <td>
+        -
+      </td>
+    </tr>
+  
+    <tr class="tool-row passed" data-category="color-tools" data-status="pass">
+      <td class="font-mono text-xs text-stone-400">43</td>
+      <td>
+        <div class="font-bold text-stone-900 dark:text-white">Gradient Generator</div>
+        <div class="text-xs font-mono text-stone-500">color-tools/gradient-generator</div>
+      </td>
+      <td>
+        <span class="badge badge-pass">PASSED</span>
+      </td>
+      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">3.53s</td>
+      <td class="text-xs text-stone-600 dark:text-zinc-400">
+        <span class="text-emerald-500">No runtime errors</span>
+        
+      </td>
+      <td>
+        -
+      </td>
+    </tr>
+  
+    <tr class="tool-row passed" data-category="color-tools" data-status="pass">
+      <td class="font-mono text-xs text-stone-400">44</td>
+      <td>
+        <div class="font-bold text-stone-900 dark:text-white">CSS Color Generator</div>
+        <div class="text-xs font-mono text-stone-500">color-tools/css-color-generator</div>
+      </td>
+      <td>
+        <span class="badge badge-pass">PASSED</span>
+      </td>
+      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">2.47s</td>
+      <td class="text-xs text-stone-600 dark:text-zinc-400">
+        <span class="text-emerald-500">No runtime errors</span>
+        
+      </td>
+      <td>
+        -
+      </td>
+    </tr>
+  
+    <tr class="tool-row passed" data-category="color-tools" data-status="pass">
+      <td class="font-mono text-xs text-stone-400">45</td>
+      <td>
+        <div class="font-bold text-stone-900 dark:text-white">Palette Generator</div>
+        <div class="text-xs font-mono text-stone-500">color-tools/palette-generator</div>
+      </td>
+      <td>
+        <span class="badge badge-pass">PASSED</span>
+      </td>
+      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">2.46s</td>
+      <td class="text-xs text-stone-600 dark:text-zinc-400">
+        <span class="text-emerald-500">No runtime errors</span>
+        
+      </td>
+      <td>
+        -
+      </td>
+    </tr>
+  
+    <tr class="tool-row passed" data-category="color-tools" data-status="pass">
+      <td class="font-mono text-xs text-stone-400">46</td>
+      <td>
+        <div class="font-bold text-stone-900 dark:text-white">Contrast Checker</div>
+        <div class="text-xs font-mono text-stone-500">color-tools/contrast-checker</div>
+      </td>
+      <td>
+        <span class="badge badge-pass">PASSED</span>
+      </td>
+      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">2.45s</td>
+      <td class="text-xs text-stone-600 dark:text-zinc-400">
+        <span class="text-emerald-500">No runtime errors</span>
+        
+      </td>
+      <td>
+        -
+      </td>
+    </tr>
+  
+    <tr class="tool-row passed" data-category="color-tools" data-status="pass">
+      <td class="font-mono text-xs text-stone-400">47</td>
+      <td>
+        <div class="font-bold text-stone-900 dark:text-white">Tailwind Color Generator</div>
+        <div class="text-xs font-mono text-stone-500">color-tools/tailwind-color-generator</div>
+      </td>
+      <td>
+        <span class="badge badge-pass">PASSED</span>
+      </td>
+      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">2.44s</td>
+      <td class="text-xs text-stone-600 dark:text-zinc-400">
+        <span class="text-emerald-500">No runtime errors</span>
+        
+      </td>
+      <td>
+        -
+      </td>
+    </tr>
+  
+    <tr class="tool-row passed" data-category="developer-utilities" data-status="pass">
+      <td class="font-mono text-xs text-stone-400">48</td>
+      <td>
+        <div class="font-bold text-stone-900 dark:text-white">JSON Formatter</div>
+        <div class="text-xs font-mono text-stone-500">developer-utilities/json-formatter</div>
+      </td>
+      <td>
+        <span class="badge badge-pass">PASSED</span>
+      </td>
+      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">2.56s</td>
+      <td class="text-xs text-stone-600 dark:text-zinc-400">
+        <span class="text-emerald-500">No runtime errors</span>
+        
+      </td>
+      <td>
+        -
+      </td>
+    </tr>
+  
+    <tr class="tool-row passed" data-category="developer-utilities" data-status="pass">
+      <td class="font-mono text-xs text-stone-400">49</td>
+      <td>
+        <div class="font-bold text-stone-900 dark:text-white">XML Formatter</div>
+        <div class="text-xs font-mono text-stone-500">developer-utilities/xml-formatter</div>
+      </td>
+      <td>
+        <span class="badge badge-pass">PASSED</span>
+      </td>
+      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">3.90s</td>
+      <td class="text-xs text-stone-600 dark:text-zinc-400">
+        <span class="text-emerald-500">No runtime errors</span>
+        
+      </td>
+      <td>
+        -
+      </td>
+    </tr>
+  
+    <tr class="tool-row passed" data-category="developer-utilities" data-status="pass">
+      <td class="font-mono text-xs text-stone-400">50</td>
+      <td>
+        <div class="font-bold text-stone-900 dark:text-white">CSS Formatter</div>
+        <div class="text-xs font-mono text-stone-500">developer-utilities/css-formatter</div>
+      </td>
+      <td>
+        <span class="badge badge-pass">PASSED</span>
+      </td>
+      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">2.61s</td>
+      <td class="text-xs text-stone-600 dark:text-zinc-400">
+        <span class="text-emerald-500">No runtime errors</span>
+        
+      </td>
+      <td>
+        -
+      </td>
+    </tr>
+  
+    <tr class="tool-row passed" data-category="developer-utilities" data-status="pass">
+      <td class="font-mono text-xs text-stone-400">51</td>
+      <td>
+        <div class="font-bold text-stone-900 dark:text-white">HTML Encoder / Decoder</div>
+        <div class="text-xs font-mono text-stone-500">developer-utilities/html-encoder-decoder</div>
+      </td>
+      <td>
+        <span class="badge badge-pass">PASSED</span>
+      </td>
+      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">3.88s</td>
+      <td class="text-xs text-stone-600 dark:text-zinc-400">
+        <span class="text-emerald-500">No runtime errors</span>
+        
+      </td>
+      <td>
+        -
+      </td>
+    </tr>
+  
+    <tr class="tool-row passed" data-category="developer-utilities" data-status="pass">
+      <td class="font-mono text-xs text-stone-400">52</td>
+      <td>
+        <div class="font-bold text-stone-900 dark:text-white">URL Encoder / Decoder</div>
+        <div class="text-xs font-mono text-stone-500">developer-utilities/dev-url-encoder-decoder</div>
+      </td>
+      <td>
+        <span class="badge badge-pass">PASSED</span>
+      </td>
+      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">2.45s</td>
+      <td class="text-xs text-stone-600 dark:text-zinc-400">
+        <span class="text-emerald-500">No runtime errors</span>
+        
+      </td>
+      <td>
+        -
+      </td>
+    </tr>
+  
+    <tr class="tool-row passed" data-category="developer-utilities" data-status="pass">
+      <td class="font-mono text-xs text-stone-400">53</td>
+      <td>
+        <div class="font-bold text-stone-900 dark:text-white">Base64 Encoder / Decoder</div>
+        <div class="text-xs font-mono text-stone-500">developer-utilities/base64-encoder-decoder</div>
+      </td>
+      <td>
+        <span class="badge badge-pass">PASSED</span>
+      </td>
+      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">3.84s</td>
+      <td class="text-xs text-stone-600 dark:text-zinc-400">
+        <span class="text-emerald-500">No runtime errors</span>
+        
+      </td>
+      <td>
+        -
+      </td>
+    </tr>
+  
+    <tr class="tool-row passed" data-category="developer-utilities" data-status="pass">
+      <td class="font-mono text-xs text-stone-400">54</td>
+      <td>
+        <div class="font-bold text-stone-900 dark:text-white">Markdown to HTML</div>
+        <div class="text-xs font-mono text-stone-500">developer-utilities/markdown-to-html</div>
+      </td>
+      <td>
+        <span class="badge badge-pass">PASSED</span>
+      </td>
+      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">2.70s</td>
+      <td class="text-xs text-stone-600 dark:text-zinc-400">
+        <span class="text-emerald-500">No runtime errors</span>
+        
+      </td>
+      <td>
+        -
+      </td>
+    </tr>
+  
+    <tr class="tool-row passed" data-category="developer-utilities" data-status="pass">
+      <td class="font-mono text-xs text-stone-400">55</td>
+      <td>
+        <div class="font-bold text-stone-900 dark:text-white">.htaccess Generator</div>
+        <div class="text-xs font-mono text-stone-500">developer-utilities/htaccess-generator</div>
+      </td>
+      <td>
+        <span class="badge badge-pass">PASSED</span>
+      </td>
+      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">3.26s</td>
+      <td class="text-xs text-stone-600 dark:text-zinc-400">
+        <span class="text-emerald-500">No runtime errors</span>
+        
+      </td>
+      <td>
+        -
+      </td>
+    </tr>
+  
+    <tr class="tool-row passed" data-category="developer-utilities" data-status="pass">
+      <td class="font-mono text-xs text-stone-400">56</td>
+      <td>
+        <div class="font-bold text-stone-900 dark:text-white">Robots.txt Generator</div>
+        <div class="text-xs font-mono text-stone-500">developer-utilities/robots-txt-generator</div>
+      </td>
+      <td>
+        <span class="badge badge-pass">PASSED</span>
+      </td>
+      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">2.25s</td>
+      <td class="text-xs text-stone-600 dark:text-zinc-400">
+        <span class="text-emerald-500">No runtime errors</span>
+        
+      </td>
+      <td>
+        -
+      </td>
+    </tr>
+  
+    <tr class="tool-row passed" data-category="developer-utilities" data-status="pass">
+      <td class="font-mono text-xs text-stone-400">57</td>
+      <td>
+        <div class="font-bold text-stone-900 dark:text-white">Meta Tag Generator</div>
+        <div class="text-xs font-mono text-stone-500">developer-utilities/meta-tag-generator</div>
+      </td>
+      <td>
+        <span class="badge badge-pass">PASSED</span>
+      </td>
+      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">3.27s</td>
+      <td class="text-xs text-stone-600 dark:text-zinc-400">
+        <span class="text-emerald-500">No runtime errors</span>
+        
+      </td>
+      <td>
+        -
+      </td>
+    </tr>
+  
+    <tr class="tool-row passed" data-category="developer-utilities" data-status="pass">
+      <td class="font-mono text-xs text-stone-400">58</td>
+      <td>
+        <div class="font-bold text-stone-900 dark:text-white">Password Generator</div>
+        <div class="text-xs font-mono text-stone-500">developer-utilities/password-generator</div>
+      </td>
+      <td>
+        <span class="badge badge-pass">PASSED</span>
+      </td>
+      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">2.21s</td>
+      <td class="text-xs text-stone-600 dark:text-zinc-400">
+        <span class="text-emerald-500">No runtime errors</span>
+        
+      </td>
+      <td>
+        -
+      </td>
+    </tr>
+  
+    <tr class="tool-row passed" data-category="developer-utilities" data-status="pass">
+      <td class="font-mono text-xs text-stone-400">59</td>
+      <td>
+        <div class="font-bold text-stone-900 dark:text-white">QR Code Generator</div>
+        <div class="text-xs font-mono text-stone-500">developer-utilities/qr-code-generator</div>
+      </td>
+      <td>
+        <span class="badge badge-pass">PASSED</span>
+      </td>
+      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">3.62s</td>
+      <td class="text-xs text-stone-600 dark:text-zinc-400">
+        <span class="text-emerald-500">No runtime errors</span>
+        
+      </td>
+      <td>
+        -
+      </td>
+    </tr>
+  
+    <tr class="tool-row passed" data-category="developer-utilities" data-status="pass">
+      <td class="font-mono text-xs text-stone-400">60</td>
+      <td>
+        <div class="font-bold text-stone-900 dark:text-white">UUID Generator</div>
+        <div class="text-xs font-mono text-stone-500">developer-utilities/uuid-generator</div>
+      </td>
+      <td>
+        <span class="badge badge-pass">PASSED</span>
+      </td>
+      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">2.19s</td>
+      <td class="text-xs text-stone-600 dark:text-zinc-400">
+        <span class="text-emerald-500">No runtime errors</span>
+        
+      </td>
+      <td>
+        -
+      </td>
+    </tr>
+  
+    <tr class="tool-row passed" data-category="developer-utilities" data-status="pass">
+      <td class="font-mono text-xs text-stone-400">61</td>
+      <td>
+        <div class="font-bold text-stone-900 dark:text-white">Regex Tester</div>
+        <div class="text-xs font-mono text-stone-500">developer-utilities/regex-tester</div>
+      </td>
+      <td>
+        <span class="badge badge-pass">PASSED</span>
+      </td>
+      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">4.03s</td>
+      <td class="text-xs text-stone-600 dark:text-zinc-400">
+        <span class="text-emerald-500">No runtime errors</span>
+        
+      </td>
+      <td>
+        -
+      </td>
+    </tr>
+  
+    <tr class="tool-row passed" data-category="developer-utilities" data-status="pass">
+      <td class="font-mono text-xs text-stone-400">62</td>
+      <td>
+        <div class="font-bold text-stone-900 dark:text-white">JSON ⇄ YAML Converter</div>
+        <div class="text-xs font-mono text-stone-500">developer-utilities/json-yaml-converter</div>
+      </td>
+      <td>
+        <span class="badge badge-pass">PASSED</span>
+      </td>
+      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">2.51s</td>
+      <td class="text-xs text-stone-600 dark:text-zinc-400">
+        <span class="text-emerald-500">No runtime errors</span>
+        
+      </td>
+      <td>
+        -
+      </td>
+    </tr>
+  
+    <tr class="tool-row passed" data-category="developer-utilities" data-status="pass">
+      <td class="font-mono text-xs text-stone-400">63</td>
+      <td>
+        <div class="font-bold text-stone-900 dark:text-white">JWT Token Decoder</div>
+        <div class="text-xs font-mono text-stone-500">developer-utilities/jwt-token-decoder</div>
+      </td>
+      <td>
+        <span class="badge badge-pass">PASSED</span>
+      </td>
+      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">5.89s</td>
+      <td class="text-xs text-stone-600 dark:text-zinc-400">
+        <span class="text-emerald-500">No runtime errors</span>
+        
+      </td>
+      <td>
+        -
+      </td>
+    </tr>
+  
+    <tr class="tool-row passed" data-category="developer-utilities" data-status="pass">
+      <td class="font-mono text-xs text-stone-400">64</td>
+      <td>
+        <div class="font-bold text-stone-900 dark:text-white">SQL Formatter &amp; Sanitizer</div>
+        <div class="text-xs font-mono text-stone-500">developer-utilities/sql-formatter-sanitizer</div>
+      </td>
+      <td>
+        <span class="badge badge-pass">PASSED</span>
+      </td>
+      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">3.27s</td>
+      <td class="text-xs text-stone-600 dark:text-zinc-400">
+        <span class="text-emerald-500">No runtime errors</span>
+        
+      </td>
+      <td>
+        -
+      </td>
+    </tr>
+  
+    <tr class="tool-row passed" data-category="date-time" data-status="pass">
+      <td class="font-mono text-xs text-stone-400">65</td>
+      <td>
+        <div class="font-bold text-stone-900 dark:text-white">Date Difference</div>
+        <div class="text-xs font-mono text-stone-500">date-time/date-difference</div>
+      </td>
+      <td>
+        <span class="badge badge-pass">PASSED</span>
+      </td>
+      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">2.43s</td>
+      <td class="text-xs text-stone-600 dark:text-zinc-400">
+        <span class="text-emerald-500">No runtime errors</span>
+        
+      </td>
+      <td>
+        -
+      </td>
+    </tr>
+  
+    <tr class="tool-row failed" data-category="date-time" data-status="fail">
+      <td class="font-mono text-xs text-stone-400">66</td>
+      <td>
+        <div class="font-bold text-stone-900 dark:text-white">Timezone Converter</div>
+        <div class="text-xs font-mono text-stone-500">date-time/timezone-converter</div>
+      </td>
+      <td>
+        <span class="badge badge-fail">FAILED</span>
+      </td>
+      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">6.40s</td>
+      <td class="text-xs text-stone-600 dark:text-zinc-400">
+        <div class="text-red-500 font-semibold mb-1">Waiting for selector `input, select, button` failed: Waiting failed: 5000ms exceeded</div>
+        
+      </td>
+      <td>
+        <a href="results\screenshots\timezone-converter.png" target="_blank" class="text-blue-500 hover:underline text-xs font-bold">View Screenshot</a>
+      </td>
+    </tr>
+  
+    <tr class="tool-row failed" data-category="date-time" data-status="fail">
+      <td class="font-mono text-xs text-stone-400">67</td>
+      <td>
+        <div class="font-bold text-stone-900 dark:text-white">Countdown Timer</div>
+        <div class="text-xs font-mono text-stone-500">date-time/countdown-timer</div>
+      </td>
+      <td>
+        <span class="badge badge-fail">FAILED</span>
+      </td>
+      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">6.55s</td>
+      <td class="text-xs text-stone-600 dark:text-zinc-400">
+        <div class="text-red-500 font-semibold mb-1">Waiting for selector `input, select, button` failed: Waiting failed: 5000ms exceeded</div>
+        
+      </td>
+      <td>
+        <a href="results\screenshots\countdown-timer.png" target="_blank" class="text-blue-500 hover:underline text-xs font-bold">View Screenshot</a>
+      </td>
+    </tr>
+  
+    <tr class="tool-row passed" data-category="date-time" data-status="pass">
+      <td class="font-mono text-xs text-stone-400">68</td>
+      <td>
+        <div class="font-bold text-stone-900 dark:text-white">Cron Parser</div>
+        <div class="text-xs font-mono text-stone-500">date-time/cron-parser</div>
+      </td>
+      <td>
+        <span class="badge badge-pass">PASSED</span>
+      </td>
+      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">2.40s</td>
+      <td class="text-xs text-stone-600 dark:text-zinc-400">
+        <span class="text-emerald-500">No runtime errors</span>
+        
+      </td>
+      <td>
+        -
+      </td>
+    </tr>
+  
+    <tr class="tool-row failed" data-category="date-time" data-status="fail">
+      <td class="font-mono text-xs text-stone-400">69</td>
+      <td>
+        <div class="font-bold text-stone-900 dark:text-white">Unix Timestamp Converter</div>
+        <div class="text-xs font-mono text-stone-500">date-time/unix-timestamp-converter</div>
+      </td>
+      <td>
+        <span class="badge badge-fail">FAILED</span>
+      </td>
+      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">3.45s</td>
+      <td class="text-xs text-stone-600 dark:text-zinc-400">
+        <div class="text-red-500 font-semibold mb-1">PageError: Minified React error #418; visit https://react.dev/errors/418?args[]=text&amp;args[]= for the full message or use the non-minified dev environment for full errors and additional helpful warnings.</div>
+        
+      </td>
+      <td>
+        <a href="results\screenshots\unix-timestamp-converter.png" target="_blank" class="text-blue-500 hover:underline text-xs font-bold">View Screenshot</a>
+      </td>
+    </tr>
+  
+    <tr class="tool-row passed" data-category="converters" data-status="pass">
+      <td class="font-mono text-xs text-stone-400">70</td>
       <td>
         <div class="font-bold text-stone-900 dark:text-white">CSV to JSON</div>
         <div class="text-xs font-mono text-stone-500">converters/csv-to-json</div>
       </td>
       <td>
-        <span class="badge badge-fail">FAILED</span>
-      </td>
-      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">14.11s</td>
-      <td class="text-xs text-stone-600 dark:text-zinc-400">
-        <div class="text-red-500 font-semibold mb-1">CSV to JSON Failed: Expected valid JSON array with 2 objects, but received:
-&quot;&quot;
-Error: Unexpected end of JSON input</div>
-        
-      </td>
-      <td>
-        <a href="results\screenshots\csv-to-json.png" target="_blank" class="text-blue-500 hover:underline text-xs font-bold">View Screenshot</a>
-      </td>
-    </tr>
-  
-    <tr class="tool-row failed" data-category="converters" data-status="fail">
-      <td class="font-mono text-xs text-stone-400">2</td>
-      <td>
-        <div class="font-bold text-stone-900 dark:text-white">JSON to CSV</div>
-        <div class="text-xs font-mono text-stone-500">converters/json-to-csv</div>
-      </td>
-      <td>
-        <span class="badge badge-fail">FAILED</span>
-      </td>
-      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">8.16s</td>
-      <td class="text-xs text-stone-600 dark:text-zinc-400">
-        <div class="text-red-500 font-semibold mb-1">JSON to CSV Failed: Expected CSV with headers &quot;id,name,score&quot; and row &quot;Alice,95&quot;, but received:
-&quot;&quot;</div>
-        
-      </td>
-      <td>
-        <a href="results\screenshots\json-to-csv.png" target="_blank" class="text-blue-500 hover:underline text-xs font-bold">View Screenshot</a>
-      </td>
-    </tr>
-  
-    <tr class="tool-row passed" data-category="converters" data-status="pass">
-      <td class="font-mono text-xs text-stone-400">3</td>
-      <td>
-        <div class="font-bold text-stone-900 dark:text-white">Text to Speech Engine</div>
-        <div class="text-xs font-mono text-stone-500">converters/conv-text-to-speech</div>
-      </td>
-      <td>
         <span class="badge badge-pass">PASSED</span>
       </td>
-      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">4.40s</td>
+      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">2.42s</td>
       <td class="text-xs text-stone-600 dark:text-zinc-400">
         <span class="text-emerald-500">No runtime errors</span>
         
@@ -125,7 +1407,45 @@ Error: Unexpected end of JSON input</div>
     </tr>
   
     <tr class="tool-row passed" data-category="converters" data-status="pass">
-      <td class="font-mono text-xs text-stone-400">4</td>
+      <td class="font-mono text-xs text-stone-400">71</td>
+      <td>
+        <div class="font-bold text-stone-900 dark:text-white">JSON to CSV</div>
+        <div class="text-xs font-mono text-stone-500">converters/json-to-csv</div>
+      </td>
+      <td>
+        <span class="badge badge-pass">PASSED</span>
+      </td>
+      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">2.70s</td>
+      <td class="text-xs text-stone-600 dark:text-zinc-400">
+        <span class="text-emerald-500">No runtime errors</span>
+        
+      </td>
+      <td>
+        -
+      </td>
+    </tr>
+  
+    <tr class="tool-row failed" data-category="converters" data-status="fail">
+      <td class="font-mono text-xs text-stone-400">72</td>
+      <td>
+        <div class="font-bold text-stone-900 dark:text-white">Text to Speech Engine</div>
+        <div class="text-xs font-mono text-stone-500">converters/conv-text-to-speech</div>
+      </td>
+      <td>
+        <span class="badge badge-fail">FAILED</span>
+      </td>
+      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">1.60s</td>
+      <td class="text-xs text-stone-600 dark:text-zinc-400">
+        <div class="text-red-500 font-semibold mb-1">Converters Text to Speech Failed: Could not find Speak/Play/Convert action button.</div>
+        
+      </td>
+      <td>
+        <a href="results\screenshots\conv-text-to-speech.png" target="_blank" class="text-blue-500 hover:underline text-xs font-bold">View Screenshot</a>
+      </td>
+    </tr>
+  
+    <tr class="tool-row passed" data-category="converters" data-status="pass">
+      <td class="font-mono text-xs text-stone-400">73</td>
       <td>
         <div class="font-bold text-stone-900 dark:text-white">Binary Converter</div>
         <div class="text-xs font-mono text-stone-500">converters/binary-converter</div>
@@ -133,7 +1453,7 @@ Error: Unexpected end of JSON input</div>
       <td>
         <span class="badge badge-pass">PASSED</span>
       </td>
-      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">2.78s</td>
+      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">2.65s</td>
       <td class="text-xs text-stone-600 dark:text-zinc-400">
         <span class="text-emerald-500">No runtime errors</span>
         
@@ -144,7 +1464,7 @@ Error: Unexpected end of JSON input</div>
     </tr>
   
     <tr class="tool-row passed" data-category="converters" data-status="pass">
-      <td class="font-mono text-xs text-stone-400">5</td>
+      <td class="font-mono text-xs text-stone-400">74</td>
       <td>
         <div class="font-bold text-stone-900 dark:text-white">Morse Code Converter</div>
         <div class="text-xs font-mono text-stone-500">converters/morse-code-converter</div>
@@ -152,7 +1472,7 @@ Error: Unexpected end of JSON input</div>
       <td>
         <span class="badge badge-pass">PASSED</span>
       </td>
-      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">4.28s</td>
+      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">2.63s</td>
       <td class="text-xs text-stone-600 dark:text-zinc-400">
         <span class="text-emerald-500">No runtime errors</span>
         
@@ -162,55 +1482,640 @@ Error: Unexpected end of JSON input</div>
       </td>
     </tr>
   
-    <tr class="tool-row failed" data-category="converters" data-status="fail">
-      <td class="font-mono text-xs text-stone-400">6</td>
+    <tr class="tool-row passed" data-category="converters" data-status="pass">
+      <td class="font-mono text-xs text-stone-400">75</td>
       <td>
         <div class="font-bold text-stone-900 dark:text-white">Roman Numeral Converter</div>
         <div class="text-xs font-mono text-stone-500">converters/roman-numeral-converter</div>
       </td>
       <td>
-        <span class="badge badge-fail">FAILED</span>
+        <span class="badge badge-pass">PASSED</span>
       </td>
-      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">2.13s</td>
+      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">2.67s</td>
       <td class="text-xs text-stone-600 dark:text-zinc-400">
-        <div class="text-red-500 font-semibold mb-1">Roman Numeral Converter Failed: Expected &quot;MMXXVI&quot; for 2026, received:
-&quot;T
-Back to Portfolio
-Tools Catalog
-Talha Codes Tools
-BACK TO ALL TOOLS
-CONVERTERS
-Roman Numeral Converter
-
-Decimal ⇄ Roman numerals.
-
-SOURCE PAYLOAD
-CONVERTED RESULT
-Copy
-Enter number between 1 and 399&quot;</div>
+        <span class="text-emerald-500">No runtime errors</span>
         
       </td>
       <td>
-        <a href="results\screenshots\roman-numeral-converter.png" target="_blank" class="text-blue-500 hover:underline text-xs font-bold">View Screenshot</a>
+        -
       </td>
     </tr>
   
-    <tr class="tool-row failed" data-category="converters" data-status="fail">
-      <td class="font-mono text-xs text-stone-400">7</td>
+    <tr class="tool-row passed" data-category="converters" data-status="pass">
+      <td class="font-mono text-xs text-stone-400">76</td>
       <td>
         <div class="font-bold text-stone-900 dark:text-white">Number Base Converter</div>
         <div class="text-xs font-mono text-stone-500">converters/number-base-converter</div>
       </td>
       <td>
-        <span class="badge badge-fail">FAILED</span>
+        <span class="badge badge-pass">PASSED</span>
       </td>
-      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">1.78s</td>
+      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">2.67s</td>
       <td class="text-xs text-stone-600 dark:text-zinc-400">
-        <div class="text-red-500 font-semibold mb-1">Number Base Converter Failed: Expected Hex &quot;FF&quot; and Binary &quot;11111111&quot; for 255.</div>
+        <span class="text-emerald-500">No runtime errors</span>
         
       </td>
       <td>
-        <a href="results\screenshots\number-base-converter.png" target="_blank" class="text-blue-500 hover:underline text-xs font-bold">View Screenshot</a>
+        -
+      </td>
+    </tr>
+  
+    <tr class="tool-row failed" data-category="security-utilities" data-status="fail">
+      <td class="font-mono text-xs text-stone-400">77</td>
+      <td>
+        <div class="font-bold text-stone-900 dark:text-white">MD5 Hash Generator</div>
+        <div class="text-xs font-mono text-stone-500">security-utilities/md5-hash-generator</div>
+      </td>
+      <td>
+        <span class="badge badge-fail">FAILED</span>
+      </td>
+      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">2.82s</td>
+      <td class="text-xs text-stone-600 dark:text-zinc-400">
+        <div class="text-red-500 font-semibold mb-1">MD5 Hash Generator Failed: Expected &quot;5d41402abc4b2a76b9719d911017c592&quot; for &quot;hello&quot;, got:
+&quot;T
+Back to Portfolio
+Tools Catalog
+Talha Codes Tools
+BACK TO ALL TOOLS
+SECURITY UTILITIES
+MD5 Hash Generator
+
+Standard MD5 checksum generator.
+
+INPUT TEXT TO HASH
+MD5 HASH GENERATOR OUTPUT
+Copy Hash
+34&quot;</div>
+        
+      </td>
+      <td>
+        <a href="results\screenshots\md5-hash-generator.png" target="_blank" class="text-blue-500 hover:underline text-xs font-bold">View Screenshot</a>
+      </td>
+    </tr>
+  
+    <tr class="tool-row passed" data-category="security-utilities" data-status="pass">
+      <td class="font-mono text-xs text-stone-400">78</td>
+      <td>
+        <div class="font-bold text-stone-900 dark:text-white">SHA-256 Hash</div>
+        <div class="text-xs font-mono text-stone-500">security-utilities/sha-256-hash</div>
+      </td>
+      <td>
+        <span class="badge badge-pass">PASSED</span>
+      </td>
+      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">2.24s</td>
+      <td class="text-xs text-stone-600 dark:text-zinc-400">
+        <span class="text-emerald-500">No runtime errors</span>
+        
+      </td>
+      <td>
+        -
+      </td>
+    </tr>
+  
+    <tr class="tool-row failed" data-category="security-utilities" data-status="fail">
+      <td class="font-mono text-xs text-stone-400">79</td>
+      <td>
+        <div class="font-bold text-stone-900 dark:text-white">SHA-512 Hash</div>
+        <div class="text-xs font-mono text-stone-500">security-utilities/sha-512-hash</div>
+      </td>
+      <td>
+        <span class="badge badge-fail">FAILED</span>
+      </td>
+      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">3.59s</td>
+      <td class="text-xs text-stone-600 dark:text-zinc-400">
+        <div class="text-red-500 font-semibold mb-1">SHA-512 Hash Failed: Expected SHA-512 output starting with &quot;9b71d224bd67b37ed6aed&quot;.</div>
+        
+      </td>
+      <td>
+        <a href="results\screenshots\sha-512-hash.png" target="_blank" class="text-blue-500 hover:underline text-xs font-bold">View Screenshot</a>
+      </td>
+    </tr>
+  
+    <tr class="tool-row passed" data-category="security-utilities" data-status="pass">
+      <td class="font-mono text-xs text-stone-400">80</td>
+      <td>
+        <div class="font-bold text-stone-900 dark:text-white">Password Strength Meter</div>
+        <div class="text-xs font-mono text-stone-500">security-utilities/password-strength-meter</div>
+      </td>
+      <td>
+        <span class="badge badge-pass">PASSED</span>
+      </td>
+      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">2.55s</td>
+      <td class="text-xs text-stone-600 dark:text-zinc-400">
+        <span class="text-emerald-500">No runtime errors</span>
+        
+      </td>
+      <td>
+        -
+      </td>
+    </tr>
+  
+    <tr class="tool-row passed" data-category="security-utilities" data-status="pass">
+      <td class="font-mono text-xs text-stone-400">81</td>
+      <td>
+        <div class="font-bold text-stone-900 dark:text-white">Random String Generator</div>
+        <div class="text-xs font-mono text-stone-500">security-utilities/random-string-generator</div>
+      </td>
+      <td>
+        <span class="badge badge-pass">PASSED</span>
+      </td>
+      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">3.72s</td>
+      <td class="text-xs text-stone-600 dark:text-zinc-400">
+        <span class="text-emerald-500">No runtime errors</span>
+        
+      </td>
+      <td>
+        -
+      </td>
+    </tr>
+  
+    <tr class="tool-row passed" data-category="security-utilities" data-status="pass">
+      <td class="font-mono text-xs text-stone-400">82</td>
+      <td>
+        <div class="font-bold text-stone-900 dark:text-white">Custom Rules Password Builder</div>
+        <div class="text-xs font-mono text-stone-500">security-utilities/sec-password-generator</div>
+      </td>
+      <td>
+        <span class="badge badge-pass">PASSED</span>
+      </td>
+      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">2.52s</td>
+      <td class="text-xs text-stone-600 dark:text-zinc-400">
+        <span class="text-emerald-500">No runtime errors</span>
+        
+      </td>
+      <td>
+        -
+      </td>
+    </tr>
+  
+    <tr class="tool-row passed" data-category="security-utilities" data-status="pass">
+      <td class="font-mono text-xs text-stone-400">83</td>
+      <td>
+        <div class="font-bold text-stone-900 dark:text-white">Secure UUID Generator</div>
+        <div class="text-xs font-mono text-stone-500">security-utilities/sec-uuid-generator</div>
+      </td>
+      <td>
+        <span class="badge badge-pass">PASSED</span>
+      </td>
+      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">8.54s</td>
+      <td class="text-xs text-stone-600 dark:text-zinc-400">
+        <span class="text-emerald-500">No runtime errors</span>
+        
+      </td>
+      <td>
+        -
+      </td>
+    </tr>
+  
+    <tr class="tool-row passed" data-category="security-utilities" data-status="pass">
+      <td class="font-mono text-xs text-stone-400">84</td>
+      <td>
+        <div class="font-bold text-stone-900 dark:text-white">Random Number Generator</div>
+        <div class="text-xs font-mono text-stone-500">security-utilities/random-number-generator</div>
+      </td>
+      <td>
+        <span class="badge badge-pass">PASSED</span>
+      </td>
+      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">3.76s</td>
+      <td class="text-xs text-stone-600 dark:text-zinc-400">
+        <span class="text-emerald-500">No runtime errors</span>
+        
+      </td>
+      <td>
+        -
+      </td>
+    </tr>
+  
+    <tr class="tool-row passed" data-category="security-utilities" data-status="pass">
+      <td class="font-mono text-xs text-stone-400">85</td>
+      <td>
+        <div class="font-bold text-stone-900 dark:text-white">IP Address Lookup</div>
+        <div class="text-xs font-mono text-stone-500">security-utilities/ip-address-lookup</div>
+      </td>
+      <td>
+        <span class="badge badge-pass">PASSED</span>
+      </td>
+      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">3.27s</td>
+      <td class="text-xs text-stone-600 dark:text-zinc-400">
+        <span class="text-emerald-500">No runtime errors</span>
+        
+      </td>
+      <td>
+        -
+      </td>
+    </tr>
+  
+    <tr class="tool-row passed" data-category="security-utilities" data-status="pass">
+      <td class="font-mono text-xs text-stone-400">86</td>
+      <td>
+        <div class="font-bold text-stone-900 dark:text-white">DNS Lookup Tool</div>
+        <div class="text-xs font-mono text-stone-500">security-utilities/dns-lookup-tool</div>
+      </td>
+      <td>
+        <span class="badge badge-pass">PASSED</span>
+      </td>
+      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">2.25s</td>
+      <td class="text-xs text-stone-600 dark:text-zinc-400">
+        <span class="text-emerald-500">No runtime errors</span>
+        
+      </td>
+      <td>
+        -
+      </td>
+    </tr>
+  
+    <tr class="tool-row passed" data-category="security-utilities" data-status="pass">
+      <td class="font-mono text-xs text-stone-400">87</td>
+      <td>
+        <div class="font-bold text-stone-900 dark:text-white">SSL / TLS Certificate Inspector</div>
+        <div class="text-xs font-mono text-stone-500">security-utilities/ssl-certificate-inspector</div>
+      </td>
+      <td>
+        <span class="badge badge-pass">PASSED</span>
+      </td>
+      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">3.26s</td>
+      <td class="text-xs text-stone-600 dark:text-zinc-400">
+        <span class="text-emerald-500">No runtime errors</span>
+        
+      </td>
+      <td>
+        -
+      </td>
+    </tr>
+  
+    <tr class="tool-row passed" data-category="security-utilities" data-status="pass">
+      <td class="font-mono text-xs text-stone-400">88</td>
+      <td>
+        <div class="font-bold text-stone-900 dark:text-white">WHOIS Domain Lookup</div>
+        <div class="text-xs font-mono text-stone-500">security-utilities/whois-domain-lookup</div>
+      </td>
+      <td>
+        <span class="badge badge-pass">PASSED</span>
+      </td>
+      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">2.15s</td>
+      <td class="text-xs text-stone-600 dark:text-zinc-400">
+        <span class="text-emerald-500">No runtime errors</span>
+        
+      </td>
+      <td>
+        -
+      </td>
+    </tr>
+  
+    <tr class="tool-row failed" data-category="seo-tools" data-status="fail">
+      <td class="font-mono text-xs text-stone-400">89</td>
+      <td>
+        <div class="font-bold text-stone-900 dark:text-white">Keyword Density Checker</div>
+        <div class="text-xs font-mono text-stone-500">seo-tools/keyword-density-checker</div>
+      </td>
+      <td>
+        <span class="badge badge-fail">FAILED</span>
+      </td>
+      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">33.13s</td>
+      <td class="text-xs text-stone-600 dark:text-zinc-400">
+        <div class="text-red-500 font-semibold mb-1">Keyword Density Checker Failed: Expected &quot;SEO&quot; frequency count around 4, got:
+&quot;T
+Back to Portfolio
+Tools Catalog
+Talha Codes Tools
+BACK TO ALL TOOLS
+SEO TOOLS
+Keyword Density Checker
+
+Frequency analysis for keywords in articles.
+
+ARTICLE CONTENT
+TOP KEYWORD FREQUENCIES
+tools
+2x
+&quot;</div>
+        
+      </td>
+      <td>
+        <a href="results\screenshots\keyword-density-checker.png" target="_blank" class="text-blue-500 hover:underline text-xs font-bold">View Screenshot</a>
+      </td>
+    </tr>
+  
+    <tr class="tool-row passed" data-category="seo-tools" data-status="pass">
+      <td class="font-mono text-xs text-stone-400">90</td>
+      <td>
+        <div class="font-bold text-stone-900 dark:text-white">Meta Tag Analyzer</div>
+        <div class="text-xs font-mono text-stone-500">seo-tools/meta-tag-analyzer</div>
+      </td>
+      <td>
+        <span class="badge badge-pass">PASSED</span>
+      </td>
+      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">31.86s</td>
+      <td class="text-xs text-stone-600 dark:text-zinc-400">
+        <span class="text-emerald-500">No runtime errors</span>
+        
+      </td>
+      <td>
+        -
+      </td>
+    </tr>
+  
+    <tr class="tool-row passed" data-category="seo-tools" data-status="pass">
+      <td class="font-mono text-xs text-stone-400">91</td>
+      <td>
+        <div class="font-bold text-stone-900 dark:text-white">Sitemap Generator</div>
+        <div class="text-xs font-mono text-stone-500">seo-tools/sitemap-generator</div>
+      </td>
+      <td>
+        <span class="badge badge-pass">PASSED</span>
+      </td>
+      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">2.84s</td>
+      <td class="text-xs text-stone-600 dark:text-zinc-400">
+        <span class="text-emerald-500">No runtime errors</span>
+        
+      </td>
+      <td>
+        -
+      </td>
+    </tr>
+  
+    <tr class="tool-row failed" data-category="seo-tools" data-status="fail">
+      <td class="font-mono text-xs text-stone-400">92</td>
+      <td>
+        <div class="font-bold text-stone-900 dark:text-white">Open Graph Preview</div>
+        <div class="text-xs font-mono text-stone-500">seo-tools/open-graph-preview</div>
+      </td>
+      <td>
+        <span class="badge badge-fail">FAILED</span>
+      </td>
+      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">1.57s</td>
+      <td class="text-xs text-stone-600 dark:text-zinc-400">
+        <div class="text-red-500 font-semibold mb-1">Open Graph Preview Failed: Preview card did not update with entered title.</div>
+        
+      </td>
+      <td>
+        <a href="results\screenshots\open-graph-preview.png" target="_blank" class="text-blue-500 hover:underline text-xs font-bold">View Screenshot</a>
+      </td>
+    </tr>
+  
+    <tr class="tool-row passed" data-category="seo-tools" data-status="pass">
+      <td class="font-mono text-xs text-stone-400">93</td>
+      <td>
+        <div class="font-bold text-stone-900 dark:text-white">Canonical URL Checker</div>
+        <div class="text-xs font-mono text-stone-500">seo-tools/canonical-url-checker</div>
+      </td>
+      <td>
+        <span class="badge badge-pass">PASSED</span>
+      </td>
+      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">3.41s</td>
+      <td class="text-xs text-stone-600 dark:text-zinc-400">
+        <span class="text-emerald-500">No runtime errors</span>
+        
+      </td>
+      <td>
+        -
+      </td>
+    </tr>
+  
+    <tr class="tool-row passed" data-category="seo-tools" data-status="pass">
+      <td class="font-mono text-xs text-stone-400">94</td>
+      <td>
+        <div class="font-bold text-stone-900 dark:text-white">Page Speed Estimator</div>
+        <div class="text-xs font-mono text-stone-500">seo-tools/page-speed-estimator</div>
+      </td>
+      <td>
+        <span class="badge badge-pass">PASSED</span>
+      </td>
+      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">2.38s</td>
+      <td class="text-xs text-stone-600 dark:text-zinc-400">
+        <span class="text-emerald-500">No runtime errors</span>
+        
+      </td>
+      <td>
+        -
+      </td>
+    </tr>
+  
+    <tr class="tool-row passed" data-category="seo-tools" data-status="pass">
+      <td class="font-mono text-xs text-stone-400">95</td>
+      <td>
+        <div class="font-bold text-stone-900 dark:text-white">Backlink Checker</div>
+        <div class="text-xs font-mono text-stone-500">seo-tools/backlink-checker</div>
+      </td>
+      <td>
+        <span class="badge badge-pass">PASSED</span>
+      </td>
+      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">3.12s</td>
+      <td class="text-xs text-stone-600 dark:text-zinc-400">
+        <span class="text-emerald-500">No runtime errors</span>
+        
+      </td>
+      <td>
+        -
+      </td>
+    </tr>
+  
+    <tr class="tool-row passed" data-category="seo-tools" data-status="pass">
+      <td class="font-mono text-xs text-stone-400">96</td>
+      <td>
+        <div class="font-bold text-stone-900 dark:text-white">SEO Score Checker</div>
+        <div class="text-xs font-mono text-stone-500">seo-tools/seo-score-checker</div>
+      </td>
+      <td>
+        <span class="badge badge-pass">PASSED</span>
+      </td>
+      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">2.10s</td>
+      <td class="text-xs text-stone-600 dark:text-zinc-400">
+        <span class="text-emerald-500">No runtime errors</span>
+        
+      </td>
+      <td>
+        -
+      </td>
+    </tr>
+  
+    <tr class="tool-row passed" data-category="seo-tools" data-status="pass">
+      <td class="font-mono text-xs text-stone-400">97</td>
+      <td>
+        <div class="font-bold text-stone-900 dark:text-white">Google Index Checker</div>
+        <div class="text-xs font-mono text-stone-500">seo-tools/google-index-checker</div>
+      </td>
+      <td>
+        <span class="badge badge-pass">PASSED</span>
+      </td>
+      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">3.07s</td>
+      <td class="text-xs text-stone-600 dark:text-zinc-400">
+        <span class="text-emerald-500">No runtime errors</span>
+        
+      </td>
+      <td>
+        -
+      </td>
+    </tr>
+  
+    <tr class="tool-row passed" data-category="file-tools" data-status="pass">
+      <td class="font-mono text-xs text-stone-400">98</td>
+      <td>
+        <div class="font-bold text-stone-900 dark:text-white">PDF to Word Converter</div>
+        <div class="text-xs font-mono text-stone-500">file-tools/pdf-to-word-converter</div>
+      </td>
+      <td>
+        <span class="badge badge-pass">PASSED</span>
+      </td>
+      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">2.12s</td>
+      <td class="text-xs text-stone-600 dark:text-zinc-400">
+        <span class="text-emerald-500">No runtime errors</span>
+        
+      </td>
+      <td>
+        -
+      </td>
+    </tr>
+  
+    <tr class="tool-row passed" data-category="file-tools" data-status="pass">
+      <td class="font-mono text-xs text-stone-400">99</td>
+      <td>
+        <div class="font-bold text-stone-900 dark:text-white">Word to PDF Converter</div>
+        <div class="text-xs font-mono text-stone-500">file-tools/word-to-pdf-converter</div>
+      </td>
+      <td>
+        <span class="badge badge-pass">PASSED</span>
+      </td>
+      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">2.12s</td>
+      <td class="text-xs text-stone-600 dark:text-zinc-400">
+        <span class="text-emerald-500">No runtime errors</span>
+        
+      </td>
+      <td>
+        -
+      </td>
+    </tr>
+  
+    <tr class="tool-row passed" data-category="file-tools" data-status="pass">
+      <td class="font-mono text-xs text-stone-400">100</td>
+      <td>
+        <div class="font-bold text-stone-900 dark:text-white">PDF Compressor</div>
+        <div class="text-xs font-mono text-stone-500">file-tools/pdf-compressor</div>
+      </td>
+      <td>
+        <span class="badge badge-pass">PASSED</span>
+      </td>
+      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">1.81s</td>
+      <td class="text-xs text-stone-600 dark:text-zinc-400">
+        <span class="text-emerald-500">No runtime errors</span>
+        
+      </td>
+      <td>
+        -
+      </td>
+    </tr>
+  
+    <tr class="tool-row passed" data-category="file-tools" data-status="pass">
+      <td class="font-mono text-xs text-stone-400">101</td>
+      <td>
+        <div class="font-bold text-stone-900 dark:text-white">Merge PDF</div>
+        <div class="text-xs font-mono text-stone-500">file-tools/merge-pdf</div>
+      </td>
+      <td>
+        <span class="badge badge-pass">PASSED</span>
+      </td>
+      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">2.13s</td>
+      <td class="text-xs text-stone-600 dark:text-zinc-400">
+        <span class="text-emerald-500">No runtime errors</span>
+        
+      </td>
+      <td>
+        -
+      </td>
+    </tr>
+  
+    <tr class="tool-row passed" data-category="file-tools" data-status="pass">
+      <td class="font-mono text-xs text-stone-400">102</td>
+      <td>
+        <div class="font-bold text-stone-900 dark:text-white">Split PDF</div>
+        <div class="text-xs font-mono text-stone-500">file-tools/split-pdf</div>
+      </td>
+      <td>
+        <span class="badge badge-pass">PASSED</span>
+      </td>
+      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">1.89s</td>
+      <td class="text-xs text-stone-600 dark:text-zinc-400">
+        <span class="text-emerald-500">No runtime errors</span>
+        
+      </td>
+      <td>
+        -
+      </td>
+    </tr>
+  
+    <tr class="tool-row passed" data-category="file-tools" data-status="pass">
+      <td class="font-mono text-xs text-stone-400">103</td>
+      <td>
+        <div class="font-bold text-stone-900 dark:text-white">ZIP Extractor</div>
+        <div class="text-xs font-mono text-stone-500">file-tools/zip-extractor</div>
+      </td>
+      <td>
+        <span class="badge badge-pass">PASSED</span>
+      </td>
+      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">2.12s</td>
+      <td class="text-xs text-stone-600 dark:text-zinc-400">
+        <span class="text-emerald-500">No runtime errors</span>
+        
+      </td>
+      <td>
+        -
+      </td>
+    </tr>
+  
+    <tr class="tool-row passed" data-category="file-tools" data-status="pass">
+      <td class="font-mono text-xs text-stone-400">104</td>
+      <td>
+        <div class="font-bold text-stone-900 dark:text-white">File Size Converter</div>
+        <div class="text-xs font-mono text-stone-500">file-tools/file-size-converter</div>
+      </td>
+      <td>
+        <span class="badge badge-pass">PASSED</span>
+      </td>
+      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">2.17s</td>
+      <td class="text-xs text-stone-600 dark:text-zinc-400">
+        <span class="text-emerald-500">No runtime errors</span>
+        
+      </td>
+      <td>
+        -
+      </td>
+    </tr>
+  
+    <tr class="tool-row passed" data-category="file-tools" data-status="pass">
+      <td class="font-mono text-xs text-stone-400">105</td>
+      <td>
+        <div class="font-bold text-stone-900 dark:text-white">Video to MP3 Converter</div>
+        <div class="text-xs font-mono text-stone-500">file-tools/video-to-mp3-converter</div>
+      </td>
+      <td>
+        <span class="badge badge-pass">PASSED</span>
+      </td>
+      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">2.15s</td>
+      <td class="text-xs text-stone-600 dark:text-zinc-400">
+        <span class="text-emerald-500">No runtime errors</span>
+        
+      </td>
+      <td>
+        -
+      </td>
+    </tr>
+  
+    <tr class="tool-row passed" data-category="file-tools" data-status="pass">
+      <td class="font-mono text-xs text-stone-400">106</td>
+      <td>
+        <div class="font-bold text-stone-900 dark:text-white">Audio Cutter / Trimmer</div>
+        <div class="text-xs font-mono text-stone-500">file-tools/audio-cutter-trimmer</div>
+      </td>
+      <td>
+        <span class="badge badge-pass">PASSED</span>
+      </td>
+      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">1.99s</td>
+      <td class="text-xs text-stone-600 dark:text-zinc-400">
+        <span class="text-emerald-500">No runtime errors</span>
+        
+      </td>
+      <td>
+        -
       </td>
     </tr>
   

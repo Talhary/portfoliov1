@@ -218,6 +218,24 @@ export const TextToolModule = ({ tool }: { tool: ToolDefinition }) => {
         </button>
       </div>
 
+      {/* Dedicated Speak button for text-to-speech tool */}
+      {tool.id === 'text-to-speech' && (
+        <div className="pt-2">
+          <button
+            id="speak-btn"
+            onClick={handleTextToSpeech}
+            className={`w-full px-6 py-4 font-bold text-sm rounded-xl shadow-lg transition-all flex items-center justify-center gap-2 ${
+              isSpeaking
+                ? 'bg-rose-500 hover:bg-rose-600 text-white'
+                : 'bg-primary hover:bg-primary/90 text-white'
+            }`}
+          >
+            <FiVolume2 size={18} />
+            {isSpeaking ? 'Stop Speaking' : 'Speak Text'}
+          </button>
+        </div>
+      )}
+
       {tool.isAsync && (
         <div className="pt-2">
           <button
