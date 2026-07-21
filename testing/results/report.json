@@ -1,0 +1,120 @@
+{
+  "targetUrl": "https://talhacodes.site",
+  "timestamp": "2026-07-21T10:55:32.513Z",
+  "summary": {
+    "total": 7,
+    "passed": 3,
+    "failed": 4,
+    "passRate": 42.9,
+    "warnings": 0,
+    "totalDurationMs": 37645
+  },
+  "categoryStats": {
+    "converters": {
+      "total": 7,
+      "passed": 3,
+      "failed": 4,
+      "durationMs": 37645
+    }
+  },
+  "results": [
+    {
+      "id": "csv-to-json",
+      "slug": "csv-to-json",
+      "title": "CSV to JSON",
+      "category": "converters",
+      "isAsync": false,
+      "passed": false,
+      "durationMs": 14108,
+      "outputSnippet": null,
+      "error": "CSV to JSON Failed: Expected valid JSON array with 2 objects, but received:\n\"\"\nError: Unexpected end of JSON input",
+      "warnings": [],
+      "logs": [],
+      "screenshot": "results\\screenshots\\csv-to-json.png"
+    },
+    {
+      "id": "json-to-csv",
+      "slug": "json-to-csv",
+      "title": "JSON to CSV",
+      "category": "converters",
+      "isAsync": false,
+      "passed": false,
+      "durationMs": 8162,
+      "outputSnippet": null,
+      "error": "JSON to CSV Failed: Expected CSV with headers \"id,name,score\" and row \"Alice,95\", but received:\n\"\"",
+      "warnings": [],
+      "logs": [],
+      "screenshot": "results\\screenshots\\json-to-csv.png"
+    },
+    {
+      "id": "conv-text-to-speech",
+      "slug": "conv-text-to-speech",
+      "title": "Text to Speech Engine",
+      "category": "converters",
+      "isAsync": false,
+      "passed": true,
+      "durationMs": 4402,
+      "outputSnippet": "Testing converter tool",
+      "error": null,
+      "warnings": [],
+      "logs": [],
+      "screenshot": null
+    },
+    {
+      "id": "binary-converter",
+      "slug": "binary-converter",
+      "title": "Binary Converter",
+      "category": "converters",
+      "isAsync": false,
+      "passed": true,
+      "durationMs": 2781,
+      "outputSnippet": "Hi",
+      "error": null,
+      "warnings": [],
+      "logs": [],
+      "screenshot": null
+    },
+    {
+      "id": "morse-code-converter",
+      "slug": "morse-code-converter",
+      "title": "Morse Code Converter",
+      "category": "converters",
+      "isAsync": false,
+      "passed": true,
+      "durationMs": 4280,
+      "outputSnippet": "SOS",
+      "error": null,
+      "warnings": [],
+      "logs": [],
+      "screenshot": null
+    },
+    {
+      "id": "roman-numeral-converter",
+      "slug": "roman-numeral-converter",
+      "title": "Roman Numeral Converter",
+      "category": "converters",
+      "isAsync": false,
+      "passed": false,
+      "durationMs": 2131,
+      "outputSnippet": null,
+      "error": "Roman Numeral Converter Failed: Expected \"MMXXVI\" for 2026, received:\n\"T\nBack to Portfolio\nTools Catalog\nTalha Codes Tools\nBACK TO ALL TOOLS\nCONVERTERS\nRoman Numeral Converter\n\nDecimal ⇄ Roman numerals.\n\nSOURCE PAYLOAD\nCONVERTED RESULT\nCopy\nEnter number between 1 and 399\"",
+      "warnings": [],
+      "logs": [],
+      "screenshot": "results\\screenshots\\roman-numeral-converter.png"
+    },
+    {
+      "id": "number-base-converter",
+      "slug": "number-base-converter",
+      "title": "Number Base Converter",
+      "category": "converters",
+      "isAsync": false,
+      "passed": false,
+      "durationMs": 1781,
+      "outputSnippet": null,
+      "error": "Number Base Converter Failed: Expected Hex \"FF\" and Binary \"11111111\" for 255.",
+      "warnings": [],
+      "logs": [],
+      "screenshot": "results\\screenshots\\number-base-converter.png"
+    }
+  ]
+}

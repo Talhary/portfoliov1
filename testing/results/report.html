@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Automated Tool Testing Dashboard - https://talhacodes.site</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .badge { padding: 4px 10px; border-radius: 9999px; font-size: 11px; font-weight: 700; text-transform: uppercase; }
+    .badge-pass { background: #dcfce7; color: #166534; border: 1px solid #bbf7d0; }
+    .badge-fail { background: #fee2e2; color: #991b1b; border: 1px solid #fecaca; }
+  </style>
+</head>
+<body class="bg-stone-950 text-stone-100 min-h-screen p-6 font-sans">
+  <div class="max-w-7xl mx-auto space-y-6">
+    <!-- Header -->
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-stone-800 pb-6">
+      <div>
+        <h1 class="text-3xl font-black text-white tracking-tight">Automated Tool Testing Findings</h1>
+        <p class="text-sm text-stone-400 mt-1">Target: <a href="https://talhacodes.site" class="text-sky-400 underline font-mono" target="_blank">https://talhacodes.site</a> | Executed: 7/21/2026, 3:55:32 PM</p>
+      </div>
+      <div class="flex items-center gap-3">
+        <span class="px-4 py-2 bg-stone-900 rounded-xl border border-stone-800 text-xs font-bold text-stone-300">
+          ⏱️ Total Time: 37.6s
+        </span>
+      </div>
+    </div>
+
+    <!-- Metric Cards -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div class="bg-stone-900 border border-stone-800 rounded-2xl p-5">
+        <div class="text-xs uppercase font-bold text-stone-400">Total Tools Tested</div>
+        <div class="text-3xl font-black text-white mt-1">7</div>
+      </div>
+      <div class="bg-stone-900 border border-stone-800 rounded-2xl p-5">
+        <div class="text-xs uppercase font-bold text-emerald-400">Passed</div>
+        <div class="text-3xl font-black text-emerald-400 mt-1">3 <span class="text-sm font-normal text-stone-400">(42.9%)</span></div>
+      </div>
+      <div class="bg-stone-900 border border-stone-800 rounded-2xl p-5">
+        <div class="text-xs uppercase font-bold text-rose-400">Failed</div>
+        <div class="text-3xl font-black text-rose-400 mt-1">4</div>
+      </div>
+      <div class="bg-stone-900 border border-stone-800 rounded-2xl p-5">
+        <div class="text-xs uppercase font-bold text-amber-400">Warnings</div>
+        <div class="text-3xl font-black text-amber-400 mt-1">0</div>
+      </div>
+    </div>
+
+    <!-- Results Table -->
+    <div class="bg-stone-900 border border-stone-800 rounded-2xl overflow-hidden shadow-2xl">
+      <div class="p-4 border-b border-stone-800 flex items-center justify-between">
+        <h2 class="text-lg font-bold text-white">Tool Test Results</h2>
+      </div>
+      <div class="overflow-x-auto">
+        <table class="w-full text-left border-collapse">
+          <thead>
+            <tr class="border-b border-stone-800 text-xs font-bold text-stone-400 uppercase bg-stone-950/50">
+              <th class="p-4">#</th>
+              <th class="p-4">Tool</th>
+              <th class="p-4">Status</th>
+              <th class="p-4">Latency</th>
+              <th class="p-4">Findings & Errors</th>
+              <th class="p-4">Artifact</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-stone-800 text-sm">
+            
+    <tr class="tool-row failed" data-category="converters" data-status="fail">
+      <td class="font-mono text-xs text-stone-400">1</td>
+      <td>
+        <div class="font-bold text-stone-900 dark:text-white">CSV to JSON</div>
+        <div class="text-xs font-mono text-stone-500">converters/csv-to-json</div>
+      </td>
+      <td>
+        <span class="badge badge-fail">FAILED</span>
+      </td>
+      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">14.11s</td>
+      <td class="text-xs text-stone-600 dark:text-zinc-400">
+        <div class="text-red-500 font-semibold mb-1">CSV to JSON Failed: Expected valid JSON array with 2 objects, but received:
+&quot;&quot;
+Error: Unexpected end of JSON input</div>
+        
+      </td>
+      <td>
+        <a href="results\screenshots\csv-to-json.png" target="_blank" class="text-blue-500 hover:underline text-xs font-bold">View Screenshot</a>
+      </td>
+    </tr>
+  
+    <tr class="tool-row failed" data-category="converters" data-status="fail">
+      <td class="font-mono text-xs text-stone-400">2</td>
+      <td>
+        <div class="font-bold text-stone-900 dark:text-white">JSON to CSV</div>
+        <div class="text-xs font-mono text-stone-500">converters/json-to-csv</div>
+      </td>
+      <td>
+        <span class="badge badge-fail">FAILED</span>
+      </td>
+      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">8.16s</td>
+      <td class="text-xs text-stone-600 dark:text-zinc-400">
+        <div class="text-red-500 font-semibold mb-1">JSON to CSV Failed: Expected CSV with headers &quot;id,name,score&quot; and row &quot;Alice,95&quot;, but received:
+&quot;&quot;</div>
+        
+      </td>
+      <td>
+        <a href="results\screenshots\json-to-csv.png" target="_blank" class="text-blue-500 hover:underline text-xs font-bold">View Screenshot</a>
+      </td>
+    </tr>
+  
+    <tr class="tool-row passed" data-category="converters" data-status="pass">
+      <td class="font-mono text-xs text-stone-400">3</td>
+      <td>
+        <div class="font-bold text-stone-900 dark:text-white">Text to Speech Engine</div>
+        <div class="text-xs font-mono text-stone-500">converters/conv-text-to-speech</div>
+      </td>
+      <td>
+        <span class="badge badge-pass">PASSED</span>
+      </td>
+      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">4.40s</td>
+      <td class="text-xs text-stone-600 dark:text-zinc-400">
+        <span class="text-emerald-500">No runtime errors</span>
+        
+      </td>
+      <td>
+        -
+      </td>
+    </tr>
+  
+    <tr class="tool-row passed" data-category="converters" data-status="pass">
+      <td class="font-mono text-xs text-stone-400">4</td>
+      <td>
+        <div class="font-bold text-stone-900 dark:text-white">Binary Converter</div>
+        <div class="text-xs font-mono text-stone-500">converters/binary-converter</div>
+      </td>
+      <td>
+        <span class="badge badge-pass">PASSED</span>
+      </td>
+      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">2.78s</td>
+      <td class="text-xs text-stone-600 dark:text-zinc-400">
+        <span class="text-emerald-500">No runtime errors</span>
+        
+      </td>
+      <td>
+        -
+      </td>
+    </tr>
+  
+    <tr class="tool-row passed" data-category="converters" data-status="pass">
+      <td class="font-mono text-xs text-stone-400">5</td>
+      <td>
+        <div class="font-bold text-stone-900 dark:text-white">Morse Code Converter</div>
+        <div class="text-xs font-mono text-stone-500">converters/morse-code-converter</div>
+      </td>
+      <td>
+        <span class="badge badge-pass">PASSED</span>
+      </td>
+      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">4.28s</td>
+      <td class="text-xs text-stone-600 dark:text-zinc-400">
+        <span class="text-emerald-500">No runtime errors</span>
+        
+      </td>
+      <td>
+        -
+      </td>
+    </tr>
+  
+    <tr class="tool-row failed" data-category="converters" data-status="fail">
+      <td class="font-mono text-xs text-stone-400">6</td>
+      <td>
+        <div class="font-bold text-stone-900 dark:text-white">Roman Numeral Converter</div>
+        <div class="text-xs font-mono text-stone-500">converters/roman-numeral-converter</div>
+      </td>
+      <td>
+        <span class="badge badge-fail">FAILED</span>
+      </td>
+      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">2.13s</td>
+      <td class="text-xs text-stone-600 dark:text-zinc-400">
+        <div class="text-red-500 font-semibold mb-1">Roman Numeral Converter Failed: Expected &quot;MMXXVI&quot; for 2026, received:
+&quot;T
+Back to Portfolio
+Tools Catalog
+Talha Codes Tools
+BACK TO ALL TOOLS
+CONVERTERS
+Roman Numeral Converter
+
+Decimal ⇄ Roman numerals.
+
+SOURCE PAYLOAD
+CONVERTED RESULT
+Copy
+Enter number between 1 and 399&quot;</div>
+        
+      </td>
+      <td>
+        <a href="results\screenshots\roman-numeral-converter.png" target="_blank" class="text-blue-500 hover:underline text-xs font-bold">View Screenshot</a>
+      </td>
+    </tr>
+  
+    <tr class="tool-row failed" data-category="converters" data-status="fail">
+      <td class="font-mono text-xs text-stone-400">7</td>
+      <td>
+        <div class="font-bold text-stone-900 dark:text-white">Number Base Converter</div>
+        <div class="text-xs font-mono text-stone-500">converters/number-base-converter</div>
+      </td>
+      <td>
+        <span class="badge badge-fail">FAILED</span>
+      </td>
+      <td class="font-mono text-xs text-stone-600 dark:text-zinc-300">1.78s</td>
+      <td class="text-xs text-stone-600 dark:text-zinc-400">
+        <div class="text-red-500 font-semibold mb-1">Number Base Converter Failed: Expected Hex &quot;FF&quot; and Binary &quot;11111111&quot; for 255.</div>
+        
+      </td>
+      <td>
+        <a href="results\screenshots\number-base-converter.png" target="_blank" class="text-blue-500 hover:underline text-xs font-bold">View Screenshot</a>
+      </td>
+    </tr>
+  
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

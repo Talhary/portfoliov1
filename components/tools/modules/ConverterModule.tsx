@@ -65,6 +65,19 @@ export const ConverterModule = ({ tool }: { tool: ToolDefinition }) => {
         const dec = parseInt(inputVal, 10) || 0;
         return `Dec: ${dec}\nBin: ${dec.toString(2)}\nHex: 0x${dec.toString(16).toUpperCase()}\nOct: 0o${dec.toString(8)}`;
       }
+      case 'json-to-csv': {
+        try {
+          const parsed = JSON.parse(inputVal);
+          if (Array.isArray(parsed) && parsed.length > 0) {
+            const headers = Object.keys(parsed[0]);
+            const rows = parsed.map((obj: any) => headers.map((h) => obj[h] ?? '').join(','));
+            return [headers.join(','), ...rows].join('\n');
+          }
+          return 'Enter valid JSON array of objects';
+        } catch {
+          return 'Error parsing JSON';
+        }
+      }
       case 'csv-to-json': {
         try {
           const lines = inputVal.trim().split('\n');
