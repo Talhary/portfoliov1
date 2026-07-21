@@ -4,7 +4,7 @@ import Image from 'next/image';
 import { z } from 'zod';
 import { formSchema } from "@/lib/form-type";
 import Link from 'next/link';
-import { Layers, ExternalLink } from 'lucide-react';
+import { Layers, ExternalLink, Eye } from 'lucide-react';
 import { ProgressiveImage } from './progressive-image';
 import React from 'react';
 
@@ -73,7 +73,7 @@ export const AllProjects = ({ projects }: { projects: z.infer<typeof formSchema>
   // If there's only one project, render a majestic full-width featured showcase card
   if (projects.length === 1) {
     const project = projects[0];
-    const projectSlug = slugify(project.title);
+    const projectSlug = slugify(project.title) || project.id;
     const colors = getProjectColors(project.title);
 
     return (
@@ -100,7 +100,10 @@ export const AllProjects = ({ projects }: { projects: z.infer<typeof formSchema>
             <div className="absolute top-0 right-0 -mr-16 -mt-16 w-44 h-44 bg-[var(--project-color)]/5 rounded-full blur-3xl pointer-events-none group-hover:bg-[var(--project-color)]/10 transition-colors duration-500" />
             
             {/* Left: Project Image */}
-            <div className="w-full lg:w-1/2 aspect-[16/10] lg:aspect-auto relative overflow-hidden rounded-xl sm:rounded-2xl bg-zinc-950/20 shadow-md min-h-[180px] sm:min-h-[220px] lg:min-h-[300px]">
+            <Link 
+              href={`/portfolio/project/${projectSlug}`} 
+              className="w-full lg:w-1/2 aspect-[16/10] lg:aspect-auto relative overflow-hidden rounded-xl sm:rounded-2xl bg-zinc-950/20 shadow-md min-h-[180px] sm:min-h-[220px] lg:min-h-[300px] group/img block cursor-pointer z-10"
+            >
               {project.imageUrl && project.imageUrl.length > 0 ? (
                 <ProgressiveImage 
                   src={project.imageUrl[0]} 
@@ -108,7 +111,7 @@ export const AllProjects = ({ projects }: { projects: z.infer<typeof formSchema>
                   fill 
                   sizes="(max-width: 768px) 100vw, 50vw"
                   objectFit="cover"
-                  className="transition-transform duration-700 ease-out group-hover:scale-[1.03]" 
+                  className="transition-transform duration-700 ease-out group-hover/img:scale-105" 
                 />
               ) : (
                 <div className="w-full h-full flex items-center justify-center text-stone-400 dark:text-zinc-500 text-xs font-light">
@@ -116,8 +119,8 @@ export const AllProjects = ({ projects }: { projects: z.infer<typeof formSchema>
                 </div>
               )}
               {/* Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60 pointer-events-none" />
-            </div>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60 pointer-events-none group-hover/img:opacity-40 transition-opacity" />
+            </Link>
 
             {/* Right: Content Details */}
             <div className="w-full lg:w-1/2 flex flex-col justify-between gap-4 sm:gap-6 relative z-10">
@@ -135,9 +138,11 @@ export const AllProjects = ({ projects }: { projects: z.infer<typeof formSchema>
                 </div>
 
                 {/* Title */}
-                <h4 className="text-xl sm:text-2xl md:text-3xl font-extrabold text-stone-900 dark:text-white group-hover:text-[var(--project-color)] transition-colors duration-300 tracking-tight leading-tight">
-                  {project.title}
-                </h4>
+                <Link href={`/portfolio/project/${projectSlug}`} className="block group/title">
+                  <h4 className="text-xl sm:text-2xl md:text-3xl font-extrabold text-stone-900 dark:text-white group-hover/title:text-[var(--project-color)] transition-colors duration-300 tracking-tight leading-tight">
+                    {project.title}
+                  </h4>
+                </Link>
 
                 {/* Description */}
                 <p className="text-xs sm:text-sm text-zinc-550 dark:text-zinc-400 leading-relaxed font-light line-clamp-4">
@@ -164,8 +169,15 @@ export const AllProjects = ({ projects }: { projects: z.infer<typeof formSchema>
 
               {/* Action Buttons */}
               <div className="flex flex-col sm:flex-row items-center gap-3 pt-4 sm:pt-6 border-t border-stone-200/50 dark:border-white/5 mt-auto w-full">
+                <Link href={`/portfolio/project/${projectSlug}`} className="w-full sm:w-1/2 relative z-20">
+                  <button className="w-full overflow-hidden flex items-center justify-center gap-2 bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-800/80 dark:hover:bg-zinc-700/80 text-zinc-800 dark:text-zinc-200 border border-zinc-300/80 dark:border-zinc-700/80 transition-all font-semibold rounded-xl text-xs sm:text-sm py-2.5 sm:py-3 px-4 shadow-sm hover:border-[var(--project-color)]/50 hover:text-[var(--project-color)] active:scale-95 duration-300">
+                    <Eye className="h-4 w-4 relative z-10 transition-transform duration-300" />
+                    <span className="relative z-10">View Details</span>
+                  </button>
+                </Link>
+
                 {project.link.startsWith('/') ? (
-                  <Link href={project.link} className="w-full relative z-20">
+                  <Link href={project.link} className="w-full sm:w-1/2 relative z-20">
                     <button className="w-full overflow-hidden flex items-center justify-center gap-2 bg-gradient-to-r from-[var(--project-color)] to-[var(--project-grad-end)] hover:from-[var(--project-hover)] hover:to-[var(--project-grad-end-hover)] text-white transition-all font-semibold rounded-xl text-xs sm:text-sm py-2.5 sm:py-3 px-4 shadow-md hover:shadow-[0_0_20px_var(--project-glow)] group/livebtn active:scale-95 duration-300">
                       <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover/livebtn:translate-x-full transition-transform duration-1000 ease-out" />
                       <ExternalLink className="h-4 w-4 relative z-10 transition-transform duration-300 group-hover/livebtn:translate-x-0.5 group-hover/livebtn:-translate-y-0.5" />
@@ -173,11 +185,11 @@ export const AllProjects = ({ projects }: { projects: z.infer<typeof formSchema>
                     </button>
                   </Link>
                 ) : (
-                  <a href={project.link} target="_blank" rel="noopener noreferrer" className="w-full relative z-20">
+                  <a href={project.link} target="_blank" rel="noopener noreferrer" className="w-full sm:w-1/2 relative z-20">
                     <button className="w-full overflow-hidden flex items-center justify-center gap-2 bg-gradient-to-r from-[var(--project-color)] to-[var(--project-grad-end)] hover:from-[var(--project-hover)] hover:to-[var(--project-grad-end-hover)] text-white transition-all font-semibold rounded-xl text-xs sm:text-sm py-2.5 sm:py-3 px-4 shadow-md hover:shadow-[0_0_20px_var(--project-glow)] group/livebtn active:scale-95 duration-300">
                       <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover/livebtn:translate-x-full transition-transform duration-1000 ease-out" />
                       <ExternalLink className="h-4 w-4 relative z-10 transition-transform duration-300 group-hover/livebtn:translate-x-0.5 group-hover/livebtn:-translate-y-0.5" />
-                      <span className="relative z-10">Visit Live Link</span>
+                      <span className="relative z-10">Visit Live</span>
                     </button>
                   </a>
                 )}
@@ -193,7 +205,7 @@ export const AllProjects = ({ projects }: { projects: z.infer<typeof formSchema>
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mt-4 sm:mt-6 w-full">
       {projects.map((project: z.infer<typeof formSchema>) => {
-        const projectSlug = slugify(project.title);
+        const projectSlug = slugify(project.title) || project.id;
         const colors = getProjectColors(project.title);
 
         return (
@@ -220,7 +232,10 @@ export const AllProjects = ({ projects }: { projects: z.infer<typeof formSchema>
               <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-[var(--project-color)] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10" />
 
               {/* Cover Image */}
-              <div className="relative w-full h-40 sm:h-48 overflow-hidden rounded-t-xl sm:rounded-t-2xl bg-zinc-950/20">
+              <Link 
+                href={`/portfolio/project/${projectSlug}`} 
+                className="relative w-full h-40 sm:h-48 overflow-hidden rounded-t-xl sm:rounded-t-2xl bg-zinc-950/20 block cursor-pointer group/img z-10"
+              >
                 {project.imageUrl && project.imageUrl.length > 0 ? (
                   <ProgressiveImage 
                     src={project.imageUrl[0]} 
@@ -228,22 +243,24 @@ export const AllProjects = ({ projects }: { projects: z.infer<typeof formSchema>
                     fill 
                     sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     objectFit="cover"
-                    className="transition-transform duration-500 group-hover:scale-105" 
+                    className="transition-transform duration-500 group-hover/img:scale-105" 
                   />
                 ) : (
                   <div className="w-full h-full flex items-center justify-center text-stone-400 dark:text-zinc-500 text-xs font-light">
                     No Preview Available
                   </div>
                 )}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-60 pointer-events-none" />
-              </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-60 pointer-events-none group-hover/img:opacity-40 transition-opacity" />
+              </Link>
 
               {/* Content Body */}
               <div className="p-3.5 sm:p-5 flex-grow flex flex-col justify-between gap-3 sm:gap-4 relative z-10">
                 <div className="space-y-2">
-                  <h4 className="text-lg font-bold text-stone-900 dark:text-white group-hover:text-[var(--project-color)] transition-colors tracking-tight leading-snug">
-                    {project.title}
-                  </h4>
+                  <Link href={`/portfolio/project/${projectSlug}`} className="block group/title">
+                    <h4 className="text-lg font-bold text-stone-900 dark:text-white group-hover/title:text-[var(--project-color)] transition-colors tracking-tight leading-snug">
+                      {project.title}
+                    </h4>
+                  </Link>
                   
                   {/* Category Badges */}
                   <div className="flex flex-wrap gap-1.5 pt-0.5">
@@ -273,9 +290,16 @@ export const AllProjects = ({ projects }: { projects: z.infer<typeof formSchema>
                 </div>
 
                 {/* Action Buttons */}
-                <div className="flex items-center gap-3 pt-3 border-t border-stone-200/50 dark:border-white/5 mt-auto w-full">
+                <div className="flex items-center gap-2 sm:gap-3 pt-3 border-t border-stone-200/50 dark:border-white/5 mt-auto w-full">
+                  <Link href={`/portfolio/project/${projectSlug}`} className="flex-1 relative z-20">
+                    <button className="w-full overflow-hidden flex items-center justify-center gap-1.5 bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-800/80 dark:hover:bg-zinc-700/80 text-zinc-800 dark:text-zinc-200 border border-zinc-300/80 dark:border-zinc-700/80 transition-all font-semibold rounded-xl text-xs py-2.5 px-3 shadow-sm hover:border-[var(--project-color)]/50 hover:text-[var(--project-color)] active:scale-95 duration-300">
+                      <Eye className="h-3.5 w-3.5 relative z-10 transition-transform duration-300" />
+                      <span className="relative z-10">View Details</span>
+                    </button>
+                  </Link>
+
                   {project.link.startsWith('/') ? (
-                    <Link href={project.link} className="w-full relative z-20">
+                    <Link href={project.link} className="flex-1 relative z-20">
                       <button className="w-full overflow-hidden flex items-center justify-center gap-1.5 bg-gradient-to-r from-[var(--project-color)] to-[var(--project-grad-end)] hover:from-[var(--project-hover)] hover:to-[var(--project-grad-end-hover)] text-white transition-all font-semibold rounded-xl text-xs py-2.5 px-3 shadow-md hover:shadow-[0_0_15px_var(--project-glow)] group/livebtn active:scale-95 duration-300">
                         <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover/livebtn:translate-x-full transition-transform duration-1000 ease-out" />
                         <ExternalLink className="h-3.5 w-3.5 relative z-10 transition-transform duration-300 group-hover/livebtn:translate-x-0.5 group-hover/livebtn:-translate-y-0.5" />
@@ -283,7 +307,7 @@ export const AllProjects = ({ projects }: { projects: z.infer<typeof formSchema>
                       </button>
                     </Link>
                   ) : (
-                    <a href={project.link} target="_blank" rel="noopener noreferrer" className="w-full relative z-20">
+                    <a href={project.link} target="_blank" rel="noopener noreferrer" className="flex-1 relative z-20">
                       <button className="w-full overflow-hidden flex items-center justify-center gap-1.5 bg-gradient-to-r from-[var(--project-color)] to-[var(--project-grad-end)] hover:from-[var(--project-hover)] hover:to-[var(--project-grad-end-hover)] text-white transition-all font-semibold rounded-xl text-xs py-2.5 px-3 shadow-md hover:shadow-[0_0_15px_var(--project-glow)] group/livebtn active:scale-95 duration-300">
                         <span className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover/livebtn:translate-x-full transition-transform duration-1000 ease-out" />
                         <ExternalLink className="h-3.5 w-3.5 relative z-10 transition-transform duration-300 group-hover/livebtn:translate-x-0.5 group-hover/livebtn:-translate-y-0.5" />
@@ -299,4 +323,4 @@ export const AllProjects = ({ projects }: { projects: z.infer<typeof formSchema>
       })}
     </div>
   );
-};
+};

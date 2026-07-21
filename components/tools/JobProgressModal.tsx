@@ -3,6 +3,7 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { JobState } from '@/hooks/use-tool-job';
 import { FiLoader, FiCheckCircle, FiXCircle, FiDownload, FiRefreshCw } from 'react-icons/fi';
+import { ResultViewer } from '@/components/tools/ResultViewer';
 
 interface Props {
   jobState: JobState;
@@ -20,7 +21,7 @@ export const JobProgressModal = ({ jobState, onReset, title = 'Job Processing' }
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.95 }}
-          className="w-full max-w-md bg-white dark:bg-zinc-900 border border-stone-200 dark:border-zinc-800 rounded-3xl p-6 shadow-2xl"
+          className="w-full max-w-lg bg-white dark:bg-zinc-900 border border-stone-200 dark:border-zinc-800 rounded-3xl p-6 shadow-2xl max-h-[90vh] overflow-y-auto"
         >
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-lg font-bold text-stone-900 dark:text-white flex items-center gap-2">
@@ -71,11 +72,7 @@ export const JobProgressModal = ({ jobState, onReset, title = 'Job Processing' }
                 </a>
               )}
 
-              {jobState.resultData && (
-                <div className="p-3 bg-stone-50 dark:bg-zinc-950 rounded-xl border border-stone-200 dark:border-zinc-800 font-mono text-xs overflow-auto max-h-48">
-                  <pre>{JSON.stringify(jobState.resultData, null, 2)}</pre>
-                </div>
-              )}
+              {jobState.resultData && <ResultViewer data={jobState.resultData} />}
             </div>
           )}
 

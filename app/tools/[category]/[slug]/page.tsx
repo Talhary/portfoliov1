@@ -56,10 +56,10 @@ export default async function DynamicToolPage({ params }: Props) {
       {/* SSR Breadcrumb */}
       <nav aria-label="Breadcrumb" className="mb-3 sm:mb-6 px-3 sm:px-0">
         <Link
-          href={`/tools/${tool.category}`}
+          href="/tools"
           className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-stone-500 dark:text-zinc-400 hover:text-primary transition-colors"
         >
-          <FiArrowLeft size={14} /> Back to {tool.category.replace('-', ' ')}
+          <FiArrowLeft size={14} /> Back to All Tools
         </Link>
       </nav>
 

@@ -231,13 +231,20 @@ export async function processJobAsync(jobId: string) {
       case 'heic-to-jpg': {
         await db.toolJob.update({ where: { id: jobId }, data: { progress: 60 } });
         
-        const ext = job.toolId.includes('pdf')
-          ? 'pdf'
-          : job.toolId.includes('word')
-          ? 'docx'
-          : job.toolId.includes('mp3')
-          ? 'mp3'
-          : 'png';
+        const extMap: Record<string, string> = {
+          'pdf-to-word': 'docx',
+          'word-to-pdf': 'pdf',
+          'pdf-compressor': 'pdf',
+          'merge-pdf': 'pdf',
+          'split-pdf': 'pdf',
+          'video-to-mp3': 'mp3',
+          'audio-cutter': 'mp3',
+          'background-remover': 'png',
+          'image-watermarker': 'png',
+          'heic-to-jpg': 'jpg',
+        };
+
+        const ext = extMap[job.toolId] || (job.toolId.endsWith('word') ? 'docx' : job.toolId.includes('pdf') ? 'pdf' : 'png');
 
         const fileName = `processed-${jobId}.${ext}`;
         const filePath = path.join(STORAGE_DIR, fileName);
