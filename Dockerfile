@@ -5,7 +5,7 @@ WORKDIR /app
 
 COPY package.json package-lock.json ./
 COPY prisma ./prisma/
-RUN npm ci
+RUN npm install
 
 # Stage 2: Rebuild the source code only when needed
 FROM node:24-alpine AS builder
