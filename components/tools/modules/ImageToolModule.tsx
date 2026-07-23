@@ -193,6 +193,33 @@ export const ImageToolModule = ({ tool }: { tool: ToolDefinition }) => {
         </div>
       )}
 
+      {/* SVG to PNG/JPG Converter */}
+      {tool.id === 'svg-to-raster' && (
+        <div className="space-y-4">
+          <div>
+            <label className="block text-xs font-bold uppercase text-stone-500 mb-1">SVG Input</label>
+            <textarea rows={8} value={svgInput} onChange={(e) => setSvgInput(e.target.value)} className="w-full p-4 bg-stone-50 dark:bg-zinc-950 border border-stone-200 dark:border-zinc-800 rounded-2xl font-mono text-xs focus:ring-2 focus:ring-primary/50 outline-none" placeholder="Paste your SVG markup here..." />
+          </div>
+          <div className="grid grid-cols-2 gap-3">
+            <div>
+              <label className="block text-xs font-bold uppercase text-stone-500 mb-1">Width (px)</label>
+              <input type="number" min={16} max={4096} value={width} onChange={(e) => setWidth(Number(e.target.value))} className="w-full p-3 bg-stone-50 dark:bg-zinc-950 border border-stone-200 dark:border-zinc-800 rounded-xl font-mono text-sm" />
+            </div>
+            <div>
+              <label className="block text-xs font-bold uppercase text-stone-500 mb-1">Height (px)</label>
+              <input type="number" min={16} max={4096} value={height} onChange={(e) => setHeight(Number(e.target.value))} className="w-full p-3 bg-stone-50 dark:bg-zinc-950 border border-stone-200 dark:border-zinc-800 rounded-xl font-mono text-sm" />
+            </div>
+          </div>
+          <div>
+            <label className="block text-xs font-bold uppercase text-stone-500 mb-1">Output Format</label>
+            <div className="flex gap-2">
+              <button onClick={() => startJob({ svg: svgInput, format: 'png', width, height })} disabled={isProcessing} className="flex-1 py-3 bg-primary hover:bg-primary/90 disabled:opacity-50 text-white font-bold text-xs rounded-xl transition-all">Convert to PNG</button>
+              <button onClick={() => startJob({ svg: svgInput, format: 'jpg', width, height })} disabled={isProcessing} className="flex-1 py-3 bg-stone-200 dark:bg-zinc-800 hover:bg-stone-300 dark:hover:bg-zinc-700 text-stone-800 dark:text-zinc-200 font-bold text-xs rounded-xl transition-all">Convert to JPG</button>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Base64 to Image decoder */}
       {tool.id === 'base64-to-image' && (
         <div className="space-y-4">

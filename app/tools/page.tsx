@@ -31,7 +31,7 @@ export default function ToolsHubPage() {
           Developer <span className="text-primary">Tools & Utilities</span>
         </h1>
         <p className="text-stone-600 dark:text-zinc-400 text-xs sm:text-lg">
-          Complete catalog of 106 high-performance developer tools, conversion utilities, security scanners, and async job-based server microservices.
+          Complete catalog of {ALL_TOOLS.length} high-performance developer tools, conversion utilities, security scanners, and async job-based server microservices.
         </p>
       </div>
 
@@ -44,7 +44,7 @@ export default function ToolsHubPage() {
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Search all 106 tools (e.g. PDF, DNS, JSON, Base64, OCR)..."
+            placeholder={`Search all ${ALL_TOOLS.length} tools (e.g. PDF, DNS, JSON, Base64, OCR)...`}
             className="w-full pl-11 pr-4 py-3 bg-white dark:bg-zinc-900/80 border border-stone-200 dark:border-zinc-800 rounded-xl sm:rounded-2xl shadow-sm focus:outline-none focus:ring-2 focus:ring-primary/50 text-stone-900 dark:text-white placeholder:text-stone-400 dark:placeholder:text-zinc-500 transition-all text-xs sm:text-base"
           />
         </div>

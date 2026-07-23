@@ -1,8 +1,151 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import { ToolDefinition } from '@/lib/tools/registry';
 import { FiClock, FiCalendar, FiGlobe, FiWatch, FiPlay, FiPause, FiRefreshCw } from 'react-icons/fi';
+
+type PomodoroPhase = 'focus' | 'short-break' | 'long-break';
+
+const PomodoroTimer = () => {
+  const [focusDuration, setFocusDuration] = useState<number>(25);
+  const [shortBreak, setShortBreak] = useState<number>(5);
+  const [longBreak, setLongBreak] = useState<number>(15);
+  const [phase, setPhase] = useState<PomodoroPhase>('focus');
+  const [timeLeft, setTimeLeft] = useState<number>(25 * 60);
+  const [isRunning, setIsRunning] = useState<boolean>(false);
+  const [sessionsCompleted, setSessionsCompleted] = useState<number>(0);
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
+
+  const totalSeconds = phase === 'focus' ? focusDuration * 60 : phase === 'short-break' ? shortBreak * 60 : longBreak * 60;
+  const progress = ((totalSeconds - timeLeft) / totalSeconds) * 100;
+  const minutes = Math.floor(timeLeft / 60);
+  const seconds = timeLeft % 60;
+
+  const circumference = 2 * Math.PI * 90;
+  const strokeDashoffset = circumference - (progress / 100) * circumference;
+
+  const phaseLabel = phase === 'focus' ? 'Focus Time' : phase === 'short-break' ? 'Short Break' : 'Long Break';
+  const phaseColor = phase === 'focus' ? '#e49505' : phase === 'short-break' ? '#22c55e' : '#3b82f6';
+
+  const switchPhase = useCallback((newPhase: PomodoroPhase) => {
+    setPhase(newPhase);
+    setIsRunning(false);
+    if (newPhase === 'focus') setTimeLeft(focusDuration * 60);
+    else if (newPhase === 'short-break') setTimeLeft(shortBreak * 60);
+    else setTimeLeft(longBreak * 60);
+  }, [focusDuration, shortBreak, longBreak]);
+
+  useEffect(() => {
+    if (isRunning && timeLeft > 0) {
+      intervalRef.current = setInterval(() => {
+        setTimeLeft((prev) => {
+          if (prev <= 1) {
+            clearInterval(intervalRef.current!);
+            setIsRunning(false);
+            if (phase === 'focus') {
+              const newSessions = sessionsCompleted + 1;
+              setSessionsCompleted(newSessions);
+              if (newSessions % 4 === 0) switchPhase('long-break');
+              else switchPhase('short-break');
+            } else {
+              switchPhase('focus');
+            }
+            if ('Notification' in window && Notification.permission === 'granted') {
+              new Notification(`${phase === 'focus' ? 'Focus session' : 'Break'} complete!`);
+            }
+            return 0;
+          }
+          return prev - 1;
+        });
+      }, 1000);
+    }
+    return () => { if (intervalRef.current) clearInterval(intervalRef.current); };
+  }, [isRunning, timeLeft, phase, sessionsCompleted, switchPhase]);
+
+  useEffect(() => {
+    if ('Notification' in window && Notification.permission === 'default') {
+      Notification.requestPermission();
+    }
+  }, []);
+
+  return (
+    <div className="space-y-6">
+      <div className="flex items-center justify-center gap-2">
+        {(['focus', 'short-break', 'long-break'] as PomodoroPhase[]).map((p) => (
+          <button key={p} onClick={() => switchPhase(p)}
+            className={`px-4 py-2 rounded-xl text-xs font-bold capitalize transition-all ${phase === p ? 'text-white shadow-md' : 'bg-stone-100 dark:bg-zinc-800 text-stone-600 dark:text-zinc-400 hover:bg-stone-200'}`}
+            style={phase === p ? { backgroundColor: phaseColor } : {}}>
+            {p === 'short-break' ? 'Short Break' : p === 'long-break' ? 'Long Break' : 'Focus'}
+          </button>
+        ))}
+      </div>
+
+      <div className="flex justify-center">
+        <div className="relative w-52 h-52">
+          <svg className="w-full h-full -rotate-90" viewBox="0 0 200 200">
+            <circle cx="100" cy="100" r="90" fill="none" stroke="currentColor" strokeWidth="6" className="text-stone-200 dark:text-zinc-800" />
+            <circle cx="100" cy="100" r="90" fill="none" stroke={phaseColor} strokeWidth="6" strokeLinecap="round"
+              strokeDasharray={circumference} strokeDashoffset={strokeDashoffset} className="transition-all duration-1000" />
+          </svg>
+          <div className="absolute inset-0 flex flex-col items-center justify-center">
+            <span className="text-4xl font-black font-mono text-stone-900 dark:text-white">
+              {String(minutes).padStart(2, '0')}:{String(seconds).padStart(2, '0')}
+            </span>
+            <span className="text-xs font-bold uppercase mt-1" style={{ color: phaseColor }}>{phaseLabel}</span>
+          </div>
+        </div>
+      </div>
+
+      <div className="flex items-center justify-center gap-3">
+        <button onClick={() => setIsRunning(!isRunning)}
+          className="px-8 py-3 text-white font-bold text-sm rounded-xl shadow-lg transition-all flex items-center gap-2"
+          style={{ backgroundColor: phaseColor }}>
+          {isRunning ? <><FiPause size={16} /> Pause</> : <><FiPlay size={16} /> Start</>}
+        </button>
+        <button onClick={() => { setIsRunning(false); switchPhase(phase); }}
+          className="px-4 py-3 bg-stone-200 dark:bg-zinc-800 hover:bg-stone-300 dark:hover:bg-zinc-700 text-stone-700 dark:text-zinc-300 font-bold text-sm rounded-xl transition-all">
+          <FiRefreshCw size={16} />
+        </button>
+      </div>
+
+      <div className="grid grid-cols-3 gap-3 text-center">
+        <div className="p-3 bg-stone-50 dark:bg-zinc-950 border border-stone-200 dark:border-zinc-800 rounded-xl">
+          <div className="text-[10px] uppercase font-bold text-stone-500">Sessions</div>
+          <div className="text-2xl font-black text-primary">{sessionsCompleted}</div>
+        </div>
+        <div className="p-3 bg-stone-50 dark:bg-zinc-950 border border-stone-200 dark:border-zinc-800 rounded-xl">
+          <div className="text-[10px] uppercase font-bold text-stone-500">Focus</div>
+          <div className="text-2xl font-black text-stone-900 dark:text-white">{sessionsCompleted * focusDuration}m</div>
+        </div>
+        <div className="p-3 bg-stone-50 dark:bg-zinc-950 border border-stone-200 dark:border-zinc-800 rounded-xl">
+          <div className="text-[10px] uppercase font-bold text-stone-500">Next Break</div>
+          <div className="text-2xl font-black text-emerald-500">{4 - (sessionsCompleted % 4)}</div>
+        </div>
+      </div>
+
+      <div className="p-4 bg-stone-50 dark:bg-zinc-950 border border-stone-200 dark:border-zinc-800 rounded-xl space-y-3">
+        <div className="text-xs font-bold uppercase text-stone-500">Settings (minutes)</div>
+        <div className="grid grid-cols-3 gap-3">
+          <div>
+            <label className="block text-[10px] font-bold text-stone-500 mb-1">Focus</label>
+            <input type="number" min={1} max={120} value={focusDuration} onChange={(e) => { const v = Number(e.target.value); setFocusDuration(v); if (phase === 'focus' && !isRunning) setTimeLeft(v * 60); }}
+              className="w-full p-2 bg-white dark:bg-zinc-900 border border-stone-200 dark:border-zinc-800 rounded-lg text-sm font-bold text-center" />
+          </div>
+          <div>
+            <label className="block text-[10px] font-bold text-stone-500 mb-1">Short Break</label>
+            <input type="number" min={1} max={30} value={shortBreak} onChange={(e) => { const v = Number(e.target.value); setShortBreak(v); if (phase === 'short-break' && !isRunning) setTimeLeft(v * 60); }}
+              className="w-full p-2 bg-white dark:bg-zinc-900 border border-stone-200 dark:border-zinc-800 rounded-lg text-sm font-bold text-center" />
+          </div>
+          <div>
+            <label className="block text-[10px] font-bold text-stone-500 mb-1">Long Break</label>
+            <input type="number" min={1} max={60} value={longBreak} onChange={(e) => { const v = Number(e.target.value); setLongBreak(v); if (phase === 'long-break' && !isRunning) setTimeLeft(v * 60); }}
+              className="w-full p-2 bg-white dark:bg-zinc-900 border border-stone-200 dark:border-zinc-800 rounded-lg text-sm font-bold text-center" />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 export const DateTimeModule = ({ tool }: { tool: ToolDefinition }) => {
   const [startDate, setStartDate] = useState<string>(new Date().toISOString().split('T')[0]);
@@ -301,6 +444,10 @@ export const DateTimeModule = ({ tool }: { tool: ToolDefinition }) => {
             <div className="text-xl font-black text-primary mt-1">{cronResult}</div>
           </div>
         </div>
+      )}
+
+      {tool.id === 'pomodoro-timer' && (
+        <PomodoroTimer />
       )}
     </div>
   );

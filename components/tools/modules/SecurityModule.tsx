@@ -73,6 +73,80 @@ function computeMd5(str: string): string {
 }
 
 
+function computeSubnetInfo(ip: string, cidr: number) {
+  const ipToNum = (ip: string) => ip.split('.').reduce((acc, o) => (acc << 8) + parseInt(o), 0) >>> 0;
+  const numToIp = (n: number) => [(n >>> 24) & 255, (n >>> 16) & 255, (n >>> 8) & 255, n & 255].join('.');
+  const ipNum = ipToNum(ip);
+  const mask = cidr === 0 ? 0 : (~0 << (32 - cidr)) >>> 0;
+  const network = (ipNum & mask) >>> 0;
+  const broadcast = (network | ~mask) >>> 0;
+  const totalHosts = cidr === 32 ? 1 : cidr === 0 ? 4294967296 : Math.pow(2, 32 - cidr) - 2;
+  return {
+    ip, cidr, subnetMask: numToIp(mask),
+    networkAddress: numToIp(network), broadcastAddress: numToIp(broadcast),
+    firstHost: cidr >= 31 ? numToIp(network) : numToIp((network + 1) >>> 0),
+    lastHost: cidr >= 31 ? numToIp(broadcast) : numToIp((broadcast - 1) >>> 0),
+    totalHosts: totalHosts < 0 ? 0 : totalHosts,
+    wildcardMask: numToIp((~mask) >>> 0),
+    binaryMask: mask.toString(2).padStart(32, '0').match(/.{8}/g)!.join('.'),
+  };
+}
+
+const SubnetCalculator = () => {
+  const [subnetInput, setSubnetInput] = useState<string>('192.168.1.0');
+  const [cidrInput, setCidrInput] = useState<number>(24);
+  const [result, setResult] = useState<ReturnType<typeof computeSubnetInfo> | null>(null);
+  const [copied, setCopied] = useState<string | null>(null);
+
+  const handleCopy = (str: string, key: string) => {
+    navigator.clipboard.writeText(str);
+    setCopied(key);
+    setTimeout(() => setCopied(null), 2000);
+  };
+
+  return (
+    <div className="space-y-5">
+      <div className="flex items-end gap-3">
+        <div className="flex-1">
+          <label className="block text-xs font-bold uppercase text-stone-500 mb-1">IP Address</label>
+          <input type="text" value={subnetInput} onChange={(e) => setSubnetInput(e.target.value)} placeholder="192.168.1.0" className="w-full p-3 bg-stone-50 dark:bg-zinc-950 border border-stone-200 dark:border-zinc-800 rounded-xl font-mono text-sm" />
+        </div>
+        <div className="w-24">
+          <label className="block text-xs font-bold uppercase text-stone-500 mb-1">CIDR</label>
+          <input type="number" min={0} max={32} value={cidrInput} onChange={(e) => setCidrInput(Number(e.target.value))} className="w-full p-3 bg-stone-50 dark:bg-zinc-950 border border-stone-200 dark:border-zinc-800 rounded-xl font-mono text-sm text-center font-bold" />
+        </div>
+        <button onClick={() => setResult(computeSubnetInfo(subnetInput, cidrInput))} className="px-6 py-3 bg-primary hover:bg-primary/90 text-white font-bold text-xs uppercase tracking-wider rounded-xl shadow-lg transition-all flex items-center gap-2 shrink-0">
+          <FiZap size={14} /> Calculate
+        </button>
+      </div>
+      {result && (
+        <div className="space-y-3">
+          {[
+            { label: 'Network Address', value: result.networkAddress },
+            { label: 'Broadcast Address', value: result.broadcastAddress },
+            { label: 'Subnet Mask', value: result.subnetMask },
+            { label: 'Wildcard Mask', value: result.wildcardMask },
+            { label: 'First Host', value: result.firstHost },
+            { label: 'Last Host', value: result.lastHost },
+            { label: 'Total Hosts', value: String(result.totalHosts) },
+            { label: 'Binary Mask', value: result.binaryMask },
+          ].map((row, i) => (
+            <div key={i} className="flex items-center justify-between p-3 bg-stone-50 dark:bg-zinc-950 border border-stone-200 dark:border-zinc-800 rounded-xl">
+              <span className="text-xs font-bold uppercase text-stone-500">{row.label}</span>
+              <div className="flex items-center gap-2">
+                <span className="font-mono text-sm font-bold text-stone-900 dark:text-white">{row.value}</span>
+                <button onClick={() => handleCopy(row.value, row.label)} className="text-primary">
+                  {copied === row.label ? <FiCheck size={12} /> : <FiCopy size={12} />}
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+};
+
 export const SecurityModule = ({ tool }: { tool: ToolDefinition }) => {
   const [domainInput, setDomainInput] = useState<string>('google.com');
   const [passwordInput, setPasswordInput] = useState<string>('P@ssw0rd2026!');
@@ -120,6 +194,10 @@ export const SecurityModule = ({ tool }: { tool: ToolDefinition }) => {
   const [rsaKeySize, setRsaKeySize] = useState<number>(2048);
   const [rsaPublicKey, setRsaPublicKey] = useState<string>('');
   const [rsaPrivateKey, setRsaPrivateKey] = useState<string>('');
+
+  // Port Scanner / Ping state
+  const [portScanTarget, setPortScanTarget] = useState<string>('192.168.1.1');
+  const [pingTarget, setPingTarget] = useState<string>('google.com');
 
   // UI state
   const [copiedKey, setCopiedKey] = useState<string | null>(null);
@@ -879,6 +957,37 @@ export const SecurityModule = ({ tool }: { tool: ToolDefinition }) => {
               </div>
             </div>
           )}
+        </div>
+      )}
+
+      {/* Subnet Calculator */}
+      {tool.id === 'subnet-calculator' && (
+        <SubnetCalculator />
+      )}
+
+      {/* Port Scanner */}
+      {tool.id === 'port-scanner' && (
+        <div className="space-y-5">
+          <div>
+            <label className="block text-xs font-bold uppercase text-stone-500 mb-1">Target IP or Domain</label>
+            <input type="text" value={portScanTarget} onChange={(e) => setPortScanTarget(e.target.value)} placeholder="e.g. 192.168.1.1 or example.com" className="w-full p-3 bg-stone-50 dark:bg-zinc-950 border border-stone-200 dark:border-zinc-800 rounded-xl font-mono text-sm" />
+          </div>
+          <button onClick={() => startJob({ target: portScanTarget, ports: '21,22,25,53,80,110,143,443,3306,3389,5432,8080' })} disabled={isProcessing} className="w-full py-3.5 bg-primary hover:bg-primary/90 disabled:opacity-50 text-white font-bold text-sm rounded-xl shadow-lg transition-all flex items-center justify-center gap-2">
+            <FiZap size={16} /> {isProcessing ? 'Scanning...' : 'Scan Common Ports'}
+          </button>
+        </div>
+      )}
+
+      {/* Ping / Traceroute */}
+      {tool.id === 'ping-traceroute' && (
+        <div className="space-y-5">
+          <div>
+            <label className="block text-xs font-bold uppercase text-stone-500 mb-1">Target Host</label>
+            <input type="text" value={pingTarget} onChange={(e) => setPingTarget(e.target.value)} placeholder="e.g. google.com or 8.8.8.8" className="w-full p-3 bg-stone-50 dark:bg-zinc-950 border border-stone-200 dark:border-zinc-800 rounded-xl font-mono text-sm" />
+          </div>
+          <button onClick={() => startJob({ host: pingTarget })} disabled={isProcessing} className="w-full py-3.5 bg-primary hover:bg-primary/90 disabled:opacity-50 text-white font-bold text-sm rounded-xl shadow-lg transition-all flex items-center justify-center gap-2">
+            <FiZap size={16} /> {isProcessing ? 'Running...' : 'Ping & Traceroute'}
+          </button>
         </div>
       )}
     </div>

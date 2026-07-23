@@ -372,21 +372,27 @@ export const FileToolModule = ({ tool }: { tool: ToolDefinition }) => {
             <div className="grid grid-cols-2 gap-4">
               <div>
                 <label className="block text-xs font-bold uppercase text-stone-500 mb-1">Start Marker (mm:ss)</label>
-                <input
-                  type="text"
-                  value={startTime}
-                  onChange={(e) => setStartTime(e.target.value)}
-                  className="w-full p-3 bg-stone-50 dark:bg-zinc-950 border border-stone-200 dark:border-zinc-800 rounded-xl font-mono text-sm font-bold"
-                />
+                <input type="text" value={startTime} onChange={(e) => setStartTime(e.target.value)} className="w-full p-3 bg-stone-50 dark:bg-zinc-950 border border-stone-200 dark:border-zinc-800 rounded-xl font-mono text-sm font-bold" />
               </div>
               <div>
                 <label className="block text-xs font-bold uppercase text-stone-500 mb-1">End Marker (mm:ss)</label>
-                <input
-                  type="text"
-                  value={endTime}
-                  onChange={(e) => setEndTime(e.target.value)}
-                  className="w-full p-3 bg-stone-50 dark:bg-zinc-950 border border-stone-200 dark:border-zinc-800 rounded-xl font-mono text-sm font-bold"
-                />
+                <input type="text" value={endTime} onChange={(e) => setEndTime(e.target.value)} className="w-full p-3 bg-stone-50 dark:bg-zinc-950 border border-stone-200 dark:border-zinc-800 rounded-xl font-mono text-sm font-bold" />
+              </div>
+            </div>
+          )}
+
+          {tool.id === 'video-to-gif' && (
+            <div className="space-y-4">
+              <div className="p-4 bg-primary/10 border border-primary/20 rounded-xl text-xs text-stone-700 dark:text-zinc-300">
+                Upload a short video clip (MP4, WebM). The server will convert it to an optimized animated GIF. Recommended: clips under 10 seconds for best results.
+              </div>
+            </div>
+          )}
+
+          {tool.id === 'audio-transcription' && (
+            <div className="space-y-4">
+              <div className="p-4 bg-primary/10 border border-primary/20 rounded-xl text-xs text-stone-700 dark:text-zinc-300">
+                Upload an audio or video file to transcribe speech to text. Supports MP3, WAV, MP4, and WebM formats. Powered by AI speech recognition.
               </div>
             </div>
           )}

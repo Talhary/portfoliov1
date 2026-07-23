@@ -29,14 +29,14 @@ export const TOOL_CATEGORIES: ToolCategory[] = [
     id: 'image-tools',
     slug: 'image-tools',
     name: 'Image Tools',
-    description: 'Image conversion, editing, compression, OCR, and color extraction.',
+    description: 'Image conversion, editing, compression, OCR, SVG rasterization, and more.',
     icon: 'Image',
   },
   {
     id: 'text-tools',
     slug: 'text-tools',
     name: 'Text Tools',
-    description: 'Text manipulation, speech synthesis, grammar, and case conversion.',
+    description: 'Text manipulation, speech synthesis, grammar, case conversion, diff, and more.',
     icon: 'FileText',
   },
   {
@@ -50,28 +50,28 @@ export const TOOL_CATEGORIES: ToolCategory[] = [
     id: 'developer-utilities',
     slug: 'developer-utilities',
     name: 'Developer Utilities',
-    description: 'JSON/XML/CSS formatters, encoding/decoding, QR generators, and regex testers.',
+    description: 'JSON/XML/CSS formatters, encoding/decoding, minifiers, CSS generators, and more.',
     icon: 'Code',
   },
   {
     id: 'date-time',
     slug: 'date-time',
     name: 'Date & Time Tools',
-    description: 'Timezone converters, date difference, cron parsers, and timestamp tools.',
+    description: 'Timezone converters, date difference, cron parsers, timestamps, and timers.',
     icon: 'Clock',
   },
   {
     id: 'converters',
     slug: 'converters',
     name: 'Converters',
-    description: 'Data format, binary, Morse code, and unit conversions.',
+    description: 'Data format, binary, Morse code, SQL generation, and unit conversions.',
     icon: 'RefreshCw',
   },
   {
     id: 'security-utilities',
     slug: 'security-utilities',
     name: 'Security Utilities',
-    description: 'Hashes, password security, UUID generators, IP/DNS/SSL inspection.',
+    description: 'Hashes, password security, UUID generators, IP/DNS/SSL, port scanning, and more.',
     icon: 'Shield',
   },
   {
@@ -85,14 +85,14 @@ export const TOOL_CATEGORIES: ToolCategory[] = [
     id: 'file-tools',
     slug: 'file-tools',
     name: 'File Tools',
-    description: 'PDF converters, document merging/splitting, archive extraction, and media converters.',
+    description: 'PDF converters, document merging/splitting, media converters, GIF creation, and more.',
     icon: 'FolderArchive',
   },
   {
     id: 'ai-llm-tools',
     slug: 'ai-llm-tools',
     name: 'AI & LLM Tools',
-    description: 'Token counters, prompt builders, and AI developer utilities.',
+    description: 'Token counters, prompt builders, embeddings, image prompts, and RAG visualizers.',
     icon: 'Brain',
   },
 ];
@@ -130,6 +130,7 @@ export const ALL_TOOLS: ToolDefinition[] = [
   { id: 'image-watermarker', slug: 'image-watermarker', title: 'Image Watermarker', category: 'image-tools', description: 'Apply custom text or logo watermarks to uploaded images.', isAsync: true, isNew: true, tags: ['image', 'watermark'] },
   { id: 'heic-to-jpg', slug: 'heic-to-jpg', title: 'HEIC to JPG Converter', category: 'image-tools', description: 'Convert Apple HEIC photos to JPG format.', isAsync: true, isNew: true, tags: ['image', 'heic'] },
   { id: 'favicon-generator', slug: 'favicon-generator', title: 'Favicon Generator', category: 'image-tools', description: 'Upload a master PNG/SVG and generate full favicon suite for all platforms.', isAsync: false, isNew: true, tags: ['favicon', 'icon'] },
+  { id: 'svg-to-raster', slug: 'svg-to-png-jpg-converter', title: 'SVG to PNG / JPG Converter', category: 'image-tools', description: 'Rasterize SVG vectors into downloadable high-resolution PNG or JPG images.', isAsync: true, isNew: true, tags: ['svg', 'png', 'jpg'] },
 
   // --- TEXT TOOLS (11 built) ---
   { id: 'word-counter', slug: 'word-counter', title: 'Word Counter', category: 'text-tools', description: 'Live word, character, sentence, and paragraph counter.', isAsync: false, tags: ['text', 'count'] },
@@ -143,6 +144,9 @@ export const ALL_TOOLS: ToolDefinition[] = [
   { id: 'plagiarism-checker', slug: 'plagiarism-checker', title: 'Plagiarism Checker', category: 'text-tools', description: 'Compare two text documents for wording similarity.', isAsync: false, tags: ['diff', 'compare'] },
   { id: 'text-reverser', slug: 'text-reverser', title: 'Text Reverser', category: 'text-tools', description: 'Reverse characters, words, or line order.', isAsync: false, tags: ['text', 'reverse'] },
   { id: 'url-encoder-decoder', slug: 'url-encoder-decoder', title: 'URL Encoder / Decoder', category: 'text-tools', description: 'Safely encode and decode URL parameters.', isAsync: false, tags: ['url', 'encode'] },
+  { id: 'lorem-ipsum', slug: 'lorem-ipsum-generator', title: 'Lorem Ipsum Generator', category: 'text-tools', description: 'Generate placeholder dummy text for designs and mockups.', isAsync: false, isNew: true, tags: ['text', 'placeholder'] },
+  { id: 'font-pairing-tester', slug: 'font-pairing-tester', title: 'Font Pairing Tester', category: 'text-tools', description: 'Preview Google Font combinations side-by-side for header and body text.', isAsync: false, isNew: true, tags: ['font', 'design', 'typography'] },
+  { id: 'code-diff-checker', slug: 'code-diff-checker', title: 'Code Diff Checker', category: 'text-tools', description: 'Side-by-side visual comparison of two code blocks with highlighted differences.', isAsync: false, isNew: true, tags: ['diff', 'compare', 'code'] },
 
   // --- COLOR TOOLS (8 built) ---
   { id: 'color-picker', slug: 'color-picker', title: 'Color Picker', category: 'color-tools', description: 'HEX, RGB, HSL color selection tool.', isAsync: false, tags: ['color', 'picker'] },
@@ -154,7 +158,7 @@ export const ALL_TOOLS: ToolDefinition[] = [
   { id: 'contrast-checker', slug: 'contrast-checker', title: 'Contrast Checker', category: 'color-tools', description: 'WCAG accessibility compliance checker.', isAsync: false, tags: ['a11y', 'wcag'] },
   { id: 'tailwind-color-generator', slug: 'tailwind-color-generator', title: 'Tailwind Color Generator', category: 'color-tools', description: 'Generate full Tailwind-ready shade scale palettes.', isAsync: false, tags: ['tailwind', 'css'] },
 
-  // --- DEVELOPER UTILITIES (14 built + 3 upcoming) + 5 new ---
+  // --- DEVELOPER UTILITIES (14 built + 3 upcoming) + 5 new + 5 more new ---
   { id: 'json-formatter', slug: 'json-formatter', title: 'JSON Formatter', category: 'developer-utilities', description: 'Beautify or minify JSON payloads.', isAsync: false, tags: ['json', 'format'] },
   { id: 'xml-formatter', slug: 'xml-formatter', title: 'XML Formatter', category: 'developer-utilities', description: 'Pretty-print XML documents.', isAsync: false, tags: ['xml', 'format'] },
   { id: 'css-formatter', slug: 'css-formatter', title: 'CSS Formatter', category: 'developer-utilities', description: 'Format and compress CSS markup.', isAsync: false, tags: ['css', 'minify'] },
@@ -177,13 +181,20 @@ export const ALL_TOOLS: ToolDefinition[] = [
   { id: 'websocket-client', slug: 'websocket-client', title: 'WebSocket Client', category: 'developer-utilities', description: 'Connect to ws:// or wss:// endpoints, send messages, and monitor live event streams.', isAsync: false, isNew: true, tags: ['websocket', 'network'] },
   { id: 'glassmorphism-generator', slug: 'glassmorphism-generator', title: 'Glassmorphism / Neumorphism CSS Generator', category: 'developer-utilities', description: 'Generate ready-to-use glassmorphism or neumorphism CSS with live sliders.', isAsync: false, isNew: true, tags: ['css', 'ui', 'design'] },
   { id: 'cubic-bezier-visualizer', slug: 'cubic-bezier-visualizer', title: 'Cubic-Bezier Easing Visualizer', category: 'developer-utilities', description: 'Interactive graph to drag and test CSS transition timing functions.', isAsync: false, isNew: true, tags: ['css', 'animation'] },
+  { id: 'js-minifier', slug: 'js-minifier', title: 'JS Minifier', category: 'developer-utilities', description: 'Minify JavaScript code by removing comments and whitespace.', isAsync: false, isNew: true, tags: ['javascript', 'minify'] },
+  { id: 'html-minifier', slug: 'html-minifier', title: 'HTML Minifier', category: 'developer-utilities', description: 'Minify HTML markup by removing comments and collapsing whitespace.', isAsync: false, isNew: true, tags: ['html', 'minify'] },
+  { id: 'svg-to-jsx', slug: 'svg-to-jsx-converter', title: 'SVG to JSX Converter', category: 'developer-utilities', description: 'Convert raw SVG markup into React JSX components automatically.', isAsync: false, isNew: true, tags: ['svg', 'react', 'jsx'] },
+  { id: 'box-shadow-generator', slug: 'box-shadow-generator', title: 'Box Shadow Generator', category: 'developer-utilities', description: 'Interactive sliders to generate complex CSS box-shadow values with live preview.', isAsync: false, isNew: true, tags: ['css', 'shadow', 'design'] },
+  { id: 'border-radius-generator', slug: 'border-radius-generator', title: 'Border Radius Generator', category: 'developer-utilities', description: 'Advanced CSS border-radius builder with per-corner control and live preview.', isAsync: false, isNew: true, tags: ['css', 'border', 'design'] },
+  { id: 'docker-compose-generator', slug: 'docker-compose-generator', title: 'Docker Compose Generator', category: 'developer-utilities', description: 'Visual builder to pick services and generate ready-to-use docker-compose.yml files.', isAsync: false, isNew: true, tags: ['docker', 'devops', 'yaml'] },
 
-  // --- DATE & TIME TOOLS (5 built) ---
+  // --- DATE & TIME TOOLS (5 built + 1 new) ---
   { id: 'date-difference', slug: 'date-difference', title: 'Date Difference', category: 'date-time', description: 'Calculate days, weeks, and months between dates.', isAsync: false, tags: ['date', 'time'] },
   { id: 'timezone-converter', slug: 'timezone-converter', title: 'Timezone Converter', category: 'date-time', description: 'Convert timestamps across global timezones.', isAsync: false, tags: ['tz', 'timezone'] },
   { id: 'countdown-timer', slug: 'countdown-timer', title: 'Countdown Timer', category: 'date-time', description: 'Real-time countdown timer to specific dates.', isAsync: false, tags: ['timer', 'clock'] },
   { id: 'cron-parser', slug: 'cron-parser', title: 'Cron Parser', category: 'date-time', description: 'Translate cron expressions into plain human readable text.', isAsync: false, tags: ['cron', 'schedule'] },
   { id: 'unix-timestamp-converter', slug: 'unix-timestamp-converter', title: 'Unix Timestamp Converter', category: 'date-time', description: 'Convert Unix timestamps ⇄ readable dates.', isAsync: false, tags: ['unix', 'timestamp'] },
+  { id: 'pomodoro-timer', slug: 'pomodoro-timer', title: 'Pomodoro Timer', category: 'date-time', description: 'Structured work/break timer with configurable focus and rest intervals.', isAsync: false, isNew: true, tags: ['timer', 'productivity', 'pomodoro'] },
 
   // --- CONVERTERS (7 built) + 1 new ---
   { id: 'csv-to-json', slug: 'csv-to-json', title: 'CSV to JSON', category: 'converters', description: 'Convert tabular CSV data to structured JSON arrays.', isAsync: false, tags: ['csv', 'json'] },
@@ -194,6 +205,8 @@ export const ALL_TOOLS: ToolDefinition[] = [
   { id: 'roman-numeral-converter', slug: 'roman-numeral-converter', title: 'Roman Numeral Converter', category: 'converters', description: 'Decimal ⇄ Roman numerals.', isAsync: false, tags: ['roman', 'math'] },
   { id: 'number-base-converter', slug: 'number-base-converter', title: 'Number Base Converter', category: 'converters', description: 'Convert between decimal, binary, hex, and octal.', isAsync: false, tags: ['base', 'hex'] },
   { id: 'xlsx-to-json-csv', slug: 'xlsx-to-json-csv', title: 'Excel (XLSX) to JSON / CSV', category: 'converters', description: 'Drag-and-drop spreadsheet conversion to JSON arrays or CSV.', isAsync: false, isNew: true, tags: ['excel', 'xlsx', 'convert'] },
+  { id: 'json-csv-to-sql', slug: 'json-csv-to-sql-converter', title: 'JSON / CSV to SQL Converter', category: 'converters', description: 'Generate SQL INSERT statements from JSON arrays or CSV data.', isAsync: false, isNew: true, tags: ['sql', 'json', 'csv'] },
+  { id: 'unit-converter', slug: 'general-unit-converter', title: 'General Unit Converter', category: 'converters', description: 'Convert between length, weight, temperature, volume, and speed units.', isAsync: false, isNew: true, tags: ['unit', 'convert', 'length', 'weight'] },
 
   // --- SECURITY UTILITIES (9 built + 3 upcoming) + 3 new ---
   { id: 'md5-hash', slug: 'md5-hash-generator', title: 'MD5 Hash Generator', category: 'security-utilities', description: 'Standard MD5 checksum generator.', isAsync: false, tags: ['hash', 'md5'] },
@@ -211,6 +224,9 @@ export const ALL_TOOLS: ToolDefinition[] = [
   { id: 'jwt-generator', slug: 'jwt-generator', title: 'JWT Generator', category: 'security-utilities', description: 'Create and sign JSON Web Tokens with custom payloads and secrets.', isAsync: false, isNew: true, tags: ['jwt', 'auth'] },
   { id: 'bcrypt-hash-verify', slug: 'bcrypt-hash-verify', title: 'Bcrypt Hash & Verify', category: 'security-utilities', description: 'Generate Bcrypt password hashes and verify plain-text against hashes.', isAsync: false, isNew: true, tags: ['bcrypt', 'password'] },
   { id: 'rsa-key-generator', slug: 'rsa-key-generator', title: 'RSA Key Pair Generator', category: 'security-utilities', description: 'Generate RSA public and private key pairs in PEM format.', isAsync: false, isNew: true, tags: ['rsa', 'encryption'] },
+  { id: 'subnet-calculator', slug: 'subnet-calculator', title: 'Subnet Calculator', category: 'security-utilities', description: 'Calculate IPv4 subnets, CIDR ranges, broadcast addresses, and host counts.', isAsync: false, isNew: true, tags: ['network', 'subnet', 'cidr'] },
+  { id: 'port-scanner', slug: 'port-scanner', title: 'Port Scanner', category: 'security-utilities', description: 'Scan common ports on any IP or domain to check open/closed status.', isAsync: true, isNew: true, tags: ['network', 'ports', 'security'] },
+  { id: 'ping-traceroute', slug: 'ping-traceroute-tool', title: 'Ping / Traceroute Tool', category: 'security-utilities', description: 'Check server latency and network routing paths for any domain or IP.', isAsync: true, isNew: true, tags: ['network', 'ping', 'latency'] },
 
   // --- SEO TOOLS (9 built) ---
   { id: 'keyword-density-checker', slug: 'keyword-density-checker', title: 'Keyword Density Checker', category: 'seo-tools', description: 'Frequency analysis for keywords in articles.', isAsync: false, tags: ['seo', 'keywords'] },
@@ -235,11 +251,15 @@ export const ALL_TOOLS: ToolDefinition[] = [
   { id: 'audio-cutter', slug: 'audio-cutter-trimmer', title: 'Audio Cutter / Trimmer', category: 'file-tools', description: 'Trim audio files directly with precision start and end markers.', isAsync: true, isNew: true, tags: ['audio', 'trim'] },
   { id: 'exif-viewer', slug: 'exif-data-viewer', title: 'EXIF Data Viewer & Stripper', category: 'file-tools', description: 'Inspect hidden metadata in photos (GPS, camera model) and strip it for privacy.', isAsync: false, isNew: true, tags: ['exif', 'metadata'] },
   { id: 'pdf-to-image', slug: 'pdf-to-image-extractor', title: 'PDF to Image Extractor', category: 'file-tools', description: 'Extract every PDF page as high-resolution JPG images.', isAsync: true, isNew: true, tags: ['pdf', 'image'] },
+  { id: 'video-to-gif', slug: 'video-to-gif-converter', title: 'Video to GIF Converter', category: 'file-tools', description: 'Convert short MP4/WebM video clips into optimized animated GIFs.', isAsync: true, isNew: true, tags: ['video', 'gif', 'animation'] },
+  { id: 'audio-transcription', slug: 'audio-video-transcription', title: 'Audio / Video Transcription', category: 'file-tools', description: 'Transcribe speech from audio and video files using AI-powered speech-to-text.', isAsync: true, isNew: true, tags: ['audio', 'transcription', 'speech'] },
 
   // --- AI & LLM TOOLS (3 new) ---
   { id: 'llm-token-counter', slug: 'llm-token-counter', title: 'LLM Token Counter', category: 'ai-llm-tools', description: 'Count tokens accurately using standard tokenizers and estimate API costs.', isAsync: false, isNew: true, tags: ['ai', 'llm', 'token'] },
   { id: 'system-prompt-builder', slug: 'system-prompt-builder', title: 'System Prompt Builder', category: 'ai-llm-tools', description: 'Structured form with Role, Constraints, Tone, and Output Format fields to compile optimized system prompts.', isAsync: false, isNew: true, tags: ['ai', 'prompt'] },
   { id: 'text-to-embeddings', slug: 'text-to-embeddings', title: 'Text to Embeddings', category: 'ai-llm-tools', description: 'Convert text strings into vector arrays to visualize embedding data.', isAsync: false, isNew: true, tags: ['ai', 'embeddings', 'vector'] },
+  { id: 'ai-image-prompt-generator', slug: 'ai-image-prompt-generator', title: 'AI Image Prompt Generator', category: 'ai-llm-tools', description: 'Visual builder with dropdowns for style, lighting, camera, and mood to generate AI art prompts.', isAsync: false, isNew: true, tags: ['ai', 'prompt', 'midjourney', 'dalle'] },
+  { id: 'rag-chunking-visualizer', slug: 'rag-chunking-visualizer', title: 'RAG Chunking Visualizer', category: 'ai-llm-tools', description: 'Visualize how different chunking strategies split documents before vectorization.', isAsync: false, isNew: true, tags: ['ai', 'rag', 'chunking', 'embeddings'] },
 ];
 
 export function getToolBySlug(slug: string): ToolDefinition | undefined {

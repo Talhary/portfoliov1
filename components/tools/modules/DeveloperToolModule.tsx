@@ -7,6 +7,15 @@ import { JobProgressModal } from '@/components/tools/JobProgressModal';
 import { FiCode, FiCopy, FiCheck, FiRefreshCw, FiKey, FiShield, FiDownload, FiZap, FiSend, FiWifi, FiWifiOff } from 'react-icons/fi';
 
 function getDefaultInputForTool(id: string): string {
+  if (id === 'js-minifier') {
+    return '// This is a sample JavaScript function\nfunction greet(name) {\n  // Check if name is provided\n  if (!name) {\n    console.log("Hello, World!");\n    return;\n  }\n  console.log(`Hello, ${name}!`);\n}\n\ngreet("Developer");';
+  }
+  if (id === 'html-minifier') {
+    return '<div class="container">\n  <!-- Header Section -->\n  <h1>Hello & Welcome</h1>\n  \n  <!-- Paragraph -->\n  <p>This is a sample HTML snippet for testing the minifier.</p>\n</div>';
+  }
+  if (id === 'svg-to-jsx') {
+    return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">\n  <circle cx="12" cy="12" r="10" />\n  <path d="M12 8v8" />\n  <path d="M8 12h8" />\n</svg>';
+  }
   if (id.includes('xml')) {
     return '<?xml version="1.0" encoding="UTF-8"?>\n<catalog>\n  <book id="bk101">\n    <author>Gambardella, Matthew</author>\n    <title>XML Developer\'s Guide</title>\n    <genre>Computer</genre>\n    <price>44.95</price>\n  </book>\n</catalog>';
   }
@@ -108,6 +117,86 @@ export const DeveloperToolModule = ({ tool }: { tool: ToolDefinition }) => {
   const [bezierY2, setBezierY2] = useState<number>(1.0);
   const [bezierAnimating, setBezierAnimating] = useState<boolean>(false);
   const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  // Box Shadow Generator states
+  const [boxShadowX, setBoxShadowX] = useState<number>(5);
+  const [boxShadowY, setBoxShadowY] = useState<number>(5);
+  const [boxShadowBlur, setBoxShadowBlur] = useState<number>(15);
+  const [boxShadowSpread, setBoxShadowSpread] = useState<number>(0);
+  const [boxShadowColor, setBoxShadowColor] = useState<string>('#000000');
+  const [boxShadowOpacity, setBoxShadowOpacity] = useState<number>(25);
+  const [boxShadowInset, setBoxShadowInset] = useState<boolean>(false);
+
+  // Border Radius Generator states
+  const [borderRadiusValues, setBorderRadiusValues] = useState<Record<string, number>>({
+    'Top Left': 8, 'Top Right': 8, 'Bottom Right': 8, 'Bottom Left': 8,
+  });
+
+  // Docker Compose Generator states
+  const [dockerSelected, setDockerSelected] = useState<string[]>([]);
+  const [dockerProjectName, setDockerProjectName] = useState<string>('my-project');
+  const [dockerComposeVersion, setDockerComposeVersion] = useState<string>('3.8');
+  const [dockerComposeOutput, setDockerComposeOutput] = useState<string>('');
+
+  const dockerServices = [
+    { id: 'node', label: 'Node.js', icon: '🟢', defaultPort: '3000', image: 'node:18-alpine' },
+    { id: 'postgres', label: 'PostgreSQL', icon: '🐘', defaultPort: '5432', image: 'postgres:16-alpine' },
+    { id: 'redis', label: 'Redis', icon: '🔴', defaultPort: '6379', image: 'redis:7-alpine' },
+    { id: 'mongodb', label: 'MongoDB', icon: '🍃', defaultPort: '27017', image: 'mongo:7' },
+    { id: 'nginx', label: 'Nginx', icon: '🔵', defaultPort: '80', image: 'nginx:alpine' },
+    { id: 'mysql', label: 'MySQL', icon: '🐬', defaultPort: '3306', image: 'mysql:8' },
+    { id: 'python', label: 'Python', icon: '🐍', defaultPort: '8000', image: 'python:3.12-slim' },
+    { id: 'rabbitmq', label: 'RabbitMQ', icon: '🐰', defaultPort: '5672', image: 'rabbitmq:3-management' },
+  ];
+
+  // Helper functions for Box Shadow / Border Radius
+  function getBoxShadowCSS(): string {
+    const hex = boxShadowColor.replace('#', '');
+    const r = parseInt(hex.substring(0, 2), 16);
+    const g = parseInt(hex.substring(2, 4), 16);
+    const b = parseInt(hex.substring(4, 6), 16);
+    const rgba = `rgba(${r},${g},${b},${boxShadowOpacity / 100})`;
+    return `${boxShadowInset ? 'inset ' : ''}${boxShadowX}px ${boxShadowY}px ${boxShadowBlur}px ${boxShadowSpread}px ${rgba}`;
+  }
+
+  function getBorderRadiusCSS(): string {
+    const v = borderRadiusValues;
+    return `${v['Top Left']}px ${v['Top Right']}px ${v['Bottom Right']}px ${v['Bottom Left']}px`;
+  }
+
+  function toggleDockerService(id: string) {
+    setDockerSelected((prev) => prev.includes(id) ? prev.filter((s) => s !== id) : [...prev, id]);
+  }
+
+  function generateDockerCompose() {
+    const svcs = dockerServices.filter((s) => dockerSelected.includes(s.id));
+    let yaml = `version: '${dockerComposeVersion}'\nservices:\n`;
+    svcs.forEach((svc) => {
+      yaml += `  ${svc.id}:\n    image: ${svc.image}\n    restart: unless-stopped\n`;
+      if (svc.id === 'node' || svc.id === 'python') {
+        yaml += `    volumes:\n      - .:/app\n    working_dir: /app\n`;
+      }
+      if (svc.id === 'postgres') {
+        yaml += `    environment:\n      POSTGRES_USER: user\n      POSTGRES_PASSWORD: password\n      POSTGRES_DB: mydb\n    volumes:\n      - pgdata:/var/lib/postgresql/data\n`;
+      }
+      if (svc.id === 'redis') {
+        yaml += `    volumes:\n      - redisdata:/data\n`;
+      }
+      if (svc.id === 'mongodb') {
+        yaml += `    volumes:\n      - mongodata:/data/db\n`;
+      }
+      if (svc.id === 'mysql') {
+        yaml += `    environment:\n      MYSQL_ROOT_PASSWORD: rootpass\n      MYSQL_DATABASE: mydb\n    volumes:\n      - mysqldata:/var/lib/mysql\n`;
+      }
+      yaml += `    ports:\n      - "${svc.defaultPort}:${svc.defaultPort}"\n`;
+    });
+    const vols = svcs.filter((s) => ['postgres', 'redis', 'mongodb', 'mysql'].includes(s.id));
+    if (vols.length > 0) {
+      yaml += `\nvolumes:\n`;
+      vols.forEach((v) => { yaml += `  ${v.id}data:\n`; });
+    }
+    setDockerComposeOutput(yaml);
+  }
 
   // Async job hook if VPS tool
   const { jobState, startJob, resetJob, isProcessing } = useToolJob(tool.id);
@@ -1053,6 +1142,338 @@ export const DeveloperToolModule = ({ tool }: { tool: ToolDefinition }) => {
               transition-timing-function: {getBezierCSS()};
             </pre>
           </div>
+        </div>
+      ) : tool.id === 'js-minifier' ? (
+        /* JS Minifier */
+        <div className="space-y-5">
+          <div>
+            <label className="block text-xs font-bold uppercase text-stone-500 mb-1">JavaScript Input</label>
+            <textarea
+              rows={10}
+              value={inputCode}
+              onChange={(e) => setInputCode(e.target.value)}
+              placeholder="Paste your JavaScript code here..."
+              className="w-full p-4 bg-stone-50 dark:bg-zinc-950 border border-stone-200 dark:border-zinc-800 rounded-2xl font-mono text-sm focus:ring-2 focus:ring-primary/50 outline-none resize-none"
+            />
+          </div>
+          <button
+            onClick={() => {
+              let minified = inputCode;
+              minified = minified.replace(/\/\*[\s\S]*?\*\//g, '');
+              minified = minified.replace(/\/\/[^\n]*/g, '');
+              minified = minified.replace(/\s+/g, ' ');
+              minified = minified.replace(/\s*([{}();,=+\-<>!&|?:\[\]])\s*/g, '$1');
+              minified = minified.replace(/;}/g, '}');
+              minified = minified.trim();
+              setOutputCode(minified);
+            }}
+            className="w-full sm:w-auto px-6 py-3 bg-primary hover:bg-primary/90 text-white font-bold text-xs uppercase tracking-wider rounded-xl shadow-lg transition-all flex items-center justify-center gap-2"
+          >
+            <FiZap size={14} /> Minify JavaScript
+          </button>
+          {outputCode && (
+            <div className="space-y-2">
+              <div className="flex justify-between items-center">
+                <span className="text-xs font-bold uppercase text-stone-500">Minified Output</span>
+                <div className="flex items-center gap-3">
+                  <span className="text-[10px] font-mono text-stone-500">
+                    {inputCode.length} → {outputCode.length} chars ({Math.round((1 - outputCode.length / Math.max(inputCode.length, 1)) * 100)}% reduced)
+                  </span>
+                  <button onClick={() => handleCopy(outputCode)} className="text-xs font-bold text-primary hover:underline flex items-center gap-1">
+                    {copied ? <FiCheck size={14} /> : <FiCopy size={14} />} {copied ? 'Copied' : 'Copy'}
+                  </button>
+                </div>
+              </div>
+              <pre className="p-4 bg-stone-900 text-emerald-400 border border-stone-200 dark:border-zinc-800 rounded-2xl font-mono text-xs overflow-x-auto whitespace-pre-wrap max-h-80 overflow-y-auto">
+                {outputCode}
+              </pre>
+            </div>
+          )}
+        </div>
+      ) : tool.id === 'html-minifier' ? (
+        /* HTML Minifier */
+        <div className="space-y-5">
+          <div>
+            <label className="block text-xs font-bold uppercase text-stone-500 mb-1">HTML Input</label>
+            <textarea
+              rows={10}
+              value={inputCode}
+              onChange={(e) => setInputCode(e.target.value)}
+              placeholder="Paste your HTML markup here..."
+              className="w-full p-4 bg-stone-50 dark:bg-zinc-950 border border-stone-200 dark:border-zinc-800 rounded-2xl font-mono text-sm focus:ring-2 focus:ring-primary/50 outline-none resize-none"
+            />
+          </div>
+          <button
+            onClick={() => {
+              let minified = inputCode;
+              minified = minified.replace(/<!--[\s\S]*?-->/g, '');
+              minified = minified.replace(/>\s+</g, '><');
+              minified = minified.replace(/\s{2,}/g, ' ');
+              minified = minified.replace(/\s+\/>/g, '/>');
+              minified = minified.trim();
+              setOutputCode(minified);
+            }}
+            className="w-full sm:w-auto px-6 py-3 bg-primary hover:bg-primary/90 text-white font-bold text-xs uppercase tracking-wider rounded-xl shadow-lg transition-all flex items-center justify-center gap-2"
+          >
+            <FiZap size={14} /> Minify HTML
+          </button>
+          {outputCode && (
+            <div className="space-y-2">
+              <div className="flex justify-between items-center">
+                <span className="text-xs font-bold uppercase text-stone-500">Minified Output</span>
+                <div className="flex items-center gap-3">
+                  <span className="text-[10px] font-mono text-stone-500">
+                    {inputCode.length} → {outputCode.length} chars ({Math.round((1 - outputCode.length / Math.max(inputCode.length, 1)) * 100)}% reduced)
+                  </span>
+                  <button onClick={() => handleCopy(outputCode)} className="text-xs font-bold text-primary hover:underline flex items-center gap-1">
+                    {copied ? <FiCheck size={14} /> : <FiCopy size={14} />} {copied ? 'Copied' : 'Copy'}
+                  </button>
+                </div>
+              </div>
+              <pre className="p-4 bg-stone-900 text-emerald-400 border border-stone-200 dark:border-zinc-800 rounded-2xl font-mono text-xs overflow-x-auto whitespace-pre-wrap max-h-80 overflow-y-auto">
+                {outputCode}
+              </pre>
+            </div>
+          )}
+        </div>
+      ) : tool.id === 'svg-to-jsx' ? (
+        /* SVG to JSX Converter */
+        <div className="space-y-5">
+          <div>
+            <label className="block text-xs font-bold uppercase text-stone-500 mb-1">Raw SVG Input</label>
+            <textarea
+              rows={10}
+              value={inputCode}
+              onChange={(e) => setInputCode(e.target.value)}
+              placeholder={'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">\n  <circle cx="12" cy="12" r="10" />\n  <path d="M12 8v8" />\n</svg>'}
+              className="w-full p-4 bg-stone-50 dark:bg-zinc-950 border border-stone-200 dark:border-zinc-800 rounded-2xl font-mono text-sm focus:ring-2 focus:ring-primary/50 outline-none resize-none"
+            />
+          </div>
+          <button
+            onClick={() => {
+              let jsx = inputCode;
+              const attrMap: Record<string, string> = {
+                'stroke-width': 'strokeWidth', 'stroke-linecap': 'strokeLinecap', 'stroke-linejoin': 'strokeLinejoin',
+                'fill-rule': 'fillRule', 'clip-rule': 'clipRule', 'font-size': 'fontSize', 'font-family': 'fontFamily',
+                'text-anchor': 'textAnchor', 'xlink:href': 'xlinkHref', 'xml:space': 'xmlSpace',
+                'xmlns:xlink': 'xmlnsXlink', 'viewBox': 'viewBox', 'preserveAspectRatio': 'preserveAspectRatio',
+              };
+              for (const [svgAttr, jsxAttr] of Object.entries(attrMap)) {
+                jsx = jsx.replace(new RegExp(svgAttr, 'gi'), jsxAttr);
+              }
+              jsx = jsx.replace(/\bclass="/g, 'className="');
+              jsx = jsx.replace(/\bfor="/g, 'htmlFor="');
+              jsx = jsx.replace(/\bcolspan="/g, 'colSpan="');
+              jsx = jsx.replace(/\browspan="/g, 'rowSpan="');
+              jsx = jsx.replace(/<(\w+)([^>]*?)\/>/g, '<$1$2 />');
+              jsx = jsx.replace(/ style="([^"]*)"/g, (_m, val: string) => {
+                const styleObj = val.split(';').filter(Boolean).map((s: string) => {
+                  const [k, v] = s.split(':').map((p: string) => p.trim());
+                  const camel = k.replace(/-([a-z])/g, (_: string, c: string) => c.toUpperCase());
+                  return `${camel}: "${v}"`;
+                }).join(', ');
+                return ` style={{ ${styleObj} }}`;
+              });
+              setOutputCode(jsx);
+            }}
+            className="w-full sm:w-auto px-6 py-3 bg-primary hover:bg-primary/90 text-white font-bold text-xs uppercase tracking-wider rounded-xl shadow-lg transition-all flex items-center justify-center gap-2"
+          >
+            <FiZap size={14} /> Convert to JSX
+          </button>
+          {outputCode && (
+            <div className="space-y-2">
+              <div className="flex justify-between items-center">
+                <span className="text-xs font-bold uppercase text-stone-500">JSX Output</span>
+                <button onClick={() => handleCopy(outputCode)} className="text-xs font-bold text-primary hover:underline flex items-center gap-1">
+                  {copied ? <FiCheck size={14} /> : <FiCopy size={14} />} {copied ? 'Copied' : 'Copy'}
+                </button>
+              </div>
+              <pre className="p-4 bg-stone-900 text-emerald-400 border border-stone-200 dark:border-zinc-800 rounded-2xl font-mono text-xs overflow-x-auto whitespace-pre-wrap max-h-80 overflow-y-auto">
+                {outputCode}
+              </pre>
+            </div>
+          )}
+        </div>
+      ) : tool.id === 'box-shadow-generator' ? (
+        /* Box Shadow Generator */
+        <div className="space-y-6">
+          <div className="flex flex-col sm:flex-row gap-6">
+            <div className="flex-1 space-y-4">
+              <div>
+                <div className="flex justify-between text-xs font-bold uppercase text-stone-500 mb-1">
+                  <span>X Offset</span><span className="text-primary font-mono">{boxShadowX}px</span>
+                </div>
+                <input type="range" min={-50} max={50} value={boxShadowX} onChange={(e) => setBoxShadowX(Number(e.target.value))} className="w-full accent-primary" />
+              </div>
+              <div>
+                <div className="flex justify-between text-xs font-bold uppercase text-stone-500 mb-1">
+                  <span>Y Offset</span><span className="text-primary font-mono">{boxShadowY}px</span>
+                </div>
+                <input type="range" min={-50} max={50} value={boxShadowY} onChange={(e) => setBoxShadowY(Number(e.target.value))} className="w-full accent-primary" />
+              </div>
+              <div>
+                <div className="flex justify-between text-xs font-bold uppercase text-stone-500 mb-1">
+                  <span>Blur Radius</span><span className="text-primary font-mono">{boxShadowBlur}px</span>
+                </div>
+                <input type="range" min={0} max={100} value={boxShadowBlur} onChange={(e) => setBoxShadowBlur(Number(e.target.value))} className="w-full accent-primary" />
+              </div>
+              <div>
+                <div className="flex justify-between text-xs font-bold uppercase text-stone-500 mb-1">
+                  <span>Spread Radius</span><span className="text-primary font-mono">{boxShadowSpread}px</span>
+                </div>
+                <input type="range" min={-50} max={50} value={boxShadowSpread} onChange={(e) => setBoxShadowSpread(Number(e.target.value))} className="w-full accent-primary" />
+              </div>
+              <div className="flex items-center gap-4">
+                <div className="flex-1">
+                  <label className="block text-xs font-bold uppercase text-stone-500 mb-1">Shadow Color</label>
+                  <input type="color" value={boxShadowColor} onChange={(e) => setBoxShadowColor(e.target.value)} className="w-full h-10 rounded-lg cursor-pointer" />
+                </div>
+                <div className="flex-1">
+                  <div className="flex justify-between text-xs font-bold uppercase text-stone-500 mb-1">
+                    <span>Opacity</span><span className="text-primary font-mono">{boxShadowOpacity}%</span>
+                  </div>
+                  <input type="range" min={0} max={100} value={boxShadowOpacity} onChange={(e) => setBoxShadowOpacity(Number(e.target.value))} className="w-full accent-primary" />
+                </div>
+                <div className="flex items-center gap-2 pt-5">
+                  <input type="checkbox" id="bs-inset" checked={boxShadowInset} onChange={(e) => setBoxShadowInset(e.target.checked)} className="accent-primary" />
+                  <label htmlFor="bs-inset" className="text-xs font-bold uppercase text-stone-500">Inset</label>
+                </div>
+              </div>
+            </div>
+            <div className="sm:w-48 shrink-0">
+              <label className="block text-xs font-bold uppercase text-stone-500 mb-2">Live Preview</label>
+              <div className="w-full h-32 bg-white dark:bg-zinc-800 rounded-xl border border-stone-200 dark:border-zinc-700 flex items-center justify-center">
+                <div
+                  className="w-24 h-24 bg-primary/20 rounded-lg"
+                  style={{ boxShadow: getBoxShadowCSS() }}
+                />
+              </div>
+            </div>
+          </div>
+          <div className="space-y-2">
+            <div className="flex justify-between items-center">
+              <span className="text-xs font-bold uppercase text-stone-500">Generated CSS</span>
+              <button onClick={() => handleCopy(getBoxShadowCSS(), 'bs')} className="text-xs font-bold text-primary hover:underline flex items-center gap-1">
+                {copied === 'bs' ? <FiCheck size={14} /> : <FiCopy size={14} />} {copied === 'bs' ? 'Copied' : 'Copy CSS'}
+              </button>
+            </div>
+            <pre className="p-4 bg-stone-900 text-emerald-400 border border-stone-200 dark:border-zinc-800 rounded-2xl font-mono text-xs overflow-x-auto whitespace-pre-wrap">
+              box-shadow: {getBoxShadowCSS()};
+            </pre>
+          </div>
+        </div>
+      ) : tool.id === 'border-radius-generator' ? (
+        /* Border Radius Generator */
+        <div className="space-y-6">
+          <div className="flex flex-col sm:flex-row gap-6">
+            <div className="flex-1 space-y-4">
+              <p className="text-xs font-bold uppercase text-stone-500">Per-Corner Radius</p>
+              {(['Top Left', 'Top Right', 'Bottom Right', 'Bottom Left'] as const).map((corner) => (
+                <div key={corner} className="flex items-center gap-3">
+                  <label className="text-xs font-bold text-stone-500 w-24 shrink-0">{corner}</label>
+                  <input
+                    type="range" min={0} max={150}
+                    value={borderRadiusValues[corner]}
+                    onChange={(e) => setBorderRadiusValues({ ...borderRadiusValues, [corner]: Number(e.target.value) })}
+                    className="flex-1 accent-primary"
+                  />
+                  <span className="text-xs font-mono text-primary w-12 text-right">{borderRadiusValues[corner]}px</span>
+                </div>
+              ))}
+              <div className="flex items-center gap-3 pt-2">
+                <label className="text-xs font-bold text-stone-500 w-24 shrink-0">Equal All</label>
+                <input
+                  type="range" min={0} max={150}
+                  value={borderRadiusValues['Top Left']}
+                  onChange={(e) => {
+                    const v = Number(e.target.value);
+                    setBorderRadiusValues({ 'Top Left': v, 'Top Right': v, 'Bottom Right': v, 'Bottom Left': v });
+                  }}
+                  className="flex-1 accent-primary"
+                />
+              </div>
+            </div>
+            <div className="sm:w-48 shrink-0">
+              <label className="block text-xs font-bold uppercase text-stone-500 mb-2">Live Preview</label>
+              <div className="w-full h-32 bg-white dark:bg-zinc-800 rounded-xl border border-stone-200 dark:border-zinc-700 flex items-center justify-center">
+                <div
+                  className="w-24 h-24 bg-primary/30"
+                  style={{ borderRadius: getBorderRadiusCSS() }}
+                />
+              </div>
+            </div>
+          </div>
+          <div className="space-y-2">
+            <div className="flex justify-between items-center">
+              <span className="text-xs font-bold uppercase text-stone-500">Generated CSS</span>
+              <button onClick={() => handleCopy(getBorderRadiusCSS(), 'br')} className="text-xs font-bold text-primary hover:underline flex items-center gap-1">
+                {copied === 'br' ? <FiCheck size={14} /> : <FiCopy size={14} />} {copied === 'br' ? 'Copied' : 'Copy CSS'}
+              </button>
+            </div>
+            <pre className="p-4 bg-stone-900 text-emerald-400 border border-stone-200 dark:border-zinc-800 rounded-2xl font-mono text-xs overflow-x-auto whitespace-pre-wrap">
+              border-radius: {getBorderRadiusCSS()};
+            </pre>
+          </div>
+        </div>
+      ) : tool.id === 'docker-compose-generator' ? (
+        /* Docker Compose Generator */
+        <div className="space-y-5">
+          <div>
+            <label className="block text-xs font-bold uppercase text-stone-500 mb-2">Select Services</label>
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+              {dockerServices.map((svc) => (
+                <button
+                  key={svc.id}
+                  onClick={() => toggleDockerService(svc.id)}
+                  className={`p-3 rounded-xl text-xs font-bold border transition-all text-left ${
+                    dockerSelected.includes(svc.id)
+                      ? 'bg-primary text-white border-primary shadow-md'
+                      : 'bg-stone-50 dark:bg-zinc-950 border-stone-200 dark:border-zinc-800 text-stone-700 dark:text-zinc-300 hover:border-primary/50'
+                  }`}
+                >
+                  <div className="flex items-center gap-2">
+                    <span className="text-lg">{svc.icon}</span>
+                    <div>
+                      <div>{svc.label}</div>
+                      <div className={`text-[10px] mt-0.5 ${dockerSelected.includes(svc.id) ? 'text-white/70' : 'text-stone-500'}`}>{svc.defaultPort}</div>
+                    </div>
+                  </div>
+                </button>
+              ))}
+            </div>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div>
+              <label className="block text-xs font-bold uppercase text-stone-500 mb-1">Project Name</label>
+              <input type="text" value={dockerProjectName} onChange={(e) => setDockerProjectName(e.target.value)} className="w-full p-3 bg-stone-50 dark:bg-zinc-950 border border-stone-200 dark:border-zinc-800 rounded-xl font-mono text-sm" />
+            </div>
+            <div>
+              <label className="block text-xs font-bold uppercase text-stone-500 mb-1">Compose Version</label>
+              <select value={dockerComposeVersion} onChange={(e) => setDockerComposeVersion(e.target.value)} className="w-full p-3 bg-stone-50 dark:bg-zinc-950 border border-stone-200 dark:border-zinc-800 rounded-xl text-sm font-bold">
+                <option>3.8</option><option>3.7</option><option>3.6</option><option>2.4</option>
+              </select>
+            </div>
+          </div>
+          <button
+            onClick={generateDockerCompose}
+            disabled={dockerSelected.length === 0}
+            className="w-full sm:w-auto px-6 py-3 bg-primary hover:bg-primary/90 disabled:opacity-50 text-white font-bold text-xs uppercase tracking-wider rounded-xl shadow-lg transition-all flex items-center justify-center gap-2"
+          >
+            <FiZap size={14} /> Generate docker-compose.yml
+          </button>
+          {dockerComposeOutput && (
+            <div className="space-y-2">
+              <div className="flex justify-between items-center">
+                <span className="text-xs font-bold uppercase text-stone-500">docker-compose.yml</span>
+                <button onClick={() => handleCopy(dockerComposeOutput, 'docker')} className="text-xs font-bold text-primary hover:underline flex items-center gap-1">
+                  {copied === 'docker' ? <FiCheck size={14} /> : <FiCopy size={14} />} {copied === 'docker' ? 'Copied' : 'Copy'}
+                </button>
+              </div>
+              <pre className="p-4 bg-stone-900 text-emerald-400 border border-stone-200 dark:border-zinc-800 rounded-2xl font-mono text-xs overflow-x-auto whitespace-pre-wrap max-h-80 overflow-y-auto">
+                {dockerComposeOutput}
+              </pre>
+            </div>
+          )}
         </div>
       ) : (
         /* 6. Standard Encoders, Formatters & Generic Developer Tools View */

@@ -219,6 +219,69 @@ export async function processJobAsync(jobId: string) {
         break;
       }
 
+      case 'port-scanner': {
+        const target = (params.target || '').replace(/^https?:\/\//, '').split('/')[0];
+        if (!target) throw new Error('Invalid target provided');
+        await db.toolJob.update({ where: { id: jobId }, data: { progress: 20 } });
+
+        const portsParam = params.ports || '21,22,25,53,80,110,143,443,3306,3389,5432,8080';
+        const ports = portsParam.split(',').map((p: string) => parseInt(p.trim())).filter((p: number) => !isNaN(p));
+        const portNames: Record<number, string> = { 21: 'FTP', 22: 'SSH', 25: 'SMTP', 53: 'DNS', 80: 'HTTP', 110: 'POP3', 143: 'IMAP', 443: 'HTTPS', 3306: 'MySQL', 3389: 'RDP', 5432: 'PostgreSQL', 8080: 'HTTP-Alt' };
+
+        const results = await Promise.allSettled(
+          ports.map((port: number) => new Promise<void>((resolve, reject) => {
+            const socket = net.createConnection({ host: target, port, timeout: 3000 }, () => {
+              socket.destroy();
+              resolve();
+            });
+            socket.on('error', () => { socket.destroy(); reject(new Error('closed')); });
+            socket.setTimeout(3000, () => { socket.destroy(); reject(new Error('timeout')); });
+          }))
+        );
+
+        const portResults = ports.map((port: number, i: number) => ({
+          port,
+          name: portNames[port] || 'Unknown',
+          status: results[i].status === 'fulfilled' ? 'open' : 'closed',
+        }));
+
+        await db.toolJob.update({
+          where: { id: jobId },
+          data: { status: 'COMPLETED', progress: 100, resultData: { target, ports: portResults, openCount: portResults.filter((p: any) => p.status === 'open').length } },
+        });
+        break;
+      }
+
+      case 'ping-traceroute': {
+        const host = (params.host || '').replace(/^https?:\/\//, '').split('/')[0];
+        if (!host) throw new Error('Invalid host provided');
+        await db.toolJob.update({ where: { id: jobId }, data: { progress: 20 } });
+
+        const { exec } = await import('child_process');
+        const pingCmd = process.platform === 'win32' ? `ping -n 4 ${host}` : `ping -c 4 ${host}`;
+
+        const pingResult = await new Promise<string>((resolve, reject) => {
+          exec(pingCmd, { timeout: 15000 }, (error, stdout) => {
+            resolve(stdout || error?.message || 'No output');
+          });
+        });
+
+        await db.toolJob.update({ where: { id: jobId }, data: { progress: 60 } });
+
+        const traceCmd = process.platform === 'win32' ? `tracert -d ${host}` : `traceroute -n -m 15 ${host}`;
+        const traceResult = await new Promise<string>((resolve) => {
+          exec(traceCmd, { timeout: 30000 }, (error, stdout) => {
+            resolve(stdout || error?.message || 'Traceroute not available');
+          });
+        });
+
+        await db.toolJob.update({
+          where: { id: jobId },
+          data: { status: 'COMPLETED', progress: 100, resultData: { host, ping: pingResult, traceroute: traceResult } },
+        });
+        break;
+      }
+
       case 'pdf-to-word':
       case 'word-to-pdf':
       case 'pdf-compressor':
@@ -228,7 +291,10 @@ export async function processJobAsync(jobId: string) {
       case 'audio-cutter':
       case 'background-remover':
       case 'image-watermarker':
-      case 'heic-to-jpg': {
+      case 'heic-to-jpg':
+      case 'video-to-gif':
+      case 'svg-to-raster':
+      case 'audio-transcription': {
         await db.toolJob.update({ where: { id: jobId }, data: { progress: 60 } });
         
         const extMap: Record<string, string> = {
@@ -242,6 +308,9 @@ export async function processJobAsync(jobId: string) {
           'background-remover': 'png',
           'image-watermarker': 'png',
           'heic-to-jpg': 'jpg',
+          'video-to-gif': 'gif',
+          'svg-to-raster': 'png',
+          'audio-transcription': 'txt',
         };
 
         const ext = extMap[job.toolId] || (job.toolId.endsWith('word') ? 'docx' : job.toolId.includes('pdf') ? 'pdf' : 'png');

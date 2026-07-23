@@ -2,7 +2,107 @@
 
 import { useState, useRef } from 'react';
 import { ToolDefinition } from '@/lib/tools/registry';
-import { FiRefreshCw, FiVolume2, FiCopy, FiCheck, FiUploadCloud, FiDownload } from 'react-icons/fi';
+import { FiRefreshCw, FiVolume2, FiCopy, FiCheck, FiUploadCloud, FiDownload, FiZap } from 'react-icons/fi';
+
+const UNIT_DATA: Record<string, { units: string[]; toBase: Record<string, number> }> = {
+  length: {
+    units: ['mm', 'cm', 'm', 'km', 'in', 'ft', 'yd', 'mi'],
+    toBase: { mm: 0.001, cm: 0.01, m: 1, km: 1000, in: 0.0254, ft: 0.3048, yd: 0.9144, mi: 1609.344 },
+  },
+  weight: {
+    units: ['mg', 'g', 'kg', 'lb', 'oz', 't'],
+    toBase: { mg: 0.000001, g: 0.001, kg: 1, lb: 0.453592, oz: 0.0283495, t: 1000 },
+  },
+  temperature: {
+    units: ['C', 'F', 'K'],
+    toBase: { C: 1, F: 1, K: 1 },
+  },
+  volume: {
+    units: ['mL', 'L', 'gal', 'qt', 'pt', 'cup', 'fl oz'],
+    toBase: { mL: 0.001, L: 1, gal: 3.78541, qt: 0.946353, pt: 0.473176, cup: 0.236588, 'fl oz': 0.0295735 },
+  },
+  speed: {
+    units: ['m/s', 'km/h', 'mph', 'knot', 'ft/s'],
+    toBase: { 'm/s': 1, 'km/h': 0.277778, mph: 0.44704, knot: 0.514444, 'ft/s': 0.3048 },
+  },
+};
+
+function convertUnit(value: number, from: string, to: string, category: string): number {
+  if (category === 'temperature') {
+    let celsius: number;
+    if (from === 'C') celsius = value;
+    else if (from === 'F') celsius = (value - 32) * 5 / 9;
+    else celsius = value - 273.15;
+    if (to === 'C') return celsius;
+    if (to === 'F') return celsius * 9 / 5 + 32;
+    return celsius + 273.15;
+  }
+  const data = UNIT_DATA[category];
+  const baseValue = value * data.toBase[from];
+  return baseValue / data.toBase[to];
+}
+
+const UnitConverter = () => {
+  const [category, setCategory] = useState<string>('length');
+  const [fromUnit, setFromUnit] = useState<string>('m');
+  const [toUnit, setToUnit] = useState<string>('ft');
+  const [inputValue, setInputValue] = useState<string>('1');
+  const [copied, setCopied] = useState<boolean>(false);
+
+  const data = UNIT_DATA[category];
+  const result = convertUnit(parseFloat(inputValue) || 0, fromUnit, toUnit, category);
+
+  const handleCopy = (str: string) => {
+    navigator.clipboard.writeText(str);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
+  return (
+    <div className="space-y-5">
+      <div>
+        <label className="block text-xs font-bold uppercase text-stone-500 mb-1">Category</label>
+        <div className="grid grid-cols-5 gap-2">
+          {Object.keys(UNIT_DATA).map((cat) => (
+            <button key={cat} onClick={() => { setCategory(cat); setFromUnit(UNIT_DATA[cat].units[0]); setToUnit(UNIT_DATA[cat].units[1] || UNIT_DATA[cat].units[0]); }}
+              className={`p-2 rounded-xl text-xs font-bold capitalize transition-all ${category === cat ? 'bg-primary text-white shadow-md' : 'bg-stone-100 dark:bg-zinc-800 text-stone-700 dark:text-zinc-300 hover:bg-stone-200 dark:hover:bg-zinc-700'}`}>
+              {cat}
+            </button>
+          ))}
+        </div>
+      </div>
+      <div className="flex items-end gap-3">
+        <div className="flex-1">
+          <label className="block text-xs font-bold uppercase text-stone-500 mb-1">Value</label>
+          <input type="number" value={inputValue} onChange={(e) => setInputValue(e.target.value)} className="w-full p-3 bg-stone-50 dark:bg-zinc-950 border border-stone-200 dark:border-zinc-800 rounded-xl font-mono text-sm" />
+        </div>
+        <div className="w-28">
+          <label className="block text-xs font-bold uppercase text-stone-500 mb-1">From</label>
+          <select value={fromUnit} onChange={(e) => setFromUnit(e.target.value)} className="w-full p-3 bg-stone-50 dark:bg-zinc-950 border border-stone-200 dark:border-zinc-800 rounded-xl text-sm font-bold">
+            {data.units.map((u) => <option key={u} value={u}>{u}</option>)}
+          </select>
+        </div>
+        <button onClick={() => { const t = fromUnit; setFromUnit(toUnit); setToUnit(t); }} className="px-3 py-3 bg-stone-200 dark:bg-zinc-800 rounded-xl hover:bg-primary hover:text-white transition-all mb-0.5">
+          <FiRefreshCw size={16} />
+        </button>
+        <div className="w-28">
+          <label className="block text-xs font-bold uppercase text-stone-500 mb-1">To</label>
+          <select value={toUnit} onChange={(e) => setToUnit(e.target.value)} className="w-full p-3 bg-stone-50 dark:bg-zinc-950 border border-stone-200 dark:border-zinc-800 rounded-xl text-sm font-bold">
+            {data.units.map((u) => <option key={u} value={u}>{u}</option>)}
+          </select>
+        </div>
+      </div>
+      <div className="p-5 bg-stone-50 dark:bg-zinc-950 border border-stone-200 dark:border-zinc-800 rounded-2xl text-center">
+        <div className="text-[10px] uppercase font-bold text-stone-500 mb-1">Result</div>
+        <div className="text-3xl font-black text-primary">{parseFloat(result.toFixed(6))} {toUnit}</div>
+        <div className="text-xs text-stone-500 mt-2">{inputValue} {fromUnit} = {parseFloat(result.toFixed(6))} {toUnit}</div>
+        <button onClick={() => handleCopy(String(parseFloat(result.toFixed(6))))} className="mt-3 text-xs font-bold text-primary hover:underline flex items-center gap-1 mx-auto">
+          {copied ? <FiCheck size={14} /> : <FiCopy size={14} />} {copied ? 'Copied' : 'Copy Result'}
+        </button>
+      </div>
+    </div>
+  );
+};
 
 function getDefaultConverterInput(id: string): string {
   if (id === 'csv-to-json') {
@@ -10,6 +110,9 @@ function getDefaultConverterInput(id: string): string {
   }
   if (id === 'json-to-csv') {
     return '[\n  {"id": 1, "name": "Alice", "score": 95},\n  {"id": 2, "name": "Bob", "score": 88}\n]';
+  }
+  if (id === 'json-csv-to-sql') {
+    return '[\n  {"id": 1, "name": "Alice", "email": "alice@example.com"},\n  {"id": 2, "name": "Bob", "email": "bob@example.com"}\n]';
   }
   if (id === 'roman-numeral-converter') {
     return '2026';
@@ -173,15 +276,30 @@ export const ConverterModule = ({ tool }: { tool: ToolDefinition }) => {
           const jsonArr = lines.slice(1).map((line) => {
             const values = line.split(',').map((v) => v.trim());
             const obj: Record<string, string> = {};
-            headers.forEach((h, i) => {
-              obj[h] = values[i] || '';
-            });
+            headers.forEach((h, i) => { obj[h] = values[i] || ''; });
             return obj;
           });
           return JSON.stringify(jsonArr, null, 2);
-        } catch {
-          return 'Error parsing CSV';
-        }
+        } catch { return 'Error parsing CSV'; }
+      }
+      case 'json-csv-to-sql': {
+        try {
+          const parsed = JSON.parse(inputVal);
+          const arr = Array.isArray(parsed) ? parsed : [parsed];
+          if (arr.length === 0) return 'Enter a non-empty JSON array';
+          const tableName = 'items';
+          const cols = Object.keys(arr[0]);
+          const inserts = arr.map((row: any) => {
+            const vals = cols.map((c) => {
+              const v = row[c];
+              if (v === null || v === undefined) return 'NULL';
+              if (typeof v === 'number') return String(v);
+              return `'${String(v).replace(/'/g, "''")}'`;
+            }).join(', ');
+            return `INSERT INTO ${tableName} (${cols.join(', ')}) VALUES (${vals});`;
+          });
+          return inserts.join('\n');
+        } catch { return 'Error parsing JSON. Provide a JSON array of objects.'; }
       }
       case 'conv-text-to-speech':
         return inputVal;
@@ -301,7 +419,12 @@ export const ConverterModule = ({ tool }: { tool: ToolDefinition }) => {
               <FiVolume2 size={18} />
               {isSpeaking ? 'Stop Speaking' : 'Speak Text'}
             </button>
-          ) : (
+      ) : tool.id === 'unit-converter' ? (
+        /* General Unit Converter */
+        <div className="space-y-6">
+          <UnitConverter />
+        </div>
+      ) : (
             <div className="space-y-2">
               <div className="flex items-center justify-between">
                 <label className="text-xs font-bold uppercase text-primary">Converted Result</label>
