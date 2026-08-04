@@ -4,6 +4,13 @@ import tls from 'tls';
 import net from 'net';
 import fs from 'fs';
 import path from 'path';
+import {
+  assertHostname,
+  assertPublicHost,
+  assertFetchableUrl,
+  fetchWithTimeout,
+  readCappedText,
+} from '@/lib/tools/validation';
 
 const STORAGE_DIR = process.env.JOB_STORAGE_PATH || path.join(process.cwd(), 'public', 'temp-jobs');
 
@@ -11,6 +18,16 @@ function ensureStorageDir() {
   if (!fs.existsSync(STORAGE_DIR)) {
     fs.mkdirSync(STORAGE_DIR, { recursive: true });
   }
+}
+
+/** Escapes text taken from a remote page before embedding it in XML output. */
+function escapeXml(value: string): string {
+  return value
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&apos;');
 }
 
 export async function processJobAsync(jobId: string) {
@@ -29,8 +46,7 @@ export async function processJobAsync(jobId: string) {
 
     switch (job.toolId) {
       case 'dns-lookup-tool': {
-        const domain = (params.domain || '').replace(/^https?:\/\//, '').split('/')[0];
-        if (!domain) throw new Error('Invalid domain provided');
+        const domain = assertHostname(params.domain, 'domain');
 
         await db.toolJob.update({ where: { id: jobId }, data: { progress: 40 } });
 
@@ -57,8 +73,10 @@ export async function processJobAsync(jobId: string) {
       }
 
       case 'ssl-certificate-inspector': {
-        const domain = (params.domain || '').replace(/^https?:\/\//, '').split('/')[0];
-        if (!domain) throw new Error('Invalid domain provided');
+        // Opens a raw TLS socket to the target, so the host must be validated
+        // and confirmed publicly routable before connecting.
+        const domain = assertHostname(params.domain, 'domain');
+        await assertPublicHost(domain);
 
         await db.toolJob.update({ where: { id: jobId }, data: { progress: 50 } });
 
@@ -95,8 +113,7 @@ export async function processJobAsync(jobId: string) {
       }
 
       case 'whois-domain-lookup': {
-        const domain = (params.domain || '').replace(/^https?:\/\//, '').split('/')[0];
-        if (!domain) throw new Error('Invalid domain provided');
+        const domain = assertHostname(params.domain, 'domain');
 
         await db.toolJob.update({ where: { id: jobId }, data: { progress: 50 } });
 
@@ -122,8 +139,9 @@ export async function processJobAsync(jobId: string) {
       }
 
       case 'ip-address-lookup': {
-        const ip = params.ip || '';
-        const res = await fetch(`https://ipapi.co/${ip}/json/`);
+        const ip = assertHostname(params.ip, 'ip');
+        if (net.isIP(ip) === 0) throw new Error('Invalid ip provided');
+        const res = await fetchWithTimeout(`https://ipapi.co/${encodeURIComponent(ip)}/json/`);
         const json = await res.json();
 
         await db.toolJob.update({
@@ -134,13 +152,12 @@ export async function processJobAsync(jobId: string) {
       }
 
       case 'meta-tag-analyzer': {
-        let url = params.url || '';
-        if (!url.startsWith('http')) url = 'https://' + url;
+        const url = await assertFetchableUrl(params.url, 'url');
 
         await db.toolJob.update({ where: { id: jobId }, data: { progress: 40 } });
 
-        const res = await fetch(url, { headers: { 'User-Agent': 'WebVix-SEO-Bot/1.0' } });
-        const html = await res.text();
+        const res = await fetchWithTimeout(url, { headers: { 'User-Agent': 'WebVix-SEO-Bot/1.0' } });
+        const html = await readCappedText(res);
 
         const titleMatch = html.match(/<title[^>]*>([^<]*)<\/title>/i);
         const metaDescMatch = html.match(/<meta[^>]*name=["']description["'][^>]*content=["']([^"']*)["']/i);
@@ -164,19 +181,20 @@ export async function processJobAsync(jobId: string) {
       }
 
       case 'sitemap-generator': {
-        let siteUrl = params.url || '';
-        if (!siteUrl.startsWith('http')) siteUrl = 'https://' + siteUrl;
+        const siteUrl = await assertFetchableUrl(params.url, 'url');
 
         await db.toolJob.update({ where: { id: jobId }, data: { progress: 30 } });
 
-        const res = await fetch(siteUrl, { headers: { 'User-Agent': 'WebVix-Crawler/1.0' } });
-        const html = await res.text();
+        const res = await fetchWithTimeout(siteUrl, { headers: { 'User-Agent': 'WebVix-Crawler/1.0' } });
+        const html = await readCappedText(res);
 
-        const links = Array.from(html.matchAll(/href=["'](\/[^"']*)["']/g)).map((m) => siteUrl + m[1]);
+        const links = Array.from(html.matchAll(/href=["'](\/[^"']*)["']/g)).map(
+          (m) => new URL(m[1], siteUrl).toString(),
+        );
         const uniqueLinks = Array.from(new Set(links)).slice(0, 50);
 
         const xmlContent = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${uniqueLinks
-          .map((link) => `  <url>\n    <loc>${link}</loc>\n    <lastmod>${new Date().toISOString().split('T')[0]}</lastmod>\n  </url>`)
+          .map((link) => `  <url>\n    <loc>${escapeXml(link)}</loc>\n    <lastmod>${new Date().toISOString().split('T')[0]}</lastmod>\n  </url>`)
           .join('\n')}\n</urlset>`;
 
         const fileName = `sitemap-${jobId}.xml`;
@@ -220,12 +238,26 @@ export async function processJobAsync(jobId: string) {
       }
 
       case 'port-scanner': {
-        const target = (params.target || '').replace(/^https?:\/\//, '').split('/')[0];
-        if (!target) throw new Error('Invalid target provided');
+        // Without a public-host check this endpoint is an internal network
+        // scanner for any anonymous caller.
+        const target = assertHostname(params.target, 'target');
+        await assertPublicHost(target);
         await db.toolJob.update({ where: { id: jobId }, data: { progress: 20 } });
 
         const portsParam = params.ports || '21,22,25,53,80,110,143,443,3306,3389,5432,8080';
-        const ports = portsParam.split(',').map((p: string) => parseInt(p.trim())).filter((p: number) => !isNaN(p));
+        if (typeof portsParam !== 'string') throw new Error('Invalid ports provided');
+
+        const ports = Array.from(
+          new Set(
+            portsParam
+              .split(',')
+              .map((p: string) => Number.parseInt(p.trim(), 10))
+              .filter((p: number) => Number.isInteger(p) && p >= 1 && p <= 65535),
+          ),
+        ).slice(0, 25); // bound fan-out per job
+
+        if (!ports.length) throw new Error('No valid ports provided');
+
         const portNames: Record<number, string> = { 21: 'FTP', 22: 'SSH', 25: 'SMTP', 53: 'DNS', 80: 'HTTP', 110: 'POP3', 143: 'IMAP', 443: 'HTTPS', 3306: 'MySQL', 3389: 'RDP', 5432: 'PostgreSQL', 8080: 'HTTP-Alt' };
 
         const results = await Promise.allSettled(
@@ -253,27 +285,44 @@ export async function processJobAsync(jobId: string) {
       }
 
       case 'ping-traceroute': {
-        const host = (params.host || '').replace(/^https?:\/\//, '').split('/')[0];
-        if (!host) throw new Error('Invalid host provided');
+        // `host` is attacker-controlled. assertHostname enforces a strict
+        // character allowlist, and execFile passes argv as an array so no
+        // shell is ever involved.
+        const host = assertHostname(params.host, 'host');
+        await assertPublicHost(host);
         await db.toolJob.update({ where: { id: jobId }, data: { progress: 20 } });
 
-        const { exec } = await import('child_process');
-        const pingCmd = process.platform === 'win32' ? `ping -n 4 ${host}` : `ping -c 4 ${host}`;
+        const { execFile } = await import('child_process');
 
-        const pingResult = await new Promise<string>((resolve, reject) => {
-          exec(pingCmd, { timeout: 15000 }, (error, stdout) => {
-            resolve(stdout || error?.message || 'No output');
+        const runCommand = (
+          file: string,
+          args: string[],
+          timeout: number,
+          fallback: string,
+        ) =>
+          new Promise<string>((resolve) => {
+            execFile(file, args, { timeout, maxBuffer: 1024 * 1024 }, (error, stdout) => {
+              resolve(stdout || error?.message || fallback);
+            });
           });
-        });
+
+        const isWin = process.platform === 'win32';
+
+        const pingResult = await runCommand(
+          'ping',
+          isWin ? ['-n', '4', host] : ['-c', '4', host],
+          15000,
+          'No output',
+        );
 
         await db.toolJob.update({ where: { id: jobId }, data: { progress: 60 } });
 
-        const traceCmd = process.platform === 'win32' ? `tracert -d ${host}` : `traceroute -n -m 15 ${host}`;
-        const traceResult = await new Promise<string>((resolve) => {
-          exec(traceCmd, { timeout: 30000 }, (error, stdout) => {
-            resolve(stdout || error?.message || 'Traceroute not available');
-          });
-        });
+        const traceResult = await runCommand(
+          isWin ? 'tracert' : 'traceroute',
+          isWin ? ['-d', host] : ['-n', '-m', '15', host],
+          30000,
+          'Traceroute not available',
+        );
 
         await db.toolJob.update({
           where: { id: jobId },
@@ -283,13 +332,12 @@ export async function processJobAsync(jobId: string) {
       }
 
       case 'page-speed-estimator': {
-        let url = params.url || '';
-        if (!url.startsWith('http')) url = 'https://' + url;
+        const url = await assertFetchableUrl(params.url, 'url');
         await db.toolJob.update({ where: { id: jobId }, data: { progress: 40 } });
 
         const startTime = Date.now();
-        const res = await fetch(url, { headers: { 'User-Agent': 'WebVix-Speed-Bot/1.0' } });
-        const html = await res.text();
+        const res = await fetchWithTimeout(url, { headers: { 'User-Agent': 'WebVix-Speed-Bot/1.0' } });
+        const html = await readCappedText(res);
         const fetchTimeMs = Date.now() - startTime;
         const contentLength = html.length;
 
@@ -321,12 +369,11 @@ export async function processJobAsync(jobId: string) {
       }
 
       case 'google-index-checker': {
-        let url = params.url || '';
-        if (!url.startsWith('http')) url = 'https://' + url;
+        const url = await assertFetchableUrl(params.url, 'url');
         await db.toolJob.update({ where: { id: jobId }, data: { progress: 40 } });
 
-        const res = await fetch(url, { headers: { 'User-Agent': 'WebVix-Bot/1.0' } });
-        const html = await res.text();
+        const res = await fetchWithTimeout(url, { headers: { 'User-Agent': 'WebVix-Bot/1.0' } });
+        const html = await readCappedText(res);
 
         const xRobots = res.headers.get('x-robots-tag');
         const metaRobotsMatch = html.match(/<meta[^>]*name=["']robots["'][^>]*content=["']([^"']*)["']/i);
@@ -354,12 +401,11 @@ export async function processJobAsync(jobId: string) {
       }
 
       case 'canonical-url-checker': {
-        let url = params.url || '';
-        if (!url.startsWith('http')) url = 'https://' + url;
+        const url = await assertFetchableUrl(params.url, 'url');
         await db.toolJob.update({ where: { id: jobId }, data: { progress: 40 } });
 
-        const res = await fetch(url, { headers: { 'User-Agent': 'WebVix-Bot/1.0' } });
-        const html = await res.text();
+        const res = await fetchWithTimeout(url, { headers: { 'User-Agent': 'WebVix-Bot/1.0' } });
+        const html = await readCappedText(res);
 
         const canonicalMatch = html.match(/<link[^>]*rel=["']canonical["'][^>]*href=["']([^"']*)["']/i);
         const canonicalUrl = canonicalMatch ? canonicalMatch[1] : null;
@@ -383,12 +429,11 @@ export async function processJobAsync(jobId: string) {
       }
 
       case 'backlink-checker': {
-        let url = params.url || '';
-        if (!url.startsWith('http')) url = 'https://' + url;
+        const url = await assertFetchableUrl(params.url, 'url');
         await db.toolJob.update({ where: { id: jobId }, data: { progress: 40 } });
 
-        const res = await fetch(url, { headers: { 'User-Agent': 'WebVix-Bot/1.0' } });
-        const html = await res.text();
+        const res = await fetchWithTimeout(url, { headers: { 'User-Agent': 'WebVix-Bot/1.0' } });
+        const html = await readCappedText(res);
 
         const externalLinksMatch = Array.from(html.matchAll(/href=["'](https?:\/\/[^"']*)["']/g));
         const internalLinksMatch = Array.from(html.matchAll(/href=["'](\/[^"']*)["']/g));
@@ -413,12 +458,11 @@ export async function processJobAsync(jobId: string) {
       }
 
       case 'seo-score-checker': {
-        let url = params.url || '';
-        if (!url.startsWith('http')) url = 'https://' + url;
+        const url = await assertFetchableUrl(params.url, 'url');
         await db.toolJob.update({ where: { id: jobId }, data: { progress: 40 } });
 
-        const res = await fetch(url, { headers: { 'User-Agent': 'WebVix-Bot/1.0' } });
-        const html = await res.text();
+        const res = await fetchWithTimeout(url, { headers: { 'User-Agent': 'WebVix-Bot/1.0' } });
+        const html = await readCappedText(res);
 
         const hasTitle = /<title[^>]*>([^<]+)<\/title>/i.test(html);
         const hasMetaDesc = /<meta[^>]*name=["']description["']/i.test(html);
@@ -494,6 +538,7 @@ export async function processJobAsync(jobId: string) {
       case 'pdf-compressor':
       case 'merge-pdf':
       case 'split-pdf':
+      case 'pdf-to-image':
       case 'video-to-mp3':
       case 'audio-cutter':
       case 'background-remover':
@@ -510,6 +555,7 @@ export async function processJobAsync(jobId: string) {
           'pdf-compressor': 'pdf',
           'merge-pdf': 'pdf',
           'split-pdf': 'pdf',
+          'pdf-to-image': 'jpg',
           'video-to-mp3': 'mp3',
           'audio-cutter': 'mp3',
           'background-remover': 'png',
@@ -540,11 +586,12 @@ export async function processJobAsync(jobId: string) {
       }
 
       default: {
-        await db.toolJob.update({
-          where: { id: jobId },
-          data: { status: 'COMPLETED', progress: 100, resultData: { message: 'Job executed successfully' } },
-        });
-        break;
+        // Previously this reported COMPLETED with a generic message, which made
+        // unimplemented tools indistinguishable from working ones in the UI.
+        // Failing loudly surfaces registry/runner drift instead of hiding it.
+        throw new Error(
+          `No server-side handler is implemented for tool "${job.toolId}".`,
+        );
       }
     }
   } catch (error: any) {

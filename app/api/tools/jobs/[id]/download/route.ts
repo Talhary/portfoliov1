@@ -18,22 +18,35 @@ export async function GET(
       return NextResponse.json({ error: 'File not available' }, { status: 404 });
     }
 
-    const STORAGE_DIR = process.env.JOB_STORAGE_PATH || path.join(process.cwd(), 'public', 'temp-jobs');
-    const filePath = path.join(STORAGE_DIR, job.outputFile);
+    const STORAGE_DIR = path.resolve(
+      process.env.JOB_STORAGE_PATH || path.join(process.cwd(), 'public', 'temp-jobs'),
+    );
 
-    if (!fs.existsSync(filePath)) {
+    // `outputFile` is currently server-generated, but resolving and confirming
+    // containment means a future writer cannot turn this into arbitrary file read.
+    const filePath = path.resolve(STORAGE_DIR, job.outputFile);
+    if (filePath !== STORAGE_DIR && !filePath.startsWith(STORAGE_DIR + path.sep)) {
+      return NextResponse.json({ error: 'File not available' }, { status: 404 });
+    }
+
+    if (!fs.existsSync(filePath) || !fs.statSync(filePath).isFile()) {
       return NextResponse.json({ error: 'File not found on disk' }, { status: 404 });
     }
 
-    const fileBuffer = fs.readFileSync(filePath);
+    const fileBuffer = await fs.promises.readFile(filePath);
+
+    // Quote and strip the filename so it cannot break out of the header.
+    const safeName = path.basename(job.outputFile).replace(/["\r\n]/g, '');
 
     return new NextResponse(fileBuffer, {
       headers: {
         'Content-Type': 'application/octet-stream',
-        'Content-Disposition': `attachment; filename="${job.outputFile}"`,
+        'Content-Disposition': `attachment; filename="${safeName}"`,
+        'X-Content-Type-Options': 'nosniff',
       },
     });
   } catch (error: any) {
-    return NextResponse.json({ error: error.message || 'Download error' }, { status: 500 });
+    console.error('Job download error:', error);
+    return NextResponse.json({ error: 'Download error' }, { status: 500 });
   }
 }

@@ -79,7 +79,11 @@ export default async function DynamicToolPage({ params }: Props) {
         <script
           key={idx}
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+          // Values are registry-derived, not request-derived. `<` is escaped so a
+          // future string containing `</script>` cannot break out of the block.
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(schema).replace(/</g, '\\u003c'),
+          }}
         />
       ))}
 

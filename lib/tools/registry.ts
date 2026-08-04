@@ -105,7 +105,7 @@ export const ALL_TOOLS: ToolDefinition[] = [
   { id: 'loan-calc', slug: 'loan-calculator', title: 'Loan Calculator', category: 'calculators', description: 'Monthly payment & interest estimator.', isAsync: false, tags: ['finance', 'money'] },
   { id: 'age-calc', slug: 'age-calculator', title: 'Age Calculator', category: 'calculators', description: 'Exact age breakdown in years, months, days, hours.', isAsync: false, tags: ['time', 'age'] },
   { id: 'tip-calc', slug: 'tip-calculator', title: 'Tip Calculator', category: 'calculators', description: 'Split bills and tips among multiple people.', isAsync: false, tags: ['finance', 'bill'] },
-  { id: 'currency-converter', slug: 'currency-converter', title: 'Currency Converter', category: 'calculators', description: 'Convert between common global currencies.', isAsync: true, tags: ['finance', 'money'] },
+  { id: 'currency-converter', slug: 'currency-converter', title: 'Currency Converter', category: 'calculators', description: 'Convert between common global currencies.', isAsync: false, tags: ['finance', 'money'] },
   { id: 'discount-calc', slug: 'discount-calculator', title: 'Discount Calculator', category: 'calculators', description: 'Instant final price and savings calculator.', isAsync: false, tags: ['shopping', 'finance'] },
   { id: 'gpa-calc', slug: 'gpa-calculator', title: 'GPA Calculator', category: 'calculators', description: 'Estimate cumulative GPA from course lists.', isAsync: false, tags: ['education', 'gpa'] },
   { id: 'salary-calc', slug: 'salary-calculator', title: 'Salary Calculator', category: 'calculators', description: 'Annual, monthly, and hourly net pay estimator.', isAsync: false, tags: ['finance', 'work'] },
@@ -233,10 +233,10 @@ export const ALL_TOOLS: ToolDefinition[] = [
   { id: 'meta-tag-analyzer', slug: 'meta-tag-analyzer', title: 'Meta Tag Analyzer', category: 'seo-tools', description: 'Inspect title, meta description, and social tags.', isAsync: true, tags: ['seo', 'meta'] },
   { id: 'sitemap-generator', slug: 'sitemap-generator', title: 'Sitemap Generator', category: 'seo-tools', description: 'Create sitemap.xml files from website URLs.', isAsync: true, tags: ['sitemap', 'xml'] },
   { id: 'open-graph-preview', slug: 'open-graph-preview', title: 'Open Graph Preview', category: 'seo-tools', description: 'Preview social card previews (Twitter/FB/LinkedIn).', isAsync: false, tags: ['og', 'social'] },
-  { id: 'canonical-url-checker', slug: 'canonical-url-checker', title: 'Canonical URL Checker', category: 'seo-tools', description: 'Check URL formatting and canonical tags.', isAsync: false, tags: ['canonical', 'url'] },
+  { id: 'canonical-url-checker', slug: 'canonical-url-checker', title: 'Canonical URL Checker', category: 'seo-tools', description: 'Check URL formatting and canonical tags.', isAsync: true, tags: ['canonical', 'url'] },
   { id: 'page-speed-estimator', slug: 'page-speed-estimator', title: 'Page Speed Estimator', category: 'seo-tools', description: 'Estimate page load speeds across 2G/3G/LTE/WiFi.', isAsync: true, tags: ['speed', 'performance'] },
-  { id: 'backlink-checker', slug: 'backlink-checker', title: 'Backlink Checker', category: 'seo-tools', description: 'SEO backlink building suggestions & resources.', isAsync: false, tags: ['backlinks', 'seo'] },
-  { id: 'seo-score-checker', slug: 'seo-score-checker', title: 'SEO Score Checker', category: 'seo-tools', description: 'Calculate content health scores.', isAsync: false, tags: ['score', 'audit'] },
+  { id: 'backlink-checker', slug: 'backlink-checker', title: 'Backlink Checker', category: 'seo-tools', description: 'SEO backlink building suggestions & resources.', isAsync: true, tags: ['backlinks', 'seo'] },
+  { id: 'seo-score-checker', slug: 'seo-score-checker', title: 'SEO Score Checker', category: 'seo-tools', description: 'Calculate content health scores.', isAsync: true, tags: ['score', 'audit'] },
   { id: 'google-index-checker', slug: 'google-index-checker', title: 'Google Index Checker', category: 'seo-tools', description: 'Check indexability readiness.', isAsync: true, tags: ['google', 'indexing'] },
 
   // --- FILE TOOLS (8 built + 1 upcoming) + 2 new ---
@@ -264,6 +264,10 @@ export const ALL_TOOLS: ToolDefinition[] = [
 
 export function getToolBySlug(slug: string): ToolDefinition | undefined {
   return ALL_TOOLS.find((t) => t.slug === slug);
+}
+
+export function getToolById(id: string): ToolDefinition | undefined {
+  return ALL_TOOLS.find((t) => t.id === id);
 }
 
 export function getCategoryBySlug(slug: string): ToolCategory | undefined {

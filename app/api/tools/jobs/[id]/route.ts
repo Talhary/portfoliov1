@@ -28,6 +28,7 @@ export async function GET(
       updatedAt: job.updatedAt,
     });
   } catch (error: any) {
-    return NextResponse.json({ error: error.message || 'Internal Server Error' }, { status: 500 });
+    console.error('Job status error:', error);
+    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
   }
 }
