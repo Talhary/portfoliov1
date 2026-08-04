@@ -10,6 +10,7 @@ const Section = ({ className }: { className?: string }) => {
         alt="Logo"
         width={200}
         height={200}
+        priority
       />
     </div>
     <div>
