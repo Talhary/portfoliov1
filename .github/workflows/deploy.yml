@@ -30,6 +30,8 @@ jobs:
             --build-arg BLOG_API_KEY="${{ secrets.BLOG_API_KEY }}" \
             --build-arg UPLOADTHING_TOKEN="${{ secrets.UPLOADTHING_TOKEN }}" \
             --build-arg MEDIA_DOWNLOAD_API_URL="${{ secrets.MEDIA_DOWNLOAD_API_URL }}" \
+            --build-arg OPENAI_API_BASE="${{ secrets.OPENAI_API_BASE }}" \
+            --build-arg OPENAI_API_KEY="${{ secrets.OPENAI_API_KEY }}" \
             .
           docker save portfolio:latest | gzip > portfolio.tar.gz
 
