@@ -13,15 +13,15 @@ const EducationItem: React.FC<EducationItemProps> = ({ title, duration, descript
     {!isLast && (
       <div className="absolute left-[5px] top-2.5 bottom-0 w-[2px] bg-stone-200 dark:bg-zinc-800 group-hover:bg-primary/40 transition-colors duration-300" />
     )}
-    
+
     {/* Timeline Dot Indicator */}
     <div className="absolute left-0 top-1.5 h-3 w-3 rounded-full bg-primary shadow shadow-primary/50 ring-4 ring-primary/15 transition-all duration-300 group-hover:scale-125" />
- 
+
     {/* Degree Description Glass Card */}
     <div className="relative p-[1px] rounded-2xl overflow-hidden bg-zinc-200 dark:bg-zinc-800/80 hover:bg-gradient-to-br hover:from-primary hover:to-primary-hover transition-all duration-300 hover:shadow-[0_10px_30px_rgba(var(--primary-rgb),0.15)] group-hover:translate-x-1">
       <div className="h-full w-full rounded-2xl bg-zinc-50 dark:bg-card-bg-3/95 p-5 flex flex-col justify-between relative overflow-hidden">
         <div className="absolute top-0 right-0 -mr-12 -mt-12 w-24 h-24 bg-primary/5 rounded-full blur-2xl pointer-events-none group-hover:bg-primary/10 transition-colors duration-300" />
-        
+
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1.5 relative z-10">
           <h3 className="text-lg font-bold text-stone-900 dark:text-zinc-100 tracking-tight transition-colors duration-300 group-hover:text-primary">
             {title}
@@ -30,7 +30,7 @@ const EducationItem: React.FC<EducationItemProps> = ({ title, duration, descript
             {duration}
           </span>
         </div>
-        
+
         {description && (
           <p className="mt-3 text-sm text-stone-500 dark:text-zinc-400 font-light leading-relaxed relative z-10">
             {description}
@@ -45,7 +45,7 @@ const educationData = [
   {
     title: 'Quaid-e-Azam University',
     duration: '2020 — 2024',
-    description: 'Graduated in Mathematics, equipping me with advanced problem-solving capabilities, logical reasoning, and complex analytical thinking skills.',
+    description: 'Bachelor of Science in Computer Science (BSCS), equipping me with advanced problem-solving capabilities, logical reasoning, and complex analytical thinking skills.',
   },
   {
     title: 'Fsc Pre-Engineering',
