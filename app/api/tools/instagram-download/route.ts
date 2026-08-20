@@ -60,22 +60,21 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Media file is too large to proxy." }, { status: 413 });
     }
 
-    // Stream the binary data back to the client
-    const arrayBuffer = await response.arrayBuffer();
-    if (arrayBuffer.byteLength > MAX_DOWNLOAD_BYTES) {
-      return NextResponse.json({ error: "Media file is too large to proxy." }, { status: 413 });
-    }
-    const buffer = Buffer.from(arrayBuffer);
+    // Stream the binary data directly back to the client in real-time
+    const responseHeaders = new Headers();
+    responseHeaders.set("Content-Type", response.headers.get("content-type") || "video/mp4");
+    responseHeaders.set("Content-Disposition", `attachment; filename="instagram_reel_${Date.now()}.mp4"`);
+    responseHeaders.set("Cache-Control", "no-store, max-age=0");
+    responseHeaders.set("X-Content-Type-Options", "nosniff");
 
-    // Return the buffer as a video download stream
-    return new Response(buffer, {
+    const contentLength = response.headers.get("content-length");
+    if (contentLength) {
+      responseHeaders.set("Content-Length", contentLength);
+    }
+
+    return new Response(response.body, {
       status: 200,
-      headers: {
-        "Content-Type": "video/mp4",
-        "Content-Disposition": `attachment; filename="instagram_reel_${Date.now()}.mp4"`,
-        "Cache-Control": "no-store, max-age=0",
-        "X-Content-Type-Options": "nosniff"
-      }
+      headers: responseHeaders,
     });
 
   } catch (error: any) {
