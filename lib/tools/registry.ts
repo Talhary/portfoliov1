@@ -95,6 +95,13 @@ export const TOOL_CATEGORIES: ToolCategory[] = [
     description: 'Token counters, prompt builders, embeddings, image prompts, and RAG visualizers.',
     icon: 'Brain',
   },
+  {
+    id: 'cloud-systems',
+    slug: 'cloud-systems',
+    name: 'Cloud Sandboxes & Systems',
+    description: 'Disposable Docker sandboxes, distributed scrapers, vector PDF compilers, and AI engines.',
+    icon: 'Cpu',
+  },
 ];
 
 export const ALL_TOOLS: ToolDefinition[] = [
@@ -260,6 +267,19 @@ export const ALL_TOOLS: ToolDefinition[] = [
   { id: 'text-to-embeddings', slug: 'text-to-embeddings', title: 'Text to Embeddings', category: 'ai-llm-tools', description: 'Convert text strings into vector arrays to visualize embedding data.', isAsync: false, isNew: true, tags: ['ai', 'embeddings', 'vector'] },
   { id: 'ai-image-prompt-generator', slug: 'ai-image-prompt-generator', title: 'AI Image Prompt Generator', category: 'ai-llm-tools', description: 'Visual builder with dropdowns for style, lighting, camera, and mood to generate AI art prompts.', isAsync: false, isNew: true, tags: ['ai', 'prompt', 'midjourney', 'dalle'] },
   { id: 'rag-chunking-visualizer', slug: 'rag-chunking-visualizer', title: 'RAG Chunking Visualizer', category: 'ai-llm-tools', description: 'Visualize how different chunking strategies split documents before vectorization.', isAsync: false, isNew: true, tags: ['ai', 'rag', 'chunking', 'embeddings'] },
+
+  // --- CLOUD SANDBOXES & SYSTEMS (10 new) ---
+  { id: 'cloud-sandbox', slug: 'cloud-sandbox', title: '5-Minute Cloud Container Sandbox', category: 'cloud-systems', description: 'On-demand disposable Docker containers (VS Code, Web Terminal, Browser) spawned with 5-minute TTL cleanup and Cloudflare tunnels.', isAsync: true, isNew: true, tags: ['docker', 'cloud', 'sandbox', 'vscode', 'terminal'] },
+  { id: 'docker-launcher', slug: 'docker-launcher', title: 'On-Demand Docker Container Deployer', category: 'cloud-systems', description: 'Deploy any public Docker container image (Python, Node.js, Nginx, Go, Deno, Ubuntu) with custom ports and Cloudflare subdomains.', isAsync: true, isNew: true, tags: ['docker', 'container', 'cloud', 'deploy', 'subdomain'] },
+  { id: 'media-downloader', slug: 'media-downloader', title: 'Universal Media & Stream Downloader', category: 'cloud-systems', description: 'High-speed media extraction for TikTok, Instagram Reels, YouTube, X, Reddit, Facebook, Pinterest, SoundCloud, and Spotify.', isAsync: true, isNew: true, tags: ['media', 'video', 'downloader', 'youtube', 'reels'] },
+  { id: 'places-stream', slug: 'places-stream', title: 'Google Places Real-Time Lead Streamer', category: 'cloud-systems', description: 'Streams verified business leads (phone, rating, reviews, address) in real-time over SSE as headless browser scrolls Google Maps.', isAsync: true, isNew: true, tags: ['leads', 'scraper', 'google-maps', 'sse', 'b2b'] },
+  { id: 'contact-scraper', slug: 'contact-scraper', title: 'High-Throughput Go Contact Harvester', category: 'cloud-systems', description: 'Multi-threaded Go crawler navigating entire domains to harvest verified emails, phone numbers, contact forms, and socials.', isAsync: true, isNew: true, tags: ['golang', 'scraper', 'email', 'crawler', 'socials'] },
+  { id: 'cv-builder', slug: 'cv-builder', title: 'Go ATS Resume / CV Vector PDF Builder', category: 'cloud-systems', description: 'Dynamically compiles an ATS-optimized, high-resolution vector PDF resume tailored to specific engineering skill matrices.', isAsync: false, isNew: true, tags: ['golang', 'pdf', 'resume', 'cv', 'ats'] },
+  { id: 'code-runner', slug: 'code-runner', title: 'Sandboxed Polyglot Code Runner', category: 'cloud-systems', description: 'Executes Python, Node.js, or Shell scripts in a temporary isolated Docker environment with stdout/stderr capture.', isAsync: true, isNew: true, tags: ['docker', 'python', 'nodejs', 'bash', 'sandbox'] },
+  { id: 'ai-blog-generator', slug: 'ai-blog-generator', title: 'Gemini AI Technical Blog Generator', category: 'cloud-systems', description: 'Scouts software engineering topics and generates in-depth technical markdown articles with Google Gemini 2.5 Flash.', isAsync: false, isNew: true, tags: ['ai', 'gemini', 'blog', 'markdown', 'system-design'] },
+  { id: 'duck-search', slug: 'duck-search', title: 'Headless DuckDuckGo Search & AI Summary', category: 'cloud-systems', description: 'Anti-bot headless search engine returning organic web results paired with generative AI summaries.', isAsync: true, isNew: true, tags: ['search', 'anti-bot', 'ai', 'duckduckgo', 'scraper'] },
+  { id: 'browser-cdp', slug: 'browser-cdp', title: 'Browser Network CDP & Screencast Pool', category: 'cloud-systems', description: 'Real-time cluster monitor for remote Chromium worker instances with direct Chrome DevTools Protocol debug endpoints.', isAsync: true, isNew: true, tags: ['chromium', 'cdp', 'puppeteer', 'devtools', 'cluster'] },
+  { id: 'system-suggestions', slug: 'system-suggestions', title: 'Systems Architecture & Engineering Roadmaps', category: 'cloud-systems', description: 'Interactive systems engineering proposals (Bitcask LSM storage, Raft-consensus Redis, distributed browser pools).', isAsync: false, isNew: true, tags: ['architecture', 'lsm-tree', 'raft', 'systems', 'golang'] },
 ];
 
 export function getToolBySlug(slug: string): ToolDefinition | undefined {

@@ -14,6 +14,7 @@ import { SecurityModule } from '@/components/tools/modules/SecurityModule';
 import { SeoModule } from '@/components/tools/modules/SeoModule';
 import { FileToolModule } from '@/components/tools/modules/FileToolModule';
 import { AiLlmModule } from '@/components/tools/modules/AiLlmModule';
+import { CloudSystemsModule } from '@/components/tools/modules/CloudSystemsModule';
 
 export function ToolClientContainer({ tool }: { tool: ToolDefinition }) {
   switch (tool.category) {
@@ -39,6 +40,8 @@ export function ToolClientContainer({ tool }: { tool: ToolDefinition }) {
       return <FileToolModule tool={tool} />;
     case 'ai-llm-tools':
       return <AiLlmModule tool={tool} />;
+    case 'cloud-systems':
+      return <CloudSystemsModule tool={tool} />;
     default:
       return <DeveloperToolModule tool={tool} />;
   }

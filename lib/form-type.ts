@@ -11,8 +11,8 @@ export const formSchema = z.object({
   type: z.string().min(1, {
     message: "Type is required.",
   }),
-  link: z.string().url({
-    message: "Invalid URL format.",
+  link: z.string().min(1, {
+    message: "Link is required.",
   }),
   createdAt: z.date().or(z.string().transform((str) => new Date(str))).default(() => new Date()),
   updatedAt: z.date().or(z.string().transform((str) => new Date(str))).default(() => new Date()),
