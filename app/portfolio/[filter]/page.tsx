@@ -12,6 +12,9 @@ export async function generateMetadata({
   return {
     title: `${category} Projects | Talha Codes - Portfolio`,
     description: `Explore the portfolio of Talha Codes showcasing ${category.toLowerCase()} web development projects. Designed and built using React, Next.js, and modern tools.`,
+    alternates: {
+      canonical: `/portfolio/${filter}`,
+    },
     keywords: [
       `${category} projects`,
       "Talha Codes projects",

@@ -85,6 +85,9 @@ const Highlight = ({ text }: { text: string }) => {
 export const metadata: Metadata = {
   title: "About Talha Codes | Full Stack Software Engineer",
   description: "Learn about Talha Codes' software engineering background, skillset, focus areas in full stack MERN, Next.js, PHP, and bot development, and work experience.",
+  alternates: {
+    canonical: "/about",
+  },
   keywords: [
     "About Talha Codes",
     "Talha Codes Skills",

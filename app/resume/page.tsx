@@ -10,6 +10,9 @@ import { Heading } from "@/components/heading";
 export const metadata: Metadata = {
   title: "Professional Resume & CV | Talha Codes",
   description: "View the education, skills, technical expertise, and career journey of Talha Codes, a Full Stack Software Engineer specializing in modern JavaScript frameworks and database systems.",
+  alternates: {
+    canonical: "/resume",
+  },
   keywords: [
     "Talha Codes Resume",
     "Talha Codes CV",

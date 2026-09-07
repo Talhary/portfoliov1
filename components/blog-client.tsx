@@ -92,6 +92,33 @@ export function BlogClient({
     });
   };
 
+  const buildPageUrl = (targetPage: number) => {
+    const params = new URLSearchParams(searchParams.toString());
+    if (targetPage <= 1) {
+      params.delete('page');
+    } else {
+      params.set('page', targetPage.toString());
+    }
+    const queryString = params.toString();
+    return queryString ? `/blog?${queryString}` : '/blog';
+  };
+
+  const getPageNumbers = () => {
+    const pages: (number | string)[] = [];
+    if (totalPages <= 7) {
+      for (let i = 1; i <= totalPages; i++) pages.push(i);
+    } else {
+      if (currentPage <= 4) {
+        pages.push(1, 2, 3, 4, 5, '...', totalPages);
+      } else if (currentPage >= totalPages - 3) {
+        pages.push(1, '...', totalPages - 4, totalPages - 3, totalPages - 2, totalPages - 1, totalPages);
+      } else {
+        pages.push(1, '...', currentPage - 1, currentPage, currentPage + 1, '...', totalPages);
+      }
+    }
+    return pages;
+  };
+
   const handleSearchSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     updateFilters({ search });
@@ -316,34 +343,72 @@ export function BlogClient({
         )}
       </section>
 
-      {/* ---------------- SECTION 4: PAGINATION ---------------- */}
+      {/* ---------------- SECTION 4: PAGINATION (CRAWLER-FRIENDLY) ---------------- */}
       {totalPages > 1 && !isPending && (
-        <section className="flex justify-center items-center gap-2 mt-6">
-          <button
-            onClick={() => updateFilters({ page: currentPage - 1 })}
-            disabled={currentPage <= 1}
-            className="flex items-center justify-center p-2.5 rounded-xl bg-zinc-100 dark:bg-card-bg-3/60 border border-zinc-200 dark:border-zinc-800/80 text-zinc-800 dark:text-white disabled:opacity-30 disabled:cursor-not-allowed hover:bg-primary/10 hover:border-primary/30 transition-all"
-            title="Previous Page"
-          >
-            <ChevronLeft className="h-5 w-5" />
-          </button>
+        <nav aria-label="Blog pagination" className="flex justify-center items-center gap-1.5 sm:gap-2 mt-8 flex-wrap">
+          {currentPage > 1 ? (
+            <Link
+              href={buildPageUrl(currentPage - 1)}
+              className="flex items-center justify-center p-2.5 rounded-xl bg-zinc-100 dark:bg-card-bg-3/60 border border-zinc-200 dark:border-zinc-800/80 text-zinc-800 dark:text-white hover:bg-primary/10 hover:border-primary/30 transition-all"
+              title="Previous Page"
+              aria-label="Previous Page"
+            >
+              <ChevronLeft className="h-5 w-5" />
+            </Link>
+          ) : (
+            <span
+              className="flex items-center justify-center p-2.5 rounded-xl bg-zinc-100 dark:bg-card-bg-3/60 border border-zinc-200 dark:border-zinc-800/80 text-zinc-800 dark:text-white opacity-30 cursor-not-allowed"
+              aria-disabled="true"
+            >
+              <ChevronLeft className="h-5 w-5" />
+            </span>
+          )}
 
-          <div className="flex items-center gap-1.5 px-4 text-sm font-semibold text-zinc-700 dark:text-zinc-400">
-            <span>Page</span>
-            <span className="text-primary font-bold">{currentPage}</span>
-            <span>of</span>
-            <span>{totalPages}</span>
+          <div className="flex items-center gap-1 sm:gap-1.5">
+            {getPageNumbers().map((p, idx) => {
+              if (typeof p === 'string') {
+                return (
+                  <span key={`ellipsis-${idx}`} className="px-2 text-zinc-400 select-none">
+                    {p}
+                  </span>
+                );
+              }
+              const isCurrent = p === currentPage;
+              return (
+                <Link
+                  key={p}
+                  href={buildPageUrl(p)}
+                  className={`flex items-center justify-center min-w-[36px] sm:min-w-[40px] h-[36px] sm:h-[40px] px-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all ${
+                    isCurrent
+                      ? 'bg-primary text-black font-bold shadow-md shadow-primary/20'
+                      : 'bg-zinc-100 dark:bg-card-bg-3/60 border border-zinc-200 dark:border-zinc-800/80 text-zinc-700 dark:text-zinc-300 hover:bg-primary/10 hover:border-primary/30 hover:text-primary'
+                  }`}
+                  aria-current={isCurrent ? 'page' : undefined}
+                >
+                  {p}
+                </Link>
+              );
+            })}
           </div>
 
-          <button
-            onClick={() => updateFilters({ page: currentPage + 1 })}
-            disabled={currentPage >= totalPages}
-            className="flex items-center justify-center p-2.5 rounded-xl bg-zinc-100 dark:bg-card-bg-3/60 border border-zinc-200 dark:border-zinc-800/80 text-zinc-800 dark:text-white disabled:opacity-30 disabled:cursor-not-allowed hover:bg-primary/10 hover:border-primary/30 transition-all"
-            title="Next Page"
-          >
-            <ChevronRight className="h-5 w-5" />
-          </button>
-        </section>
+          {currentPage < totalPages ? (
+            <Link
+              href={buildPageUrl(currentPage + 1)}
+              className="flex items-center justify-center p-2.5 rounded-xl bg-zinc-100 dark:bg-card-bg-3/60 border border-zinc-200 dark:border-zinc-800/80 text-zinc-800 dark:text-white hover:bg-primary/10 hover:border-primary/30 transition-all"
+              title="Next Page"
+              aria-label="Next Page"
+            >
+              <ChevronRight className="h-5 w-5" />
+            </Link>
+          ) : (
+            <span
+              className="flex items-center justify-center p-2.5 rounded-xl bg-zinc-100 dark:bg-card-bg-3/60 border border-zinc-200 dark:border-zinc-800/80 text-zinc-800 dark:text-white opacity-30 cursor-not-allowed"
+              aria-disabled="true"
+            >
+              <ChevronRight className="h-5 w-5" />
+            </span>
+          )}
+        </nav>
       )}
 
       {/* Visually stunning layout section separator */}

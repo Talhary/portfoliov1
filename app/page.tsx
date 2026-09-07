@@ -13,6 +13,8 @@ import { ContactForm } from '@/app/contact/_components/form';
 import Link from 'next/link';
 import { GitHubStats } from '@/components/github-stats';
 
+import { db } from "@/lib/db";
+
 export const dynamic = "force-dynamic";
 
 // Data definitions imported from original page contents to keep details synchronized
@@ -85,6 +87,9 @@ const Highlight = ({ text }: { text: string }) => {
 export const metadata: Metadata = {
   title: "Talha Codes | Full Stack Software Engineer Portfolio",
   description: "Talha Codes - Full Stack Software Engineer based in Islamabad. Specializing in MERN stack, Next.js, React, Node.js, PHP, and bot development.",
+  alternates: {
+    canonical: "/",
+  },
   keywords: [
     "Talha Codes",
     "Full Stack Software Engineer",
@@ -107,8 +112,93 @@ export const metadata: Metadata = {
 export default async function Home() {
   const projects = await GetAllProjects('all');
 
+  let recentBlogs: Array<{
+    id: string;
+    title: string;
+    slug: string;
+    description: string;
+    imageUrl: string | null;
+    createdAt: Date;
+    tags: string[];
+  }> = [];
+
+  try {
+    recentBlogs = await db.blogPost.findMany({
+      where: { published: true },
+      orderBy: { createdAt: 'desc' },
+      take: 3,
+      select: {
+        id: true,
+        title: true,
+        slug: true,
+        description: true,
+        imageUrl: true,
+        createdAt: true,
+        tags: true,
+      },
+    });
+  } catch (error) {
+    console.error("Failed to fetch recent blogs for homepage:", error);
+  }
+
+  const siteUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://talhacodes.site';
+
+  const personSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name: 'Talha',
+    alternateName: 'Talha Codes',
+    url: siteUrl,
+    jobTitle: 'Full Stack Software Engineer',
+    worksFor: {
+      '@type': 'Organization',
+      name: 'Woltrio',
+    },
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: 'Islamabad',
+      addressCountry: 'PK',
+    },
+    sameAs: [
+      'https://github.com/Talha-Woltrio',
+      'https://linkedin.com/in/talhacodes',
+    ],
+    knowsAbout: [
+      'Full Stack Development',
+      'Next.js',
+      'React',
+      'Node.js',
+      'TypeScript',
+      'PostgreSQL',
+      'MongoDB',
+      'Docker',
+      'Web Automation',
+    ],
+  };
+
+  const websiteSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: 'Talha Codes',
+    url: siteUrl,
+    description: 'Full Stack Software Engineer Portfolio, Developer Tools, and Technical Blog',
+    potentialAction: {
+      '@type': 'SearchAction',
+      target: `${siteUrl}/blog?search={search_term_string}`,
+      'query-input': 'required name=search_term_string',
+    },
+  };
+
   return (
     <div className="w-full flex flex-col gap-16 py-6 pb-4 scroll-smooth">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+      />
       {/* ---------------- SECTION 1: ABOUT ME ---------------- */}
       <section id="about" className="relative group">
         <div className="px-2 md:px-4 text-neutral-800 dark:text-neutral-200">
@@ -291,7 +381,81 @@ export default async function Home() {
         </div>
       </section>
 
+      {/* ---------------- SECTION 3.5: LATEST TECHNICAL ARTICLES ---------------- */}
+      {recentBlogs.length > 0 && (
+        <>
+          <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-white/10 to-transparent dark:via-zinc-800" />
+          <section id="latest-blogs" className="relative group">
+            <div className="px-2 md:px-4 text-neutral-800 dark:text-neutral-200">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-6">
+                <div>
+                  <Heading title="Latest Technical Articles" as="h2" />
+                  <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-1 font-light">
+                    Practical engineering insights, architecture deep-dives, and tutorials.
+                  </p>
+                </div>
+                <Link
+                  href="/blog"
+                  className="inline-flex items-center gap-1.5 text-xs font-semibold text-primary hover:underline group/all shrink-0 self-start sm:self-auto"
+                >
+                  <span>View all articles</span>
+                  <ArrowRight className="h-3.5 w-3.5 transition-transform duration-200 group-hover/all:translate-x-1" />
+                </Link>
+              </div>
 
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {recentBlogs.map((post) => (
+                  <Link
+                    key={post.id}
+                    href={`/blog/${post.slug}`}
+                    className="group/card flex flex-col bg-zinc-50 dark:bg-card-bg-3/60 border border-zinc-200 dark:border-zinc-800/80 dark:backdrop-blur-xl rounded-2xl overflow-hidden hover:border-primary/30 transition-all duration-300 hover:-translate-y-1 shadow-sm"
+                  >
+                    {post.imageUrl && (
+                      <div className="w-full aspect-[16/9] relative overflow-hidden bg-zinc-100 dark:bg-zinc-900">
+                        <img
+                          src={post.imageUrl}
+                          alt={post.title}
+                          className="w-full h-full object-cover transition-transform duration-300 group-hover/card:scale-105"
+                        />
+                      </div>
+                    )}
+                    <div className="p-5 flex flex-col flex-1">
+                      <div className="flex items-center gap-2 mb-2">
+                        {post.tags.slice(0, 2).map((tag) => (
+                          <span
+                            key={tag}
+                            className="text-[10px] font-semibold uppercase tracking-wider text-primary bg-primary/10 px-2 py-0.5 rounded-md"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                      <h3 className="font-bold text-base text-zinc-900 dark:text-white line-clamp-2 mb-2 group-hover/card:text-primary transition-colors">
+                        {post.title}
+                      </h3>
+                      <p className="text-xs text-zinc-600 dark:text-zinc-400 line-clamp-3 font-light mb-4 flex-1">
+                        {post.description}
+                      </p>
+                      <div className="flex items-center justify-between text-[11px] text-zinc-500 dark:text-zinc-400 pt-3 border-t border-zinc-200/50 dark:border-zinc-800/60 mt-auto">
+                        <span>
+                          {new Date(post.createdAt).toLocaleDateString('en-US', {
+                            month: 'short',
+                            day: 'numeric',
+                            year: 'numeric',
+                          })}
+                        </span>
+                        <span className="text-primary font-medium flex items-center gap-1 group-hover/card:underline">
+                          Read <ArrowRight className="h-3 w-3" />
+                        </span>
+                      </div>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </section>
+        </>
+      )}
 
       {/* ---------------- SECTION 4: CONTACT ---------------- */}
       <section id="contact" className="relative group">

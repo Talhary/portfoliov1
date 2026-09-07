@@ -9,9 +9,29 @@ import LayoutWrapper from "@/components/layout-wrapper";
 
 const inter = Inter({ subsets: ["latin"] });
 
+const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "https://talhacodes.site";
+
 export const metadata: Metadata = {
-  title: "Talha Codes",
-  description: "Talha Codes - Full Stack Software Engineer Portfolio.",
+  metadataBase: new URL(baseUrl),
+  title: {
+    default: "Talha Codes | Full Stack Software Engineer Portfolio & Tech Blog",
+    template: "%s | Talha Codes",
+  },
+  description: "Talha Codes - Full Stack Software Engineer based in Islamabad. Specializing in MERN stack, Next.js, React, Node.js, TypeScript, PostgreSQL, and high-performance developer tools.",
+  alternates: {
+    canonical: "/",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
   verification: {
     google: [
       "wHIxtQ2Ehw-Z4mysz4nMFthsRdGwaCmbnp72t9r7mkI",

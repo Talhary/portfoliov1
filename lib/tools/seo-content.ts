@@ -161,7 +161,7 @@ export function getToolSeoContent(tool: ToolDefinition): ToolSeoContent {
     },
     {
       title: 'End-to-End Transport Encryption',
-      description: 'All traffic between your client browser and WebVix infrastructure is encrypted using 256-bit SSL/TLS 1.3 with strict HSTS policies.',
+      description: 'All traffic between your client browser and Talha Codes infrastructure is encrypted using 256-bit SSL/TLS 1.3 with strict HSTS policies.',
       badge: '256-bit HTTPS',
     },
     {
@@ -230,7 +230,7 @@ export function getToolSeoContent(tool: ToolDefinition): ToolSeoContent {
       },
       creator: {
         '@type': 'Organization',
-        name: 'WebVix Tools',
+        name: 'Talha Codes Tools',
         url: baseUrl,
       },
     },

@@ -6,26 +6,43 @@ export const dynamic = 'force-dynamic';
 
 export async function GET() {
   const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://talhacodes.site';
-  const now = new Date().toISOString();
+  const siteLaunchDate = '2026-07-06T00:00:00.000Z';
+  const toolsReleaseDate = '2026-08-20T00:00:00.000Z';
 
   const urls: Array<{ url: string; lastmod: string; changefreq: string; priority: string }> = [];
 
+  // Fetch blogs first so we know the most recent update date for the blog index and homepage
+  let blogs: Array<{ slug: string; updatedAt: Date }> = [];
+  try {
+    blogs = await db.blogPost.findMany({
+      where: { published: true },
+      orderBy: { updatedAt: 'desc' },
+      select: { slug: true, updatedAt: true },
+    });
+  } catch (error) {
+    console.error('Sitemap error fetching blogs:', error);
+  }
+
+  const latestBlogDate = blogs.length > 0 && blogs[0].updatedAt
+    ? new Date(blogs[0].updatedAt).toISOString()
+    : siteLaunchDate;
+
   // 1. Static core pages
   const staticPages = [
-    { url: baseUrl, priority: '1.0', changefreq: 'daily' },
-    { url: `${baseUrl}/tools`, priority: '1.0', changefreq: 'daily' },
-    { url: `${baseUrl}/portfolio/all`, priority: '0.9', changefreq: 'weekly' },
-    { url: `${baseUrl}/blog`, priority: '0.8', changefreq: 'weekly' },
-    { url: `${baseUrl}/about`, priority: '0.8', changefreq: 'monthly' },
-    { url: `${baseUrl}/resume`, priority: '0.8', changefreq: 'monthly' },
-    { url: `${baseUrl}/contact`, priority: '0.8', changefreq: 'monthly' },
-    { url: `${baseUrl}/tools/instagram-reels-downloader`, priority: '0.9', changefreq: 'weekly' },
+    { url: baseUrl, priority: '1.0', changefreq: 'daily', lastmod: latestBlogDate },
+    { url: `${baseUrl}/tools`, priority: '1.0', changefreq: 'daily', lastmod: toolsReleaseDate },
+    { url: `${baseUrl}/portfolio/all`, priority: '0.9', changefreq: 'weekly', lastmod: toolsReleaseDate },
+    { url: `${baseUrl}/blog`, priority: '0.9', changefreq: 'daily', lastmod: latestBlogDate },
+    { url: `${baseUrl}/about`, priority: '0.8', changefreq: 'monthly', lastmod: siteLaunchDate },
+    { url: `${baseUrl}/resume`, priority: '0.8', changefreq: 'monthly', lastmod: siteLaunchDate },
+    { url: `${baseUrl}/contact`, priority: '0.8', changefreq: 'monthly', lastmod: siteLaunchDate },
+    { url: `${baseUrl}/tools/instagram-reels-downloader`, priority: '0.9', changefreq: 'weekly', lastmod: toolsReleaseDate },
   ];
 
   for (const p of staticPages) {
     urls.push({
       url: p.url,
-      lastmod: now,
+      lastmod: p.lastmod,
       changefreq: p.changefreq,
       priority: p.priority,
     });
@@ -35,7 +52,7 @@ export async function GET() {
   for (const cat of TOOL_CATEGORIES) {
     urls.push({
       url: `${baseUrl}/tools/${cat.slug}`,
-      lastmod: now,
+      lastmod: toolsReleaseDate,
       changefreq: 'weekly',
       priority: '0.9',
     });
@@ -45,7 +62,7 @@ export async function GET() {
   for (const tool of ALL_TOOLS) {
     urls.push({
       url: `${baseUrl}/tools/${tool.category}/${tool.slug}`,
-      lastmod: now,
+      lastmod: toolsReleaseDate,
       changefreq: 'weekly',
       priority: '0.8',
     });
@@ -60,7 +77,7 @@ export async function GET() {
     for (const project of projects) {
       urls.push({
         url: `${baseUrl}/portfolio/project/${project.id}`,
-        lastmod: project.updatedAt ? new Date(project.updatedAt).toISOString() : now,
+        lastmod: project.updatedAt ? new Date(project.updatedAt).toISOString() : siteLaunchDate,
         changefreq: 'weekly',
         priority: '0.8',
       });
@@ -76,7 +93,7 @@ export async function GET() {
     for (const cat of categories) {
       urls.push({
         url: `${baseUrl}/portfolio/${cat.value}`,
-        lastmod: now,
+        lastmod: siteLaunchDate,
         changefreq: 'weekly',
         priority: '0.7',
       });
@@ -85,22 +102,13 @@ export async function GET() {
     console.error('Sitemap error fetching categories:', error);
   }
 
-  try {
-    const blogs = await db.blogPost.findMany({
-      where: { published: true },
-      orderBy: { updatedAt: 'desc' },
-      select: { slug: true, updatedAt: true },
+  for (const blog of blogs) {
+    urls.push({
+      url: `${baseUrl}/blog/${blog.slug}`,
+      lastmod: blog.updatedAt ? new Date(blog.updatedAt).toISOString() : siteLaunchDate,
+      changefreq: 'weekly',
+      priority: '0.8',
     });
-    for (const blog of blogs) {
-      urls.push({
-        url: `${baseUrl}/blog/${blog.slug}`,
-        lastmod: blog.updatedAt ? new Date(blog.updatedAt).toISOString() : now,
-        changefreq: 'weekly',
-        priority: '0.8',
-      });
-    }
-  } catch (error) {
-    console.error('Sitemap error fetching blogs:', error);
   }
 
   // Build clean XML string

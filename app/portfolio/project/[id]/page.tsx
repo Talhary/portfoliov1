@@ -12,7 +12,7 @@ export async function generateMetadata({
 
   if (!project.data) {
     return {
-      title: "Project Not Found | Talha Riaz",
+      title: "Project Not Found | Talha Codes",
       description: "The requested project could not be found."
     };
   }
@@ -39,6 +39,9 @@ export async function generateMetadata({
   return {
     title,
     description,
+    alternates: {
+      canonical: `/portfolio/project/${id}`,
+    },
     keywords: [
       project.data.title,
       "Talha Codes project",

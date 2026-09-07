@@ -15,37 +15,97 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
+      # Generate .env file from GitHub Actions Secrets for build time and VPS deployment
+      - name: Generate .env from Secrets
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          UPLOADTHING_SECRET: ${{ secrets.UPLOADTHING_SECRET }}
+          JWT_KEY: ${{ secrets.JWT_KEY }}
+          AUTH_SECRET: ${{ secrets.AUTH_SECRET }}
+          UPLOADTHING_APP_ID: ${{ secrets.UPLOADTHING_APP_ID }}
+          GMAIL_PASS: ${{ secrets.GMAIL_PASS }}
+          GMAIL: ${{ secrets.GMAIL }}
+          JWT_TOKEN: ${{ secrets.JWT_TOKEN }}
+          BLOG_API_KEY: ${{ secrets.BLOG_API_KEY }}
+          UPLOADTHING_TOKEN: ${{ secrets.UPLOADTHING_TOKEN }}
+          MEDIA_DOWNLOAD_API_URL: ${{ secrets.MEDIA_DOWNLOAD_API_URL }}
+          OPENAI_API_BASE: ${{ secrets.OPENAI_API_BASE }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          PORTFOLIO_API_KEY: ${{ secrets.PORTFOLIO_API_KEY }}
+          PORTFOLIO_DOMAIN: ${{ secrets.PORTFOLIO_DOMAIN }}
+          NEXT_PUBLIC_APP_URL: ${{ secrets.NEXT_PUBLIC_APP_URL }}
+        run: |
+          cat << EOF > .env
+          DATABASE_URL=$DATABASE_URL
+          UPLOADTHING_SECRET=$UPLOADTHING_SECRET
+          JWT_KEY=$JWT_KEY
+          AUTH_SECRET=$AUTH_SECRET
+          UPLOADTHING_APP_ID=$UPLOADTHING_APP_ID
+          GMAIL_PASS=$GMAIL_PASS
+          GMAIL=$GMAIL
+          JWT_TOKEN=$JWT_TOKEN
+          BLOG_API_KEY=$BLOG_API_KEY
+          UPLOADTHING_TOKEN=$UPLOADTHING_TOKEN
+          MEDIA_DOWNLOAD_API_URL=$MEDIA_DOWNLOAD_API_URL
+          OPENAI_API_BASE=$OPENAI_API_BASE
+          OPENAI_API_KEY=$OPENAI_API_KEY
+          PORTFOLIO_API_KEY=$PORTFOLIO_API_KEY
+          PORTFOLIO_DOMAIN=$PORTFOLIO_DOMAIN
+          NEXT_PUBLIC_APP_URL=$NEXT_PUBLIC_APP_URL
+          EOF
+          cp .env .env.production
+
       # Build the Docker image on GitHub Actions runner (saves VPS RAM/CPU)
       - name: Build and Export Docker Image
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          UPLOADTHING_SECRET: ${{ secrets.UPLOADTHING_SECRET }}
+          JWT_KEY: ${{ secrets.JWT_KEY }}
+          AUTH_SECRET: ${{ secrets.AUTH_SECRET }}
+          UPLOADTHING_APP_ID: ${{ secrets.UPLOADTHING_APP_ID }}
+          GMAIL_PASS: ${{ secrets.GMAIL_PASS }}
+          GMAIL: ${{ secrets.GMAIL }}
+          JWT_TOKEN: ${{ secrets.JWT_TOKEN }}
+          BLOG_API_KEY: ${{ secrets.BLOG_API_KEY }}
+          UPLOADTHING_TOKEN: ${{ secrets.UPLOADTHING_TOKEN }}
+          MEDIA_DOWNLOAD_API_URL: ${{ secrets.MEDIA_DOWNLOAD_API_URL }}
+          OPENAI_API_BASE: ${{ secrets.OPENAI_API_BASE }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          PORTFOLIO_API_KEY: ${{ secrets.PORTFOLIO_API_KEY }}
+          PORTFOLIO_DOMAIN: ${{ secrets.PORTFOLIO_DOMAIN }}
+          NEXT_PUBLIC_APP_URL: ${{ secrets.NEXT_PUBLIC_APP_URL }}
         run: |
           docker build -t portfolio:latest \
-            --build-arg DATABASE_URL="${{ secrets.DATABASE_URL }}" \
-            --build-arg UPLOADTHING_SECRET="${{ secrets.UPLOADTHING_SECRET }}" \
-            --build-arg JWT_KEY="${{ secrets.JWT_KEY }}" \
-            --build-arg AUTH_SECRET="${{ secrets.AUTH_SECRET }}" \
-            --build-arg UPLOADTHING_APP_ID="${{ secrets.UPLOADTHING_APP_ID }}" \
-            --build-arg GMAIL_PASS="${{ secrets.GMAIL_PASS }}" \
-            --build-arg GMAIL="${{ secrets.GMAIL }}" \
-            --build-arg JWT_TOKEN="${{ secrets.JWT_TOKEN }}" \
-            --build-arg BLOG_API_KEY="${{ secrets.BLOG_API_KEY }}" \
-            --build-arg UPLOADTHING_TOKEN="${{ secrets.UPLOADTHING_TOKEN }}" \
-            --build-arg MEDIA_DOWNLOAD_API_URL="${{ secrets.MEDIA_DOWNLOAD_API_URL }}" \
-            --build-arg OPENAI_API_BASE="${{ secrets.OPENAI_API_BASE }}" \
-            --build-arg OPENAI_API_KEY="${{ secrets.OPENAI_API_KEY }}" \
+            --build-arg DATABASE_URL="$DATABASE_URL" \
+            --build-arg UPLOADTHING_SECRET="$UPLOADTHING_SECRET" \
+            --build-arg JWT_KEY="$JWT_KEY" \
+            --build-arg AUTH_SECRET="$AUTH_SECRET" \
+            --build-arg UPLOADTHING_APP_ID="$UPLOADTHING_APP_ID" \
+            --build-arg GMAIL_PASS="$GMAIL_PASS" \
+            --build-arg GMAIL="$GMAIL" \
+            --build-arg JWT_TOKEN="$JWT_TOKEN" \
+            --build-arg BLOG_API_KEY="$BLOG_API_KEY" \
+            --build-arg UPLOADTHING_TOKEN="$UPLOADTHING_TOKEN" \
+            --build-arg MEDIA_DOWNLOAD_API_URL="$MEDIA_DOWNLOAD_API_URL" \
+            --build-arg OPENAI_API_BASE="$OPENAI_API_BASE" \
+            --build-arg OPENAI_API_KEY="$OPENAI_API_KEY" \
+            --build-arg PORTFOLIO_API_KEY="$PORTFOLIO_API_KEY" \
+            --build-arg PORTFOLIO_DOMAIN="$PORTFOLIO_DOMAIN" \
+            --build-arg NEXT_PUBLIC_APP_URL="$NEXT_PUBLIC_APP_URL" \
             .
           docker save portfolio:latest | gzip > portfolio.tar.gz
 
-      # Copy the built Docker image tarball to the VPS
-      - name: Copy Tarball to VPS
+      # Copy the built Docker image tarball and persistent .env to the VPS
+      - name: Copy Tarball and .env to VPS
         uses: appleboy/scp-action@master
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          source: "portfolio.tar.gz"
+          source: "portfolio.tar.gz,.env"
           target: "/home/${{ secrets.SSH_USER }}/"
 
-      # SSH to the VPS, load the image, recreate the container
+      # SSH to the VPS, persist .env, load the image, recreate the container
       - name: SSH to VPS and Run Container
         uses: appleboy/ssh-action@master
         with:
@@ -65,9 +125,20 @@ jobs:
               sudo usermod -aG docker $USER
             fi
 
-            # Create a directory for the portfolio app configuration / environment if not exists
+            # Ensure Docker daemon is enabled to start automatically on VPS boot
+            sudo systemctl enable docker || true
+            sudo systemctl start docker || true
+
+            # Create persistent directory for portfolio app configuration
             sudo mkdir -p /var/www/portfolio
             sudo chown -R $USER:$USER /var/www/portfolio
+
+            # Move .env to persistent path /var/www/portfolio/.env with readable permissions
+            if [ -f "/home/${{ secrets.SSH_USER }}/.env" ]; then
+              mv "/home/${{ secrets.SSH_USER }}/.env" /var/www/portfolio/.env
+              chmod 644 /var/www/portfolio/.env
+              echo "Successfully synced persistent /var/www/portfolio/.env"
+            fi
             
             # Load the Docker image
             sudo docker load -i /home/${{ secrets.SSH_USER }}/portfolio.tar.gz
@@ -77,21 +148,14 @@ jobs:
             sudo docker stop portfolio || true
             sudo docker rm portfolio || true
 
-            # Run the new container (port 3000 locally, reverse proxied by nginx)
-            if [ -f /var/www/portfolio/.env ]; then
-              sudo docker run -d \
-                --name portfolio \
-                --restart always \
-                -p 127.0.0.1:3000:3000 \
-                --env-file /var/www/portfolio/.env \
-                portfolio:latest
-            else
-              sudo docker run -d \
-                --name portfolio \
-                --restart always \
-                -p 127.0.0.1:3000:3000 \
-                portfolio:latest
-            fi
+            # Run the new container with persistent restart policy, env-file, and volume mount
+            sudo docker run -d \
+              --name portfolio \
+              --restart always \
+              -p 127.0.0.1:3000:3000 \
+              --env-file /var/www/portfolio/.env \
+              -v /var/www/portfolio/.env:/app/.env:ro \
+              portfolio:latest
 
             # Clean up old unused images, containers, and build cache to save disk space
             sudo docker system prune -a -f

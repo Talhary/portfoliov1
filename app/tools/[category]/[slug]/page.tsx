@@ -33,7 +33,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   if (!tool) {
     return {
-      title: 'Tool Not Found | WebVix',
+      title: 'Tool Not Found | Talha Codes',
     };
   }
 
@@ -52,7 +52,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: tool.description,
       url: pageUrl,
       type: 'website',
-      siteName: 'WebVix Developer Tools',
+      siteName: 'Talha Codes Developer Tools',
     },
     twitter: {
       card: 'summary_large_image',

@@ -6,6 +6,9 @@ import Component from '@/app/contact/_components/contact'
 export const metadata: Metadata = {
   title: "Contact Talha Codes | Hire Full Stack Developer",
   description: "Get in touch with Talha Codes, a Full Stack Software Engineer based in Islamabad. Send a message to discuss project details, jobs, or collaborations.",
+  alternates: {
+    canonical: "/contact",
+  },
   keywords: [
     "Contact Talha Codes",
     "Talha Codes email",
