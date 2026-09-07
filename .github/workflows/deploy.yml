@@ -35,7 +35,7 @@ jobs:
           PORTFOLIO_DOMAIN: ${{ secrets.PORTFOLIO_DOMAIN }}
           NEXT_PUBLIC_APP_URL: ${{ secrets.NEXT_PUBLIC_APP_URL }}
         run: |
-          cat << EOF > .env
+          cat << EOF | sed 's/^[ \t]*//' > .env
           DATABASE_URL=$DATABASE_URL
           UPLOADTHING_SECRET=$UPLOADTHING_SECRET
           JWT_KEY=$JWT_KEY
