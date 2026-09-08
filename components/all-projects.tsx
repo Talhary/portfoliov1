@@ -10,6 +10,29 @@ import React from 'react';
 
 // Math formula to generate a deterministic premium color theme based on project title
 const getProjectColors = (title: string) => {
+  const lowerTitle = (title || '').toLowerCase();
+
+  // Custom brand colors for MJ Academy: Vibrant Red (#FF1B1C) & Deep Carbon Black
+  if (lowerTitle.includes('mj acedemy') || lowerTitle.includes('mj academy') || lowerTitle.includes('datanodes')) {
+    const primary = 'hsl(359, 92%, 52%)'; // #FF1B1C iconic vibrant red
+    const hover = 'hsl(359, 92%, 44%)';
+    const gradientEnd = 'hsl(350, 85%, 36%)'; // dark crimson transition to carbon black
+    const gradientEndHover = 'hsl(350, 90%, 28%)';
+    return {
+      primary,
+      hover,
+      gradientEnd,
+      gradientEndHover,
+      rgb: '255, 27, 28',
+      badgeBgLight: 'hsl(359, 100%, 96%)',
+      badgeBorderLight: 'hsl(359, 85%, 85%)',
+      badgeTextLight: 'hsl(359, 90%, 40%)',
+      badgeBgDark: 'hsla(359, 90%, 18%, 0.35)',
+      badgeBorderDark: 'hsla(359, 80%, 45%, 0.35)',
+      badgeTextDark: 'hsl(359, 100%, 75%)',
+    };
+  }
+
   let hash = 0;
   for (let i = 0; i < title.length; i++) {
     hash = title.charCodeAt(i) + ((hash << 5) - hash);
