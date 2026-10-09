@@ -6,17 +6,17 @@ import Link from 'next/link';
 import { FiArrowLeft, FiCode, FiCpu, FiTerminal } from 'react-icons/fi';
 
 export const metadata: Metadata = {
-  title: "Sandboxed Polyglot Code Runner | Python, Node.js, Shell - Talha Codes",
+  title: "Sandboxed Polyglot Code Runner | Python, Node.js, Shell - talhatechs",
   description: "Execute Python, Node.js, and Shell scripts in an ephemeral, isolated Docker container sandbox with real-time stdout/stderr capture and execution metrics.",
   keywords: [
     "Polyglot Code Runner",
     "Online Python Sandbox",
     "Node.js Runner Online",
     "Docker Code Execution",
-    "Talha Codes Tools"
+    "talhatechs Tools"
   ],
   openGraph: {
-    title: "Sandboxed Polyglot Code Runner | Talha Codes",
+    title: "Sandboxed Polyglot Code Runner | talhatechs",
     description: "Execute Python, Node.js, and Shell code in a secure container sandbox with execution metrics.",
     type: "website",
     url: "https://talhacodes.site/tools/code-runner",

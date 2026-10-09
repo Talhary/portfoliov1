@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { FiArrowLeft, FiDownloadCloud, FiZap, FiShield } from 'react-icons/fi';
 
 export const metadata: Metadata = {
-  title: "Universal Media & Video Downloader | 9+ Platforms - Talha Codes",
+  title: "Universal Media & Video Downloader | 9+ Platforms - talhatechs",
   description: "High-speed media downloader supporting TikTok, Instagram, YouTube, X/Twitter, Reddit, Facebook, Pinterest, SoundCloud, and Spotify without watermarks.",
   keywords: [
     "Universal Media Downloader",
@@ -15,10 +15,10 @@ export const metadata: Metadata = {
     "YouTube 1080p Downloader",
     "Twitter Video Downloader",
     "SoundCloud Downloader",
-    "Talha Codes Tools"
+    "talhatechs Tools"
   ],
   openGraph: {
-    title: "Universal Media & Video Downloader | Talha Codes",
+    title: "Universal Media & Video Downloader | talhatechs",
     description: "Download video and audio streams across TikTok, Instagram, YouTube, X, Reddit, Spotify, and more.",
     type: "website",
     url: "https://talhacodes.site/tools/media-downloader",

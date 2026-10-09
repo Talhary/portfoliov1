@@ -1,9 +1,7 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import Aside from "@/components/aside";
 import { Navbar } from "@/components/navbar";
-import { StickyAside } from "@/components/sticky-aside";
 import { GetToTopButton } from "@/components/get-to-top";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
@@ -30,9 +28,14 @@ export default function LayoutWrapper({ children }: { children: React.ReactNode 
             >
               T
             </Link>
+            <div className="flex items-center gap-1.5">
+              <span className="font-extrabold text-base sm:text-lg tracking-tight text-zinc-900 dark:text-white">
+                talha<span className="text-primary font-black">techs</span>
+              </span>
+            </div>
             <Link 
               href="/portfolio/all" 
-              className="flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-zinc-500 hover:text-primary transition-colors group"
+              className="flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-zinc-500 hover:text-primary transition-colors group ml-2"
             >
               <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-0.5" />
               <span>Back to Portfolio</span>
@@ -46,7 +49,7 @@ export default function LayoutWrapper({ children }: { children: React.ReactNode 
               Tools Catalog
             </Link>
             <div className="text-xs text-zinc-400 dark:text-zinc-500 font-light max-sm:hidden">
-              Talha Codes Tools
+              talhatechs Tools
             </div>
           </div>
         </header>
@@ -59,19 +62,16 @@ export default function LayoutWrapper({ children }: { children: React.ReactNode 
     );
   }
 
-  // Default Sidebar + Navbar layout for all other portfolio sections
+  // Company Layout without sidebar
   return (
-    <>
-      <StickyAside>
-        <Aside />
-      </StickyAside>
-      <div className='flex-auto max-md:ml-0 relative min-w-0 max-w-full overflow-hidden'>
-        <Navbar className='z-50' />
-        <div className="bg-zinc-50 dark:bg-big-card border-0 sm:border border-zinc-200 dark:border-none shadow-none sm:shadow-sm dark:shadow-black relative ml-0 text-zinc-900 dark:text-zinc-100 m-0 rounded-none sm:rounded-2xl p-3 sm:p-5 w-full max-w-full overflow-hidden">
+    <div className="min-h-screen w-full flex flex-col bg-zinc-50 dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100">
+      <Navbar />
+      <main className="flex-1 w-full max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-6 sm:py-8">
+        <div className="bg-zinc-50 dark:bg-big-card border-0 sm:border border-zinc-200 dark:border-zinc-800/70 shadow-none sm:shadow-sm dark:shadow-black/50 relative text-zinc-900 dark:text-zinc-100 rounded-none sm:rounded-2xl p-4 sm:p-7 w-full overflow-hidden">
           <GetToTopButton />
           {children}
         </div>
-      </div>
-    </>
+      </main>
+    </div>
   );
 }

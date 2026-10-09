@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { FiArrowLeft, FiShield, FiCpu, FiServer, FiLock } from 'react-icons/fi';
 
 export const metadata: Metadata = {
-  title: "5-Minute Cloud Container Sandbox | VS Code & Terminal - Talha Codes",
+  title: "5-Minute Cloud Container Sandbox | VS Code & Terminal - talhatechs",
   description: "Launch disposable, isolated Docker containers (VS Code, Web Terminal, Remote Chromium) with automated 5-minute TTL cleanup and Cloudflare HTTPS subdomains.",
   keywords: [
     "Cloud Sandbox",
@@ -14,11 +14,11 @@ export const metadata: Metadata = {
     "VS Code Online",
     "Web Terminal",
     "Cloudflare Named Tunnels",
-    "Talha Codes Tools",
+    "talhatechs Tools",
     "Disposable Containers"
   ],
   openGraph: {
-    title: "5-Minute Cloud Container Sandbox | Talha Codes",
+    title: "5-Minute Cloud Container Sandbox | talhatechs",
     description: "Launch disposable, isolated Docker containers (VS Code, Web Terminal, Remote Chromium) with automated 5-minute TTL cleanup.",
     type: "website",
     url: "https://talhacodes.site/tools/cloud-sandbox",

@@ -12,7 +12,7 @@ export async function generateMetadata({
 
   if (!project.data) {
     return {
-      title: "Project Not Found | Talha Codes",
+      title: "Project Not Found | talhatechs",
       description: "The requested project could not be found."
     };
   }
@@ -33,8 +33,8 @@ export async function generateMetadata({
       .substring(0, 160);
   };
 
-  const title = `${project.data.title} | Talha Codes Project`;
-  const description = stripMarkdown(project.data.description) || `View details of ${project.data.title}, a project built by Talha Codes.`;
+  const title = `${project.data.title} | talhatechs Project`;
+  const description = stripMarkdown(project.data.description) || `View details of ${project.data.title}, engineered by talhatechs (Founded by Muhammad Talha).`;
 
   return {
     title,
@@ -44,7 +44,8 @@ export async function generateMetadata({
     },
     keywords: [
       project.data.title,
-      "Talha Codes project",
+      "talhatechs project",
+      "Muhammad Talha",
       "portfolio project",
       "web design",
       ...project.data.type.split('|').map((t: string) => t.trim())

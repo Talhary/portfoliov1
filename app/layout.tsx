@@ -14,10 +14,10 @@ const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "https://talhacodes.site";
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
   title: {
-    default: "Talha Codes | Full Stack Software Engineer Portfolio & Tech Blog",
-    template: "%s | Talha Codes",
+    default: "talhatechs | High-Performance Software Engineering & Developer Tools",
+    template: "%s | talhatechs",
   },
-  description: "Talha Codes - Full Stack Software Engineer based in Islamabad. Specializing in MERN stack, Next.js, React, Node.js, TypeScript, PostgreSQL, and high-performance developer tools.",
+  description: "talhatechs is a modern software engineering company founded by Muhammad Talha. Home of Noyare (forensic system monitor for Windows), scalable web architectures, and high-performance developer tools.",
   alternates: {
     canonical: "/",
   },
@@ -68,7 +68,7 @@ export default async function RootLayout({
       <head>
         <style dangerouslySetInnerHTML={{ __html: cssVariables }} />
       </head>
-      <body className={`${inter.className}  flex flex-row  max-md:flex-col-reverse `} >
+      <body className={`${inter.className} min-h-screen flex flex-col bg-zinc-50 dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100 antialiased selection:bg-primary/20 selection:text-primary`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

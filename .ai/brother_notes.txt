@@ -1,0 +1,28 @@
+TALHATECHS MIGRATION & REFACTOR NOTES FOR FUTURE AGENTS:
+===========================================================
+
+1. SUMMARY OF CHANGES:
+- Transitioned this entire codebase from a personal portfolio ("Talha Codes") to an official technology and software engineering company platform ("talhatechs" / TalhaTechs).
+- Founder: Muhammad Talha (Talha), Lead Systems & Software Engineer.
+- Removed the personal profile sidebar from the layout (LayoutWrapper in components/layout-wrapper.tsx and body flex classes in app/layout.tsx). The site now renders as a full-width, modern tech company website.
+- Modernized components/navbar.tsx to a sticky, responsive header featuring the talhatechs logo, brand badges ("Founded by Talha"), direct shortcut to the flagship app (★ Noyare), full navigation links, and theme toggle.
+- Added the main company project "Noyare" on top right under the hero section on the homepage (app/page.tsx).
+  * Windows system monitor and forensic utility suite built with Tauri and Rust.
+  * Links:
+    - Microsoft Store: https://apps.microsoft.com/detail/9PL83RF36NP4?hl=en-us&gl=US&ocid=pdpshare
+    - GitHub: https://github.com/talhary/noyare-home
+    - Documentation: https://talhary.github.io/noyare-home/
+  * Specs: ~18MB install, 0.4% CPU idle, 1.1s polling, Slint/WebView2 runtime, Windows 10 & 11 native.
+  * Preview assets saved in public/images/noyare/ (preview.png, icon.png, logo.png).
+- Created a dedicated "Founded by Muhammad Talha" section in app/page.tsx, retaining all founder portfolio details (education, skillset, Woltrio & Swismax experience, contact channels: email mtalhamaths@gmail.com, phone +92 318 5853847, location Islamabad, Pakistan, nationality Pakistani, GitHub github.com/talhary, 3D experience intro).
+- Updated company branding across About (app/about/page.tsx), Resume (app/resume/page.tsx), Contact (app/contact/page.tsx), Privacy Policy (app/privacy/page.tsx), Blog (app/blog/page.tsx), Portfolio filters, and Developer Tools layout.
+
+2. ASSET PATHS:
+- Founder photo: images/me.png
+- Noyare assets: public/images/noyare/preview.png, public/images/noyare/icon.png, public/images/noyare/logo.png
+
+3. COMPLIANCE & RULES:
+- Never commit secrets.
+- Always use timeout when executing commands.
+- Do not use browser testing.
+- Store plain text notes in this .ai directory.

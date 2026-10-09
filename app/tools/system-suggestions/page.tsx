@@ -6,17 +6,17 @@ import Link from 'next/link';
 import { FiArrowLeft, FiLayers, FiServer, FiCpu } from 'react-icons/fi';
 
 export const metadata: Metadata = {
-  title: "Systems Architecture & Engineering Proposals | Talha Codes",
+  title: "Systems Architecture & Engineering Proposals | talhatechs",
   description: "Explore systems engineering architectural blueprints, Bitcask LSM-tree storage engines, Raft-consensus Redis clones, and distributed container networks.",
   keywords: [
     "Systems Architecture",
     "Bitcask LSM Tree",
     "Raft Consensus Redis",
     "Distributed Systems Roadmap",
-    "Talha Codes Engineering"
+    "talhatechs Engineering"
   ],
   openGraph: {
-    title: "Systems Architecture & Engineering Proposals | Talha Codes",
+    title: "Systems Architecture & Engineering Proposals | talhatechs",
     description: "Deep-dive architectural proposals and engineering roadmaps for distributed systems and storage engines.",
     type: "website",
     url: "https://talhacodes.site/tools/system-suggestions",

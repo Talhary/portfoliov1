@@ -4,17 +4,17 @@ import { Heading } from '@/components/heading';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: "Privacy Policy | Talha Codes",
-  description: "Privacy Policy for Talha Codes' portfolio and tech blog website. Covers details on data collection, cookies, and Google AdSense compliance.",
+  title: "Privacy Policy | talhatechs",
+  description: "Privacy Policy for talhatechs website and developer applications. Covers details on data collection, cookies, and compliance.",
   keywords: [
     "Privacy Policy",
-    "Talha Codes Privacy",
+    "talhatechs Privacy",
     "AdSense Cookie Policy",
     "Data Collection Disclosure"
   ],
   openGraph: {
-    title: "Privacy Policy | Talha Codes",
-    description: "Privacy Policy explaining data collection practices and cookies usage for Google AdSense compliance.",
+    title: "Privacy Policy | talhatechs",
+    description: "Privacy Policy explaining data collection practices and cookies usage for talhatechs.",
     type: "website",
     url: "https://talhacodes.site/privacy",
   }
@@ -31,7 +31,7 @@ export default function PrivacyPolicyPage() {
         </p>
 
         <p>
-          At <strong>Talha Codes Portfolio & Blog</strong> (accessible from <Link href="/" className="text-primary hover:underline font-semibold">talhacodes.site</Link>), one of our main priorities is the privacy of our visitors. This Privacy Policy document contains types of information that is collected and recorded by our website and how we use it.
+          At <strong>talhatechs</strong> (accessible from <Link href="/" className="text-primary hover:underline font-semibold">talhacodes.site</Link>), founded by Muhammad Talha, one of our main priorities is the privacy of our visitors and application users. This Privacy Policy document contains types of information that is collected and recorded by our website and how we use it.
         </p>
 
         <p>

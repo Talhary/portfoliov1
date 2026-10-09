@@ -21,20 +21,20 @@ import { ContactForm } from '@/app/contact/_components/form';
 
 const faqs = [
   {
-    question: "Are you open to full-time software engineering roles?",
-    answer: "Yes, absolutely! I am actively looking for full-time Full Stack Software Engineer opportunities. I am open to remote contracts globally or hybrid/on-site positions in Islamabad, Pakistan."
+    question: "What services does talhatechs provide?",
+    answer: "talhatechs specializes in native high-performance software systems (Rust/Tauri, Windows desktop utilities like Noyare), full-stack web platforms (Next.js, React, Node.js, PostgreSQL), cloud tunnels, and automated developer tooling."
   },
   {
-    question: "What are your primary technical skills and stacks?",
-    answer: "My core expertise lies in the MERN stack (MongoDB, Express, React, Node.js) and Next.js (App Router, Server Components). I also have hands-on experience with relational databases like PostgreSQL and MySQL, and building bots or automated tools."
+    question: "Can we collaborate on custom software or enterprise projects?",
+    answer: "Yes, absolutely! We partner with organizations and founders on custom systems engineering, high-throughput web architectures, API integrations, and developer automation. Send your requirements and we will review them."
   },
   {
-    question: "Can we collaborate on short-term freelance projects?",
-    answer: "Yes, I offer freelance services for custom web application design, API integrations, and database optimizations. Drop a message with your project scope and timelines, and we can discuss further."
+    question: "Is founder Muhammad Talha open to select engineering roles?",
+    answer: "Yes, Muhammad Talha considers select senior full-stack and systems engineering contracts, advisory roles, and high-impact technical collaborations."
   },
   {
-    question: "How fast do you respond to messages?",
-    answer: "I generally reply to all emails and contact forms within 12 to 24 hours. For urgent business inquiries, you can reach out directly via my phone number or messaging channels."
+    question: "How fast does the talhatechs team respond to inquiries?",
+    answer: "We typically review and reply to all inquiries within 12 to 24 hours. For urgent business needs, reach out via the direct contact channels listed."
   }
 ];
 
@@ -88,7 +88,7 @@ export default function Component() {
               </div>
               <div>
                 <h2 className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">Get in Touch</h2>
-                <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-1">Have a project in mind or want to hire me? Drop a message!</p>
+                <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-1">Have a software project, enterprise inquiry, or want to collaborate with talhatechs? Drop a message!</p>
               </div>
             </div>
             <hr className="border-zinc-200 dark:border-zinc-800/60 my-4" />

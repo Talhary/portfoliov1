@@ -19,12 +19,12 @@ export async function generateMetadata({
 
   if (!result.success || !result.data) {
     return {
-      title: "Blog Post Not Found | Talha Codes",
+      title: "Blog Post Not Found | talhatechs",
       description: "The requested blog article could not be found.",
     };
   }
 
-  const title = `${result.data.title} | Talha Codes Blog`;
+  const title = `${result.data.title} | talhatechs Blog`;
   const description = result.data.description.substring(0, 160);
 
   return {
@@ -110,7 +110,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     },
     publisher: {
       '@type': 'Organization',
-      name: 'Talha Codes',
+      name: 'talhatechs',
       url: siteUrl,
       logo: {
         '@type': 'ImageObject',

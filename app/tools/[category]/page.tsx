@@ -14,7 +14,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const category = getCategoryBySlug(categorySlug);
 
   if (!category) {
-    return { title: 'Category Not Found | Talha Codes' };
+    return { title: 'Category Not Found | talhatechs' };
   }
 
   const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://talhacodes.site';

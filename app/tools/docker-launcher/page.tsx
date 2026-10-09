@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { FiArrowLeft, FiBox, FiCpu, FiServer, FiShield } from 'react-icons/fi';
 
 export const metadata: Metadata = {
-  title: "Deploy Any Docker Container Online (5-Min Sandbox) | Talha Codes",
+  title: "Deploy Any Docker Container Online (5-Min Sandbox) | talhatechs",
   description: "Deploy any custom Docker container on-demand with custom image, port, command, and environment variables on *.talhacodes.site with Cloudflare tunnels and automated teardown.",
   keywords: [
     "Deploy Docker Container Online",
@@ -14,10 +14,10 @@ export const metadata: Metadata = {
     "Cloud Docker Sandbox",
     "Ephemeral Container Deployer",
     "Cloudflare Named Tunnels",
-    "Talha Codes Tools"
+    "talhatechs Tools"
   ],
   openGraph: {
-    title: "Deploy Any Docker Container Online | Talha Codes",
+    title: "Deploy Any Docker Container Online | talhatechs",
     description: "Launch any public Docker image with custom ports, commands, and environment variables on *.talhacodes.site.",
     type: "website",
     url: "https://talhacodes.site/tools/docker-launcher",

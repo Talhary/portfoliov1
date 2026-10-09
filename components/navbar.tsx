@@ -1,83 +1,138 @@
 'use client'
 
-type PageStates = {
-  about: boolean | null;
-  resume: boolean | null;
-  "portfolio": boolean | null;
-  blog: boolean | null;
-  contact: boolean | null;
-};
-const list = ['Home', 'About', 'Resume', 'Portfolio', 'Tools', 'Blog', 'Contact']
-const hrefList = ['/', '/about', '/resume', '/portfolio/all', '/tools', '/blog', '/contact']
-
-import Link from 'next/link'
+import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState, useEffect } from 'react';
-import { BiMenu } from 'react-icons/bi';
-import { ModeToggle } from '@/components/theme-button'
+import { BiMenu, BiX } from 'react-icons/bi';
+import { ModeToggle } from '@/components/theme-button';
+
+const list = ['Home', 'About', 'Resume', 'Portfolio', 'Tools', 'Blog', 'Contact'];
+const hrefList = ['/', '/about', '/resume', '/portfolio/all', '/tools', '/blog', '/contact'];
 
 export const Navbar = ({ className }: { className?: string }) => {
   const pathname = usePathname();
-  const page = pathname === '/' ? 'home' : (pathname.split('/')[1] || 'about')
-  const [nav, setNav] = useState(false)
-  const [visible, setVisible] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
+  const page = pathname === '/' ? 'home' : (pathname.split('/')[1] || 'about');
+  const [nav, setNav] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      // If mobile dropdown menu is currently active, keep navbar pinned
-      if (nav) return;
-
-      const currentScrollY = window.scrollY;
-      
-      if (currentScrollY > lastScrollY && currentScrollY > 100) {
-        // Scrolling Down & past threshold -> hide
-        setVisible(false);
-      } else {
-        // Scrolling Up -> show
-        setVisible(true);
-      }
-      
-      setLastScrollY(currentScrollY);
+      setScrolled(window.scrollY > 20);
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, [lastScrollY, nav]);
+  }, []);
 
   return (
-    <>
-      <div 
-        className={`bg-white dark:bg-card-bg-1 dark:backdrop-blur-xl text-zinc-900 dark:text-white border border-zinc-200 dark:border-zinc-850 shadow-md dark:shadow-black absolute max-md:top-4 max-md:right-4 max-xs:top-1 max-xs:right-1 md:fixed md:top-6 md:right-10 lg:right-12 z-50 rounded-tr-2xl rounded-bl-2xl md:rounded-2xl px-4 md:px-6 lg:px-8 xl:px-10 h-20 max-lg:h-14 flex flex-col transition-all duration-300 ease-in-out ${
-          nav ? 'max-md:w-40' : 'max-md:w-20'
-        } ${
-          visible 
-            ? 'translate-y-0 opacity-100' 
-            : 'translate-y-[-160%] opacity-0 pointer-events-none'
-        } ${className}`}
-      >
-        <div className='relative rounded-tr-2xl rounded-bl-2xl md:rounded-2xl h-20 flex flex-col'>
-          <button className={`md:hidden p- my-3 text-center rounded-md transition-all dark:bg-card-bg ${nav ? 'text-primary' : ''}`} onClick={() => setNav(!nav)}>
-            <BiMenu size={40} className='max-xs:size-8' />
+    <header 
+      className={`sticky top-0 z-50 w-full transition-all duration-300 ${
+        scrolled 
+          ? 'bg-white/95 dark:bg-zinc-950/95 backdrop-blur-md shadow-md border-b border-zinc-200/80 dark:border-zinc-800/80' 
+          : 'bg-white/80 dark:bg-zinc-950/80 backdrop-blur-sm border-b border-zinc-200/40 dark:border-zinc-800/40'
+      } ${className || ''}`}
+    >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between gap-4">
+        {/* Brand */}
+        <Link href="/" className="flex items-center gap-3 group select-none">
+          <div className="h-10 w-10 rounded-xl bg-primary hover:bg-primary-hover flex items-center justify-center text-white font-extrabold text-xl shadow-md transition-all group-hover:scale-105 active:scale-95">
+            T
+          </div>
+          <div className="flex items-center gap-2">
+            <span className="font-extrabold text-xl sm:text-2xl tracking-tight text-zinc-900 dark:text-white transition-colors group-hover:text-primary">
+              talha<span className="text-primary font-black">techs</span>
+            </span>
+            <span className="hidden sm:inline-flex items-center text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-primary/10 text-primary border border-primary/20">
+              Founded by Talha
+            </span>
+          </div>
+        </Link>
+
+        {/* Desktop Navigation */}
+        <nav className="hidden md:flex items-center gap-1 lg:gap-2">
+          {list.map((el, i) => {
+            const itemKey = el.toLowerCase();
+            const isActive = (itemKey === 'home' && page === 'home') || (itemKey !== 'home' && page === itemKey);
+            return (
+              <Link
+                key={el}
+                href={hrefList[i]}
+                className={`px-3 py-1.5 rounded-xl text-sm font-semibold transition-all duration-200 ${
+                  isActive 
+                    ? 'text-primary bg-primary/10 shadow-sm font-bold' 
+                    : 'text-zinc-600 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-white hover:bg-zinc-100 dark:hover:bg-zinc-800/60'
+                }`}
+              >
+                {el}
+              </Link>
+            );
+          })}
+        </nav>
+
+        {/* Right Action Buttons */}
+        <div className="flex items-center gap-2 sm:gap-3">
+          <Link 
+            href="/#noyare" 
+            className="hidden lg:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-gradient-to-r from-primary to-primary-hover text-white text-xs font-bold uppercase tracking-wider shadow-sm hover:shadow-md hover:scale-105 active:scale-95 transition-all"
+            title="Explore our flagship Windows app Noyare"
+          >
+            <span>★ Noyare</span>
+          </Link>
+          <ModeToggle />
+          <button 
+            onClick={() => setNav(!nav)} 
+            className="md:hidden p-2 rounded-xl text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
+            aria-label="Toggle navigation menu"
+          >
+            {nav ? <BiX size={28} /> : <BiMenu size={28} />}
           </button>
-          <ul onClick={() => setNav(false)} className={`flex flex-row items-center justify-center text-sm md:text-sm lg:text-base xl:text-lg 2xl:text-xl gap-x-3 md:gap-x-4 lg:gap-x-6 xl:gap-x-8 2xl:gap-x-10 w-full h-full max-md:flex-col dark:max-md:bg-black max-md:bg-white max-md:text-black max-md:bg-opacity-85 dark:opacity-100 max-md:dark:text-white max-md:opacity-100 max-md:items-start max-md:h-fit max-md:mt-1 ${nav ? 'max-md:scale-1' : 'max-md:scale-0'} transition-all max-md:p-5 max-md:space-y-1 max-md:rounded-xl max-md:text-lg`}>
+        </div>
+      </div>
+
+      {/* Mobile Navigation Dropdown */}
+      {nav && (
+        <div className="md:hidden border-t border-zinc-200 dark:border-zinc-800 bg-white/95 dark:bg-zinc-950/95 backdrop-blur-xl px-4 py-4 space-y-2 animate-fadeIn shadow-lg">
+          <div className="flex items-center justify-between pb-2 mb-2 border-b border-zinc-150 dark:border-zinc-850">
+            <span className="text-xs font-semibold uppercase tracking-wider text-zinc-500">
+              Company Navigation
+            </span>
+            <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-primary/10 text-primary border border-primary/20">
+              talhatechs
+            </span>
+          </div>
+          <div className="grid grid-cols-2 gap-2">
             {list.map((el, i) => {
               const itemKey = el.toLowerCase();
               const isActive = (itemKey === 'home' && page === 'home') || (itemKey !== 'home' && page === itemKey);
               return (
-                <li key={el} className={`tracking-lighter font-semibold ${isActive ? 'text-primary' : ''}`}>
-                  <Link href={hrefList[i]}>{el}</Link>
-                </li>
+                <Link
+                  key={el}
+                  href={hrefList[i]}
+                  onClick={() => setNav(false)}
+                  className={`p-2.5 rounded-xl text-sm font-semibold transition-all ${
+                    isActive 
+                      ? 'text-primary bg-primary/10 font-bold' 
+                      : 'text-zinc-700 dark:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-800/60'
+                  }`}
+                >
+                  {el}
+                </Link>
               );
             })}
-            <li>
-              <ModeToggle />
-            </li>
-          </ul>
+          </div>
+          <div className="pt-2 border-t border-zinc-150 dark:border-zinc-850">
+            <Link 
+              href="/#noyare" 
+              onClick={() => setNav(false)}
+              className="w-full flex items-center justify-center gap-2 p-2.5 rounded-xl bg-primary text-white font-bold text-xs uppercase tracking-wider shadow-sm"
+            >
+              <span>★ Flagship App: Noyare</span>
+            </Link>
+          </div>
         </div>
-      </div>
-    </>
+      )}
+    </header>
   );
 };

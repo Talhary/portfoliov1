@@ -6,17 +6,17 @@ import Link from 'next/link';
 import { FiArrowLeft, FiMail, FiShare2, FiZap } from 'react-icons/fi';
 
 export const metadata: Metadata = {
-  title: "High-Throughput Go Contact & Social Scraper | Talha Codes",
+  title: "High-Throughput Go Contact & Social Scraper | talhatechs",
   description: "Multi-threaded Go crawler engine that recursively navigates domains to harvest verified email addresses, telephone numbers, contact endpoints, and social media handles.",
   keywords: [
     "Go Contact Scraper",
     "Email Scraper Tool",
     "Social Media Harvester",
     "Domain Web Crawler",
-    "Talha Codes Tools"
+    "talhatechs Tools"
   ],
   openGraph: {
-    title: "High-Throughput Go Contact & Social Scraper | Talha Codes",
+    title: "High-Throughput Go Contact & Social Scraper | talhatechs",
     description: "Harvest verified emails, phone numbers, and social media accounts across any domain with high concurrency.",
     type: "website",
     url: "https://talhacodes.site/tools/contact-scraper",

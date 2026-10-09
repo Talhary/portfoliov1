@@ -73,8 +73,6 @@ const PageSkeleton = () => {
       <div className='px-2 md:px-4 lg:px-6 pt-5 pb-10 text-neutral-800 dark:text-neutral-200'>
         <HeadingSkeletonLoader />
 
-        <AsideImageSectionSkeletonLoader className='md:hidden my-4 flex flex-col items-center justify-center' />
-
         {/* Bio Section Skeleton */}
         <section className='mt-6 mx-2 max-md:mx-0'>
           {/* <h2 className="text-2xl font-semibold mb-4 text-neutral-100 dark:text-white hidden">Bio</h2> // This was hidden */}

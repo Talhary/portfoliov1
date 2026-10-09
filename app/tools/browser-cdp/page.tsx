@@ -6,17 +6,17 @@ import Link from 'next/link';
 import { FiArrowLeft, FiGlobe, FiRadio, FiServer } from 'react-icons/fi';
 
 export const metadata: Metadata = {
-  title: "Browser Network CDP & Screencast Monitor | Talha Codes",
+  title: "Browser Network CDP & Screencast Monitor | talhatechs",
   description: "Live cluster monitor for remote Chromium worker instances with direct Chrome DevTools Protocol WebSocket debug endpoints for headless automation.",
   keywords: [
     "Chrome DevTools Protocol",
     "CDP Browser Pool",
     "Remote Chromium Automation",
     "Headless Browser Screencast",
-    "Talha Codes Tools"
+    "talhatechs Tools"
   ],
   openGraph: {
-    title: "Browser Network CDP & Screencast Monitor | Talha Codes",
+    title: "Browser Network CDP & Screencast Monitor | talhatechs",
     description: "Monitor active remote Chromium nodes and WebSocket CDP debug endpoints in real-time.",
     type: "website",
     url: "https://talhacodes.site/tools/browser-cdp",
