@@ -26,3 +26,9 @@ TALHATECHS MIGRATION & REFACTOR NOTES FOR FUTURE AGENTS:
 - Always use timeout when executing commands.
 - Do not use browser testing.
 - Store plain text notes in this .ai directory.
+
+4. HOMEPAGE REDESIGN (2026-10-12):
+- app/page.tsx rewritten as a clean, full-width company landing page: Hero (+ Noyare screenshot) -> Services -> Noyare -> Selected work -> Founder -> Blog -> Contact -> Footer.
+- Home ("/") bypasses the bordered card wrapper in components/layout-wrapper.tsx; sections manage their own max-w-6xl containers.
+- Style rules: neutral zinc palette, primary orange as the ONLY accent, no rainbow icon tiles, pulsing dots, star glyphs, glows or hover-scale effects.
+- Personal details (birth date, nationality), education timeline, skill bars and GitHubStats (randomized grid) were intentionally removed from the homepage; they remain on /resume and /about.

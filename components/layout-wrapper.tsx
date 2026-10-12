@@ -62,6 +62,19 @@ export default function LayoutWrapper({ children }: { children: React.ReactNode 
     );
   }
 
+  // Home page renders full-bleed sections and manages its own containers
+  if (pathname === "/") {
+    return (
+      <div className="min-h-screen w-full flex flex-col bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100">
+        <Navbar />
+        <main className="flex-1 w-full">
+          <GetToTopButton />
+          {children}
+        </main>
+      </div>
+    );
+  }
+
   // Company Layout without sidebar
   return (
     <div className="min-h-screen w-full flex flex-col bg-zinc-50 dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100">
