@@ -19,6 +19,13 @@ import {
   Clock,
   Terminal,
   Check,
+  Columns2,
+  Undo2,
+  Search,
+  FileText,
+  RefreshCw,
+  Copy,
+  Palette,
 } from 'lucide-react';
 import { GetAllProjects } from "@/actions/getAllProjects";
 import { AllProjects } from '@/components/all-projects';
@@ -73,6 +80,27 @@ const noyareModules = [
   { title: 'Keep awake', icon: Clock, text: 'Prevent sleep during downloads, builds and network workloads.' },
 ];
 
+const FILESPRO_STORE_URL = 'https://apps.microsoft.com/detail/9NTKTTNK7JXX?hl=en-us&gl=US&ocid=pdpshare';
+const FILESPRO_SITE_URL = 'https://talhary.github.io/filespro/';
+
+const filesproStats = [
+  { value: '1.1', label: 'Latest release' },
+  { value: '142', label: 'Commands, every one bindable' },
+  { value: '28', label: 'Color themes, plus 29 backdrops' },
+  { value: 'Rust', label: 'Native core and interface' },
+];
+
+const filesproModules = [
+  { title: 'Two panes, endless tabs', icon: Columns2, text: 'Folders side by side; F5 copies and F6 moves to the other pane.' },
+  { title: 'Undo that survives restarts', icon: Undo2, text: 'A journal of every copy, move, rename and delete, many steps deep.' },
+  { title: 'Instant search', icon: Search, text: 'A local filename index with fuzzy matching, regex and filters like size:>5mb.' },
+  { title: 'Viewer tab', icon: FileText, text: 'Code with find and replace, searchable PDFs, Word, Markdown, images and video.' },
+  { title: 'Terminals in tiles', icon: Terminal, text: 'PowerShell beside your files, split right or down, following your folder.' },
+  { title: 'Folder sync', icon: RefreshCw, text: 'Mirror, two-way or update-only, checked before it runs and undoable after.' },
+  { title: 'Duplicates & disk usage', icon: Copy, text: 'Find identical files by content and see what fills a folder in a treemap.' },
+  { title: 'Themes, backdrops & music', icon: Palette, text: 'Make it yours, and play a folder of music in a player in the corner.' },
+];
+
 const founderStack = ['Rust', 'Tauri', 'TypeScript', 'Next.js', 'React', 'Node.js', 'PostgreSQL', 'MongoDB', 'Docker'];
 
 const Container = ({ children, className }: { children: React.ReactNode; className?: string }) => (
@@ -118,16 +146,18 @@ const secondaryButton =
   'inline-flex items-center justify-center gap-2 rounded-lg border border-zinc-300 dark:border-zinc-700 hover:bg-zinc-50 dark:hover:bg-zinc-900 text-zinc-900 dark:text-white text-sm font-medium px-5 py-3 transition-colors';
 
 export const metadata: Metadata = {
-  title: "talhatechs | High-Performance Software Engineering, Systems & Developer Tools",
-  description: "talhatechs is a modern software company founded by Muhammad Talha. Home of Noyare (high-performance Windows forensic system monitor), scalable full-stack web platforms, and open developer tools.",
+  title: "talhacodes | High-Performance Software Engineering, Systems & Developer Tools",
+  description: "talhacodes is a software company founded by Muhammad Talha. Home of Noyare (high-performance Windows forensic system monitor), scalable full-stack web platforms, and open developer tools.",
   alternates: {
     canonical: "/",
   },
   keywords: [
-    "talhatechs",
-    "Talha Techs",
+    "talhacodes",
+    "Talha Codes",
     "Noyare",
     "Noyare Windows",
+    "FilesPro",
+    "FilesPro file manager",
     "Muhammad Talha",
     "Talha Codes",
     "Software Engineering Company",
@@ -137,8 +167,8 @@ export const metadata: Metadata = {
     "Islamabad Tech Company"
   ],
   openGraph: {
-    title: "talhatechs | High-Performance Software Engineering & Developer Tools",
-    description: "talhatechs is a technology & software engineering company founded by Muhammad Talha. Home of Noyare (forensic system monitor for Windows) and modern web systems.",
+    title: "talhacodes | High-Performance Software Engineering & Developer Tools",
+    description: "talhacodes is a software engineering company founded by Muhammad Talha. Home of Noyare (forensic system monitor for Windows) and modern web systems.",
     type: "website",
     url: "https://talhacodes.site",
   }
@@ -181,8 +211,8 @@ export default async function Home() {
   const organizationSchema = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
-    name: 'talhatechs',
-    alternateName: 'TalhaTechs',
+    name: 'talhacodes',
+    alternateName: 'TalhaCodes',
     url: siteUrl,
     logo: `${siteUrl}/images/noyare/logo.png`,
     founder: {
@@ -204,6 +234,7 @@ export default async function Home() {
       'Native Systems Engineering',
       'Rust & Tauri Development',
       'Noyare System Monitor',
+      'FilesPro File Manager',
       'Full Stack Web Platforms',
       'Next.js & React',
       'Developer Tools Automation'
@@ -220,16 +251,34 @@ export default async function Home() {
     downloadUrl: 'https://apps.microsoft.com/detail/9PL83RF36NP4?hl=en-us&gl=US&ocid=pdpshare',
     author: {
       '@type': 'Organization',
-      name: 'talhatechs',
+      name: 'talhacodes',
       url: 'https://talhary.github.io/noyare-home/'
     },
     description: 'Noyare is a high-performance forensic system monitor and utility suite for Windows built natively in Tauri and Rust.',
   };
 
+  const filesproSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareApplication',
+    name: 'FilesPro Manager',
+    alternateName: 'FilesPro',
+    operatingSystem: 'Windows 10, Windows 11',
+    applicationCategory: 'UtilitiesApplication',
+    softwareVersion: '1.1',
+    url: FILESPRO_SITE_URL,
+    downloadUrl: FILESPRO_STORE_URL,
+    author: {
+      '@type': 'Organization',
+      name: 'talhacodes',
+      url: siteUrl,
+    },
+    description: 'FilesPro is a fast, keyboard-first dual-pane file manager for Windows, built in Rust: tabs, instant search, a viewer and terminals beside your files, and copies you can pause, resume, verify and undo.',
+  };
+
   const websiteSchema = {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
-    name: 'talhatechs',
+    name: 'talhacodes',
     url: siteUrl,
     description: 'High-Performance Software Engineering, Native Systems, and Developer Tools — Founded by Muhammad Talha',
     potentialAction: {
@@ -247,6 +296,10 @@ export default async function Home() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareAppSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(filesproSchema) }}
       />
       <script
         type="application/ld+json"
@@ -273,8 +326,8 @@ export default async function Home() {
             Fast, native software and modern web platforms.
           </h1>
           <p className="mt-6 mx-auto max-w-2xl text-base sm:text-lg text-zinc-600 dark:text-zinc-400 leading-relaxed">
-            talhatechs is a software engineering company based in Islamabad. We build lightweight desktop tools like Noyare,
-            production web platforms, and developer utilities that teams rely on every day.
+            talhacodes is a software engineering company based in Islamabad. We build lightweight desktop tools like Noyare
+            and FilesPro, production web platforms, and developer utilities that teams rely on every day.
           </p>
 
           <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-3">
@@ -386,6 +439,83 @@ export default async function Home() {
         </Container>
       </section>
 
+
+      {/* FilesPro */}
+      <section id="filespro" className="border-t border-zinc-200 dark:border-zinc-800 py-20 sm:py-28 scroll-mt-16">
+        <Container>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            <div className="lg:order-2">
+              <div className="flex items-center gap-3">
+                <img src="/images/filespro/icon.png" alt="FilesPro icon" className="h-11 w-11 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 p-1" />
+                <div>
+                  <p className="text-sm font-medium text-primary">New · FilesPro 1.1</p>
+                  <p className="text-sm text-zinc-500 dark:text-zinc-400">Windows 10 &amp; 11</p>
+                </div>
+              </div>
+              <h2 className="mt-6 text-3xl sm:text-4xl font-semibold tracking-tight text-zinc-900 dark:text-white">
+                FilesPro. Move thousands of files. Undo any of them.
+              </h2>
+              <p className="mt-5 text-base sm:text-lg text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                A fast, keyboard-first file manager for Windows, built in Rust. Two panes, tabs, instant search, a viewer
+                and terminals right beside your files, and an operation queue you can pause, resume, verify and undo.
+              </p>
+
+              <ul className="mt-6 space-y-2.5 text-sm text-zinc-700 dark:text-zinc-300">
+                {['On the Microsoft Store', 'No account, no ads, no telemetry', 'Smooth in folders with tens of thousands of files'].map((item) => (
+                  <li key={item} className="flex items-center gap-2.5">
+                    <Check className="h-4 w-4 text-primary shrink-0" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+
+              <div className="mt-8 flex flex-col sm:flex-row gap-3">
+                <a href={FILESPRO_STORE_URL} target="_blank" rel="noopener noreferrer" className={primaryButton}>
+                  <FaWindows className="h-4 w-4" />
+                  Get FilesPro
+                </a>
+                <a href={FILESPRO_SITE_URL} target="_blank" rel="noopener noreferrer" className={secondaryButton}>
+                  Website
+                  <ArrowUpRight className="h-4 w-4" />
+                </a>
+              </div>
+            </div>
+
+            <div className="lg:order-1 rounded-xl sm:rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-900 p-1.5 sm:p-2 shadow-2xl shadow-zinc-900/10 dark:shadow-black/40">
+              <div className="overflow-hidden rounded-lg sm:rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white">
+                <img
+                  src="/images/filespro/preview.webp"
+                  alt="FilesPro with two panes and tabs, in the light theme with a watercolor backdrop"
+                  className="w-full aspect-[16/9] object-cover object-top"
+                  loading="lazy"
+                />
+              </div>
+            </div>
+          </div>
+
+          <dl className="mt-16 grid grid-cols-2 lg:grid-cols-4 gap-px overflow-hidden rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-200 dark:bg-zinc-800">
+            {filesproStats.map((stat) => (
+              <div key={stat.label} className="bg-white dark:bg-zinc-950 p-6 sm:p-8">
+                <dt className="text-sm text-zinc-500 dark:text-zinc-400">{stat.label}</dt>
+                <dd className="mt-2 text-3xl sm:text-4xl font-semibold tracking-tight text-zinc-900 dark:text-white">{stat.value}</dd>
+              </div>
+            ))}
+          </dl>
+
+          <div className="mt-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-10">
+            {filesproModules.map((module) => (
+              <div key={module.title}>
+                <div className="h-9 w-9 rounded-lg border border-zinc-200 dark:border-zinc-800 flex items-center justify-center">
+                  <module.icon className="h-4 w-4 text-zinc-700 dark:text-zinc-300" />
+                </div>
+                <h3 className="mt-4 text-sm font-semibold text-zinc-900 dark:text-white">{module.title}</h3>
+                <p className="mt-1.5 text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">{module.text}</p>
+              </div>
+            ))}
+          </div>
+        </Container>
+      </section>
+
       {/* Work */}
       {projects.length > 0 && (
         <section id="projects" className="border-t border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/30 py-20 sm:py-28">
@@ -409,7 +539,7 @@ export default async function Home() {
               <div className="relative aspect-square w-full max-w-xs mx-auto md:max-w-none overflow-hidden rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-900">
                 <Image
                   src={FounderAvatar}
-                  alt="Muhammad Talha, founder of talhatechs"
+                  alt="Muhammad Talha, software engineer"
                   fill
                   sizes="(min-width: 768px) 33vw, 320px"
                   className="object-cover object-top"
@@ -424,7 +554,7 @@ export default async function Home() {
               <p className="mt-2 text-sm text-zinc-500 dark:text-zinc-400">Founder & Lead Systems Engineer · Islamabad, Pakistan</p>
               <p className="mt-6 text-base sm:text-lg text-zinc-600 dark:text-zinc-400 leading-relaxed">
                 Talha is a full-stack and systems engineer with a BS in Computer Science from Quaid-e-Azam University. He
-                started talhatechs to build products like Noyare that pair low-level performance with a polished user
+                started talhacodes to build products like Noyare that pair low-level performance with a polished user
                 experience, and is also a full-stack engineer at Woltrio, shipping production web platforms.
               </p>
 
@@ -575,7 +705,7 @@ export default async function Home() {
             </div>
           </div>
           <div className="mt-12 pt-8 border-t border-zinc-200 dark:border-zinc-800 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-zinc-500 dark:text-zinc-400">
-            <p>© {new Date().getFullYear()} talhatechs. All rights reserved.</p>
+            <p>© {new Date().getFullYear()} talhacodes. All rights reserved.</p>
             <div className="flex items-center gap-5">
               <Link href="/privacy" className="hover:text-zinc-900 dark:hover:text-white transition-colors">Privacy</Link>
               <a href="https://github.com/talhary" target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="hover:text-zinc-900 dark:hover:text-white transition-colors">

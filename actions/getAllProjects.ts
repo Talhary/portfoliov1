@@ -4,6 +4,27 @@ const slugify = (text: string) => text.toLowerCase().replace(/[^a-z0-9]+/g, '-')
 
 export const STATIC_PROJECTS: any[] = [
   {
+    id: "filespro-file-manager",
+    title: "FilesPro: Dual-Pane File Manager for Windows",
+    description: "FilesPro is a fast, keyboard-first file manager for Windows, built in Rust and published on the Microsoft Store. Two panes and tabs, instant search from a local filename index, and an operation queue you can pause, resume, verify with BLAKE3 or SHA-256 and undo, even after a restart. Version 1.1 rebuilt the interface natively and added a viewer tab (code editor, searchable PDFs, Word, Markdown, images, audio and video), terminals in tiles, tags, a duplicate finder, a disk usage treemap, folder sync, SFTP and network shares, a music player, 28 color themes and 29 backdrops.",
+    type: "desktop|windows|rust|systems",
+    link: "https://talhary.github.io/filespro/",
+    imageUrl: [
+      "/images/filespro/hero.webp",
+      "/images/filespro/preview.webp",
+      "/images/filespro/viewer.webp",
+      "/images/filespro/terminal.webp",
+      "/images/filespro/themes.webp",
+      "/images/filespro/sync.webp",
+      "/images/filespro/music.webp"
+    ],
+    githubUrl: "https://github.com/talhary",
+    order: 1,
+    stack: ["Rust", "egui", "Win32 & COM", "SQLite", "MSIX", "Microsoft Store"],
+    createdAt: new Date("2026-10-22T00:00:00Z"),
+    updatedAt: new Date("2026-10-22T00:00:00Z"),
+  },
+  {
     id: "cmshac87q0001iop79qhdj3u8",
     title: "Nerihya Mobile & Ios App",
     description: "Nerihya is a complete, commercial-grade Customer Loyalty & Store Rewards platform tailored for local retail stores, cafes, and service merchants in the UK market, paired with a consumer loyalty app. Connects merchants and consumers via QR code checkout rewards, tier management, and real-time merchant analytics.",
