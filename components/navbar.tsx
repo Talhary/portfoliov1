@@ -71,7 +71,7 @@ export const Navbar = ({ className }: { className?: string }) => {
           <Link 
             href="/#noyare" 
             className="hidden lg:inline-flex items-center px-3.5 py-1.5 rounded-md bg-zinc-900 hover:bg-zinc-700 dark:bg-white dark:hover:bg-zinc-200 text-white dark:text-zinc-900 text-sm font-medium transition-colors"
-            title="Explore our flagship Windows app Noyare"
+            title="Explore my flagship Windows app Noyare"
           >
             <span>Get Noyare</span>
           </Link>
@@ -94,7 +94,7 @@ export const Navbar = ({ className }: { className?: string }) => {
               Company Navigation
             </span>
             <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-primary/10 text-primary border border-primary/20">
-              talhatechs
+              talhacodes
             </span>
           </div>
           <div className="grid grid-cols-2 gap-2">

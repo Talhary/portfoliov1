@@ -21,20 +21,20 @@ import { ContactForm } from '@/app/contact/_components/form';
 
 const faqs = [
   {
-    question: "What services does talhatechs provide?",
-    answer: "talhatechs specializes in native high-performance software systems (Rust/Tauri, Windows desktop utilities like Noyare), full-stack web platforms (Next.js, React, Node.js, PostgreSQL), cloud tunnels, and automated developer tooling."
+    question: "What services does Muhammad Talha (talhacodes) offer?",
+    answer: "Muhammad Talha specializes in native high-performance software systems (Rust/Tauri, Windows desktop utilities like Noyare), full-stack web platforms (Next.js, React, Node.js, PostgreSQL), cloud tunnels, and automated developer tooling."
   },
   {
-    question: "Can we collaborate on custom software or enterprise projects?",
-    answer: "Yes, absolutely! We partner with organizations and founders on custom systems engineering, high-throughput web architectures, API integrations, and developer automation. Send your requirements and we will review them."
+    question: "Can we collaborate on custom software projects?",
+    answer: "Yes, absolutely! I work with teams and founders on custom systems engineering, high-throughput web architectures, API integrations, and developer automation. Send your requirements and I will review them."
   },
   {
-    question: "Is founder Muhammad Talha open to select engineering roles?",
+    question: "Is Muhammad Talha open to select engineering roles?",
     answer: "Yes, Muhammad Talha considers select senior full-stack and systems engineering contracts, advisory roles, and high-impact technical collaborations."
   },
   {
-    question: "How fast does the talhatechs team respond to inquiries?",
-    answer: "We typically review and reply to all inquiries within 12 to 24 hours. For urgent business needs, reach out via the direct contact channels listed."
+    question: "How fast does Muhammad Talha respond to inquiries?",
+    answer: "I typically review and reply to all inquiries within 12 to 24 hours. For urgent business needs, reach out via the direct contact channels listed."
   }
 ];
 
@@ -88,7 +88,7 @@ export default function Component() {
               </div>
               <div>
                 <h2 className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">Get in Touch</h2>
-                <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-1">Have a software project, enterprise inquiry, or want to collaborate with talhatechs? Drop a message!</p>
+                <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-1">Have a software project, or want to collaborate with Muhammad Talha? Drop a message!</p>
               </div>
             </div>
             <hr className="border-zinc-200 dark:border-zinc-800/60 my-4" />

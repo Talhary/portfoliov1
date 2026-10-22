@@ -6,7 +6,7 @@ import { Shield, Zap, Video, HelpCircle, FileText, AlertCircle } from 'lucide-re
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: "Free Instagram Reels Downloader | HD Video Saver - talhatechs",
+  title: "Free Instagram Reels Downloader | HD Video Saver - talhacodes",
   description: "Download Instagram Reels, videos, and photos online in high-quality HD for free. Fast, secure, anonymous, and no login required.",
   keywords: [
     "Instagram Reels Downloader",
@@ -15,10 +15,10 @@ export const metadata: Metadata = {
     "Instagram Video Downloader",
     "Instagram Saver",
     "Free IG Downloader",
-    "talhatechs Tools"
+    "talhacodes Tools"
   ],
   openGraph: {
-    title: "Free Instagram Reels Downloader | HD Video Saver - talhatechs",
+    title: "Free Instagram Reels Downloader | HD Video Saver - talhacodes",
     description: "Download Instagram Reels, videos, and photos online in high-quality HD for free. Fast, secure, anonymous, and no login required.",
     type: "website",
     url: "https://talhacodes.site/tools/instagram-reels-downloader",

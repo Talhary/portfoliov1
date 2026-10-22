@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { ArrowLeft, Calendar, Tag, BookOpen, Clock, ArrowRight } from 'lucide-react';
 import { GetBlogBySlug, GetRelatedBlogs } from '@/actions/getBlogBySlug';
 import { parseMarkdown } from '@/lib/markdown';
+import { isBlogIndexable } from '@/lib/seo-config';
 
 interface BlogPostPageProps {
   params: Promise<{
@@ -19,12 +20,12 @@ export async function generateMetadata({
 
   if (!result.success || !result.data) {
     return {
-      title: "Blog Post Not Found | talhatechs",
+      title: "Blog Post Not Found | talhacodes",
       description: "The requested blog article could not be found.",
     };
   }
 
-  const title = `${result.data.title} | talhatechs Blog`;
+  const title = `${result.data.title} | talhacodes Blog`;
   const description = result.data.description.substring(0, 160);
 
   return {
@@ -33,6 +34,9 @@ export async function generateMetadata({
     alternates: {
       canonical: `/blog/${slug}`,
     },
+    robots: isBlogIndexable(slug)
+      ? { index: true, follow: true }
+      : { index: false, follow: true },
     keywords: [
       result.data.title,
       "Tech Blog",
@@ -105,17 +109,13 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     dateModified: post.updatedAt ? new Date(post.updatedAt).toISOString() : post.createdAt ? new Date(post.createdAt).toISOString() : undefined,
     author: {
       '@type': 'Person',
-      name: 'Talha',
+      name: 'Muhammad Talha',
       url: siteUrl,
     },
     publisher: {
-      '@type': 'Organization',
-      name: 'talhatechs',
+      '@type': 'Person',
+      name: 'Muhammad Talha',
       url: siteUrl,
-      logo: {
-        '@type': 'ImageObject',
-        url: `${siteUrl}/favicon.ico`,
-      },
     },
     keywords: post.tags.join(', '),
   };

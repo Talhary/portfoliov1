@@ -6,17 +6,17 @@ import Link from 'next/link';
 import { FiArrowLeft, FiMapPin, FiRadio, FiFileText } from 'react-icons/fi';
 
 export const metadata: Metadata = {
-  title: "Google Places Real-Time Lead Streamer (SSE) | talhatechs",
+  title: "Google Places Real-Time Lead Streamer (SSE) | talhacodes",
   description: "Live Server-Sent Events (SSE) stream for business leads, phones, reviews, ratings, and addresses harvested from Google Maps in real-time.",
   keywords: [
     "Google Places Scraper",
     "Real-Time SSE Lead Stream",
     "Google Maps Lead Scraper",
     "B2B Lead Generation Tool",
-    "talhatechs Tools"
+    "talhacodes Tools"
   ],
   openGraph: {
-    title: "Google Places Real-Time Lead Streamer | talhatechs",
+    title: "Google Places Real-Time Lead Streamer | talhacodes",
     description: "Stream verified business leads in real-time over SSE as headless Chromium navigates Google Maps.",
     type: "website",
     url: "https://talhacodes.site/tools/places-stream",

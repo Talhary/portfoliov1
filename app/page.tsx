@@ -147,7 +147,7 @@ const secondaryButton =
 
 export const metadata: Metadata = {
   title: "talhacodes | High-Performance Software Engineering, Systems & Developer Tools",
-  description: "talhacodes is a software company founded by Muhammad Talha. Home of Noyare (high-performance Windows forensic system monitor), scalable full-stack web platforms, and open developer tools.",
+  description: "Muhammad Talha (talhacodes) is a software engineer based in Islamabad. Creator of Noyare (high-performance Windows forensic system monitor), scalable full-stack web platforms, and open developer tools.",
   alternates: {
     canonical: "/",
   },
@@ -160,15 +160,15 @@ export const metadata: Metadata = {
     "FilesPro file manager",
     "Muhammad Talha",
     "Talha Codes",
-    "Software Engineering Company",
+    "Software Engineer Portfolio",
     "Full Stack Software Engineer",
     "Rust Tauri Desktop Apps",
     "Next.js Developer Tools",
-    "Islamabad Tech Company"
+    "Software Engineer Islamabad"
   ],
   openGraph: {
     title: "talhacodes | High-Performance Software Engineering & Developer Tools",
-    description: "talhacodes is a software engineering company founded by Muhammad Talha. Home of Noyare (forensic system monitor for Windows) and modern web systems.",
+    description: "Muhammad Talha (talhacodes) is a software engineer based in Islamabad. Creator of Noyare (forensic system monitor for Windows) and modern web systems.",
     type: "website",
     url: "https://talhacodes.site",
   }
@@ -208,28 +208,32 @@ export default async function Home() {
 
   const siteUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://talhacodes.site';
 
-  const organizationSchema = {
+  const personSchema = {
     '@context': 'https://schema.org',
-    '@type': 'Organization',
-    name: 'talhacodes',
-    alternateName: 'TalhaCodes',
+    '@type': 'Person',
+    '@id': `${siteUrl}/#person`,
+    name: 'Muhammad Talha',
+    alternateName: ['Talha Codes', 'talhacodes'],
     url: siteUrl,
-    logo: `${siteUrl}/images/noyare/logo.png`,
-    founder: {
-      '@type': 'Person',
-      name: 'Muhammad Talha',
-      alternateName: 'Talha Codes',
-      jobTitle: 'Founder & Lead Systems Engineer',
-      sameAs: [
-        'https://github.com/talhary',
-        'https://linkedin.com/in/talhacodes',
-      ],
+    jobTitle: 'Software Engineer',
+    description: 'Software engineer in Islamabad building native Windows tools in Rust and Tauri, full-stack web platforms, and developer tools.',
+    worksFor: {
+      '@type': 'Organization',
+      name: 'Woltrio',
+    },
+    alumniOf: {
+      '@type': 'CollegeOrUniversity',
+      name: 'Quaid-i-Azam University',
     },
     address: {
       '@type': 'PostalAddress',
       addressLocality: 'Islamabad',
       addressCountry: 'PK',
     },
+    sameAs: [
+      'https://github.com/talhary',
+      'https://linkedin.com/in/talhacodes',
+    ],
     knowsAbout: [
       'Native Systems Engineering',
       'Rust & Tauri Development',
@@ -249,11 +253,7 @@ export default async function Home() {
     applicationCategory: 'UtilitiesApplication',
     url: 'https://apps.microsoft.com/detail/9PL83RF36NP4?hl=en-us&gl=US&ocid=pdpshare',
     downloadUrl: 'https://apps.microsoft.com/detail/9PL83RF36NP4?hl=en-us&gl=US&ocid=pdpshare',
-    author: {
-      '@type': 'Organization',
-      name: 'talhacodes',
-      url: 'https://talhary.github.io/noyare-home/'
-    },
+    author: { '@id': `${siteUrl}/#person` },
     description: 'Noyare is a high-performance forensic system monitor and utility suite for Windows built natively in Tauri and Rust.',
   };
 
@@ -267,11 +267,7 @@ export default async function Home() {
     softwareVersion: '1.1',
     url: FILESPRO_SITE_URL,
     downloadUrl: FILESPRO_STORE_URL,
-    author: {
-      '@type': 'Organization',
-      name: 'talhacodes',
-      url: siteUrl,
-    },
+    author: { '@id': `${siteUrl}/#person` },
     description: 'FilesPro is a fast, keyboard-first dual-pane file manager for Windows, built in Rust: tabs, instant search, a viewer and terminals beside your files, and copies you can pause, resume, verify and undo.',
   };
 
@@ -279,8 +275,10 @@ export default async function Home() {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
     name: 'talhacodes',
+    alternateName: 'Muhammad Talha',
     url: siteUrl,
-    description: 'High-Performance Software Engineering, Native Systems, and Developer Tools — Founded by Muhammad Talha',
+    publisher: { '@id': `${siteUrl}/#person` },
+    description: 'High-Performance Software Engineering, Native Systems, and Developer Tools — Portfolio of Muhammad Talha',
     potentialAction: {
       '@type': 'SearchAction',
       target: `${siteUrl}/blog?search={search_term_string}`,
@@ -291,7 +289,7 @@ export default async function Home() {
     <div className="w-full">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
       />
       <script
         type="application/ld+json"
@@ -326,8 +324,8 @@ export default async function Home() {
             Fast, native software and modern web platforms.
           </h1>
           <p className="mt-6 mx-auto max-w-2xl text-base sm:text-lg text-zinc-600 dark:text-zinc-400 leading-relaxed">
-            talhacodes is a software engineering company based in Islamabad. We build lightweight desktop tools like Noyare
-            and FilesPro, production web platforms, and developer utilities that teams rely on every day.
+            Hi, I am Muhammad Talha, a software engineer based in Islamabad. I build lightweight desktop tools like Noyare
+            and FilesPro, production web platforms, and developer utilities people rely on every day.
           </p>
 
           <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-3">
@@ -358,9 +356,9 @@ export default async function Home() {
       <section id="services" className="border-t border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/30 py-20 sm:py-28">
         <Container>
           <SectionHeader
-            eyebrow="What we do"
+            eyebrow="What I do"
             title="Engineering across the stack"
-            description="From native system utilities to cloud-backed web products, we design, build and ship software end to end."
+            description="From native system utilities to cloud-backed web products, I design, build and ship software end to end."
           />
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px overflow-hidden rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-200 dark:bg-zinc-800">
             {services.map((service) => (
@@ -522,7 +520,7 @@ export default async function Home() {
           <Container>
             <SectionHeader
               eyebrow="Selected work"
-              title="Platforms and tools we've shipped"
+              title="Platforms and tools I've shipped"
               description="Custom web applications, internal tools and products built for clients and for ourselves."
               action={<TextLink href="/portfolio/all">View all projects</TextLink>}
             />
@@ -547,11 +545,11 @@ export default async function Home() {
               </div>
             </div>
             <div className="md:col-span-8">
-              <p className="text-sm font-medium text-primary mb-3">Leadership</p>
+              <p className="text-sm font-medium text-primary mb-3">About</p>
               <h2 className="text-3xl sm:text-4xl font-semibold tracking-tight text-zinc-900 dark:text-white">
-                Founded by Muhammad Talha
+                About Muhammad Talha
               </h2>
-              <p className="mt-2 text-sm text-zinc-500 dark:text-zinc-400">Founder & Lead Systems Engineer · Islamabad, Pakistan</p>
+              <p className="mt-2 text-sm text-zinc-500 dark:text-zinc-400">Software Engineer · Islamabad, Pakistan</p>
               <p className="mt-6 text-base sm:text-lg text-zinc-600 dark:text-zinc-400 leading-relaxed">
                 Talha is a full-stack and systems engineer with a BS in Computer Science from Quaid-e-Azam University. He
                 started talhacodes to build products like Noyare that pair low-level performance with a polished user
@@ -570,7 +568,7 @@ export default async function Home() {
               </div>
 
               <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm font-medium">
-                <TextLink href="/about">About the founder</TextLink>
+                <TextLink href="/about">About me</TextLink>
                 <TextLink href="/resume">Resume</TextLink>
                 <a href="https://github.com/talhary" target="_blank" rel="noopener noreferrer" aria-label="GitHub" className="text-zinc-500 hover:text-zinc-900 dark:hover:text-white transition-colors">
                   <FaGithub className="h-5 w-5" />
@@ -644,7 +642,7 @@ export default async function Home() {
                 Let&apos;s build something together
               </h2>
               <p className="mt-4 text-base sm:text-lg text-zinc-600 dark:text-zinc-400 leading-relaxed">
-                Have a product idea, a desktop utility in mind, or a contract to discuss? Send a message and we&apos;ll get back
+                Have a product idea, a desktop utility in mind, or a contract to discuss? Send a message and I&apos;ll get back
                 to you within a couple of days.
               </p>
 

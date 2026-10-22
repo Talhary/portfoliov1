@@ -6,17 +6,17 @@ import Link from 'next/link';
 import { FiArrowLeft, FiBookOpen, FiCpu, FiFileText } from 'react-icons/fi';
 
 export const metadata: Metadata = {
-  title: "Gemini AI Technical Blog & Deep-Dive Generator | talhatechs",
+  title: "Gemini AI Technical Blog & Deep-Dive Generator | talhacodes",
   description: "AI-assisted technical software engineering blog generator powered by Google Gemini 2.5 Flash. Generates in-depth architecture articles in markdown.",
   keywords: [
     "AI Blog Generator",
     "Technical Blog Writer",
     "Gemini 2.5 Flash",
     "Markdown Article Generator",
-    "talhatechs Tools"
+    "talhacodes Tools"
   ],
   openGraph: {
-    title: "Gemini AI Technical Blog Generator | talhatechs",
+    title: "Gemini AI Technical Blog Generator | talhacodes",
     description: "Generate deep-dive technical engineering articles in Markdown with code samples and architectural breakdowns.",
     type: "website",
     url: "https://talhacodes.site/tools/ai-blog-generator",

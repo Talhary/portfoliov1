@@ -14,10 +14,10 @@ const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "https://talhacodes.site";
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
   title: {
-    default: "talhatechs | High-Performance Software Engineering & Developer Tools",
-    template: "%s | talhatechs",
+    default: "talhacodes | High-Performance Software Engineering & Developer Tools",
+    template: "%s | talhacodes",
   },
-  description: "talhatechs is a modern software engineering company founded by Muhammad Talha. Home of Noyare (forensic system monitor for Windows), scalable web architectures, and high-performance developer tools.",
+  description: "Muhammad Talha (talhacodes) is a software engineer based in Islamabad. Creator of Noyare (forensic system monitor for Windows), scalable web architectures, and high-performance developer tools.",
   alternates: {
     canonical: "/",
   },

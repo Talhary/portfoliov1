@@ -38,7 +38,8 @@ export const AddBlog = async (values: BlogInput) => {
         content: values.content,
         imageUrl: values.imageUrl || null,
         tags: values.tags,
-        published: true,
+        // New posts stay as drafts until reviewed by hand; flip to true in the DB to publish.
+        published: false,
       },
     });
 

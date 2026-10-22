@@ -33,7 +33,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   if (!tool) {
     return {
-      title: 'Tool Not Found | talhatechs',
+      title: 'Tool Not Found | talhacodes',
     };
   }
 
@@ -52,7 +52,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: tool.description,
       url: pageUrl,
       type: 'website',
-      siteName: 'talhatechs Developer Tools',
+      siteName: 'talhacodes',
     },
     twitter: {
       card: 'summary_large_image',

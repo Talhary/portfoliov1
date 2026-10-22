@@ -161,7 +161,7 @@ export function getToolSeoContent(tool: ToolDefinition): ToolSeoContent {
     },
     {
       title: 'End-to-End Transport Encryption',
-      description: 'All traffic between your client browser and talhatechs infrastructure is encrypted using 256-bit SSL/TLS 1.3 with strict HSTS policies.',
+      description: 'All traffic between your client browser and talhacodes infrastructure is encrypted using 256-bit SSL/TLS 1.3 with strict HSTS policies.',
       badge: '256-bit HTTPS',
     },
     {
@@ -229,8 +229,8 @@ export function getToolSeoContent(tool: ToolDefinition): ToolSeoContent {
         priceCurrency: 'USD',
       },
       creator: {
-        '@type': 'Organization',
-        name: 'talhatechs Tools',
+        '@type': 'Person',
+        name: 'Muhammad Talha',
         url: baseUrl,
       },
     },

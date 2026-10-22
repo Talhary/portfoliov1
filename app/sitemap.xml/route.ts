@@ -1,74 +1,24 @@
 import { NextResponse } from 'next/server';
-import { ALL_TOOLS, TOOL_CATEGORIES } from '@/lib/tools/registry';
+import { INDEXABLE_BLOG_SLUGS, SITEMAP_TOOL_PATHS } from '@/lib/seo-config';
 import { db } from '@/lib/db';
 
 export const dynamic = 'force-dynamic';
 
+type SitemapUrl = { url: string; lastmod?: string };
+
 export async function GET() {
   const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://talhacodes.site';
-  const siteLaunchDate = '2026-07-06T00:00:00.000Z';
-  const toolsReleaseDate = '2026-08-20T00:00:00.000Z';
 
-  const urls: Array<{ url: string; lastmod: string; changefreq: string; priority: string }> = [];
-
-  // Fetch blogs first so we know the most recent update date for the blog index and homepage
-  let blogs: Array<{ slug: string; updatedAt: Date }> = [];
-  try {
-    blogs = await db.blogPost.findMany({
-      where: { published: true },
-      orderBy: { updatedAt: 'desc' },
-      select: { slug: true, updatedAt: true },
-    });
-  } catch (error) {
-    console.error('Sitemap error fetching blogs:', error);
-  }
-
-  const latestBlogDate = blogs.length > 0 && blogs[0].updatedAt
-    ? new Date(blogs[0].updatedAt).toISOString()
-    : siteLaunchDate;
-
-  // 1. Static core pages
-  const staticPages = [
-    { url: baseUrl, priority: '1.0', changefreq: 'daily', lastmod: latestBlogDate },
-    { url: `${baseUrl}/tools`, priority: '1.0', changefreq: 'daily', lastmod: toolsReleaseDate },
-    { url: `${baseUrl}/portfolio/all`, priority: '0.9', changefreq: 'weekly', lastmod: toolsReleaseDate },
-    { url: `${baseUrl}/blog`, priority: '0.9', changefreq: 'daily', lastmod: latestBlogDate },
-    { url: `${baseUrl}/about`, priority: '0.8', changefreq: 'monthly', lastmod: siteLaunchDate },
-    { url: `${baseUrl}/resume`, priority: '0.8', changefreq: 'monthly', lastmod: siteLaunchDate },
-    { url: `${baseUrl}/contact`, priority: '0.8', changefreq: 'monthly', lastmod: siteLaunchDate },
-    { url: `${baseUrl}/tools/instagram-reels-downloader`, priority: '0.9', changefreq: 'weekly', lastmod: toolsReleaseDate },
+  const urls: SitemapUrl[] = [
+    { url: `${baseUrl}/` },
+    { url: `${baseUrl}/about` },
+    { url: `${baseUrl}/resume` },
+    { url: `${baseUrl}/contact` },
+    { url: `${baseUrl}/portfolio/all` },
+    ...SITEMAP_TOOL_PATHS.map((path) => ({ url: `${baseUrl}${path}` })),
   ];
 
-  for (const p of staticPages) {
-    urls.push({
-      url: p.url,
-      lastmod: p.lastmod,
-      changefreq: p.changefreq,
-      priority: p.priority,
-    });
-  }
-
-  // 2. Tool Categories
-  for (const cat of TOOL_CATEGORIES) {
-    urls.push({
-      url: `${baseUrl}/tools/${cat.slug}`,
-      lastmod: toolsReleaseDate,
-      changefreq: 'weekly',
-      priority: '0.9',
-    });
-  }
-
-  // 3. Individual Tools (140+ tools)
-  for (const tool of ALL_TOOLS) {
-    urls.push({
-      url: `${baseUrl}/tools/${tool.category}/${tool.slug}`,
-      lastmod: toolsReleaseDate,
-      changefreq: 'weekly',
-      priority: '0.8',
-    });
-  }
-
-  // 4. Dynamic Database Records (Projects, Categories, Blogs) with robust safety try/catch blocks
+  // Only real DB dates are used as lastmod; static pages omit it rather than fake one.
   try {
     const projects = await db.projects.findMany({
       orderBy: { updatedAt: 'desc' },
@@ -77,9 +27,7 @@ export async function GET() {
     for (const project of projects) {
       urls.push({
         url: `${baseUrl}/portfolio/project/${project.id}`,
-        lastmod: project.updatedAt ? new Date(project.updatedAt).toISOString() : siteLaunchDate,
-        changefreq: 'weekly',
-        priority: '0.8',
+        lastmod: project.updatedAt ? new Date(project.updatedAt).toISOString() : undefined,
       });
     }
   } catch (error) {
@@ -91,24 +39,30 @@ export async function GET() {
       select: { value: true },
     });
     for (const cat of categories) {
-      urls.push({
-        url: `${baseUrl}/portfolio/${cat.value}`,
-        lastmod: siteLaunchDate,
-        changefreq: 'weekly',
-        priority: '0.7',
-      });
+      urls.push({ url: `${baseUrl}/portfolio/${cat.value}` });
     }
   } catch (error) {
     console.error('Sitemap error fetching categories:', error);
   }
 
-  for (const blog of blogs) {
-    urls.push({
-      url: `${baseUrl}/blog/${blog.slug}`,
-      lastmod: blog.updatedAt ? new Date(blog.updatedAt).toISOString() : siteLaunchDate,
-      changefreq: 'weekly',
-      priority: '0.8',
-    });
+  // Blog posts are noindex unless explicitly allowlisted, so only those are listed.
+  if (INDEXABLE_BLOG_SLUGS.length > 0) {
+    try {
+      const blogs = await db.blogPost.findMany({
+        where: { published: true, slug: { in: INDEXABLE_BLOG_SLUGS } },
+        orderBy: { updatedAt: 'desc' },
+        select: { slug: true, updatedAt: true },
+      });
+      if (blogs.length > 0) urls.push({ url: `${baseUrl}/blog` });
+      for (const blog of blogs) {
+        urls.push({
+          url: `${baseUrl}/blog/${blog.slug}`,
+          lastmod: blog.updatedAt ? new Date(blog.updatedAt).toISOString() : undefined,
+        });
+      }
+    } catch (error) {
+      console.error('Sitemap error fetching blogs:', error);
+    }
   }
 
   // Build clean XML string
@@ -117,10 +71,8 @@ export async function GET() {
 ${urls
   .map(
     (item) => `  <url>
-    <loc>${escapeXml(item.url)}</loc>
-    <lastmod>${item.lastmod}</lastmod>
-    <changefreq>${item.changefreq}</changefreq>
-    <priority>${item.priority}</priority>
+    <loc>${escapeXml(item.url)}</loc>${item.lastmod ? `
+    <lastmod>${item.lastmod}</lastmod>` : ''}
   </url>`
   )
   .join('\n')}

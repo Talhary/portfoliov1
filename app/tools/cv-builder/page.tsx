@@ -6,17 +6,17 @@ import Link from 'next/link';
 import { FiArrowLeft, FiFileText, FiAward, FiCheckCircle } from 'react-icons/fi';
 
 export const metadata: Metadata = {
-  title: "Go ATS Resume / CV PDF Builder | Dynamic Tailoring - talhatechs",
+  title: "Go ATS Resume / CV PDF Builder | Dynamic Tailoring - talhacodes",
   description: "Generate customized, high-resolution vector ATS resumes dynamically compiled in Go based on selected skills, project stacks, and target engineering roles.",
   keywords: [
     "ATS Resume Generator",
     "Go PDF Builder",
     "Dynamic CV Generator",
     "Vector PDF Resume",
-    "talhatechs Tools"
+    "talhacodes Tools"
   ],
   openGraph: {
-    title: "Go ATS Resume / CV PDF Builder | talhatechs",
+    title: "Go ATS Resume / CV PDF Builder | talhacodes",
     description: "Generate customized, high-resolution vector ATS resumes dynamically compiled in Go.",
     type: "website",
     url: "https://talhacodes.site/tools/cv-builder",

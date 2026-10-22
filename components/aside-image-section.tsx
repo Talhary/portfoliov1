@@ -14,9 +14,9 @@ const Section = ({ className }: { className?: string }) => {
       />
     </div>
     <div>
-      <h1 className="text-3xl max-md:my-5 md:my-4 max-md:text-4xl text-zinc-900 dark:text-white font-bold tracking-tighter sidebar-name">talhatechs</h1>
+      <h1 className="text-3xl max-md:my-5 md:my-4 max-md:text-4xl text-zinc-900 dark:text-white font-bold tracking-tighter sidebar-name">talhacodes</h1>
       <p className="dark:bg-card-bg bg-zinc-100 text-sm my-2 md:w-fit p-1.5 px-3 rounded-md md:mx-auto text-zinc-850 dark:text-white border border-zinc-200 dark:border-none sidebar-title">
-        <span className='text-primary font-semibold'>Founded by</span> Muhammad Talha
+        <span className="text-primary font-semibold">By</span> Muhammad Talha
       </p>
     </div>
   </div>

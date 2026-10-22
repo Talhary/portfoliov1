@@ -3,22 +3,22 @@ import { Heading } from '@/components/heading';
 import Component from '@/app/contact/_components/contact';
 
 export const metadata: Metadata = {
-  title: "Contact talhatechs | Company Inquiries & Founder Access",
-  description: "Get in touch with talhatechs and founder Muhammad Talha. Send a message to discuss software development contracts, enterprise systems, or desktop utility collaborations.",
+  title: "Contact talhacodes | Get in Touch",
+  description: "Get in touch with talhacodes and Muhammad Talha. Send a message to discuss software development contracts, enterprise systems, or desktop utility collaborations.",
   alternates: {
     canonical: "/contact",
   },
   keywords: [
-    "Contact talhatechs",
-    "talhatechs email",
+    "Contact talhacodes",
+    "talhacodes email",
     "Hire software engineer Islamabad",
     "Muhammad Talha Contact",
     "Native software development",
     "Web engineering services"
   ],
   openGraph: {
-    title: "Contact talhatechs | Company Inquiries & Founder Access",
-    description: "Get in touch with talhatechs and founder Muhammad Talha. Send a message to discuss projects, enterprise contracts, or technical inquiries.",
+    title: "Contact talhacodes | Get in Touch",
+    description: "Get in touch with talhacodes and Muhammad Talha. Send a message to discuss projects, enterprise contracts, or technical inquiries.",
     type: "website",
     url: "https://talhacodes.site/contact",
   }
@@ -29,9 +29,9 @@ const Page = () => {
     <>
       <div>
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-primary/10 text-primary border border-primary/20 mb-3">
-          <span>talhatechs · Inquiries</span>
+          <span>talhacodes · Inquiries</span>
         </div>
-        <Heading title="Contact talhatechs & Leadership" />
+        <Heading title="Contact talhacodes & Leadership" />
         <Component />
       </div>
     </>

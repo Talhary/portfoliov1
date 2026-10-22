@@ -7,11 +7,11 @@ import IntroClient from './intro-client';
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "talhatechs | 3D Cinematic Portfolio Experience - Founded by Talha",
-  description: "Experience the interactive, generative, and cinematic 3D walkthrough of talhatechs and founder Muhammad Talha's engineering portfolio, featured projects, and tech architectures.",
+  title: "talhacodes | 3D Cinematic Portfolio Experience",
+  description: "Experience the interactive, generative, and cinematic 3D walkthrough of talhacodes and Muhammad Talha's engineering portfolio, featured projects, and tech architectures.",
   openGraph: {
-    title: "talhatechs | 3D Cinematic Portfolio Experience",
-    description: "Interactive 3D cinematic walkthrough of talhatechs engineering portfolio, featuring Three.js particles, Tone.js generative audio, and GSAP orchestrated animations.",
+    title: "talhacodes | 3D Cinematic Portfolio Experience",
+    description: "Interactive 3D cinematic walkthrough of talhacodes engineering portfolio, featuring Three.js particles, Tone.js generative audio, and GSAP orchestrated animations.",
     url: "https://talhacodes.site/intro",
   }
 };

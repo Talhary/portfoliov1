@@ -10,14 +10,14 @@ export async function generateMetadata({
   const { filter } = (await params) as { filter: string };
   const category = filter ? (filter === 'all' ? 'All' : filter.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ')) : 'Projects';
   return {
-    title: `${category} Projects | talhatechs Portfolio - Founded by Talha`,
-    description: `Explore projects and web applications engineered by talhatechs (Founded by Muhammad Talha). Built using modern stacks, Next.js, and native tools.`,
+    title: `${category} Projects | talhacodes Portfolio`,
+    description: `Explore projects and web applications engineered by talhacodes. Built using modern stacks, Next.js, and native tools.`,
     alternates: {
       canonical: `/portfolio/${filter}`,
     },
     keywords: [
       `${category} projects`,
-      "talhatechs projects",
+      "talhacodes projects",
       "Muhammad Talha projects",
       "web development portfolio",
       "portfolio items",
@@ -25,8 +25,8 @@ export async function generateMetadata({
       "Next.js projects"
     ],
     openGraph: {
-      title: `${category} Projects | talhatechs Portfolio`,
-      description: `Explore projects and applications engineered by talhatechs.`,
+      title: `${category} Projects | talhacodes Portfolio`,
+      description: `Explore projects and applications engineered by talhacodes.`,
       type: "website",
       url: `https://talhacodes.site/portfolio/${filter}`,
     }

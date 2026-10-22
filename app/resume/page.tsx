@@ -8,22 +8,22 @@ import { EducationList } from '@/components/education';
 import { Heading } from "@/components/heading";
 
 export const metadata: Metadata = {
-  title: "Founder Credentials & Technical Background | talhatechs",
-  description: "View the education, skill matrix, and software engineering background of Muhammad Talha, Founder of talhatechs.",
+  title: "Credentials & Technical Background | talhacodes",
+  description: "View the education, skill matrix, and software engineering background of Muhammad Talha, Software Engineer.",
   alternates: {
     canonical: "/resume",
   },
   keywords: [
-    "talhatechs Credentials",
+    "talhacodes Credentials",
     "Muhammad Talha Resume",
-    "Founder CV",
+    "Muhammad Talha CV",
     "Software Engineer Education",
     "Rust Tauri Next.js Skill Matrix",
     "Woltrio Full Stack Engineer"
   ],
   openGraph: {
-    title: "Founder Credentials & Technical Background | talhatechs",
-    description: "View the education, skills, and engineering background of Muhammad Talha, Founder of talhatechs.",
+    title: "Credentials & Technical Background | talhacodes",
+    description: "View the education, skills, and engineering background of Muhammad Talha, Software Engineer.",
     type: "profile",
     url: "https://talhacodes.site/resume",
   }
@@ -76,11 +76,11 @@ const Page = () => {
     <>
       <div className="w-full max-w-6xl mx-auto px-4 py-4 dark:text-gray-100 animate-fadeIn">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-primary/10 text-primary border border-primary/20 mb-3">
-          <span>talhatechs · Technical Credentials</span>
+          <span>talhacodes · Technical Credentials</span>
         </div>
-        <Heading title="Founder Credentials & Experience" />
+        <Heading title="Credentials & Experience" />
         <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-2 font-light">
-          Academic foundation, verified technical skill matrix, and software engineering credentials of Muhammad Talha, Founder of talhatechs.
+          Academic foundation, verified technical skill matrix, and software engineering credentials of Muhammad Talha, Software Engineer.
         </p>
 
         {/* Education Timeline Section */}
@@ -106,7 +106,7 @@ const Page = () => {
               <Brain size={22} className="text-primary" />
             </div>
             <h2 className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">
-              Founder Skillset Matrix
+              Skillset Matrix
             </h2>
           </div>
 

@@ -6,17 +6,17 @@ import Link from 'next/link';
 import { FiArrowLeft, FiSearch, FiShield } from 'react-icons/fi';
 
 export const metadata: Metadata = {
-  title: "Headless DuckDuckGo Search & AI Summarizer | talhatechs",
+  title: "Headless DuckDuckGo Search & AI Summarizer | talhacodes",
   description: "Anti-bot headless search engine bypassing Cloudflare and bot protections to harvest organic web results paired with generative AI summaries.",
   keywords: [
     "DuckDuckGo Headless Search",
     "Anti-Bot Web Search",
     "AI Search Engine",
     "Puppeteer Search Scraper",
-    "talhatechs Tools"
+    "talhacodes Tools"
   ],
   openGraph: {
-    title: "Headless DuckDuckGo Search & AI Summarizer | talhatechs",
+    title: "Headless DuckDuckGo Search & AI Summarizer | talhacodes",
     description: "Anti-bot headless search engine returning organic web results with generative AI summaries.",
     type: "website",
     url: "https://talhacodes.site/tools/duck-search",

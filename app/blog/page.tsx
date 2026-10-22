@@ -3,16 +3,20 @@ import { Metadata } from 'next';
 import { Heading } from '@/components/heading';
 import { GetBlogs } from '@/actions/getBlogs';
 import { BlogClient } from '@/components/blog-client';
+import { INDEXABLE_BLOG_SLUGS } from '@/lib/seo-config';
 
 export const metadata: Metadata = {
-  title: "Tech Blog & Systems Engineering Insights | talhatechs",
-  description: "Read technical articles on Next.js, Rust, Tauri, Node.js, TypeScript, PostgreSQL, and modern software systems from talhatechs (Founded by Muhammad Talha).",
+  title: "Tech Blog & Systems Engineering Insights | talhacodes",
+  description: "Read technical articles on Next.js, Rust, Tauri, Node.js, TypeScript, PostgreSQL, and modern software systems from talhacodes.",
   alternates: {
     canonical: "/blog",
   },
+  robots: INDEXABLE_BLOG_SLUGS.length
+    ? { index: true, follow: true }
+    : { index: false, follow: true },
   keywords: [
     "Tech Blog",
-    "talhatechs Blog",
+    "talhacodes Blog",
     "Systems Engineering",
     "Noyare Windows",
     "Rust Tauri Desktop",
@@ -23,8 +27,8 @@ export const metadata: Metadata = {
     "Software Engineering Insights"
   ],
   openGraph: {
-    title: "Tech Blog & Systems Engineering Insights | talhatechs",
-    description: "Read technical articles on Next.js, Rust, Tauri, Node.js, TypeScript, PostgreSQL, and modern software engineering from talhatechs.",
+    title: "Tech Blog & Systems Engineering Insights | talhacodes",
+    description: "Read technical articles on Next.js, Rust, Tauri, Node.js, TypeScript, PostgreSQL, and modern software engineering from talhacodes.",
     type: "website",
     url: "https://talhacodes.site/blog",
   }
@@ -55,12 +59,12 @@ export default async function BlogPage({ searchParams }: PageProps) {
   const blogSchema = {
     '@context': 'https://schema.org',
     '@type': 'Blog',
-    name: 'Tech Blog & Systems Engineering Insights | talhatechs',
+    name: 'Tech Blog & Systems Engineering Insights | talhacodes',
     description: 'Read technical articles on Next.js, Rust, Tauri, Node.js, TypeScript, PostgreSQL, and modern software systems.',
     url: `${siteUrl}/blog`,
     author: {
       '@type': 'Person',
-      name: 'Muhammad Talha (talhatechs)',
+      name: 'Muhammad Talha',
       url: siteUrl,
     },
   };

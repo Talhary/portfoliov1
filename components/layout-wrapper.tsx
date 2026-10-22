@@ -49,7 +49,7 @@ export default function LayoutWrapper({ children }: { children: React.ReactNode 
               Tools Catalog
             </Link>
             <div className="text-xs text-zinc-400 dark:text-zinc-500 font-light max-sm:hidden">
-              talhatechs Tools
+              talhacodes Tools
             </div>
           </div>
         </header>
