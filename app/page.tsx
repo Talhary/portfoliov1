@@ -677,7 +677,7 @@ export default async function Home() {
               <Link href="/" className="flex items-center gap-2.5">
                 <span className="h-7 w-7 rounded-md bg-primary flex items-center justify-center text-white font-bold text-sm">T</span>
                 <span className="font-semibold tracking-tight text-zinc-900 dark:text-white">
-                  talha<span className="text-primary">techs</span>
+                  talha<span className="text-primary">codes</span>
                 </span>
               </Link>
               <p className="mt-4 max-w-xs text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">

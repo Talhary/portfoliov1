@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100" fill="none">
+  <defs>
+    <!-- Left Chisel Facet (Rich Amber Bronze) -->
+    <linearGradient id="ttLeft" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFB014" />
+      <stop offset="100%" stop-color="#B86F00" />
+    </linearGradient>
+
+    <!-- Right Chisel Facet (Luminous Gold) -->
+    <linearGradient id="ttRight" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFE582" />
+      <stop offset="60%" stop-color="#F5A30A" />
+      <stop offset="100%" stop-color="#C97A00" />
+    </linearGradient>
+
+    <!-- Deep Graphite Technical Squircle -->
+    <linearGradient id="ttBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#17171C" />
+      <stop offset="100%" stop-color="#09090C" />
+    </linearGradient>
+
+    <!-- Gold Perimeter Glow Rim -->
+    <linearGradient id="ttBorder" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E49505" stop-opacity="0.85" />
+      <stop offset="45%" stop-color="#E49505" stop-opacity="0.25" />
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0.06" />
+    </linearGradient>
+
+    <!-- Ambient Radial Halo -->
+    <radialGradient id="ttAmbient" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#E49505" stop-opacity="0.25" />
+      <stop offset="60%" stop-color="#E49505" stop-opacity="0.06" />
+      <stop offset="100%" stop-color="#E49505" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+
+  <!-- Squircle Base -->
+  <rect x="3" y="3" width="94" height="94" rx="23" fill="url(#ttBg)" stroke="url(#ttBorder)" stroke-width="1.5" />
+  <rect x="3" y="3" width="94" height="94" rx="23" fill="url(#ttAmbient)" />
+
+  <!-- Specular top rim reflection -->
+  <path d="M 28 4.6 Q 50 4 72 4.6" stroke="rgba(255,255,255,0.22)" stroke-width="1" stroke-linecap="round" />
+
+  <!-- Master Monogram T with Dual 3D Chisel Facets -->
+  <!-- Left Chisel Facet -->
+  <path d="M 50 21.5 L 22.5 21.5 C 21.2 21.5 20.4 22.4 20.8 23.5 L 26.8 35.5 C 27.2 36.4 28.2 37 29.2 37 L 44 37 L 44 72.5 L 50 78.5 Z" fill="url(#ttLeft)" />
+
+  <!-- Right Chisel Facet -->
+  <path d="M 50 21.5 L 77.5 21.5 C 78.8 21.5 79.6 22.4 79.2 23.5 L 73.2 35.5 C 72.8 36.4 71.8 37 70.8 37 L 56 37 L 56 72.5 L 50 78.5 Z" fill="url(#ttRight)" />
+
+  <!-- Surgical Specular Ridge -->
+  <line x1="50" y1="21.5" x2="50" y2="78.5" stroke="#FFFBF0" stroke-width="1.4" stroke-linecap="round" />
+
+  <!-- Left Code Bracket < -->
+  <path d="M 32 45.5 L 20 54.5 L 32 63.5" stroke="url(#ttLeft)" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" />
+
+  <!-- Right Code Bracket > -->
+  <path d="M 68 45.5 L 80 54.5 L 68 63.5" stroke="url(#ttRight)" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" />
+</svg>

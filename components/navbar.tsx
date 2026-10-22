@@ -37,11 +37,9 @@ export const Navbar = ({ className }: { className?: string }) => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
         {/* Brand */}
         <Link href="/" className="flex items-center gap-3 group select-none">
-          <div className="h-8 w-8 rounded-lg bg-primary flex items-center justify-center text-white font-bold text-base">
-            T
-          </div>
+          <img src="/images/logo-mark.svg" alt="" width={32} height={32} className="h-8 w-8" />
           <span className="font-semibold text-lg tracking-tight text-zinc-900 dark:text-white">
-            talha<span className="text-primary">techs</span>
+            talha<span className="text-primary">codes</span>
           </span>
         </Link>
 
@@ -91,7 +89,7 @@ export const Navbar = ({ className }: { className?: string }) => {
         <div className="md:hidden border-t border-zinc-200 dark:border-zinc-800 bg-white/95 dark:bg-zinc-950/95 backdrop-blur-xl px-4 py-4 space-y-2 animate-fadeIn shadow-lg">
           <div className="flex items-center justify-between pb-2 mb-2 border-b border-zinc-150 dark:border-zinc-850">
             <span className="text-xs font-semibold uppercase tracking-wider text-zinc-500">
-              Company Navigation
+              Navigation
             </span>
             <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-primary/10 text-primary border border-primary/20">
               talhacodes

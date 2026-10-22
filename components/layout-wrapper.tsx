@@ -30,7 +30,7 @@ export default function LayoutWrapper({ children }: { children: React.ReactNode 
             </Link>
             <div className="flex items-center gap-1.5">
               <span className="font-extrabold text-base sm:text-lg tracking-tight text-zinc-900 dark:text-white">
-                talha<span className="text-primary font-black">techs</span>
+                talha<span className="text-primary font-black">codes</span>
               </span>
             </div>
             <Link 
